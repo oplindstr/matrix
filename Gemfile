@@ -68,3 +68,5 @@ gem 'bootstrap-sass'
 group :development do
   gem 'rails_layout'
 end
+
+gem 'travis', '~> 1.7.5'

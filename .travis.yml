@@ -8,3 +8,11 @@ script:
  - RAILS_ENV=test bundle exec rake db:migrate --trace
  - bundle exec rake db:test:prepare
  - bundle exec rspec -fd spec/
+
+deploy:
+  provider: heroku
+  api_key: e86d27d0-2e50-4194-88e4-cd5ad9e70442
+  app: matrix-ry
+  on:
+    repo: oplindstr/matrix
+  run: "rake db:migrate"
