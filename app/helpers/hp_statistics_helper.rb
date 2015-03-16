@@ -1,0 +1,2 @@
+module HpStatisticsHelper
+end

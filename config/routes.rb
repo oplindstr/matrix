@@ -1,9 +1,13 @@
 Rails.application.routes.draw do
+  resources :hp_statistics
+
   resources :events
 
   resources :users
 
   root 'users#index'
+
+  get 'jatkantappajat/ratings' => 'hp_statistics#index'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
