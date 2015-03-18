@@ -1,6 +1,6 @@
 class DropUidFromHpStatistic < ActiveRecord::Migration
   def change
-    remove_column :Hp_Statistics, :u_id
-    add_column :Hp_Statistics, :hpUsername, :string
+    remove_column :HpStatistics, :u_id
+    add_column :HpStatistics, :hpUsername, :string
   end
 end
