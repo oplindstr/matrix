@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  resources :players
+
   resources :hp_statistics
 
   resources :events
@@ -7,7 +9,7 @@ Rails.application.routes.draw do
 
   root 'users#index'
 
-  get 'jatkantappajat' => 'hp_statistics#index'
+  get 'jatkantappajat' => 'players#index'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

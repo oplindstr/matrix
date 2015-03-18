@@ -1,10 +1,10 @@
-<%= form_for(@hp_statistic) do |f| %>
-    <% if @hp_statistic.errors.any? %>
+<%= form_for(@player) do |f| %>
+    <% if @player.errors.any? %>
         <div id="error_explanation">
-          <h2><%= pluralize(@hp_statistic.errors.count, "error") %> Lisäys epäonnistui seuraavista syistä:</h2>
+          <h2><%= pluralize(@player.errors.count, "error") %> Lisäys epäonnistui seuraavista syistä:</h2>
 
           <ul>
-            <% @hp_statistic.errors.full_messages.each do |message| %>
+            <% @player.errors.full_messages.each do |message| %>
                 <li><%= message %></li>
             <% end %>
           </ul>
@@ -15,16 +15,13 @@
 
     <div class="field">
       <%= f.label 'Nimi' %><br>
-      <%= f.text_field :hpUsername %>
+      <%= f.text_field :name %>
     </div>
     <div class="field">
       <%= f.hidden_field :expectation, :value => 1500 %>
     </div>
     <div class="field">
       <%= f.hidden_field :deviation, :value => 500 %>
-    </div>
-    <div class="field">
-      <%= f.hidden_field :assurity, :value => 0 %>
     </div>
     <div class="actions">
       <%= f.submit %>

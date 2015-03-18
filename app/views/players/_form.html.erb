@@ -1,10 +1,10 @@
-<%= form_for(@hp_statistic) do |f| %>
-  <% if @hp_statistic.errors.any? %>
+<%= form_for(@player) do |f| %>
+  <% if @player.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(@hp_statistic.errors.count, "error") %> prohibited this hp_statistic from being saved:</h2>
+      <h2><%= pluralize(@player.errors.count, "error") %> prohibited this player from being saved:</h2>
 
       <ul>
-      <% @hp_statistic.errors.full_messages.each do |message| %>
+      <% @player.errors.full_messages.each do |message| %>
         <li><%= message %></li>
       <% end %>
       </ul>
@@ -12,8 +12,8 @@
   <% end %>
 
   <div class="field">
-    <%= f.label 'Username' %><br>
-    <%= f.text_field :hpUsername %>
+    <%= f.label :name %><br>
+    <%= f.text_field :name %>
   </div>
   <div class="field">
     <%= f.label :expectation %><br>
@@ -22,10 +22,6 @@
   <div class="field">
     <%= f.label :deviation %><br>
     <%= f.text_field :deviation %>
-  </div>
-  <div class="field">
-    <%= f.label :assurity %><br>
-    <%= f.text_field :assurity %>
   </div>
   <div class="actions">
     <%= f.submit %>
