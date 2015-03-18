@@ -1,0 +1,13 @@
+fi:
+ activerecord:
+     models:
+       HpStatistic: "Pelaaja"
+     attributes:
+       HpStatistic:
+         hpUsername: "Nimi"
+     errors:
+       models:
+         HpStatistic:
+           attributes:
+             hpUsername:
+               blank: "ei saa olla tyhjä"

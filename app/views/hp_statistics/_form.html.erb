@@ -12,7 +12,8 @@
   <% end %>
 
   <div class="field">
-    User: <%= f.select :u_id, options_from_collection_for_select(@users, :id, :to_s) %>
+    <%= f.label 'Username' %><br>
+    <%= f.text_field :hpUsername %>
   </div>
   <div class="field">
     <%= f.label :expectation %><br>

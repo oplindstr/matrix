@@ -11,7 +11,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150316171013) do
+ActiveRecord::Schema.define(version: 20150318142833) do
+
+  create_table "Hp_Statistics", force: :cascade do |t|
+    t.float    "expectation"
+    t.float    "deviation"
+    t.float    "assurity"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+    t.string   "hpUsername"
+  end
 
   create_table "events", force: :cascade do |t|
     t.string   "name"
@@ -25,15 +34,6 @@ ActiveRecord::Schema.define(version: 20150316171013) do
     t.date     "signup_cancellable_until"
     t.datetime "created_at",               null: false
     t.datetime "updated_at",               null: false
-  end
-
-  create_table "hp_statistics", force: :cascade do |t|
-    t.integer  "u_id"
-    t.float    "expectation"
-    t.float    "deviation"
-    t.float    "assurity"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
   end
 
   create_table "users", force: :cascade do |t|

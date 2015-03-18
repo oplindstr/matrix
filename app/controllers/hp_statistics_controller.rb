@@ -5,6 +5,7 @@ class HpStatisticsController < ApplicationController
   # GET /hp_statistics.json
   def index
     @hp_statistics = HpStatistic.all
+    @hp_statistic = HpStatistic.new
   end
 
   # GET /hp_statistics/1
@@ -29,10 +30,11 @@ class HpStatisticsController < ApplicationController
 
     respond_to do |format|
       if @hp_statistic.save
-        format.html { redirect_to @hp_statistic, notice: 'Hp statistic was successfully created.' }
-        format.json { render :show, status: :created, location: @hp_statistic }
+        format.html { redirect_to jatkantappajat_path, notice: 'Hp statistic was successfully created.' }
+        format.json { render :index, status: :created, location: jatkantappajat_path }
       else
-        format.html { render :new }
+        @hp_statistics = HpStatistic.all
+        format.html { render :index }
         format.json { render json: @hp_statistic.errors, status: :unprocessable_entity }
       end
     end
@@ -70,6 +72,6 @@ class HpStatisticsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def hp_statistic_params
-      params.require(:hp_statistic).permit(:u_id, :expectation, :deviation, :assurity)
+      params.require(:hp_statistic).permit(:hpUsername, :expectation, :deviation, :assurity)
     end
 end

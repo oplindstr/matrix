@@ -1,0 +1,32 @@
+<%= form_for(@hp_statistic) do |f| %>
+    <% if @hp_statistic.errors.any? %>
+        <div id="error_explanation">
+          <h2><%= pluralize(@hp_statistic.errors.count, "error") %> Lisäys epäonnistui seuraavista syistä:</h2>
+
+          <ul>
+            <% @hp_statistic.errors.full_messages.each do |message| %>
+                <li><%= message %></li>
+            <% end %>
+          </ul>
+        </div>
+    <% end %>
+
+    <h1>Lisää uusi pelaaja</h1>
+
+    <div class="field">
+      <%= f.label 'Nimi' %><br>
+      <%= f.text_field :hpUsername %>
+    </div>
+    <div class="field">
+      <%= f.hidden_field :expectation, :value => 1500 %>
+    </div>
+    <div class="field">
+      <%= f.hidden_field :deviation, :value => 500 %>
+    </div>
+    <div class="field">
+      <%= f.hidden_field :assurity, :value => 0 %>
+    </div>
+    <div class="actions">
+      <%= f.submit %>
+    </div>
+<% end %>
