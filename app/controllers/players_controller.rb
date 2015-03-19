@@ -4,7 +4,15 @@ class PlayersController < ApplicationController
   # GET /players
   # GET /players.json
   def index
-    set_player_params
+    @players = Player.all
+    order = params[:order] || 'assurity'
+    @players = case order
+                 when 'name' then @players.sort_by{ |b| b.name }
+                 when 'expectation' then @players.sort_by{ |b| b.expectation }.reverse
+                 when 'deviation' then @players.sort_by{ |b| b.deviation }.reverse
+                 when 'assurity' then @players.sort_by{ |b| b.expectation - 3*b.deviation }.reverse
+               end
+    @player = Player.new
   end
 
   # GET /players/1
@@ -66,11 +74,6 @@ class PlayersController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_player
       @player = Player.find(params[:id])
-    end
-
-    def set_player_params
-      @players = Player.all
-      @player = Player.new
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

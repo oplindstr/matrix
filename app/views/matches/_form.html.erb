@@ -1,0 +1,45 @@
+<%= form_for(@match) do |f| %>
+  <% if @match.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@match.errors.count, "error") %> prohibited this match from being saved:</h2>
+
+      <ul>
+      <% @match.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+    <p>Ensimmäinen pelaaja jakaa ensin</p>
+    <br>
+
+
+  <div class="field">
+    <p>Ensimmäinen pari</p>
+
+    <%= f.label 'Ensimmäinen pelaaja:' %>
+    <%= f.select :player1, options_from_collection_for_select(@players, :id, :name) %>
+  </div>
+  <div class="field">
+    <%= f.label 'Toinen pelaaja' %>
+    <%= f.select :player2, options_from_collection_for_select(@players, :id, :name) %>
+  </div>
+    <br>
+  <div class="field">
+    <p>Toinen pari</p>
+
+    <%= f.label 'Kolmas pelaaja' %>
+    <%= f.select :player3, options_from_collection_for_select(@players, :id, :name) %>
+  </div>
+  <div class="field">
+    <%= f.label 'Neljäs pelaaja' %>
+    <%= f.select :player4, options_from_collection_for_select(@players, :id, :name) %>
+  </div>
+  <div class="field">
+    <%= f.hidden_field :winners, :value => 0 %>
+  </div>
+  <div class="actions">
+    <%= f.submit 'Luo peli' %>
+  </div>
+<% end %>

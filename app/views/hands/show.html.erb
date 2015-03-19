@@ -1,0 +1,39 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Match:</strong>
+  <%= @hand.match_id %>
+</p>
+
+<p>
+  <strong>Points1:</strong>
+  <%= @hand.points1 %>
+</p>
+
+<p>
+  <strong>Points2:</strong>
+  <%= @hand.points2 %>
+</p>
+
+<p>
+  <strong>Declarer:</strong>
+  <%= @hand.declarer %>
+</p>
+
+<p>
+  <strong>Bid:</strong>
+  <%= @hand.bid %>
+</p>
+
+<p>
+  <strong>Contract:</strong>
+  <%= @hand.contract %>
+</p>
+
+<p>
+  <strong>Made:</strong>
+  <%= @hand.made %>
+</p>
+
+<%= link_to 'Edit', edit_hand_path(@hand) %> |
+<%= link_to 'Back', hands_path %>

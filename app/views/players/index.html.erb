@@ -1,14 +1,16 @@
 <p id="notice"><%= notice %></p>
 
+<%= button_to 'Uusi peli', new_match_path, :method => "get", class: 'btn btn-primary' %>
+
 <h1>Ratings</h1>
 
 <table class="table table-hover">
   <thead>
     <tr>
-      <th>Nimi</th>
-      <th>Odotusarvo</th>
-      <th>Keskihajonta</th>
-      <th>Varmuus</th>
+      <th><%= link_to 'Nimi', jatkantappajat_path(order: 'name') %></th>
+      <th><%= link_to 'Odotusarvo', jatkantappajat_path(order: 'expectation') %></th>
+      <th><%= link_to 'Keskihajonta', jatkantappajat_path(order: 'deviation') %></th>
+      <th><%= link_to 'Varmuus', jatkantappajat_path(order: 'assurity') %></th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -31,5 +33,3 @@
 <br>
 
 <%= render 'quick_new_form' %>
-
-<%= link_to 'New Player', new_player_path %>

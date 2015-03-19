@@ -1,4 +1,8 @@
 Rails.application.routes.draw do
+  resources :hands
+
+  resources :matches
+
   resources :players
 
   resources :hp_statistics

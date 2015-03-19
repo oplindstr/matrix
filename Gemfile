@@ -35,6 +35,10 @@ gem 'bcrypt', '~> 3.1.7'
 
 gem 'httparty'
 
+gem 'trueskill'
+
+gem 'nested_form'
+
 # Use Unicorn as the app server
 # gem 'unicorn'
 

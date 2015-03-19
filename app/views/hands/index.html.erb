@@ -1,0 +1,39 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Hands</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Match</th>
+      <th>Points1</th>
+      <th>Points2</th>
+      <th>Declarer</th>
+      <th>Bid</th>
+      <th>Contract</th>
+      <th>Made</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @hands.each do |hand| %>
+      <tr>
+        <td><%= hand.match_id %></td>
+        <td><%= hand.points1 %></td>
+        <td><%= hand.points2 %></td>
+        <td><%= hand.declarer %></td>
+        <td><%= hand.bid %></td>
+        <td><%= hand.contract %></td>
+        <td><%= hand.made %></td>
+        <td><%= link_to 'Show', hand %></td>
+        <td><%= link_to 'Edit', edit_hand_path(hand) %></td>
+        <td><%= link_to 'Destroy', hand, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Hand', new_hand_path %>
