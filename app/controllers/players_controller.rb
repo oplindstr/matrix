@@ -4,15 +4,7 @@ class PlayersController < ApplicationController
   # GET /players
   # GET /players.json
   def index
-    @players = Player.all
-    order = params[:order] || 'assurity'
-    @players = case order
-                 when 'name' then @players.sort_by{ |b| b.name }
-                 when 'expectation' then @players.sort_by{ |b| b.expectation }.reverse
-                 when 'deviation' then @players.sort_by{ |b| b.deviation }.reverse
-                 when 'assurity' then @players.sort_by{ |b| b.expectation - 3*b.deviation }.reverse
-               end
-    @player = Player.new
+    set_page_params
   end
 
   # GET /players/1
@@ -39,7 +31,7 @@ class PlayersController < ApplicationController
         format.html { redirect_to jatkantappajat_path, notice: 'Player was successfully created.' }
         format.json { render :show, status: :created, location: jatkantappajat_path }
       else
-        @players = Player.all
+        set_page_params
         format.html { render :index }
         format.json { render json: @player.errors, status: :unprocessable_entity }
       end
@@ -79,5 +71,18 @@ class PlayersController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def player_params
       params.require(:player).permit(:name, :expectation, :deviation)
+    end
+
+    def set_page_params
+      @players = Player.all
+      order = params[:order] || 'assurity'
+      @players = case order
+                   when 'name' then @players.sort_by{ |b| b.name }
+                   when 'expectation' then @players.sort_by{ |b| b.expectation }.reverse
+                   when 'deviation' then @players.sort_by{ |b| b.deviation }.reverse
+                   when 'assurity' then @players.sort_by{ |b| b.expectation - 3*b.deviation }.reverse
+                 end
+      @player = Player.new if !@player
+      @match = Match.new
     end
 end

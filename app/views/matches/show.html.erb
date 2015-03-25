@@ -16,13 +16,36 @@
   <%= @match.winnerteam %>
 </p>
 
-<%= nested_form_for @match do |f| %>
-    <%= f.fields_for :hands do |hand_form| %>
-        <%= hand_form.text_field :points1 %>
-        <%= hand_form.link_to_remove "Poista tämä kierros" %>
-    <% end %>
-    <p><%= f.link_to_add "Lisää kierros", :hands %></p>
-<% end %>
+ <%= nested_form_for @match do |f| %>
+    <table class="table table-hover">
+      <thead>
+      <tr>
+        <th>Jakaja</th>
+        <th><%= @match.firstPlayer.name %><br> <%= @match.secondPlayer.name %></th>
+        <th><%= @match.thirdPlayer.name %> <br><%= @match.fourthPlayer.name %></th>
+        <th>Huudon voittaja</th>
+        <th>Huuto</th>
+        <th>Korotettu huuto</th>
+        <th>Pitikö?</th>
+        <th colspan="3"></th>
+      </tr>
+      </thead>
+
+   <%= f.fields_for :hands, :wrapper => false do |hand_form| %>
+     <tr class="fields">
+       <td>
+         <%= @match.dealer(@dealer).name %>
+         <% @dealer = @dealer + 1 %>
+         <% @dealer = 1 if @dealer >= 5 %>
+         <%= hand_form.text_field :points1 %>
+         <%= hand_form.link_to_remove "Poista tämä käsi" %>
+       </td>
+      </tr>
+   <% end %>
+   <br>
+   <td><%= f.link_to_add "Lisää käsi", :hands %></td>
+</table>
+ <% end %>
 
 
 

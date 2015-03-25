@@ -10,6 +10,7 @@ class MatchesController < ApplicationController
   # GET /matches/1
   # GET /matches/1.json
   def show
+    @dealer = 1
   end
 
   # GET /matches/new
@@ -29,11 +30,20 @@ class MatchesController < ApplicationController
 
     respond_to do |format|
       if @match.save
-        format.html { redirect_to @match, notice: 'Match was successfully created.' }
-        format.json { render :show, status: :created, location: @match }
+        if @match.winners == 1
+          @match.update_players
+          format.html { redirect_to jatkantappajat_path, notice: 'Result was successfully saved.' }
+          format.json { render :index, status: :created, location: jatkantappajat_path }
+        else
+          format.html { redirect_to @match, notice: 'Match was successfully created.' }
+          format.json { render :show, status: :created, location: @match }
+        end
       else
-        format.html { render :new }
-        format.json { render json: @match.errors, status: :unprocessable_entity }
+        @players = Player.all
+        @players  = @players.sort_by{ |b| b.expectation - 3*b.deviation }.reverse
+        @player = Player.new
+        format.html { redirect_to jatkantappajat_path, alert: 'Pelaajat väärin' }
+        format.json { render :index, json: @match.errors, status: :unprocessable_entity, location: jatkantappajat_path }
       end
     end
   end

@@ -1,18 +1,15 @@
 language: ruby
-
 rvm:
- - 2.0.0
-
+- 2.0.0
 script:
- - bundle exec rake db:migrate --trace
- - RAILS_ENV=test bundle exec rake db:migrate --trace
- - bundle exec rake db:test:prepare
- - bundle exec rspec -fd spec/
-
+- bundle exec rake db:migrate --trace
+- RAILS_ENV=test bundle exec rake db:migrate --trace
+- bundle exec rake db:test:prepare
+- bundle exec rspec -fd spec/
 deploy:
   provider: heroku
-  api_key: e86d27d0-2e50-4194-88e4-cd5ad9e70442
+  api_key:
+    secure: SpHJm4g8USEDiqYfVVmlTg7d8Xw25kRXafCi4TaNw0GvxUKfol4rdAV/byXMGU52WmrbK3nQRxoAYXv+JAxI0y6ObS17vp3Gnn8gBbsTqz9w1GU1s35H974gISIj32GpYmjmctJpbRI/XB2JNxMPuExCZIocH6WYXeoPMxGYyT0=
   app: matrix-ry
   on:
     repo: oplindstr/matrix
-  run: "rake db:migrate"
