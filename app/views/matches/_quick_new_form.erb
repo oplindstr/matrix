@@ -1,4 +1,15 @@
 <%= form_for(@match) do |f| %>
+    <% if @match.errors.any? %>
+        <div id="error_explanation">
+          <h2><%= pluralize(@match.errors.count, "error") %> Lisäys epäonnistui seuraavista syistä:</h2>
+
+          <ul>
+            <% @match.errors.full_messages.each do |message| %>
+                <li><%= message %></li>
+            <% end %>
+          </ul>
+        </div>
+    <% end %>
 
     <h1>Lisää pelkkä pelitulos</h1>
 

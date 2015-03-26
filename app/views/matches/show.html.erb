@@ -34,9 +34,6 @@
    <%= f.fields_for :hands, :wrapper => false do |hand_form| %>
      <tr class="fields">
        <td>
-         <%= @match.dealer(@dealer).name %>
-         <% @dealer = @dealer + 1 %>
-         <% @dealer = 1 if @dealer >= 5 %>
          <%= hand_form.text_field :points1 %>
          <%= hand_form.link_to_remove "Poista tämä käsi" %>
        </td>

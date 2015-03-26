@@ -1,7 +1,7 @@
 <%= form_for(@player) do |f| %>
     <% if @player.errors.any? %>
         <div id="error_explanation">
-          <h2><%= pluralize(@player.errors.count, "error") %> Lisäys epäonnistui seuraavista syistä:</h2>
+          <h2><%= pluralize(@player.errors.count, "virhe: ") %> Lisäys epäonnistui seuraavista syistä:</h2>
 
           <ul>
             <% @player.errors.full_messages.each do |message| %>

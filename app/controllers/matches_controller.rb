@@ -39,11 +39,8 @@ class MatchesController < ApplicationController
           format.json { render :show, status: :created, location: @match }
         end
       else
-        @players = Player.all
-        @players  = @players.sort_by{ |b| b.expectation - 3*b.deviation }.reverse
-        @player = Player.new
-        format.html { redirect_to jatkantappajat_path, alert: 'Pelaajat väärin' }
-        format.json { render :index, json: @match.errors, status: :unprocessable_entity, location: jatkantappajat_path }
+        format.html { redirect_to :back, alert: 'Pelaajat väärin' }
+        format.json { render :index, json: @match.errors, status: :unprocessable_entity, location: :back}
       end
     end
   end

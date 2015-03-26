@@ -6,12 +6,13 @@ class Match < ActiveRecord::Base
   validate :players_must_be_unique
 
   # Jakojärjestys 1 -> 3 -> 2 -> 4
-  def dealer(i)
+
+  def dealer_name(i)
     case i
-      when 1 then firstPlayer
-      when 2 then thirdPlayer
-      when 3 then secondPlayer
-      when 4 then fourthPlayer
+      when 1 then firstPlayer.name
+      when 2 then thirdPlayer.name
+      when 3 then secondPlayer.name
+      when 4 then fourthPlayer.name
     end
   end
 
