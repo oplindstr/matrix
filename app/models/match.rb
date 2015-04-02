@@ -32,6 +32,15 @@ class Match < ActiveRecord::Base
     Player.find(self.player4)
   end
 
+  def players
+    p = [self.player1, self.player2, self.player3, self.player4]
+    Player.find(p)
+  end
+
+  def playerNames
+    '' + firstPlayer.name + ' ' + secondPlayer.name + ' ' + thirdPlayer.name + ' ' + fourthPlayer.name
+  end
+
   def winnerteam
     case self.winners
       when 1 then firstPlayer.name + ' ja ' + secondPlayer.name + ' voittivat'

@@ -1,3 +1,7 @@
+
+
+<% render 'title' %>
+
 <p id="notice"><%= notice %></p>
 
 <%= button_to 'Uusi peli', new_match_path, :method => "get", class: 'btn btn-primary' %>
@@ -7,6 +11,7 @@
 <table class="table table-hover">
   <thead>
     <tr>
+      <th>Sijoitus</th>
       <th><%= link_to 'Nimi', jatkantappajat_path(order: 'name') %></th>
       <th><%= link_to 'Odotusarvo', jatkantappajat_path(order: 'expectation') %></th>
       <th><%= link_to 'Keskihajonta', jatkantappajat_path(order: 'deviation') %></th>
@@ -18,10 +23,11 @@
   <tbody>
     <% @players.each do |player| %>
       <tr>
+        <td><p class="placement"></p></td>
         <td><%= player.name %></td>
-        <td><%= player.expectation %></td>
-        <td><%= player.deviation %></td>
-        <td><%= player.expectation - 3*player.deviation %></td>
+        <td><%= player.expectation.round(2) %></td>
+        <td><%= player.deviation.round(2) %></td>
+        <td><p class="assurity"><%= [(player.expectation - 3*player.deviation.round).round(2), 0].max %></p></td>
         <td><%= link_to 'Show', player %></td>
         <td><%= link_to 'Edit', edit_player_path(player) %></td>
         <td><%= link_to 'Destroy', player, method: :delete, data: { confirm: 'Are you sure?' } %></td>

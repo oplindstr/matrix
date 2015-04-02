@@ -41,6 +41,8 @@ GEM
     autoprefixer-rails (5.1.7)
       execjs
       json
+    awesome_nested_fields (0.6.4)
+      rails (>= 3.0.0)
     backports (3.6.4)
     bcrypt (3.1.10)
     better_errors (2.1.1)
@@ -261,6 +263,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  awesome_nested_fields
   bcrypt (~> 3.1.7)
   better_errors
   bootstrap-sass

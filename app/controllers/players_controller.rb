@@ -75,6 +75,8 @@ class PlayersController < ApplicationController
 
     def set_page_params
       @players = Player.all
+      @players_ordered_by_name = @players
+      @players_ordered_by_name = @players_ordered_by_name.sort_by{ |b| b.name }
       order = params[:order] || 'assurity'
       @players = case order
                    when 'name' then @players.sort_by{ |b| b.name }

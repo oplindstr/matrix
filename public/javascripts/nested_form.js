@@ -83,6 +83,8 @@
     .delegate('form a.remove_nested_fields', 'click', nestedFormEvents.removeFields);
 })(jQuery);
 
+
+
 // http://plugins.jquery.com/project/closestChild
 /*
  * Copyright 2011, Tobias Lindig

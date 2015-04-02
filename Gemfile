@@ -39,6 +39,8 @@ gem 'trueskill'
 
 gem 'nested_form'
 
+gem 'awesome_nested_fields'
+
 gem 'jquery-turbolinks'
 
 # Use Unicorn as the app server

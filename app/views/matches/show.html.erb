@@ -1,5 +1,7 @@
 <%= javascript_include_tag :defaults, "nested_form" %>
 
+<% render 'players/title' %>
+
 <p id="notice"><%= notice %></p>
 
 <h2>Pelaajat</h2>
@@ -16,7 +18,9 @@
   <%= @match.winnerteam %>
 </p>
 
- <%= nested_form_for @match do |f| %>
+<h2>Kädet</h2>
+
+<%= nested_form_for @match do |f| %>
     <table class="table table-hover">
       <thead>
       <tr>
@@ -30,21 +34,26 @@
         <th colspan="3"></th>
       </tr>
       </thead>
-
+      <tbody id="hands" onchange="showDealers()">
    <%= f.fields_for :hands, :wrapper => false do |hand_form| %>
-     <tr class="fields">
-       <td>
-         <%= hand_form.text_field :points1 %>
-         <%= hand_form.link_to_remove "Poista tämä käsi" %>
-       </td>
+
+       <tr class="fields">
+           <td><p class="dealer"><%=@match.playerNames%></p></td>
+           <td><%= hand_form.number_field :points1, in: -5000..440, step: 5 %></td>
+           <td><%= hand_form.number_field :points2, in: -5000..440, step: 5 %></td>
+           <td><%= hand_form.select :declarer, options_from_collection_for_select(@match.players, :id, :name) %></td>
+           <td><%= hand_form.number_field :bid, in: 50..1000, step: 5 %></td>
+           <td><%= hand_form.number_field :contract, in: 50..1000, step: 5 %></td>
+           <td><%= hand_form.check_box :made %></td>
+         <td><%= hand_form.link_to_remove "Poista käsi" %></td>
       </tr>
-   <% end %>
-   <br>
-   <td><%= f.link_to_add "Lisää käsi", :hands %></td>
-</table>
- <% end %>
+      <% end %>
+      </tbody>
+  </table>
+    <p><%= f.link_to_add "Lisää käsi", :hands, :data => { :target => "#hands" }, :class => 'btn btn-primary' %></p>
+<% end %>
 
-
+<br>
 
 <%= link_to 'Edit', edit_match_path(@match) %> |
 <%= link_to 'Back', matches_path %>

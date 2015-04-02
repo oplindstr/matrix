@@ -16,20 +16,20 @@
     <div class="field">
       <p>Voittajat</p>
 
-      <%= f.select :player1, options_from_collection_for_select(@players, :id, :name) %>
+      <%= f.select :player1, options_from_collection_for_select(@players_ordered_by_name, :id, :name) %>
     </div>
     <div class="field">
-      <%= f.select :player2, options_from_collection_for_select(@players, :id, :name) %>
+      <%= f.select :player2, options_from_collection_for_select(@players_ordered_by_name, :id, :name) %>
     </div>
     <br>
 
     <div class="field">
       <p>Häviäjät</p>
 
-      <%= f.select :player3, options_from_collection_for_select(@players, :id, :name) %>
+      <%= f.select :player3, options_from_collection_for_select(@players_ordered_by_name, :id, :name) %>
     </div>
     <div class="field">
-      <%= f.select :player4, options_from_collection_for_select(@players, :id, :name) %>
+      <%= f.select :player4, options_from_collection_for_select(@players_ordered_by_name, :id, :name) %>
     </div>
 
     <div class="field">
