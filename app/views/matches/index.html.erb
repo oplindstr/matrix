@@ -1,15 +1,22 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Listing Matches</h1>
+<% if @ongoing %>
+    <h1>Keskeneräiset pelit</h1>
+<% else %>
+    <h1>Listing Matches</h1>
+<% end %>
 
 <table class="table table-hover">
   <thead>
     <tr>
-      <th>Player1</th>
-      <th>Player2</th>
-      <th>Player3</th>
-      <th>Player4</th>
+      <th>Pelaaja1</th>
+      <th>Pelaaja2</th>
+      <th>vastaan</th>
+      <th>Pelaaja3</th>
+      <th>Pelaaja4</th>
+      <% if !@ongoing %>
       <th>Winners</th>
+      <% end %>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -19,17 +26,23 @@
       <tr>
         <td><%= match.firstPlayer.name %></td>
         <td><%= match.secondPlayer.name %></td>
+        <td>vastaan</td>
         <td><%= match.thirdPlayer.name %></td>
         <td><%= match.fourthPlayer.name %></td>
-        <td><%= match.winners %></td>
-        <td><%= link_to 'Show', match %></td>
-        <td><%= link_to 'Edit', edit_match_path(match) %></td>
-        <td><%= link_to 'Destroy', match, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <% if !@ongoing %>
+            <td><%= match.winners %></td>
+        <% end %>
+        <td><%= link_to 'Muokkaa peliä', match %></td>
+        <% if admin %>
+            <td><%= link_to 'Edit', edit_match_path(match) %></td>
+            <td><%= link_to 'Destroy', match, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <% end %>
       </tr>
     <% end %>
   </tbody>
 </table>
 
 <br>
-
-<%= link_to 'New Match', new_match_path %>
+<% if !@ongoing %>
+    <%= link_to 'New Match', new_match_path %>
+<% end %>

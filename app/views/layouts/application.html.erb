@@ -13,6 +13,9 @@
       <%= render 'layouts/navigation' %>
     </header>
     <main role="main">
+      <% if not session[:user_id].nil? %>
+          <p><%= User.find(session[:user_id]).username %> signed in</p>
+      <% end %>
        <%= render 'layouts/messages' %>
        <%= yield %>
     </main>

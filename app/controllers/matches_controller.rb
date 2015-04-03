@@ -9,6 +9,7 @@ class MatchesController < ApplicationController
 
   def ongoing
     @matches = Match.where(winners:0)
+    @ongoing = 1
     render :index
   end
 

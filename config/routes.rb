@@ -17,6 +17,11 @@ Rails.application.routes.draw do
 
   patch 'hands_update' => 'matches#hands_update'
 
+  resource :session, only: [:new, :create, :delete]
+
+  get 'signin', to: 'sessions#new'
+  delete 'signout', to: 'sessions#destroy'
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

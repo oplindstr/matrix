@@ -6,8 +6,10 @@
 
 <%= button_to 'Uusi peli', new_match_path, :method => "get", class: 'btn btn-primary' %>
 <br>
-<%= button_to 'Kaikki pelit', matches_path, :method => "get", class: 'btn btn-primary' %>
-<br>
+<% if admin %>
+    <%= button_to 'Kaikki pelit', matches_path, :method => "get", class: 'btn btn-primary' %>
+    <br>
+<% end %>
 <%= button_to 'Keskeneräiset pelit', ongoingmatches_path, :method => "get", class: 'btn btn-primary' %>
 
 <h1>Ratings</h1>
@@ -32,9 +34,11 @@
         <td><%= player.expectation.round(2) %></td>
         <td><%= player.deviation.round(2) %></td>
         <td><p class="assurity"><%= [(player.expectation - 3*player.deviation.round).round(2), 0].max %></p></td>
-        <td><%= link_to 'Show', player %></td>
-        <td><%= link_to 'Edit', edit_player_path(player) %></td>
-        <td><%= link_to 'Destroy', player, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <% if admin %>
+            <td><%= link_to 'Show', player %></td>
+            <td><%= link_to 'Edit', edit_player_path(player) %></td>
+            <td><%= link_to 'Destroy', player, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <% end %>
       </tr>
     <% end %>
   </tbody>

@@ -1,1 +1,4 @@
 <%= link_to 'Jätkäntappajat', jatkantappajat_path, class: 'navbar-brand' %>
+<% if current_user %>
+  <%= link_to 'Sign out', signout_path, method: :delete, class: 'navbar-brand' %>
+<% end %>
