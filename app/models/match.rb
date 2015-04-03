@@ -5,17 +5,6 @@ class Match < ActiveRecord::Base
 
   validate :players_must_be_unique
 
-  # Jakojärjestys 1 -> 3 -> 2 -> 4
-
-  def dealer_name(i)
-    case i
-      when 1 then firstPlayer.name
-      when 2 then thirdPlayer.name
-      when 3 then secondPlayer.name
-      when 4 then fourthPlayer.name
-    end
-  end
-
   def firstPlayer
     Player.find(self.player1)
   end
@@ -32,13 +21,15 @@ class Match < ActiveRecord::Base
     Player.find(self.player4)
   end
 
+  # Jakojärjestys 1 -> 3 -> 2 -> 4
+
   def players
     p = [self.player1, self.player2, self.player3, self.player4]
     Player.find(p)
   end
 
   def playerNames
-    '' + firstPlayer.name + ' ' + secondPlayer.name + ' ' + thirdPlayer.name + ' ' + fourthPlayer.name
+    '' + firstPlayer.name + ',' + thirdPlayer.name + ',' + secondPlayer.name + ',' + fourthPlayer.name
   end
 
   def winnerteam

@@ -7,10 +7,15 @@ class MatchesController < ApplicationController
     @matches = Match.all
   end
 
+  def ongoing
+    @matches = Match.where(winners:0)
+    render :index
+  end
+
   # GET /matches/1
   # GET /matches/1.json
   def show
-    @dealer = 1
+    @match.hands.build
   end
 
   # GET /matches/new
@@ -59,6 +64,34 @@ class MatchesController < ApplicationController
     end
   end
 
+  def hands_update
+    params["match"]["hands_attributes"].permit!
+    hands = params["match"]["hands_attributes"]
+
+    respond_to do |format|
+      hands.each do |hand|
+        hand_params = hand[1]
+        hand_params.delete(:_destroy)
+        @newhand = Hand.new(hand_params)
+        if @newhand.id
+          @existinghand = Hand.find(@newhand.id)
+          if !@existinghand.update(hand_params)
+            format.html { render :show }
+            format.json { render json: @match.errors, status: :unprocessable_entity }
+          end
+        else
+          if !@newhand.save
+            format.html { render :show }
+            format.json { render json: @match.errors, status: :unprocessable_entity }
+          end
+        end
+      end
+      format.html { redirect_to jatkantappajat_path, notice: 'Match was successfully saved.' }
+      format.json { render jatkantappajat_path, status: :ok }
+    end
+
+  end
+
   # DELETE /matches/1
   # DELETE /matches/1.json
   def destroy
@@ -77,6 +110,6 @@ class MatchesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def match_params
-      params.require(:match).permit(:player1, :player2, :player3, :player4, :winners)
+      params.require(:match).permit(:player1, :player2, :player3, :player4, :winners, :hands_attributes)
     end
 end

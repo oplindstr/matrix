@@ -2,7 +2,7 @@
 
 <h1>Listing Matches</h1>
 
-<table>
+<table class="table table-hover">
   <thead>
     <tr>
       <th>Player1</th>
@@ -17,10 +17,10 @@
   <tbody>
     <% @matches.each do |match| %>
       <tr>
-        <td><%= match.player1 %></td>
-        <td><%= match.player2 %></td>
-        <td><%= match.player3 %></td>
-        <td><%= match.player4 %></td>
+        <td><%= match.firstPlayer.name %></td>
+        <td><%= match.secondPlayer.name %></td>
+        <td><%= match.thirdPlayer.name %></td>
+        <td><%= match.fourthPlayer.name %></td>
         <td><%= match.winners %></td>
         <td><%= link_to 'Show', match %></td>
         <td><%= link_to 'Edit', edit_match_path(match) %></td>

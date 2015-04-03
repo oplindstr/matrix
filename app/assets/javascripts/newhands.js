@@ -7,11 +7,11 @@ $(document).ready(function () {
     var kirjanpito = {};
 
     kirjanpito.nayta = (function () {
-        console.log("suor");
-        dealers = $(".dealer");
-        playerstring = dealers[0].innerHTML;
-        players = playerstring.split(" ");
+        var playerstring = $("#players")[0].innerHTML;
+        var players = playerstring.split(",");
         var dealer = 1;
+        var team1scoretag = $("#team1score")[0];
+        var team2scoretag = $("#team2score")[0];
         function showDealers() {
             dealers = $(".dealer");
             for (var i = 0; i < dealers.length; i++) {
@@ -25,14 +25,31 @@ $(document).ready(function () {
             }
             dealer = 1;
         }
+
+        function calculateScores() {
+            var team1scores = $(".team1handscore:visible");
+            var team2scores = $(".team2handscore:visible");
+            var team1totalscore = 0;
+            var team2totalscore = 0;
+
+            for (var i = 0; i < team1scores.length; i++) {
+                team1totalscore += parseInt(team1scores[i].childNodes[0].value)
+                team2totalscore += parseInt(team2scores[i].childNodes[0].value)
+            }
+
+            team1scoretag.innerHTML = team1totalscore;
+            team2scoretag.innerHTML = team2totalscore;
+        }
         return {
-            showDealers: showDealers
+            showDealers: showDealers,
+            calculateScores: calculateScores
         };
     })();
 
-    var buttons = $(".add_nested_fields");
-    var button = buttons[0];
-    button.addEventListener("mouseout", kirjanpito.nayta.showDealers);
+    var addbuttons = $(".add_nested_fields");
+    var addbutton = addbuttons[0];
+    addbutton.addEventListener("mouseout", kirjanpito.nayta.showDealers);
+    addbutton.addEventListener("click", kirjanpito.nayta.calculateScores);
 
     kirjanpito.nayta.showDealers();
 });
