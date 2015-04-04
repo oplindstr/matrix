@@ -29,8 +29,8 @@
       <file leaf-file-name="matches_controller.rb" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/controllers/matches_controller.rb">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.7522523" vertical-offset="1164" max-vertical-offset="2175">
-              <caret line="111" column="9" selection-start-line="111" selection-start-column="9" selection-end-line="111" selection-end-column="9" />
+            <state vertical-scroll-proportion="0.34684685" vertical-offset="879" max-vertical-offset="2160">
+              <caret line="74" column="4" selection-start-line="74" selection-start-column="4" selection-end-line="74" selection-end-column="4" />
               <folding />
             </state>
           </provider>
@@ -1009,8 +1009,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/controllers/matches_controller.rb">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.7522523" vertical-offset="1164" max-vertical-offset="2175">
-          <caret line="111" column="9" selection-start-line="111" selection-start-column="9" selection-end-line="111" selection-end-column="9" />
+        <state vertical-scroll-proportion="0.34684685" vertical-offset="879" max-vertical-offset="2160">
+          <caret line="74" column="4" selection-start-line="74" selection-start-column="4" selection-end-line="74" selection-end-column="4" />
           <folding />
         </state>
       </provider>

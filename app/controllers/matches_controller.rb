@@ -72,8 +72,7 @@ class MatchesController < ApplicationController
     params["match"]["hands_attributes"].permit!
     hands = params["match"]["hands_attributes"]
     @winners = params["winners"];
-
-    byebug
+    
     @match_id = params["match"]["hands_attributes"].first[1]["match_id"]
     if @match_id.nil?
       redirect_to jatkantappajat_path
