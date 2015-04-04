@@ -2,6 +2,7 @@
  * Created by oplindst on 2.4.2015.
  */
 
+
 $(document).ready(function () {
 
     var placementHandler = {};

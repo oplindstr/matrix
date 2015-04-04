@@ -15,5 +15,4 @@
 //= require jquery_ujs
 //= require turbolinks
 //= require bootstrap-sprockets
-//= require newhands.js
-//= require playerindex.js
+//= require_tree .

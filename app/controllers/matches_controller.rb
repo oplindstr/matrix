@@ -16,6 +16,8 @@ class MatchesController < ApplicationController
   # GET /matches/1
   # GET /matches/1.json
   def show
+    @declarers = @match.players
+    @declarers.push(Player.new(id:nil, name:"-"))
     @match.hands.build
   end
 
@@ -36,7 +38,7 @@ class MatchesController < ApplicationController
 
     respond_to do |format|
       if @match.save
-        if @match.winners == 1
+        if @match.winners != 0
           @match.update_players
           format.html { redirect_to jatkantappajat_path, notice: 'Result was successfully saved.' }
           format.json { render :index, status: :created, location: jatkantappajat_path }
@@ -66,26 +68,47 @@ class MatchesController < ApplicationController
   end
 
   def hands_update
+    params.permit["winners"]
     params["match"]["hands_attributes"].permit!
     hands = params["match"]["hands_attributes"]
+    @winners = params["winners"];
+
+    byebug
+    @match_id = params["match"]["hands_attributes"].first[1]["match_id"]
+    if @match_id.nil?
+      redirect_to jatkantappajat_path
+    end
 
     respond_to do |format|
       hands.each do |hand|
         hand_params = hand[1]
-        hand_params.delete(:_destroy)
-        @newhand = Hand.new(hand_params)
-        if @newhand.id
-          @existinghand = Hand.find(@newhand.id)
-          if !@existinghand.update(hand_params)
-            format.html { render :show }
-            format.json { render json: @match.errors, status: :unprocessable_entity }
-          end
-        else
-          if !@newhand.save
-            format.html { render :show }
-            format.json { render json: @match.errors, status: :unprocessable_entity }
-          end
-        end
+        destroy = hand_params["_destroy"]
+         hand_params.delete(:_destroy)
+         @newhand = Hand.new(hand_params)
+         if @newhand.id
+           @existinghand = Hand.find(@newhand.id)
+           if destroy == "1"
+             @existinghand.destroy
+           else
+             if !@existinghand.update(hand_params)
+               format.html { render :show }
+               format.json { render json: @match.errors, status: :unprocessable_entity }
+             end
+           end
+         else
+           if destroy == "false"
+             if !@newhand.save
+               format.html { render :show }
+               format.json { render json: @match.errors, status: :unprocessable_entity }
+             end
+           end
+         end
+      end
+
+      @match = Match.find(@match_id)
+      @match.winners = @winners
+      if @match.save and @winners != 0
+        @match.update_players
       end
       format.html { redirect_to jatkantappajat_path, notice: 'Match was successfully saved.' }
       format.json { render jatkantappajat_path, status: :ok }

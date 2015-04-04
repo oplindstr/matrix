@@ -2,6 +2,7 @@
  * Created by oplindst on 3.4.2015.
  */
 
+
 $(document).ready(function () {
 
     var kirjanpito = {};

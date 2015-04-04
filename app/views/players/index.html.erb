@@ -1,8 +1,12 @@
-<%= javascript_include_tag 'playerindex', 'data-turbolinks-track' => false %>
+<%= javascript_include_tag 'playerindex','data-turbolinks-track' => true %>
 
 <% render 'title' %>
 
 <p id="notice"><%= notice %></p>
+
+<h1>Jätkäntappajat</h1>
+
+<br>
 
 <%= button_to 'Uusi peli', new_match_path, :method => "get", class: 'btn btn-primary' %>
 <br>

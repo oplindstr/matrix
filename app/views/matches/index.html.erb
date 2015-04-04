@@ -1,5 +1,7 @@
 <p id="notice"><%= notice %></p>
 
+<% render 'players/title' %>
+
 <% if @ongoing %>
     <h1>Keskeneräiset pelit</h1>
 <% else %>
@@ -17,6 +19,8 @@
       <% if !@ongoing %>
       <th>Winners</th>
       <% end %>
+      <th>Aloitettu</th>
+      <th>Tilanne</th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -32,10 +36,14 @@
         <% if !@ongoing %>
             <td><%= match.winners %></td>
         <% end %>
-        <td><%= link_to 'Muokkaa peliä', match %></td>
+        <td><%= match.created_at %></td>
+        <td><%= match.pair1points %> / <%= match.pair2points %></td>
         <% if admin %>
+            <td><%= link_to 'Show', match %></td>
             <td><%= link_to 'Edit', edit_match_path(match) %></td>
             <td><%= link_to 'Destroy', match, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <% else %>
+            <td><%= link_to 'Jatka peliä', match %></td>
         <% end %>
       </tr>
     <% end %>

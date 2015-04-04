@@ -21,6 +21,14 @@ class Match < ActiveRecord::Base
     Player.find(self.player4)
   end
 
+  def pair1points
+    self.hands.sum(:points1)
+  end
+
+  def pair2points
+    self.hands.sum(:points2)
+  end
+
   # Jakojärjestys 1 -> 3 -> 2 -> 4
 
   def players
