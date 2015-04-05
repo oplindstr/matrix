@@ -26,6 +26,16 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
+      <file leaf-file-name="matches_controller.rb" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/app/controllers/matches_controller.rb">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.24774775" vertical-offset="930" max-vertical-offset="2190">
+              <caret line="73" column="33" selection-start-line="73" selection-start-column="33" selection-end-line="73" selection-end-column="33" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
       <file leaf-file-name="show.html.erb" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/views/matches/show.html.erb">
           <provider selected="true" editor-type-id="text-editor">
@@ -46,10 +56,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="newhands.js" pinned="false" current-in-tab="true">
+      <file leaf-file-name="newhands.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/assets/javascripts/newhands.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.6396396" vertical-offset="639" max-vertical-offset="1575">
+            <state vertical-scroll-proportion="0.0" vertical-offset="639" max-vertical-offset="1575">
               <caret line="73" column="34" selection-start-line="73" selection-start-column="34" selection-end-line="73" selection-end-column="34" />
               <folding>
                 <element signature="e#0#43#0" expanded="false" />
@@ -119,11 +129,11 @@
         <option value="$PROJECT_DIR$/app/assets/javascripts/application.js" />
         <option value="$PROJECT_DIR$/app/models/match.rb" />
         <option value="$PROJECT_DIR$/app/views/matches/index.html.erb" />
-        <option value="$PROJECT_DIR$/app/controllers/matches_controller.rb" />
         <option value="$PROJECT_DIR$/app/views/players/index.html.erb" />
         <option value="$PROJECT_DIR$/app/assets/javascripts/playerindex.js" />
         <option value="$PROJECT_DIR$/app/views/matches/show.html.erb" />
         <option value="$PROJECT_DIR$/app/assets/javascripts/newhands.js" />
+        <option value="$PROJECT_DIR$/app/controllers/matches_controller.rb" />
       </list>
     </option>
   </component>
@@ -924,14 +934,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/controllers/matches_controller.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.045045044" vertical-offset="0" max-vertical-offset="2205">
-          <caret line="2" column="0" selection-start-line="2" selection-start-column="0" selection-end-line="2" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/models/match.rb">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="180" max-vertical-offset="1545">
@@ -966,11 +968,19 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/assets/javascripts/newhands.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.6396396" vertical-offset="639" max-vertical-offset="1575">
+        <state vertical-scroll-proportion="0.0" vertical-offset="639" max-vertical-offset="1575">
           <caret line="73" column="34" selection-start-line="73" selection-start-column="34" selection-end-line="73" selection-end-column="34" />
           <folding>
             <element signature="e#0#43#0" expanded="false" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/controllers/matches_controller.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.24774775" vertical-offset="930" max-vertical-offset="2190">
+          <caret line="73" column="33" selection-start-line="73" selection-start-column="33" selection-end-line="73" selection-end-column="33" />
+          <folding />
         </state>
       </provider>
     </entry>
