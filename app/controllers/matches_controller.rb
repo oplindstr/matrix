@@ -72,7 +72,7 @@ class MatchesController < ApplicationController
     params["match"]["hands_attributes"].permit!
     hands = params["match"]["hands_attributes"]
     @winners = params["winners"];
-    
+    qui
     @match_id = params["match"]["hands_attributes"].first[1]["match_id"]
     if @match_id.nil?
       redirect_to jatkantappajat_path
@@ -105,9 +105,12 @@ class MatchesController < ApplicationController
       end
 
       @match = Match.find(@match_id)
-      @match.winners = @winners
-      if @match.save and @winners != 0
-        @match.update_players
+      @alreadyFinished = @match.winners
+      if @alreadyFinished == 0
+        @match.winners = @winners
+        if @match.save and @winners != 0
+          @match.update_players
+        end
       end
       format.html { redirect_to jatkantappajat_path, notice: 'Match was successfully saved.' }
       format.json { render jatkantappajat_path, status: :ok }

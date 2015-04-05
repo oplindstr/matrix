@@ -40,13 +40,13 @@ $(document).ready(function () {
             winnerstag.value = 0;
 
             for (var i = 0; i < team1scores.length; i++) {
-                var score1 = team1scores[i].childNodes[0].value;
+                var score1 = team1scores[i].childNodes[2].value;
                 if (score1 != "") {
-                    team1totalscore += parseInt(team1scores[i].childNodes[0].value);
+                    team1totalscore += parseInt(team1scores[i].childNodes[2].value);
                 }
-                var score2 = team2scores[i].childNodes[0].value;
+                var score2 = team2scores[i].childNodes[2].value;
                 if (score2 != "") {
-                    team2totalscore += parseInt(team2scores[i].childNodes[0].value);
+                    team2totalscore += parseInt(team2scores[i].childNodes[2].value);
                 }
             }
 
@@ -66,7 +66,14 @@ $(document).ready(function () {
         }
 
         function addEventListeners() {
-            $("input[type=number]").change(calculateScores)
+            $("input[type=number]").off();
+            $("input[value='-']").off();
+            $("input[type=number]").change(calculateScores);
+            $("input[value='-']").click(function() {
+                var value = $(this).next()[0].value;
+                $(this).next()[0].value = -1 * value;
+                calculateScores();
+            });
         }
 
         function doEverything() {
