@@ -71,7 +71,7 @@
     <p><%= f.link_to_add "Lisää käsi", :hands, :data => { :target => "#hands" }, :class => 'btn btn-primary' %></p>
     <br>
     <%= hidden_field_tag :winners, "0", :id => "winners" %>
-    <p><%= f.submit "Tallenna peli", :class => 'btn btn-primary' %></p>
+    <p><%= f.submit "Tallenna peli", :class => 'btn btn-primary', data: { confirm: 'Tallennetaanko peli?' } %></p>
 <% end %>
 
 <% if admin %>
