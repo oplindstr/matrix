@@ -3,8 +3,8 @@ class Player < ActiveRecord::Base
   belongs_to :user
 
   def update_ratings(ratings)
-    self.expectation = ratings['Mu']
-    self.deviation = ratings['Sigma']
+    self.expectation = ratings['Mu'].round(2)
+    self.deviation = ratings['Sigma'].round(2)
   end
 
   def placement
