@@ -1,9 +1,35 @@
 <p id="notice"><%= notice %></p>
 
 <p>
-  <strong>Username:</strong>
+  <strong>
   <%= @user.username %>
+  </strong>
 </p>
 
-<%= link_to 'Edit', edit_user_path(@user) %> |
-<%= link_to 'Back', users_path %>
+<% if @user.player %>
+    <h2>Huutopussiratingit</h2>
+
+    <p>Olet sijalla <%= @user.player.placement %></p>
+
+    <p>Odotusarvo: <%= @user.player.expectation.round(2) %></p>
+
+    <p>Keskihajonta: <%= @user.player.deviation.round(2) %></p>
+
+    <p>Vahvuus: <%= [(@user.player.expectation - 3*@user.player.deviation).round(2), 0].max %></p>
+
+    <%= form_for(@player) do |f| %>
+        <div class="field">
+          <%= f.label :private, 'Älä näytä pisteitäni pääsivulla' %>
+          <%= f.check_box :private %>
+        </div>
+        <%= f.submit :value => 'Tallenna' %>
+    <% end %>
+
+    <br>
+
+<% end %>
+
+
+
+<%= link_to 'Vaihda salasana', edit_user_path(@user) %> |
+<%= link_to 'Takaisin', jatkantappajat_path %>

@@ -17,7 +17,7 @@ class ApplicationController < ActionController::Base
   end
 
   def ensure_that_admin
-    redirect_to :root, notice:"you don't have rights for that" if not admin
+    redirect_to jatkantappajat_path, notice:"you don't have rights for that" if not admin
   end
 
 end

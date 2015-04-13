@@ -18,11 +18,20 @@
       <%= f.text_field :name %>
     </div>
     <div class="field">
+      <%= f.label 'Älä näytä pisteitä pääsivulla' %>
+      <%= f.check_box :private %>
+    </div>
+    <div class="field">
       <%= f.hidden_field :expectation, :value => 1500 %>
     </div>
     <div class="field">
       <%= f.hidden_field :deviation, :value => 500 %>
     </div>
+    <% if current_user %>
+        <div class="field">
+          <%= f.hidden_field :user_id, :value => current_user.id %>
+        </div>
+    <% end %>
     <div class="actions">
       <%= f.submit 'Lisää pelaaja' %>
     </div>

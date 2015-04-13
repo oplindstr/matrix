@@ -20,6 +20,7 @@ class PlayersController < ApplicationController
 
   # GET /players/1/edit
   def edit
+    @users = User.all
   end
 
   # POST /players
@@ -44,7 +45,7 @@ class PlayersController < ApplicationController
   def update
     respond_to do |format|
       if @player.update(player_params)
-        format.html { redirect_to @player, notice: 'Player was successfully updated.' }
+        format.html { redirect_to @player.user, notice: 'Player was successfully updated.' }
         format.json { render :show, status: :ok, location: @player }
       else
         format.html { render :edit }
@@ -71,7 +72,7 @@ class PlayersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def player_params
-      params.require(:player).permit(:name, :expectation, :deviation)
+      params.require(:player).permit(:name, :expectation, :deviation, :private)
     end
 
     def set_page_params

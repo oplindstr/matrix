@@ -15,5 +15,15 @@
   <%= @player.deviation %>
 </p>
 
+<p>
+  <strong>User id:</strong>
+  <%= @player.user_id %>
+</p>
+
+<p>
+  <strong>private:</strong>
+  <%= @player.private %>
+</p>
+
 <%= link_to 'Edit', edit_player_path(@player) %> |
 <%= link_to 'Back', players_path %>

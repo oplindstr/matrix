@@ -1,5 +1,4 @@
 <%= javascript_include_tag :defaults%>
-<%= javascript_include_tag 'playerindex','data-turbolinks-track' => false %>
 
 <% render 'title' %>
 
@@ -22,29 +21,31 @@
 <table class="table table-hover">
   <thead>
     <tr>
-      <th>Sijoitus</th>
+      <th><%= link_to 'Sijoitus', jatkantappajat_path %></th>
       <th><%= link_to 'Nimi', jatkantappajat_path(order: 'name') %></th>
       <th><%= link_to 'Odotusarvo', jatkantappajat_path(order: 'expectation') %></th>
       <th><%= link_to 'Keskihajonta', jatkantappajat_path(order: 'deviation') %></th>
-      <th><%= link_to 'Varmuus', jatkantappajat_path(order: 'assurity') %></th>
+      <th><%= link_to 'Vahvuus', jatkantappajat_path(order: 'assurity') %></th>
       <th colspan="3"></th>
     </tr>
   </thead>
 
   <tbody>
     <% @players.each do |player| %>
+      <% if !player.private or (current_user and current_user.player and current_user.id == player.user_id)%>
       <tr>
-        <td><p class="placement"></p></td>
+        <td><%= player.placement %></td>
         <td><%= player.name %></td>
         <td><%= player.expectation.round(2) %></td>
         <td><%= player.deviation.round(2) %></td>
-        <td><p class="assurity"><%= [(player.expectation - 3*player.deviation.round).round(2), 0].max %></p></td>
+        <td><p class="assurity"><%= [(player.expectation - 3*player.deviation).round(2), 0].max %></p></td>
         <% if admin %>
             <td><%= link_to 'Show', player %></td>
             <td><%= link_to 'Edit', edit_player_path(player) %></td>
             <td><%= link_to 'Destroy', player, method: :delete, data: { confirm: 'Are you sure?' } %></td>
         <% end %>
       </tr>
+     <% end %>
     <% end %>
   </tbody>
 </table>
@@ -54,3 +55,21 @@
 <%= render 'quick_new_form' %>
 
 <%= render 'matches/quick_new_form' %>
+
+<% if admin %>
+    <table class="table table-hover">
+      <thead>
+      <tr>
+        <th>Nimi</th>
+      </tr>
+      </thead>
+
+        <tbody>
+        <% @players.each do |player| %>
+            <tr>
+                <td><%= link_to player.name, player %></td>
+            </tr>
+        <% end %>
+        </tbody>
+    </table>
+<% end %>

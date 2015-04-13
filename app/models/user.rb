@@ -4,6 +4,8 @@ class User < ActiveRecord::Base
 
   validates :username, uniqueness: true
 
+  has_one :player
+
   def to_s
     self.name
   end

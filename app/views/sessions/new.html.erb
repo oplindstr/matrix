@@ -1,9 +1,9 @@
-<h1>Sign in</h1>
+<h1>Kirjaudu sisään</h1>
 
 <p id="notice"><%= notice %></p>
 
 <%= form_tag session_path do %>
-    Username <%= text_field_tag :username, params[:username] %>
-    Password <%= password_field_tag :password, params[:password] %>
-    <%= submit_tag "Log in" %>
+    Käyttäjätunnus <%= text_field_tag :username, params[:username] %>
+    Salasana <%= password_field_tag :password, params[:password] %>
+    <%= submit_tag "Kirjaudu" %>
 <% end %>

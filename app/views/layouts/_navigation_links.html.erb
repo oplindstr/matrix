@@ -1,4 +1,8 @@
 <%= link_to 'Jätkäntappajat', jatkantappajat_path, class: 'navbar-brand' %>
 <% if current_user %>
-  <%= link_to 'Sign out', signout_path, method: :delete, class: 'navbar-brand' %>
+    <%= link_to 'Omat tiedot', current_user, class: 'navbar-brand' %>
+  <%= link_to 'Kirjaudu ulos', signout_path, method: :delete, class: 'navbar-brand' %>
+<% else %>
+    <%= link_to 'Kirjaudu', new_session_path, class: 'navbar-brand' %>
+    <%= link_to 'Luo käyttäjätunnus', new_user_path, class: 'navbar-brand' %>
 <% end %>
