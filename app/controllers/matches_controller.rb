@@ -29,6 +29,7 @@ class MatchesController < ApplicationController
 
   # GET /matches/1/edit
   def edit
+    @players = Player.all
   end
 
   # POST /matches
