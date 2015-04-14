@@ -36,6 +36,6 @@
       <%= f.hidden_field :winners, :value => 1 %>
     </div>
     <div class="actions">
-      <%= f.submit 'Tallenna' %>
+      <%= f.submit 'Tallenna', data: { confirm: 'Tallennetaanko peli?' }%>
     </div>
 <% end %>
