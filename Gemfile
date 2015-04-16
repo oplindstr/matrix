@@ -60,6 +60,7 @@ group :development, :test do
 
   gem 'rspec-rails', '~> 3.1'
   gem 'rspec-its'
+  gem 'rack_session_access'
 end
 
 group :test do
