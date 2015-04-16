@@ -20,4 +20,8 @@ class ApplicationController < ActionController::Base
     redirect_to jatkantappajat_path, notice:"" if not admin
   end
 
+  def ensure_that_logged_in
+    redirect_to jatkantappajat_path, notice:"" if not current_user
+  end
+
 end

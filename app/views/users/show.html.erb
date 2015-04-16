@@ -29,6 +29,16 @@
 
 <% end %>
 
+<% if admin %>
+    <%= form_for(@user) do |f| %>
+        <div class="field">
+          <%= f.label :activated, 'Aktivoi käyttäjä' %>
+          <%= f.check_box :activated %>
+        </div>
+        <%= f.submit :value => 'Tallenna' %>
+    <% end %>
+<% end %>
+
 
 
 <%= link_to 'Vaihda salasana', edit_user_path(@user) %> |

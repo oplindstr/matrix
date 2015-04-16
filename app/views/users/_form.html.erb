@@ -16,6 +16,10 @@
         </div>
     <% end %>
     <div class="field">
+      <%= f.label :name, 'Nimi' %><br>
+      <%= f.text_field :name %>
+    </div>
+    <div class="field">
       <% if !@user.new_record? %>
           Uusi
       <% end %>

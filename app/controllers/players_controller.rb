@@ -1,6 +1,7 @@
 class PlayersController < ApplicationController
   before_action :set_player, only: [:show, :edit, :update, :destroy]
   before_action :ensure_that_admin, except: [:index, :create]
+  before_action :ensure_that_logged_in, only: [:create]
 
   # GET /players
   # GET /players.json
@@ -27,6 +28,9 @@ class PlayersController < ApplicationController
   # POST /players.json
   def create
     @player = Player.new(player_params)
+    if current_user and !current_user.player
+      @player.user_id = current_user.id
+    end
 
     respond_to do |format|
       if @player.save
@@ -45,7 +49,7 @@ class PlayersController < ApplicationController
   def update
     respond_to do |format|
       if @player.update(player_params)
-        format.html { redirect_to @player.user, notice: 'Player was successfully updated.' }
+        format.html { redirect_to current_user, notice: 'Player was successfully updated.' }
         format.json { render :show, status: :ok, location: @player }
       else
         format.html { render :edit }
