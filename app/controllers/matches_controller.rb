@@ -109,7 +109,8 @@ class MatchesController < ApplicationController
       @alreadyFinished = @match.winners
       if @alreadyFinished == 0
         @match.winners = @winners
-        if @match.save and @winners != 0
+        byebug
+        if @match.save and @winners != '0'
           @match.update_players
         end
       end
