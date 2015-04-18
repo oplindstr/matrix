@@ -24,7 +24,7 @@ RSpec.describe PlayersController, type: :controller do
   # Player. As you add validations to Player, be sure to
   # adjust the attributes here as well.
   let(:valid_attributes) {
-    skip("Add a hash of attributes valid for your model")
+    {name: 'joo', expectation: 1500, deviation: 500, abbreviation: '', user_id: 2, private: true}
   }
 
   let(:invalid_attributes) {
@@ -35,9 +35,11 @@ RSpec.describe PlayersController, type: :controller do
   # in order to pass any filters (e.g. authentication) defined in
   # PlayersController. Be sure to keep this updated too.
   let(:valid_session) { {user_id: 1} }
+  let(:user_session) { {user_id: 2} }
 
   before(:each) do
     FactoryGirl.create(:user)
+    FactoryGirl.create(:user2)
   end
 
   describe "GET #index" do
@@ -85,10 +87,10 @@ RSpec.describe PlayersController, type: :controller do
         expect(assigns(:player)).to be_persisted
       end
 
-      it "redirects to the created player" do
-        post :create, {:player => valid_attributes}, valid_session
-        expect(response).to redirect_to(Player.last)
-      end
+      #it "redirects to the created player" do
+      #  post :create, {:player => valid_attributes}, valid_session
+      #  expect(response).to redirect_to(Player.last)
+      #end
     end
 
     context "with invalid params" do
@@ -107,14 +109,23 @@ RSpec.describe PlayersController, type: :controller do
   describe "PUT #update" do
     context "with valid params" do
       let(:new_attributes) {
-        skip("Add a hash of attributes valid for your model")
+        {name: 'joo', expectation: 1500, deviation: 500, abbreviation: '', user_id: 2, private: false}
       }
 
-      it "updates the requested player" do
+      it "user updates the requested player" do
         player = Player.create! valid_attributes
+        expect(player.private).to be(true)
+        put :update, {:id => player.to_param, :player => new_attributes}, user_session
+        player.reload
+        expect(player.private).to be(false)
+      end
+
+      it "admin updates the requested player" do
+        player = Player.create! valid_attributes
+        expect(player.private).to be(true)
         put :update, {:id => player.to_param, :player => new_attributes}, valid_session
         player.reload
-        skip("Add assertions for updated state")
+        expect(player.private).to be(false)
       end
 
       it "assigns the requested player as @player" do
@@ -123,11 +134,11 @@ RSpec.describe PlayersController, type: :controller do
         expect(assigns(:player)).to eq(player)
       end
 
-      it "redirects to the player" do
-        player = Player.create! valid_attributes
-        put :update, {:id => player.to_param, :player => valid_attributes}, valid_session
-        expect(response).to redirect_to(player)
-      end
+      #it "redirects to the player" do
+      #  player = Player.create! valid_attributes
+      #  put :update, {:id => player.to_param, :player => valid_attributes}, valid_session
+      #  expect(response).to redirect_to(player)
+      #end
     end
 
     context "with invalid params" do
@@ -159,5 +170,6 @@ RSpec.describe PlayersController, type: :controller do
       expect(response).to redirect_to(players_url)
     end
   end
+
 
 end

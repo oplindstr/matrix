@@ -1,5 +1,5 @@
 <%= javascript_include_tag :defaults, "nested_form" %>
-<%= javascript_include_tag 'newhands','data-turbolinks-track' => true %>
+<%= javascript_include_tag 'newhands','data-turbolinks-track' => false %>
 
 <% render 'players/title' %>
 
@@ -23,15 +23,9 @@
 
 <% if @match.winners == 0 or admin %>
 
-<h2>Tilanne</h2>
-
-<p><%= @match.firstPlayer.name %> ja <%= @match.secondPlayer.name %>: <b id="team1score">0</b> <b id="team1winning"></b></p>
-
-<p><%= @match.thirdPlayer.name %> ja <%= @match.fourthPlayer.name %>: <b id="team2score">0</b> <b id="team2winning"></b></p>
-
 <h2>Kädet</h2>
 
-    <p>Syötä pisteet käsikohtaisina muutoksina. Kokonaispisteet näkyvät yllä. </p>
+    <p>Syötä pisteet käsikohtaisina muutoksina. Kokonaispisteet näkyvät alla. </p>
     <p>Esimerkiksi, jos ensimmäinen pari huutaa 200 ja pitää, niin kenttään laitetaan 200, eikä kokonaispisteitä.</p>
     <p>Käytä "-" -nappeja negatiivisten lukujen asettamiseen, jos niiden asettaminen ei muuten onnistu (mobiili)</p>
 
@@ -63,12 +57,17 @@
            <td><%= hand_form.number_field :bid, in: 0..1000, step: 5 %></td>
            <td><%= hand_form.number_field :contract, in: 0..1000, step: 5 %></td>
            <td><%= hand_form.check_box :made %></td>
-         <td><%= hand_form.link_to_remove "Poista käsi" %></td>
+         <td><%= hand_form.link_to_remove "Poista käsi", data: { confirm: 'Poistetaanko käsi?' } %></td>
       </tr>
       <% end %>
       </tbody>
   </table>
     <p><%= f.link_to_add "Lisää käsi", :hands, :data => { :target => "#hands" }, :class => 'btn btn-primary' %></p>
+        <h2>Tilanne</h2>
+
+        <p><%= @match.firstPlayer.name %> ja <%= @match.secondPlayer.name %><b id="team1winning"></b> <h1 id="team1score">0</h1></p>
+
+        <p><%= @match.thirdPlayer.name %> ja <%= @match.fourthPlayer.name %><b id="team2winning"></b> <h1 id="team2score">0</h1></p>
     <br>
     <%= hidden_field_tag :winners, "0", :id => "winners" %>
     <p><%= f.submit "Tallenna peli", :class => 'btn btn-primary', data: { confirm: 'Tallennetaanko peli?' } %></p>
@@ -80,4 +79,4 @@
 <%= link_to 'Edit', edit_match_path(@match) %> |
 <% end %>
 <% end %>
-<%= link_to 'Takaisin', jatkantappajat_path %>
+<%= link_to 'Takaisin', jatkantappajat_path, data: { confirm: 'Haluatko varmasti poistua sivulta?' }  %>
