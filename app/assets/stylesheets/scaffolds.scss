@@ -14,16 +14,6 @@ html {
   padding-bottom: 80px;
 }
 
-@media screen and (max-device-width: 480px) {
-  html {
-    background-color: red;
-    padding-top: 50px;
-    padding-left: 20px;
-    padding-right: 20px;
-    padding-bottom: 50px;
-  }
-}
-
 p, ol, ul, td {
   font-family: verdana, arial, helvetica, sans-serif;
   font-size: 13px;
