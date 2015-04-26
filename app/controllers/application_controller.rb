@@ -17,11 +17,11 @@ class ApplicationController < ActionController::Base
   end
 
   def ensure_that_admin
-    redirect_to jatkantappajat_path, notice:"" if not admin
+    redirect_to root_path, notice:"" if not admin
   end
 
-  def ensure_that_logged_in
-    redirect_to jatkantappajat_path, notice:"" if not current_user
+  def ensure_that_activated
+    redirect_to root_path, notice:"Tunnusta ei ole vielä aktivoitu" if not current_user.activated
   end
 
 end

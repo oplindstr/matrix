@@ -1,6 +1,6 @@
 class HandsController < ApplicationController
   before_action :set_hand, only: [:show, :edit, :update, :destroy]
-  before_action :ensure_that_logged_in
+  before_action :ensure_that_activated
 
   # GET /hands
   # GET /hands.json

@@ -1,6 +1,5 @@
 // import the CSS framework
 
-$navbar-inverse-bg: #0000FF;
 @import "bootstrap-sprockets";
 @import "bootstrap";
 
@@ -10,9 +9,59 @@ img {
   margin: 0 auto;
   }
 // override for the 'Home' navigation link
+
+header {
+  background-origin: border-box;
+  background-color: red;
+}
+
 .navbar-brand {
   font-size: inherit;
+}
+
+.navbar-brand:hover {
+  font-weight:bold;
+}
+
+.navbar-brand:link {
+  color: white;
+}
+
+.custom-dropdown:hover .ul {
+  display: block;
+}
+
+.custom-dropdown-menu {
+  top: 95%;
+}
+
+.navbar-inverse {
+  background-color: #0000FF;
+
+  border-radius: 10px;
+  -moz-border-radius: 10px;
+  -webkit-border-radius: 10px;
+
+}
+
+@media (min-width: 979px) {
+  .dropdown-toggle:hover .dropdown-menu {
+    display: block;
   }
+}
+
+.navbar-link {
+  color: white;
+}
+
+.logo {
+  position: absolute;
+  left: -1px;
+}
+
+.body {
+  background-color: red;
+}
 
 // THESE ARE EXAMPLES YOU CAN MODIFY
 // create your own classes
@@ -36,11 +85,16 @@ img {
 // apply styles to HTML elements
 // to make views framework-neutral
 main {
-  @extend .container;
-  background-color: #eee;
-  padding-bottom: 80px;
-  width: 100%;
-  margin-top: 51px; // accommodate the navbar
+  background-color: #FFFFFF;
+
+  border-radius: 10px;
+  -moz-border-radius: 10px;
+  -webkit-border-radius: 10px;
+
+  padding-top: 20px;
+  padding-left: 20px;
+  padding-right: 20px;
+  padding-bottom: 20px;
   }
 section {
   @extend .row;

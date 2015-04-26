@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  resources :signups
+
   resources :hands
 
   resources :matches
@@ -7,9 +9,9 @@ Rails.application.routes.draw do
 
   resources :events
 
-  resources :users
+  get '/events/:id/signups(.:format)' => 'signups#show', as: 'event_signups'
 
-  root 'users#index'
+  resources :users
 
   get 'jatkantappajat' => 'players#index'
 
@@ -21,6 +23,24 @@ Rails.application.routes.draw do
 
   get 'signin', to: 'sessions#new'
   delete 'signout', to: 'sessions#destroy'
+
+
+
+  # pages
+  get '/jarjesto' => 'high_voltage/pages#show', id: 'jarjesto'
+  get '/toiminta' => 'high_voltage/pages#show', id: 'toiminta'
+  get '/komero' => 'high_voltage/pages#show', id: 'komero'
+  get '/hallitus' => 'high_voltage/pages#show', id: 'hallitus'
+  get '/yhteystiedot' => 'high_voltage/pages#show', id: 'yhteystiedot'
+  get '/sahkopostilistat' => 'high_voltage/pages#show', id: 'sahkopostilistat'
+  get '/yrityksille' => 'high_voltage/pages#show', id: 'yrityksille'
+  get '/kerhot' => 'high_voltage/pages#show', id: 'kerhot'
+  get '/klusteri' => 'high_voltage/pages#show', id: 'klusteri'
+  get '/fuksille' => 'high_voltage/pages#show', id: 'fuksille'
+  get '/fuksiopas' => 'high_voltage/pages#show', id: 'fuksiopas'
+  get '/tuutorit' => 'high_voltage/pages#show', id: 'tuutorit'
+
+
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

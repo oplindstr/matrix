@@ -1,0 +1,25 @@
+<p id="notice"><%= notice %></p>
+
+<% if @users %>
+
+    <table>
+      <thead>
+      <tr>
+        <th>Nimi</th>
+      </tr>
+      </thead>
+
+      <tbody>
+      <% @users.each do |user| %>
+          <tr>
+            <td><%= user %></td>
+          </tr>
+      <% end %>
+      </tbody>
+    </table>
+
+    <br>
+
+    <%= link_to 'Takaisin tapahtumaan', event_path(@event.id) %>
+
+<% end %>

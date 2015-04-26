@@ -1,0 +1,29 @@
+<%= form_for(@signup) do |f| %>
+  <% if @signup.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@signup.errors.count, "error") %> prohibited this signup from being saved:</h2>
+
+      <ul>
+      <% @signup.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+<% if current_user %>
+    <div class="field">
+    <%= f.hidden_field :user_id, value: current_user.id %>
+    </div>
+<% else %>
+    <div class="field">
+    <%= f.hidden_field :user_id, value: @signup.user_id %>
+    </div>
+<% end %>
+  <div class="field">
+    <%= f.hidden_field :event_id, value: @event.id %>
+  </div>
+  <div class="actions">
+    <%= f.submit :value => 'Ilmoittaudun' %>
+  </div>
+<% end %>

@@ -10,6 +10,8 @@ class EventsController < ApplicationController
   # GET /events/1
   # GET /events/1.json
   def show
+    @signup = Signup.new
+    @events = Event.all
   end
 
   # GET /events/new
@@ -64,11 +66,13 @@ class EventsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_event
-      @event = Event.find(params[:id])
+      if request.format.symbol != :json
+        @event = Event.find(params[:id])
+      end
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def event_params
-      params.require(:event).permit(:name, :starttime, :endtime, :location, :type, :signup_required, :signup_start, :signup_end, :signup_cancellable_until)
+      params.require(:event).permit(:name, :starttime, :endtime, :location, :event_type, :signup_required, :signup_start, :signup_end, :signup_cancellable_until, :descr, :price, :signup_limit)
     end
 end

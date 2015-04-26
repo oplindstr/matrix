@@ -1,49 +1,90 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Name:</strong>
-  <%= @event.name %>
-</p>
+<div ng-controller="EventsController">
 
-<p>
-  <strong>Starttime:</strong>
-  <%= @event.starttime %>
-</p>
+  <div id="Event" class="container-fluid">
 
-<p>
-  <strong>Endtime:</strong>
-  <%= @event.endtime %>
-</p>
+    <div class="Event col-lg-10">
 
-<p>
-  <strong>Location:</strong>
-  <%= @event.location %>
-</p>
+        <span>Näytä:</span>
+        <select id="EventSelect" ng-model="show">
+        <option selected value="upcoming">Tulevat tapahtumat</option>
+        <option value="past">Menneet tapahtumat</option>
+        <option value="all">Kaikki tapahtumat</option>
+        </select>
 
-<p>
-  <strong>Type:</strong>
-  <%= @event.type %>
-</p>
+        <p></p>
 
-<p>
-  <strong>Signup required:</strong>
-  <%= @event.signup_required %>
-</p>
+        <h2><%= @event.name %></h2>
 
-<p>
-  <strong>Signup start:</strong>
-  <%= @event.signup_start %>
-</p>
+        <p>
+        <strong>Päivä:</strong>
+        <%= DateHelper.weekday(@event.starttime) %> <%= DateHelper.standard_date(@event.starttime) %>
+        </p>
 
-<p>
-  <strong>Signup end:</strong>
-  <%= @event.signup_end %>
-</p>
+        <p>
+        <strong>Aika:</strong>
+        <%= DateHelper.time(@event.starttime)%>
+        </p>
 
-<p>
-  <strong>Signup cancellable until:</strong>
-  <%= @event.signup_cancellable_until %>
-</p>
+        <p>
+        <strong>Paikka:</strong>
+        <%= @event.location %>
+        </p>
 
-<%= link_to 'Edit', edit_event_path(@event) %> |
-<%= link_to 'Back', events_path %>
+        <p>
+        <strong>Tyyppi:</strong>
+        <%= @event.event_type %>
+        </p>
+
+        <p>
+        <%= @event.descr %>
+        </p>
+
+        <% if @event.signup_required %>
+
+        <p>
+        <strong>Ilmoittautumisaika:</strong>
+        <%= DateHelper.full_date(@event.signup_start) %> - <%= DateHelper.full_date(@event.signup_end) %>
+        </p>
+
+        <p>
+        <strong>Ilmoittautuminen sitova alkaen:</strong>
+        <%= DateHelper.full_date(@event.signup_cancellable_until) %>
+        </p>
+
+          <p>
+            <strong>Ilmoittautuneita:</strong>
+            <%= @event.users.count %>
+            <% if @event.signup_limit %>
+              / <%= @event.signup_limit %>
+            <% end %>
+          </p>
+
+          <% if @event.full %>
+              <p>Tapahtuma on täynnä!</p>
+          <% end %>
+
+          <p><%= link_to 'Näytä ilmoittautuneet', event_signups_path(@event.id) %></p>
+
+          <% if !@event.user_signed_up(current_user.id) and !@event.full %>
+              <%= render 'signups/form' %>
+          <% end %>
+
+        <% end %>
+
+    </div>
+
+    <%= render 'sidebar_events' %>
+
+  </div>
+
+</div>
+
+<% if admin %>
+
+    <%= link_to 'Muokkaa tapahtumaa', edit_event_path(@event) %> |
+
+<% end %>
+
+<%= link_to 'Takaisin', events_path %>

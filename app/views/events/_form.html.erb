@@ -11,43 +11,67 @@
     </div>
   <% end %>
 
+<div ng-controller="NewEventController">
+
   <div class="field">
-    <%= f.label :name %><br>
+    <%= f.label 'Nimi' %><br>
     <%= f.text_field :name %>
   </div>
+    <div class="field">
+      <%= f.label 'Kuvaus' %><br>
+      <%= f.text_area :descr, :rows => "10", :cols => "30" %>
+    </div>
   <div class="field">
-    <%= f.label :starttime %><br>
-    <%= f.date_select :starttime %>
+    <%= f.label 'Alkaa' %><br>
+    <%= f.datetime_select :starttime %>
   </div>
   <div class="field">
-    <%= f.label :endtime %><br>
-    <%= f.date_select :endtime %>
+    <%= f.label 'Loppuu' %><br>
+    <%= f.datetime_select :endtime %>
   </div>
   <div class="field">
-    <%= f.label :location %><br>
+    <%= f.label 'Paikka' %><br>
     <%= f.text_field :location %>
   </div>
+    <div class="field">
+      <%= f.label 'Hinta' %><br>
+      <%= f.number_field :price %>
+    </div>
+
   <div class="field">
-    <%= f.label :type %><br>
-    <%= f.text_field :type %>
+    <%= f.label 'Tyyppi' %><br>
+    <%= f.text_field :event_type %>
   </div>
   <div class="field">
-    <%= f.label :signup_required %><br>
-    <%= f.check_box :signup_required %>
+    <%= f.label 'Täytyykö ilmoittautua' %><br>
+    <input name="event[signup_required]" type="hidden" value="0" /><input type="checkbox" ng-model="signup" value="1" name="event[signup_required]" id="event_signup_required" />
   </div>
-  <div class="field">
-    <%= f.label :signup_start %><br>
-    <%= f.date_select :signup_start %>
-  </div>
-  <div class="field">
-    <%= f.label :signup_end %><br>
-    <%= f.date_select :signup_end %>
-  </div>
-  <div class="field">
-    <%= f.label :signup_cancellable_until %><br>
-    <%= f.date_select :signup_cancellable_until %>
+
+  <div name="signup-options" ng-show="signup">
+
+    <div class="field">
+      <%= f.label 'Ilmoittautumisraja' %><br>
+      <%= f.number_field :signup_limit %>
+    </div>
+
+      <div class="field">
+        <%= f.label 'Ilmoittautuminen alkaa' %><br>
+        <%= f.datetime_select :signup_start %>
+      </div>
+      <div class="field">
+        <%= f.label 'Ilmoittautuminen päättyy' %><br>
+        <%= f.datetime_select :signup_end %>
+      </div>
+      <div class="field">
+        <%= f.label 'Ilmoittautuminen sitova alkaen' %><br>
+        <%= f.datetime_select :signup_cancellable_until %>
+      </div>
+
   </div>
   <div class="actions">
     <%= f.submit %>
   </div>
+
+</div>
+
 <% end %>

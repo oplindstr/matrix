@@ -1,6 +1,6 @@
 class MatchesController < ApplicationController
   before_action :set_match, only: [:show, :edit, :update, :destroy]
-  before_action :ensure_that_logged_in
+  before_action :ensure_that_activated
 
   # GET /matches
   # GET /matches.json

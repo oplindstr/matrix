@@ -9,32 +9,55 @@
           </ul>
         </div>
     <% end %>
-    <% if @user.new_record? %>
-        <div class="field">
-          <%= f.label :username, 'Käyttäjätunnus' %><br>
-          <%= f.text_field :username %>
-        </div>
-    <% end %>
+
+    <h2>Henkilötiedot</h2>
+
     <div class="field">
-      <%= f.label :name, 'Nimi' %><br>
-      <%= f.text_field :name %>
+      <%= f.label :username, 'Käyttäjätunnus' %>
+      <% if @user.new_record? %>
+          <%= f.text_field :username %>
+      <% else %>
+          <%= f.text_field :username, :readonly => true %>
+      <% end %>
     </div>
     <div class="field">
-      <% if !@user.new_record? %>
-          Uusi
-      <% end %>
-      <%= f.label :password, 'Salasana'%><br />
+      <%= f.label :firstname, 'Etunimi' %>
+      <%= f.text_field :firstname %>
+    </div>
+    <div class="field">
+      <%= f.label :lastname, 'Sukunimi' %>
+      <%= f.text_field :lastname %>
+    </div>
+    <div class="field">
+      <%= f.label :email, 'Sähköpostiosoite' %>
+      <%= f.email_field :email %>
+    </div>
+    <div class="field">
+      <%= f.label :city, 'Kotikunta' %>
+      <%= f.text_field :city %>
+    </div>
+    <div class="field">
+      <%= f.label :password, 'Salasana'%>
       <%= f.password_field :password %>
     </div>
     <div class="field">
-      <%= f.label :password_confirmation, 'Salasana uudelleen' %><br />
+      <%= f.label :password_confirmation, 'Salasana uudelleen' %>
       <%= f.password_field :password_confirmation %>
     </div>
+
+    <h2>Muut tiedot</h2>
+
+    <div class="field">
+      <%= f.check_box :hyy_member %>
+      <%= f.label :hyy_member, 'Olen HYY:n jäsen' %>
+    </div>
+
+    <div class="field">
+      <%= f.check_box :mathstudent %>
+      <%= f.label :mathstudent, 'Opiskelen matematiikkaa pää- tai sivuaineena Helsingin Yliopistossa' %>
+    </div>
+
     <div class="actions">
-      <% if @user.new_record? %>
-          <%= f.submit :value => 'Luo tunnus' %>
-      <% else %>
-          <%= f.submit :value => 'Tallenna' %>
-      <% end %>
+      <%= f.submit :value => 'Tallenna' %>
     </div>
 <% end %>

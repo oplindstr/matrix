@@ -3,7 +3,7 @@ FactoryGirl.define do
     username "joo"
     password "joo"
     password_confirmation "joo"
-    name "joo"
+    firstname "joo"
     admin 1
     activated 1
   end
@@ -12,7 +12,7 @@ FactoryGirl.define do
     username "jooo"
     password "jooo"
     password_confirmation "jooo"
-    name "jooo"
+    firstname "jooo"
     admin 0
     activated 1
   end

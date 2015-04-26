@@ -11,20 +11,23 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150416102932) do
+ActiveRecord::Schema.define(version: 20150426190139) do
 
   create_table "events", force: :cascade do |t|
     t.string   "name"
-    t.date     "starttime"
-    t.date     "endtime"
+    t.datetime "starttime"
+    t.datetime "endtime"
     t.string   "location"
-    t.string   "type"
+    t.string   "event_type"
     t.boolean  "signup_required"
-    t.date     "signup_start"
-    t.date     "signup_end"
-    t.date     "signup_cancellable_until"
+    t.datetime "signup_start"
+    t.datetime "signup_end"
+    t.datetime "signup_cancellable_until"
     t.datetime "created_at",               null: false
     t.datetime "updated_at",               null: false
+    t.text     "descr"
+    t.string   "price"
+    t.integer  "signup_limit"
   end
 
   create_table "hands", force: :cascade do |t|
@@ -60,14 +63,28 @@ ActiveRecord::Schema.define(version: 20150416102932) do
     t.boolean  "private"
   end
 
+  create_table "signups", force: :cascade do |t|
+    t.integer  "user_id"
+    t.integer  "event_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "users", force: :cascade do |t|
     t.string   "username"
     t.string   "password_digest"
     t.datetime "created_at",      null: false
     t.datetime "updated_at",      null: false
-    t.string   "name"
+    t.string   "firstname"
     t.boolean  "admin"
     t.boolean  "activated"
+    t.string   "email"
+    t.string   "city"
+    t.string   "phonenumber"
+    t.datetime "joined"
+    t.boolean  "hyy_member"
+    t.boolean  "mathstudent"
+    t.string   "lastname"
   end
 
 end

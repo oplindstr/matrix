@@ -1,9 +1,17 @@
 body {
-  background-color: #fff;
+  background-color: red;
   color: #333;
   font-family: verdana, arial, helvetica, sans-serif;
   font-size: 13px;
   line-height: 18px;
+}
+
+html {
+  background-color: red;
+  padding-top: 50px;
+  padding-left: 250px;
+  padding-right: 250px;
+  padding-bottom: 80px;
 }
 
 p, ol, ul, td {

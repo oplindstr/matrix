@@ -1,43 +1,82 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Listing Events</h1>
+<h1>Tapahtumakalenteri</h1>
 
-<table>
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th>Starttime</th>
-      <th>Endtime</th>
-      <th>Location</th>
-      <th>Type</th>
-      <th>Signup required</th>
-      <th>Signup start</th>
-      <th>Signup end</th>
-      <th>Signup cancellable until</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
+<div ng-controller="EventsController">
 
-  <tbody>
-    <% @events.each do |event| %>
-      <tr>
-        <td><%= event.name %></td>
-        <td><%= event.starttime %></td>
-        <td><%= event.endtime %></td>
-        <td><%= event.location %></td>
-        <td><%= event.type %></td>
-        <td><%= event.signup_required %></td>
-        <td><%= event.signup_start %></td>
-        <td><%= event.signup_end %></td>
-        <td><%= event.signup_cancellable_until %></td>
-        <td><%= link_to 'Show', event %></td>
-        <td><%= link_to 'Edit', edit_event_path(event) %></td>
-        <td><%= link_to 'Destroy', event, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+  <div id="Events" class="container-fluid">
 
-<br>
+    <div class="Events col-lg-10">
 
-<%= link_to 'New Event', new_event_path %>
+      <span>Näytä:</span>
+      <select id="EventSelect" ng-model="show">
+        <option selected value="upcoming">Tulevat tapahtumat</option>
+        <option value="past">Menneet tapahtumat</option>
+        <option value="all">Kaikki tapahtumat</option>
+      </select>
+
+      <p></p>
+
+      <div class="allEvents" ng-show="show == 'all'">
+
+        <p ng-show="events.length === 0">Ei tapahtumia</p>
+
+        <div class="Event" ng-repeat="event in events">
+          <b><a href="events/{{event.id}}">{{event.name}}</a></b><br>
+          Aika: {{event.starttime}}<br>
+          Paikka: {{event.location}}<br>
+          Hinta: <span ng-if="!event.price">Ei maksua</span>{{event.price}}<br>
+          <p></p>
+          <p>{{event.descr}}</p>
+          <p></p>
+        </div>
+
+      </div>
+
+      <div class="upcomingEvents" ng-show="show == 'upcoming'">
+
+        <p ng-show="upcomingEvents.length === 0">Ei tulevia tapahtumia</p>
+
+        <div class="Event" ng-repeat="event in upcomingEvents">
+          <b><a href="events/{{event.id}}">{{event.name}}</a></b><br>
+          Aika: {{event.starttime}}<br>
+          Paikka: {{event.location}}<br>
+          Hinta: <span ng-if="!event.price">Ei maksua</span>{{event.price}}<br>
+          <p></p>
+          <p>{{event.descr}}</p>
+          <p></p>
+        </div>
+
+      </div>
+
+      <div class="pastEvents" ng-show="show == 'past'">
+
+        <p ng-show="pastEvents.length === 0">Ei menneitä tapahtumia</p>
+
+        <div class="Event" ng-repeat="event in pastEvents">
+          <b><a href="events/{{event.id}}">{{event.name}}</a></b><br>
+          Aika: {{event.starttime}}<br>
+          Paikka: {{event.location}}<br>
+          Hinta: <span ng-if="!event.price">Ei maksua</span>{{event.price}}<br>
+          <p></p>
+          <p>{{event.descr}}</p>
+          <p></p>
+        </div>
+
+      </div>
+
+      <p></p>
+
+      <% if admin %>
+
+          <%= link_to 'Lisää tapahtuma', new_event_path %>
+
+      <% end %>
+
+    </div>
+
+    <%= render 'sidebar_events' %>
+
+  </div>
+
+</div>

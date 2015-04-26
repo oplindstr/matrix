@@ -1,10 +1,8 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>
-  <%= @user.username %>
-  </strong>
-</p>
+<h2>Muokkaa omia tietoja</h2>
+
+<%= render 'form' %>
 
 <% if @user.player %>
     <h2>Huutopussiratingit</h2>

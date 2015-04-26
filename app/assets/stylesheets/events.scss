@@ -1,3 +1,21 @@
 // Place all the styles related to the events controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+.compactEvent {
+  list-style-type: none;
+
+  background-color: white;
+
+  box-sizing: border-box;
+  border-style: solid;
+  border-color: blue;
+
+  border-radius: 10px;
+  -moz-border-radius: 10px;
+  -webkit-border-radius: 10px;
+
+  height: 100px;
+  width: 200px;
+  padding: 10px;
+}

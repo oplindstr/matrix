@@ -22,9 +22,6 @@ gem 'therubyracer', platforms: :ruby
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
 # Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
-gem 'turbolinks'
-
-gem 'jquery-turbolinks'
 
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder', '~> 2.0'
@@ -34,6 +31,8 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 # Use ActiveModel has_secure_password
 gem 'bcrypt', '~> 3.1.7'
 
+gem 'jquery-turbolinks'
+
 gem 'httparty'
 
 gem 'trueskill'
@@ -41,6 +40,11 @@ gem 'trueskill'
 gem 'nested_form'
 
 gem 'awesome_nested_fields'
+
+gem 'high_voltage', '~> 2.3.0'
+
+gem 'paloma'
+
 # Use Unicorn as the app server
 # gem 'unicorn'
 
@@ -68,6 +72,7 @@ group :test do
   gem 'capybara'
   gem 'launchy'
   gem 'simplecov', require: false
+  gem "selenium-webdriver"
 end
 
 gem 'bootstrap-sass'
