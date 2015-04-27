@@ -72,11 +72,11 @@
 
               <% end %>
 
-              <% if !@event.user_signed_up(current_user.id) and !@event.full and @event.signup_open %>
+              <% if current_user and !@event.user_signed_up(current_user.id) and !@event.full and @event.signup_open %>
                   <%= render 'signups/form' %>
               <% end %>
 
-              <% if @event.user_signed_up(current_user.id) and @event.signup_cancellable %>
+              <% if current_user and @event.user_signed_up(current_user.id) and @event.signup_cancellable %>
                   <%= button_to 'Peru ilmoittautuminen', @signup, method: :delete, data: { confirm: 'Haluatko varmasti perua ilmoittautumisesi?' } %>
               <% end %>
 

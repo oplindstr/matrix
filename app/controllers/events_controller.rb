@@ -12,7 +12,7 @@ class EventsController < ApplicationController
   def show
     if request.format.symbol != :json
       @signup = Signup.new
-      if @event.user_signed_up(current_user.id)
+      if current_user and @event.user_signed_up(current_user.id)
         @signup = @event.getSignup(current_user.id)
       end
     end
