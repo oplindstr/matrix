@@ -4,25 +4,32 @@
 
 <h3>Ilmoittautuneet</h3>
 
-<% if @users %>
+<div id="Event" class="container-fluid">
 
-    <table>
-      <thead>
-      <tr>
-        <th>Nimi</th>
-      </tr>
-      </thead>
+  <div class="col-lg-9">
 
-      <tbody>
-      <% @users.each do |user| %>
-          <tr>
-            <td><%= user.signup_number(@event.id) %>. <%= user %></td>
-          </tr>
-      <% end %>
-      </tbody>
-    </table>
+        <% if @users %>
 
-    <br>
+            <table>
+              <thead>
+              <tr>
+                <th>Nimi</th>
+              </tr>
+              </thead>
+
+              <tbody>
+              <% @users.each do |user| %>
+                  <tr>
+                    <td><%= user.signup_number(@event.id) %>. <%= user %></td>
+                  </tr>
+              <% end %>
+              </tbody>
+            </table>
+
+            <br>
+        </div>
+
+   </div>
 
     <%= link_to 'Takaisin tapahtumaan', event_path(@event.id) %>
 

@@ -12,6 +12,7 @@ class SignupsController < ApplicationController
   # GET /signups/1.json
   def show
     @users = @event.users
+    @events = Event.all
   end
 
   # GET /signups/new
@@ -56,9 +57,10 @@ class SignupsController < ApplicationController
   # DELETE /signups/1
   # DELETE /signups/1.json
   def destroy
+    event_id = @signup.event_id
     @signup.destroy
     respond_to do |format|
-      format.html { redirect_to signups_url, notice: 'Signup was successfully destroyed.' }
+      format.html { redirect_to event_path(event_id), notice: 'Ilmoittautuminen peruttu onnistuneesti' }
       format.json { head :no_content }
     end
   end
@@ -66,11 +68,15 @@ class SignupsController < ApplicationController
   private
 
     def set_event
-      @event = Event.find(params[:id])
+      if request.format.symbol != :json
+        @event = Event.find(params[:id])
+      end
     end
     # Use callbacks to share common setup or constraints between actions.
     def set_signup
-      @signup = Signup.find(params[:id])
+      if request.format.symbol != :json
+        @signup = Signup.find(params[:id])
+      end
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

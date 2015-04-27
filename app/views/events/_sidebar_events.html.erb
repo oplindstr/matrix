@@ -12,7 +12,7 @@
   <div class="allEvents" ng-show="show == 'all'">
 
     <ul class="compactEvent" ng-repeat="event in events">
-      <li><b><a href="events/{{event.id}}">{{event.name}}</a></b></li>
+      <li><b><%= link_to '{{event.name}}','#','ng-href' => "#{events_path()}/{{event.id}}" %></b></li>
       <li>{{event.starttime}}</li>
     </ul>
 
@@ -21,7 +21,7 @@
   <div class="upcomingEvents" ng-show="show == 'upcoming'">
 
     <ul class="compactEvent" ng-repeat="event in upcomingEvents">
-      <li><b><a href="events/{{event.id}}">{{event.name}}</a></b></li>
+      <li><b><%= link_to '{{event.name}}','#','ng-href' => "#{events_path()}/{{event.id}}" %></b></li>
       <li>{{event.starttime}}</li>
     </ul>
 
@@ -30,7 +30,7 @@
   <div class="pastEvents" ng-show="show == 'past'">
 
     <ul class="compactEvent" ng-repeat="event in pastEvents">
-      <li><b><a href="events/{{event.id}}">{{event.name}}</a></b></li>
+      <li><b><%= link_to '{{event.name}}','#','ng-href' => "#{events_path()}/{{event.id}}" %></b></li>
       <li>{{event.starttime}}</li>
     </ul>
 

@@ -10,7 +10,12 @@ class EventsController < ApplicationController
   # GET /events/1
   # GET /events/1.json
   def show
-    @signup = Signup.new
+    if request.format.symbol != :json
+      @signup = Signup.new
+      if @event.user_signed_up(current_user.id)
+        @signup = @event.getSignup(current_user.id)
+      end
+    end
     @events = Event.all
   end
 
