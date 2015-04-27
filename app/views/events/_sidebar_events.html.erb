@@ -1,9 +1,9 @@
-<div class="EventBoxes col-lg-2">
+<div class="EventBoxes col-lg-3">
 
   <div class="allEvents" ng-show="show == 'all'">
 
     <ul class="compactEvent" ng-repeat="event in events">
-      <li><a href="events/{{event.id}}">{{event.name}}</a></li>
+      <li><b><a href="events/{{event.id}}">{{event.name}}</a></b></li>
       <li>{{event.starttime}}</li>
     </ul>
 
@@ -12,7 +12,7 @@
   <div class="upcomingEvents" ng-show="show == 'upcoming'">
 
     <ul class="compactEvent" ng-repeat="event in upcomingEvents">
-      <li><a href="events/{{event.id}}">{{event.name}}</a></li>
+      <li><b><a href="events/{{event.id}}">{{event.name}}</a></b></li>
       <li>{{event.starttime}}</li>
     </ul>
 
@@ -21,7 +21,7 @@
   <div class="pastEvents" ng-show="show == 'past'">
 
     <ul class="compactEvent" ng-repeat="event in pastEvents">
-      <li><a href="events/{{event.id}}">{{event.name}}</a></li>
+      <li><b><a href="events/{{event.id}}">{{event.name}}</a></b></li>
       <li>{{event.starttime}}</li>
     </ul>
 

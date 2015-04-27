@@ -1,5 +1,9 @@
 <p id="notice"><%= notice %></p>
 
+<h2><%= @event.name %></h2>
+
+<h3>Ilmoittautuneet</h3>
+
 <% if @users %>
 
     <table>
@@ -12,7 +16,7 @@
       <tbody>
       <% @users.each do |user| %>
           <tr>
-            <td><%= user %></td>
+            <td><%= user.signup_number(@event.id) %>. <%= user %></td>
           </tr>
       <% end %>
       </tbody>

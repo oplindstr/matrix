@@ -27,7 +27,7 @@ matrixApp.service('DateHelper', function(){
                 break;
         }
 
-        newTime = day + ' ' + time.getDate() + '.' + time.getMonth() + '.' + time.getFullYear() + ' ' + addZero(time.getHours()) + ':' + addZero(time.getMinutes());
+        newTime = day + ' ' + time.getDate() + '.' + monthFix(time.getMonth()) + '.' + time.getFullYear() + ' ' + addZero(time.getHours()) + ':' + addZero(time.getMinutes());
         return newTime;
     }
 
@@ -36,5 +36,10 @@ matrixApp.service('DateHelper', function(){
             i = "0" + i;
         }
         return i;
+    }
+
+    function monthFix(month) {
+        var int = parseInt(month);
+        return int + 1;
     }
 });

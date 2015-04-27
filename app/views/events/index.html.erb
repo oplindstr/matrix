@@ -6,7 +6,7 @@
 
   <div id="Events" class="container-fluid">
 
-    <div class="Events col-lg-10">
+    <div class="Events col-lg-9">
 
       <span>Näytä:</span>
       <select id="EventSelect" ng-model="show">
@@ -22,13 +22,15 @@
         <p ng-show="events.length === 0">Ei tapahtumia</p>
 
         <div class="Event" ng-repeat="event in events">
-          <b><a href="events/{{event.id}}">{{event.name}}</a></b><br>
-          Aika: {{event.starttime}}<br>
-          Paikka: {{event.location}}<br>
-          Hinta: <span ng-if="!event.price">Ei maksua</span>{{event.price}}<br>
-          <p></p>
-          <p>{{event.descr}}</p>
-          <p></p>
+          <div class="EventFields">
+              <b><a href="events/{{event.id}}">{{event.name}}</a></b><br>
+              Aika: {{event.starttime}}<br>
+              Paikka: {{event.location}}<br>
+              Hinta: <span ng-if="!event.price">Ei maksua</span>{{event.price}}<br>
+              <p></p>
+              <p>{{event.descr}}</p>
+              <p></p>
+          </div>
         </div>
 
       </div>
@@ -38,13 +40,15 @@
         <p ng-show="upcomingEvents.length === 0">Ei tulevia tapahtumia</p>
 
         <div class="Event" ng-repeat="event in upcomingEvents">
-          <b><a href="events/{{event.id}}">{{event.name}}</a></b><br>
-          Aika: {{event.starttime}}<br>
-          Paikka: {{event.location}}<br>
-          Hinta: <span ng-if="!event.price">Ei maksua</span>{{event.price}}<br>
-          <p></p>
-          <p>{{event.descr}}</p>
-          <p></p>
+          <div class="EventFields">
+              <b><a href="events/{{event.id}}">{{event.name}}</a></b><br>
+              Aika: {{event.starttime}}<br>
+              Paikka: {{event.location}}<br>
+              Hinta: <span ng-if="!event.price">Ei maksua</span>{{event.price}}<br>
+              <p></p>
+              <p>{{event.descr}}</p>
+              <p></p>
+          </div>
         </div>
 
       </div>
@@ -54,13 +58,15 @@
         <p ng-show="pastEvents.length === 0">Ei menneitä tapahtumia</p>
 
         <div class="Event" ng-repeat="event in pastEvents">
-          <b><a href="events/{{event.id}}">{{event.name}}</a></b><br>
-          Aika: {{event.starttime}}<br>
-          Paikka: {{event.location}}<br>
-          Hinta: <span ng-if="!event.price">Ei maksua</span>{{event.price}}<br>
-          <p></p>
-          <p>{{event.descr}}</p>
-          <p></p>
+          <div class="EventFields">
+              <b><a href="events/{{event.id}}">{{event.name}}</a></b><br>
+              Aika: {{event.starttime}}<br>
+              Paikka: {{event.location}}<br>
+              Hinta: <span ng-if="!event.price">Ei maksua</span>{{event.price}}<br>
+              <p></p>
+              <p>{{event.descr}}</p>
+              <p></p>
+          </div>
         </div>
 
       </div>

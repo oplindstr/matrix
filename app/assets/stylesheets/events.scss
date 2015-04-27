@@ -19,3 +19,20 @@
   width: 200px;
   padding: 10px;
 }
+
+@media screen and (max-width: 1600px) {
+  .compactEvent {
+    width: 150px;
+  }
+}
+
+.Event {
+  border-style: solid;
+  border-color: black;
+  border-width: 1px;
+  overflow: hidden;
+}
+
+.EventFields {
+  padding: 10px;
+}
