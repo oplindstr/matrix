@@ -24,6 +24,12 @@
         null,
         null,
         null,
+        null,
+        1,
+        0,
+        0,
+        0,
+        null,
         null
       ],
       "/home/oplindst/matrix/app/helpers/application_helper.rb": [
@@ -825,6 +831,6 @@
         null
       ]
     },
-    "timestamp": 1430082254
+    "timestamp": 1430144629
   }
 }

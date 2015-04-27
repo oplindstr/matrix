@@ -14,27 +14,27 @@
       <img src="./assets/0.10.0/loading.gif" alt="loading"/>
     </div>
     <div id="wrapper" style="display:none;">
-      <div class="timestamp">Generated <abbr class="timeago" title="2015-04-27T00:04:14+03:00">2015-04-27T00:04:14+03:00</abbr></div>
+      <div class="timestamp">Generated <abbr class="timeago" title="2015-04-27T17:23:49+03:00">2015-04-27T17:23:49+03:00</abbr></div>
       <ul class="group_tabs"></ul>
 
       <div id="content">
         <div class="file_list_container" id="AllFiles">
   <h2>
     <span class="group_name">All Files</span>
-    (<span class="covered_percent"><span class="red">47.46%</span></span>
+    (<span class="covered_percent"><span class="red">47.24%</span></span>
      covered at
      <span class="covered_strength">
-       <span class="green">
-         1.0
+       <span class="red">
+         0.99
        </span>
     </span> hits/line)
   </h2>
   <a name="AllFiles"></a>
   <div>
     <b>21</b> files in total.
-    <b>413</b> relevant lines. 
-    <span class="green"><b>196</b> lines covered</span> and
-    <span class="red"><b>217</b> lines missed </span>
+    <b>417</b> relevant lines. 
+    <span class="green"><b>197</b> lines covered</span> and
+    <span class="red"><b>220</b> lines missed </span>
   </div>
   <table class="file_list">
     <thead>
@@ -252,12 +252,12 @@
       
       <tr>
         <td class="strong"><a href="#a876cb116e0dc2ab5c0a97b6fac081d638469ebc" class="src_link" title="app/models/user.rb">app/models/user.rb</a></td>
-        <td class="red strong">76.92 %</td>
-        <td>23</td>
-        <td>13</td>
-        <td>10</td>
-        <td>3</td>
-        <td>0.8</td>
+        <td class="red strong">64.71 %</td>
+        <td>29</td>
+        <td>17</td>
+        <td>11</td>
+        <td>6</td>
+        <td>0.6</td>
       </tr>
       
     </tbody>
@@ -386,20 +386,20 @@
           <div class="file_list_container" id="Models">
   <h2>
     <span class="group_name">Models</span>
-    (<span class="covered_percent"><span class="red">39.42%</span></span>
+    (<span class="covered_percent"><span class="red">38.89%</span></span>
      covered at
      <span class="covered_strength">
        <span class="red">
-         0.37
+         0.35
        </span>
     </span> hits/line)
   </h2>
   <a name="Models"></a>
   <div>
     <b>6</b> files in total.
-    <b>104</b> relevant lines. 
-    <span class="green"><b>41</b> lines covered</span> and
-    <span class="red"><b>63</b> lines missed </span>
+    <b>108</b> relevant lines. 
+    <span class="green"><b>42</b> lines covered</span> and
+    <span class="red"><b>66</b> lines missed </span>
   </div>
   <table class="file_list">
     <thead>
@@ -467,12 +467,12 @@
       
       <tr>
         <td class="strong"><a href="#a876cb116e0dc2ab5c0a97b6fac081d638469ebc" class="src_link" title="app/models/user.rb">app/models/user.rb</a></td>
-        <td class="red strong">76.92 %</td>
-        <td>23</td>
-        <td>13</td>
-        <td>10</td>
-        <td>3</td>
-        <td>0.8</td>
+        <td class="red strong">64.71 %</td>
+        <td>29</td>
+        <td>17</td>
+        <td>11</td>
+        <td>6</td>
+        <td>0.6</td>
       </tr>
       
     </tbody>
@@ -5582,11 +5582,11 @@
         <div class="source_table" id="a876cb116e0dc2ab5c0a97b6fac081d638469ebc">
   <div class="header">
     <h3>app/models/user.rb</h3>
-    <h4><span class="red">76.92 %</span> covered</h4>
+    <h4><span class="red">64.71 %</span> covered</h4>
     <div>
-      <b>13</b> relevant lines. 
-      <span class="green"><b>10</b> lines covered</span> and
-      <span class="red"><b>3</b> lines missed.</span>
+      <b>17</b> relevant lines. 
+      <span class="green"><b>11</b> lines covered</span> and
+      <span class="red"><b>6</b> lines missed.</span>
     </div>
   </div>
   
@@ -5726,6 +5726,42 @@
         </li>
       
         <li class="never" data-hits="" data-linenumber="23">
+          
+          
+          <code class="ruby"></code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="24">
+          <span class="hits">1</span>
+          
+          <code class="ruby">  def signup_number(event_id)</code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="25">
+          
+          
+          <code class="ruby">    signup = Signup.where(&#39;event_id = ? and user_id = ?&#39;, event_id, self.id).first</code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="26">
+          
+          
+          <code class="ruby">    signup_id = signup.id</code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="27">
+          
+          
+          <code class="ruby">    return Signup.where(&#39;event_id = ? and id &lt;= ?&#39;, event_id ,signup_id).count</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="28">
+          
+          
+          <code class="ruby">  end</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="29">
           
           
           <code class="ruby">end</code>
