@@ -1,4 +1,4 @@
-matrixApp.controller('EventsController', function ($scope, $http, DateHelper) {
+matrixApp.controller('EventsController', ["$scope", "$http", "DateHelper", function ($scope, $http, DateHelper) {
     $http.get('events.json').success(function (data, status, headers, config) {
         $scope.events = data;
 
@@ -31,8 +31,8 @@ matrixApp.controller('EventsController', function ($scope, $http, DateHelper) {
             }
         }
     });
-});
+}]);
 
-matrixApp.controller('NewEventController', function ($scope) {
+matrixApp.controller('NewEventController', ["$scope", function ($scope) {
     $scope.signup = false;
-});
+}]);
