@@ -8,13 +8,6 @@
 
     <div class="Events col-lg-9">
 
-      <span>Näytä:</span>
-      <select id="EventSelect" ng-model="show">
-        <option selected value="upcoming">Tulevat tapahtumat</option>
-        <option value="past">Menneet tapahtumat</option>
-        <option value="all">Kaikki tapahtumat</option>
-      </select>
-
       <p></p>
 
       <div class="allEvents" ng-show="show == 'all'">
@@ -31,7 +24,10 @@
               <p>{{event.descr}}</p>
               <p></p>
           </div>
+
+          <br>
         </div>
+
 
       </div>
 
@@ -49,6 +45,7 @@
               <p>{{event.descr}}</p>
               <p></p>
           </div>
+          <br>
         </div>
 
       </div>
@@ -67,6 +64,7 @@
               <p>{{event.descr}}</p>
               <p></p>
           </div>
+          <br>
         </div>
 
       </div>
