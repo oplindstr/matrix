@@ -73,6 +73,7 @@ group :test do
   gem 'launchy'
   gem 'simplecov', require: false
   gem "selenium-webdriver"
+  gem "database_cleaner"
 end
 
 gem 'bootstrap-sass'

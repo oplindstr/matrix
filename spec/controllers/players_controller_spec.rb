@@ -87,6 +87,18 @@ RSpec.describe PlayersController, type: :controller do
         expect(assigns(:player)).to be_persisted
       end
 
+      it 'assigns new player to signed in user if they dont hava a player yet' do
+        post :create, {:player => valid_attributes}, user_session
+        expect(assigns(:player).user_id).to be(2)
+      end
+
+      it "does not assign new player to signed in user if they already have a player" do
+        user = FactoryGirl.create(:user_player2)
+        post :create, {:player => valid_attributes}, user_session
+        expect(assigns(:player).user_id).to be(nil)
+
+      end
+
       #it "redirects to the created player" do
       #  post :create, {:player => valid_attributes}, valid_session
       #  expect(response).to redirect_to(Player.last)

@@ -28,8 +28,8 @@ class PlayersController < ApplicationController
   # POST /players.json
   def create
     @player = Player.new(player_params)
-    if current_user and !current_user.player
-      @player.user_id = current_user.id
+    if not (current_user and !current_user.player)
+      @player.user_id = nil
     end
 
     respond_to do |format|

@@ -1,4 +1,4 @@
-<%= javascript_include_tag :defaults, "nested_form" %>
+<%= javascript_include_tag "nested_form" %>
 
 
 <% render 'players/title' %>
@@ -51,8 +51,8 @@
        <tr class="fields">
            <td><p class="dealer"></p></td>
            <td style="display:none"><%= hand_form.number_field :match_id, value: @match.id %></td>
-           <td class="team1handscore"><input type="button" value="-"> <%= hand_form.number_field :points1, in: -5000..440, step: 5, value: hand_form.object.points1 | 0 %></td>
-           <td class="team2handscore"><input type="button" value="-"> <%= hand_form.number_field :points2, in: -5000..440, step: 5, value: hand_form.object.points2 | 0 %></td>
+           <td class="team1handscore"><input type="button" value="-"> <%= hand_form.number_field :points1, class: 'points1', in: -5000..440, step: 5, value: hand_form.object.points1 | 0 %></td>
+           <td class="team2handscore"><input type="button" value="-"> <%= hand_form.number_field :points2, class: 'points1', in: -5000..440, step: 5, value: hand_form.object.points2 | 0 %></td>
            <td><%= hand_form.select :declarer, options_from_collection_for_select(@declarers, :id, :name, :selected => hand_form.object.declarer) %></td>
            <td><%= hand_form.number_field :bid, in: 0..1000, step: 5 %></td>
            <td><%= hand_form.number_field :contract, in: 0..1000, step: 5 %></td>
@@ -62,7 +62,7 @@
       <% end %>
       </tbody>
   </table>
-    <p><%= f.link_to_add "Lisää käsi", :hands, :data => { :target => "#hands" }, :class => 'btn btn-primary' %></p>
+    <p><%= f.link_to_add "Lisää käsi", :hands, :id => "add_hand_button", :data => { :target => "#hands" }, :class => 'btn btn-primary' %></p>
         <h2>Tilanne</h2>
 
         <p><%= @match.firstPlayer.name %> ja <%= @match.secondPlayer.name %><b id="team1winning"></b> <h1 id="team1score">0</h1></p>
