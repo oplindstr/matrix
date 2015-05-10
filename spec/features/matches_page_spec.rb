@@ -56,8 +56,7 @@ describe "Matches page" do
     all('.points1')[3].set(250)
 
     click_button('Tallenna peli')
-
-    page.driver.browser.switch_to.alert.accept
+    
 
     expect(page).to have_content('player3 1677.33')
     expect(page).to have_content('player4 1677.33')

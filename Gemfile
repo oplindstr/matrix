@@ -75,6 +75,8 @@ group :test do
   gem "selenium-webdriver"
   gem "headless"
   gem "database_cleaner"
+  gem "poltergeist"
+  gem 'phantomjs', :require => 'phantomjs/poltergeist'
 end
 
 gem 'bootstrap-sass'
