@@ -24,7 +24,11 @@ class MatchesController < ApplicationController
 
   # GET /matches/new
   def new
-    @players = Player.all.sort_by{|b| b.name}
+    if current_user and current_user.id == 9
+      @players = Player.where("id >= 62 and id <= 65").sort_by{|b| b.name}
+    else
+      @players = Player.all.sort_by{|b| b.name}
+    end
     @match = Match.new
   end
 

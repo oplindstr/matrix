@@ -80,7 +80,11 @@ class PlayersController < ApplicationController
     end
 
     def set_page_params
-      @players = Player.all
+      if current_user and current_user.id == 9
+        @players = Player.where("id >= 62 and id <= 65")
+      else
+        @players = Player.all
+      end
       @players_ordered_by_name = @players
       @players_ordered_by_name = @players_ordered_by_name.sort_by{ |b| b.name }
       order = params[:order] || 'assurity'
