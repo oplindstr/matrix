@@ -81,7 +81,7 @@ class PlayersController < ApplicationController
 
     def set_page_params
       if current_user and current_user.id == 9
-        @players = Player.where("id >= 62 and id <= 65")
+        @players = Player.where("id >= 62")
       else
         @players = Player.all
       end
