@@ -24,11 +24,19 @@ RSpec.describe MatchesController, type: :controller do
   # Match. As you add validations to Match, be sure to
   # adjust the attributes here as well.
   let(:valid_attributes) {
-    skip("Add a hash of attributes valid for your model")
+    {player1: 1,
+    player2: 2,
+    player3: 3,
+    player4: 4,
+    winners: 0}
   }
 
   let(:invalid_attributes) {
-    skip("Add a hash of attributes invalid for your model")
+    {player1: 1,
+     player2: 1,
+     player3: 1,
+     player4: 1,
+     winners: 0}
   }
 
   # This should return the minimal set of values that should be in the session
@@ -38,6 +46,10 @@ RSpec.describe MatchesController, type: :controller do
 
   before(:each) do
     FactoryGirl.create(:user)
+    FactoryGirl.create(:player1)
+    FactoryGirl.create(:player2)
+    FactoryGirl.create(:player3)
+    FactoryGirl.create(:player4)
   end
 
   describe "GET #index" do
@@ -107,14 +119,17 @@ RSpec.describe MatchesController, type: :controller do
   describe "PUT #update" do
     context "with valid params" do
       let(:new_attributes) {
-        skip("Add a hash of attributes valid for your model")
+        {player1: 1,
+         player2: 2,
+         player3: 3,
+         player4: 4,
+         winners: 1}
       }
 
       it "updates the requested match" do
         match = Match.create! valid_attributes
         put :update, {:id => match.to_param, :match => new_attributes}, valid_session
         match.reload
-        skip("Add assertions for updated state")
       end
 
       it "assigns the requested match as @match" do

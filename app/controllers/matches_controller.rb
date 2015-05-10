@@ -49,8 +49,13 @@ class MatchesController < ApplicationController
           format.json { render :show, status: :created, location: @match }
         end
       else
-        format.html { redirect_to :back, alert: 'Pelaajat väärin' }
-        format.json { render :index, json: @match.errors, status: :unprocessable_entity, location: :back}
+        if @match.winners == 0
+          format.html { render :new, alert: 'Pelaajat väärin' }
+          format.json { render :index, json: @match.errors, status: :unprocessable_entity, location: :back}
+        else
+          format.html { redirect_to :back, alert: 'Pelaajat väärin' }
+          format.json { render :index, json: @match.errors, status: :unprocessable_entity, location: :back}
+        end
       end
     end
   end

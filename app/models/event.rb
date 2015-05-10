@@ -2,6 +2,10 @@ class Event < ActiveRecord::Base
   has_many :signups
   has_many :users, through: :signups
 
+  validates :name, presence: true, length: { minimum: 1 }
+  validates :descr, presence: true, length: { minimum: 1 }
+  validate :endtimes_cannot_be_before_starttimes
+
   def full
     if self.users.count >= self.signup_limit
       return true
@@ -34,5 +38,15 @@ class Event < ActiveRecord::Base
 
   def signup_cancellable
     return Time.now <= self.signup_cancellable_until
+  end
+
+  def endtimes_cannot_be_before_starttimes
+    if self.endtime and self.starttime and self.endtime < self.starttime
+      errors.add(:starttime, "Tapahtuma ei voi loppua ennen kuin se alkaa")
+    end
+
+    if self.signup_end and self.signup_start and self.signup_end < self.signup_start
+      errors.add(:signup_start, "Ilmoittautuminen ei voi loppua ennen kuin se alkaa")
+    end
   end
 end

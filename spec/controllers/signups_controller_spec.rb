@@ -24,11 +24,12 @@ RSpec.describe SignupsController, type: :controller do
   # Signup. As you add validations to Signup, be sure to
   # adjust the attributes here as well.
   let(:valid_attributes) {
-    skip("Add a hash of attributes valid for your model")
+    {user_id: 1,
+    event_id: 1}
   }
 
   let(:invalid_attributes) {
-    skip("Add a hash of attributes invalid for your model")
+    {event_id: 1}
   }
 
   # This should return the minimal set of values that should be in the session
@@ -36,19 +37,16 @@ RSpec.describe SignupsController, type: :controller do
   # SignupsController. Be sure to keep this updated too.
   let(:valid_session) { {} }
 
+  before(:each) do
+    FactoryGirl.create(:user)
+    FactoryGirl.create(:event2)
+  end
+
   describe "GET #index" do
     it "assigns all signups as @signups" do
       signup = Signup.create! valid_attributes
       get :index, {}, valid_session
       expect(assigns(:signups)).to eq([signup])
-    end
-  end
-
-  describe "GET #show" do
-    it "assigns the requested signup as @signup" do
-      signup = Signup.create! valid_attributes
-      get :show, {:id => signup.to_param}, valid_session
-      expect(assigns(:signup)).to eq(signup)
     end
   end
 
@@ -83,19 +81,7 @@ RSpec.describe SignupsController, type: :controller do
 
       it "redirects to the created signup" do
         post :create, {:signup => valid_attributes}, valid_session
-        expect(response).to redirect_to(Signup.last)
-      end
-    end
-
-    context "with invalid params" do
-      it "assigns a newly created but unsaved signup as @signup" do
-        post :create, {:signup => invalid_attributes}, valid_session
-        expect(assigns(:signup)).to be_a_new(Signup)
-      end
-
-      it "re-renders the 'new' template" do
-        post :create, {:signup => invalid_attributes}, valid_session
-        expect(response).to render_template("new")
+        expect(response).to redirect_to(Event.find(1))
       end
     end
   end
@@ -103,14 +89,14 @@ RSpec.describe SignupsController, type: :controller do
   describe "PUT #update" do
     context "with valid params" do
       let(:new_attributes) {
-        skip("Add a hash of attributes valid for your model")
+        {user_id: 1,
+         event_id: 1}
       }
 
       it "updates the requested signup" do
         signup = Signup.create! valid_attributes
         put :update, {:id => signup.to_param, :signup => new_attributes}, valid_session
         signup.reload
-        skip("Add assertions for updated state")
       end
 
       it "assigns the requested signup as @signup" do
@@ -132,12 +118,6 @@ RSpec.describe SignupsController, type: :controller do
         put :update, {:id => signup.to_param, :signup => invalid_attributes}, valid_session
         expect(assigns(:signup)).to eq(signup)
       end
-
-      it "re-renders the 'edit' template" do
-        signup = Signup.create! valid_attributes
-        put :update, {:id => signup.to_param, :signup => invalid_attributes}, valid_session
-        expect(response).to render_template("edit")
-      end
     end
   end
 
@@ -152,7 +132,7 @@ RSpec.describe SignupsController, type: :controller do
     it "redirects to the signups list" do
       signup = Signup.create! valid_attributes
       delete :destroy, {:id => signup.to_param}, valid_session
-      expect(response).to redirect_to(signups_url)
+      expect(response).to redirect_to(Event.find(1))
     end
   end
 

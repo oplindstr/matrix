@@ -54,4 +54,59 @@ FactoryGirl.define do
     expectation 1500.0
     deviation 500.0
   end
+
+  factory :match, class: Match do
+    player1 1
+    player2 2
+    player3 3
+    player4 4
+    winners 0
+  end
+
+  factory :event do
+    name "tapahtuma"
+    starttime Time.now
+    location "kumpula"
+    price 0
+    descr "paras"
+  end
+
+  factory :event2, class: Event do
+    name "tapahtuma"
+    starttime Time.now + 1.day
+    location "kumpula"
+    price 0
+    descr "paras"
+    signup_limit 5
+    signup_required true
+    signup_start Time.now
+    signup_end Time.now + 1.day
+    signup_cancellable_until Time.now + 1.day
+  end
+
+  factory :event3, class: Event do
+    name "tapahtuma"
+    starttime Time.now + 2.days
+    location "kumpula"
+    price 0
+    descr "paras"
+    signup_limit 5
+    signup_required true
+    signup_start Time.now + 1.day
+    signup_end Time.now + 2.days
+    signup_cancellable_until Time.now + 1.day
+  end
+
+  factory :event4, class: Event do
+    name "tapahtuma"
+    starttime Time.now + 2.days
+    location "kumpula"
+    price 0
+    descr "paras"
+    signup_limit 5
+    signup_required true
+    signup_start Time.now
+    signup_end Time.now + 2.days
+    signup_cancellable_until Time.now
+  end
 end

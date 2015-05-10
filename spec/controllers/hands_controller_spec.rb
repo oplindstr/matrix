@@ -24,11 +24,23 @@ RSpec.describe HandsController, type: :controller do
   # Hand. As you add validations to Hand, be sure to
   # adjust the attributes here as well.
   let(:valid_attributes) {
-    skip("Add a hash of attributes valid for your model")
+    {match_id: 1,
+    points1: 230,
+    points2: 30,
+    declarer: 1,
+    bid: 230,
+    contract: 230,
+    made: true}
   }
 
   let(:invalid_attributes) {
-    skip("Add a hash of attributes invalid for your model")
+    {match_id: 1,
+     points1: 450,
+     points2: 30,
+     declarer: 1,
+     bid: 230,
+     contract: 230,
+     made: true}
   }
 
   # This should return the minimal set of values that should be in the session
@@ -38,6 +50,7 @@ RSpec.describe HandsController, type: :controller do
 
   before(:each) do
     FactoryGirl.create(:user)
+    FactoryGirl.create(:match)
   end
 
   describe "GET #index" do
@@ -108,14 +121,19 @@ RSpec.describe HandsController, type: :controller do
   describe "PUT #update" do
     context "with valid params" do
       let(:new_attributes) {
-        skip("Add a hash of attributes valid for your model")
+        {match_id: 1,
+         points1: 30,
+         points2: 230,
+         declarer: 2,
+         bid: 230,
+         contract: 230,
+         made: true}
       }
 
       it "updates the requested hand" do
         hand = Hand.create! valid_attributes
         put :update, {:id => hand.to_param, :hand => new_attributes}, valid_session
         hand.reload
-        skip("Add assertions for updated state")
       end
 
       it "assigns the requested hand as @hand" do
