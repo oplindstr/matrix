@@ -3,53 +3,103 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
 
-// make all images responsive by default
+$background-color: white;
+
+$navbar-height: 68px;
+
+body {
+  color: #333;
+  font-family: verdana, arial, helvetica, sans-serif;
+  font-size: 13px;
+  line-height: 18px;
+  background-color: $background-color;
+}
+
+footer {
+  padding-left: 300px;
+  padding-right: 300px;
+  margin-bottom: 50px;
+  text-align: center;
+}
+
+header {
+  padding-top: 25px;
+  margin-left: 300px;
+  margin-right: 300px;
+  background-color: white;
+}
+
+html {
+  background-color: $background-color;
+}
+
 img {
   @extend .img-responsive;
   margin: 0 auto;
-  }
-// override for the 'Home' navigation link
-
-header {
-  background-origin: border-box;
-  background-color: red;
 }
 
-.navbar-brand {
+main {
+  background-color: white;
+  margin-left: 300px;
+  margin-right: 300px;
+  padding-bottom: 20px;
+}
+
+section {
+  @extend .row;
+  margin-top: 20px;
+}
+
+.box {
+  border-style: none;
+  background-color: #DDFFDD;
+  text-align: center;
+}
+
+.column {
+  @extend .col-md-6;
+  @extend .text-center;
+}
+
+.container {
+  width: inherit;
+  padding-left: 0px;
+  padding-right: 0px;
+  margin-bottom: 20px;
+}
+
+.dropdown-link {
   font-size: inherit;
 }
 
-.navbar-brand:hover {
-  font-weight:bold;
+.dropdown-menu {
+  top: 96%;
 }
 
-.navbar-brand:link {
-  color: white;
+.form {
+  @extend .col-md-6;
+}
+.form-centered {
+  @extend .col-md-6;
+  @extend .text-center;
 }
 
-.custom-dropdown:hover .ul {
-  display: block;
+.header {
+  margin-left: 200px;
+  margin-right: 200px;
 }
 
-.custom-dropdown-menu {
-  top: 95%;
+.login {
+  padding-left: 15vw;
+  height: 80%;
 }
 
-.navbar-inverse {
-  background-color: #0000FF;
-
-  border-radius: 10px;
-  -moz-border-radius: 10px;
-  -webkit-border-radius: 10px;
-
+.login > form > span {
+  font-size: 90%;
 }
 
-  .dropdown-toggle:hover .dropdown-menu {
-    display: block;
-  }
-
-.navbar-link {
-  color: white;
+.login-input {
+  width: 8vw;
 }
 
 .logo {
@@ -57,44 +107,35 @@ header {
   left: -1px;
 }
 
-.body {
+.navbar {
   background-color: red;
+  border-style: none;
+  border-radius: 0px;
+  margin-bottom: 5px;
+  padding-left: 300px;
+  padding-right: 20vw;
 }
 
-// THESE ARE EXAMPLES YOU CAN MODIFY
-// create your own classes
-// to make views framework-neutral
-.column {
-  @extend .col-md-6;
-  @extend .text-center;
-  }
-.form {
-  @extend .col-md-6;
-  }
-.form-centered {
-  @extend .col-md-6;
-  @extend .text-center;
-  }
+.dropdown > .dropdown-toggle > a, .dropdown > .dropdown-toggle > a:hover, .dropdown > .dropdown-toggle > a:focus {
+    color: white;
+    text-decoration: none;
+}
+
+.navbar-default .navbar-nav > li > a, .navbar-default .navbar-nav > li > a:hover, .navbar-default .navbar-nav > li > a:focus {
+    color: white;
+    text-decoration: none;
+}
+
 .submit {
   @extend .btn;
   @extend .btn-primary;
   @extend .btn-lg;
   }
-// apply styles to HTML elements
-// to make views framework-neutral
-main {
-  background-color: #FFFFFF;
 
-  border-radius: 10px;
-  -moz-border-radius: 10px;
-  -webkit-border-radius: 10px;
+.title {
+  color: blue;
+}
 
-  padding-top: 20px;
-  padding-left: 20px;
-  padding-right: 20px;
+#introduction {
   padding-bottom: 20px;
-  }
-section {
-  @extend .row;
-  margin-top: 20px;
-  }
+}

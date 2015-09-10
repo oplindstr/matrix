@@ -26,10 +26,13 @@
   }
 }
 
-.EventFields {
+.Event {
   border-style: solid;
-  border-color: black;
-  border-width: 1px;
+  border-color: blue;
+  border-width: 3px;
   overflow: hidden;
   padding: 10px;
+  margin: 10px;
 }
+
+.Eventname { a:link, a:visited, a:hover, a:active { color: red; } }

@@ -5,6 +5,7 @@ class ApplicationController < ActionController::Base
 
   helper_method :current_user
   helper_method :admin
+  helper_method :get_stringresource
 
   def current_user
     return nil if session[:user_id].nil?
@@ -22,6 +23,12 @@ class ApplicationController < ActionController::Base
 
   def ensure_that_activated
     redirect_to root_path, notice:"Tunnusta ei ole vielä aktivoitu" if not current_user.activated
+  end
+
+  def get_stringresource(key)
+    @resource = Stringresource.where("key = ?", key).first
+    return "" if not @resource
+    @resource.value
   end
 
 end

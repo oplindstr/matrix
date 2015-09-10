@@ -1,24 +1,4 @@
-body {
-  background-color: red;
-  color: #333;
-  font-family: verdana, arial, helvetica, sans-serif;
-  font-size: 13px;
-  line-height: 18px;
-}
 
-html {
-  background-color: red;
-  padding-top: 50px;
-  padding-left: 250px;
-  padding-right: 250px;
-  padding-bottom: 80px;
-}
-
-@media screen and (max-device-width: 480px) {
-  html {
-    padding-right: 20px;
-  }
-}
 
 p, ol, ul, td {
   font-family: verdana, arial, helvetica, sans-serif;
@@ -34,13 +14,6 @@ pre {
 
 a {
   color: #000;
-  &:visited {
-    color: #666;
-  }
-  &:hover {
-    color: #fff;
-    background-color: #000;
-  }
 }
 
 div {

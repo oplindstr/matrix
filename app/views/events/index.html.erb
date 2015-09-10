@@ -16,8 +16,8 @@
 
         <div class="Event" ng-repeat="event in events">
           <div class="EventFields">
-              <b><a href="events/{{event.id}}">{{event.name}}</a></b><br>
-              Aika: {{event.starttime}}<br>
+              <b class="Eventname"><a href="events/{{event.id}}">{{event.name}}</a></b><br>
+              <span class="Eventfield">Aika:</span> <span class="Eventfield">{{event.starttime}}</span><br>
               Paikka: {{event.location}}<br>
               Hinta: <span ng-if="!event.price">Ei maksua</span>{{event.price}}<br>
               <p></p>
@@ -37,8 +37,8 @@
 
         <div class="Event" ng-repeat="event in upcomingEvents">
           <div class="EventFields">
-              <b><a href="events/{{event.id}}">{{event.name}}</a></b><br>
-              Aika: {{event.starttime}}<br>
+              <b class="Eventname"><a href="events/{{event.id}}">{{event.name}}</a></b><br>
+              <span class="Eventfield">Aika:</span> <span class="Eventfield">{{event.starttime}}</span><br>
               Paikka: {{event.location}}<br>
               Hinta: <span ng-if="!event.price">Ei maksua</span>{{event.price}}<br>
               <p></p>
@@ -56,8 +56,8 @@
 
         <div class="Event" ng-repeat="event in pastEvents">
           <div class="EventFields">
-              <b><a href="events/{{event.id}}">{{event.name}}</a></b><br>
-              Aika: {{event.starttime}}<br>
+              <b class="Eventname"><a href="events/{{event.id}}">{{event.name}}</a></b><br>
+              <span class="Eventfield">Aika:</span> <span class="Eventfield">{{event.starttime}}</span><br>
               Paikka: {{event.location}}<br>
               Hinta: <span ng-if="!event.price">Ei maksua</span>{{event.price}}<br>
               <p></p>

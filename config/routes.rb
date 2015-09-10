@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  resources :stringresources
+
   resources :signups
 
   resources :hands

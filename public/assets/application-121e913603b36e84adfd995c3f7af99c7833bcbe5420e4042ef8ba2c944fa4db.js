@@ -13222,7 +13222,7 @@ matrixApp.service('DateHelper', function(){
         return int + 1;
     }
 });
-matrixApp.controller('EventsController', function ($scope, $http, DateHelper) {
+matrixApp.controller('EventsController', ["$scope", "$http", "DateHelper", function ($scope, $http, DateHelper) {
     $http.get('events.json').success(function (data, status, headers, config) {
         $scope.events = data;
 
@@ -13255,10 +13255,18 @@ matrixApp.controller('EventsController', function ($scope, $http, DateHelper) {
             }
         }
     });
-});
+}]);
 
-matrixApp.controller('NewEventController', function ($scope) {
+matrixApp.controller('NewEventController', ["$scope", function ($scope) {
     $scope.signup = false;
+}]);
+$(document).ready(function () {
+
+	$('.dropdown-toggle').hover(function() {
+	  $(this).find('.dropdown-menu').first().stop(true, true).delay(250).slideDown("fast");
+	}, function() {
+	  $(this).find('.dropdown-menu').first().stop(true, true).delay(100).slideUp("fast")
+	});
 });
 (function() {
 

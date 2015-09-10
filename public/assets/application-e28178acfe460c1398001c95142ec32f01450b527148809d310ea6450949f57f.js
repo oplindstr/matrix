@@ -13177,7 +13177,52 @@ Copyright (c) 2012-2013 Sasha Koss & Rico Sta. Cruz
 
 
 var matrixApp = angular.module('matrixApp', []);
-matrixApp.controller('EventsController', function ($scope, $http) {
+matrixApp.service('DateHelper', function(){
+
+    this.time_format = function(time) {
+        time = new Date(time);
+        day = time.getDay();
+        switch (day) {
+            case 0:
+                day = "Su";
+                break;
+            case 1:
+                day = "Ma";
+                break;
+            case 2:
+                day = "Ti";
+                break;
+            case 3:
+                day = "Ke";
+                break;
+            case 4:
+                day = "To";
+                break;
+            case 5:
+                day = "Pe";
+                break;
+            case 6:
+                day = "La";
+                break;
+        }
+
+        newTime = day + ' ' + time.getDate() + '.' + monthFix(time.getMonth()) + '.' + time.getFullYear() + ' ' + addZero(time.getHours()) + ':' + addZero(time.getMinutes());
+        return newTime;
+    }
+
+    function addZero(i) {
+        if (i < 10) {
+            i = "0" + i;
+        }
+        return i;
+    }
+
+    function monthFix(month) {
+        var int = parseInt(month);
+        return int + 1;
+    }
+});
+matrixApp.controller('EventsController', ["$scope", "$http", "DateHelper", function ($scope, $http, DateHelper) {
     $http.get('events.json').success(function (data, status, headers, config) {
         $scope.events = data;
 
@@ -13201,18 +13246,29 @@ matrixApp.controller('EventsController', function ($scope, $http) {
 
         for (var i = 0; i < eventList.length; i++) {
             if (new Date(eventList[i].starttime) < now) {
+                eventList[i].starttime = DateHelper.time_format(eventList[i].starttime);
                 $scope.pastEvents.push(eventList[i]);
             }
             else {
+                eventList[i].starttime = DateHelper.time_format(eventList[i].starttime);
                 $scope.upcomingEvents.push(eventList[i]);
             }
         }
     });
-});
+}]);
 
-matrixApp.controller('NewEventController', function ($scope) {
+matrixApp.controller('NewEventController', ["$scope", function ($scope) {
     $scope.signup = false;
-});
+}]);
+$(document).ready(function () {
+
+	$('.navbar-item .dropdown-toggle').hover(function() {
+	  $(this).find('.dropdown-menu').first().stop(true, true).delay(250).slideDown();
+	}, function() {
+	  $(this).find('.dropdown-menu').first().stop(true, true).delay(100).slideUp()
+	});
+}
+;
 (function() {
 
 

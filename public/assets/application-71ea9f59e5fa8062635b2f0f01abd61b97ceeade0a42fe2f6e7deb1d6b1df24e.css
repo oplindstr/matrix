@@ -22,14 +22,16 @@
 /* line 29, /home/oplindst/matrix/app/assets/stylesheets/events.scss */
 .Event {
   border-style: solid;
-  border-color: black;
-  border-width: 1px;
+  border-color: blue;
+  border-width: 3px;
   overflow: hidden;
+  padding: 10px;
+  margin: 10px;
 }
 
-/* line 36, /home/oplindst/matrix/app/assets/stylesheets/events.scss */
-.EventFields {
-  padding: 10px;
+/* line 38, /home/oplindst/matrix/app/assets/stylesheets/events.scss */
+.Eventname a:link, .Eventname a:visited, .Eventname a:hover, .Eventname a:active {
+  color: red;
 }
 @charset "UTF-8";
 /*! normalize.css v3.0.2 | MIT License | git.io/normalize */
@@ -8644,157 +8646,257 @@ button.close {
     display: none !important;
   }
 }
-/* line 7, /home/oplindst/matrix/app/assets/stylesheets/framework_and_overrides.css.scss */
-img {
-  margin: 0 auto;
-}
-
-/* line 13, /home/oplindst/matrix/app/assets/stylesheets/framework_and_overrides.css.scss */
-header {
-  background-origin: border-box;
-  background-color: red;
-}
-
-/* line 18, /home/oplindst/matrix/app/assets/stylesheets/framework_and_overrides.css.scss */
-.navbar-brand {
-  font-size: inherit;
-}
-
-/* line 22, /home/oplindst/matrix/app/assets/stylesheets/framework_and_overrides.css.scss */
-.navbar-brand:hover {
-  font-weight: bold;
-}
-
-/* line 26, /home/oplindst/matrix/app/assets/stylesheets/framework_and_overrides.css.scss */
-.navbar-brand:link {
-  color: white;
-}
-
-/* line 30, /home/oplindst/matrix/app/assets/stylesheets/framework_and_overrides.css.scss */
-.custom-dropdown:hover .ul {
-  display: block;
-}
-
-/* line 34, /home/oplindst/matrix/app/assets/stylesheets/framework_and_overrides.css.scss */
-.custom-dropdown-menu {
-  top: 95%;
-}
-
-/* line 38, /home/oplindst/matrix/app/assets/stylesheets/framework_and_overrides.css.scss */
-.navbar-inverse {
-  background-color: #0000FF;
-  border-radius: 10px;
-  -moz-border-radius: 10px;
-  -webkit-border-radius: 10px;
-}
-
-/* line 47, /home/oplindst/matrix/app/assets/stylesheets/framework_and_overrides.css.scss */
-.dropdown-toggle:hover .dropdown-menu {
-  display: block;
-}
-
-/* line 51, /home/oplindst/matrix/app/assets/stylesheets/framework_and_overrides.css.scss */
-.navbar-link {
-  color: white;
-}
-
-/* line 55, /home/oplindst/matrix/app/assets/stylesheets/framework_and_overrides.css.scss */
-.logo {
-  position: absolute;
-  left: -1px;
-}
-
-/* line 60, /home/oplindst/matrix/app/assets/stylesheets/framework_and_overrides.css.scss */
-.body {
-  background-color: red;
-}
-
-/* line 85, /home/oplindst/matrix/app/assets/stylesheets/framework_and_overrides.css.scss */
-main {
-  background-color: #FFFFFF;
-  border-radius: 10px;
-  -moz-border-radius: 10px;
-  -webkit-border-radius: 10px;
-  padding-top: 20px;
-  padding-left: 20px;
-  padding-right: 20px;
-  padding-bottom: 20px;
-}
-
-/* line 97, /home/oplindst/matrix/app/assets/stylesheets/framework_and_overrides.css.scss */
-section {
-  margin-top: 20px;
-}
-/* line 1, /home/oplindst/matrix/app/assets/stylesheets/scaffolds.scss */
+/* line 8, /home/oplindst/matrix/app/assets/stylesheets/framework_and_overrides.css.scss */
 body {
-  background-color: red;
+  background-color: white;
   color: #333;
   font-family: verdana, arial, helvetica, sans-serif;
   font-size: 13px;
   line-height: 18px;
 }
 
-/* line 9, /home/oplindst/matrix/app/assets/stylesheets/scaffolds.scss */
-html {
-  background-color: red;
-  padding-top: 50px;
-  padding-left: 250px;
-  padding-right: 250px;
-  padding-bottom: 80px;
+/* line 16, /home/oplindst/matrix/app/assets/stylesheets/framework_and_overrides.css.scss */
+footer {
+  padding-left: 300px;
+  padding-right: 300px;
+  margin-bottom: 50px;
+  text-align: center;
 }
 
-@media screen and (max-device-width: 480px) {
-  /* line 18, /home/oplindst/matrix/app/assets/stylesheets/scaffolds.scss */
-  html {
-    padding-right: 20px;
-  }
+/* line 23, /home/oplindst/matrix/app/assets/stylesheets/framework_and_overrides.css.scss */
+header {
+  margin-top: 25px;
+  padding-left: 300px;
+  padding-right: 300px;
 }
-/* line 23, /home/oplindst/matrix/app/assets/stylesheets/scaffolds.scss */
+
+/* line 29, /home/oplindst/matrix/app/assets/stylesheets/framework_and_overrides.css.scss */
+img {
+  margin: 0 auto;
+}
+
+/* line 34, /home/oplindst/matrix/app/assets/stylesheets/framework_and_overrides.css.scss */
+main {
+  background-color: white;
+  padding-left: 300px;
+  padding-right: 300px;
+  padding-bottom: 20px;
+}
+
+/* line 41, /home/oplindst/matrix/app/assets/stylesheets/framework_and_overrides.css.scss */
+section {
+  margin-top: 20px;
+}
+
+/* line 46, /home/oplindst/matrix/app/assets/stylesheets/framework_and_overrides.css.scss */
+.box {
+  border-style: solid;
+  border-color: blue;
+  text-align: center;
+}
+
+/* line 57, /home/oplindst/matrix/app/assets/stylesheets/framework_and_overrides.css.scss */
+.container {
+  width: inherit;
+  height: inherit;
+  padding-left: 0px;
+  padding-right: 0px;
+}
+
+/* line 64, /home/oplindst/matrix/app/assets/stylesheets/framework_and_overrides.css.scss */
+.custom-dropdown:hover .ul {
+  display: block;
+}
+
+/* line 68, /home/oplindst/matrix/app/assets/stylesheets/framework_and_overrides.css.scss */
+.custom-dropdown-menu {
+  top: 95%;
+}
+
+/* line 72, /home/oplindst/matrix/app/assets/stylesheets/framework_and_overrides.css.scss */
+.dropdown-link {
+  font-size: inherit;
+}
+
+/* line 84, /home/oplindst/matrix/app/assets/stylesheets/framework_and_overrides.css.scss */
+.header {
+  margin-left: 200px;
+  margin-right: 200px;
+}
+
+/* line 89, /home/oplindst/matrix/app/assets/stylesheets/framework_and_overrides.css.scss */
+.login {
+  padding-left: 15vw;
+  height: 80%;
+}
+
+/* line 94, /home/oplindst/matrix/app/assets/stylesheets/framework_and_overrides.css.scss */
+.login > form > span {
+  font-size: 90%;
+}
+
+/* line 98, /home/oplindst/matrix/app/assets/stylesheets/framework_and_overrides.css.scss */
+.login-input {
+  width: 8vw;
+}
+
+/* line 102, /home/oplindst/matrix/app/assets/stylesheets/framework_and_overrides.css.scss */
+.logo {
+  position: absolute;
+  left: -1px;
+}
+
+/* line 107, /home/oplindst/matrix/app/assets/stylesheets/framework_and_overrides.css.scss */
+.navbar {
+  background-color: red;
+  border-style: none;
+  border-radius: 0px;
+  margin-bottom: 5px;
+}
+
+/* line 114, /home/oplindst/matrix/app/assets/stylesheets/framework_and_overrides.css.scss */
+.navbar-brand {
+  padding-top: 15px;
+  padding-bottom: 15px;
+  height: inherit;
+  font-size: inherit;
+  display: block;
+}
+
+/* line 122, /home/oplindst/matrix/app/assets/stylesheets/framework_and_overrides.css.scss */
+.navbar-brand:hover {
+  font-weight: bold;
+}
+
+/* line 126, /home/oplindst/matrix/app/assets/stylesheets/framework_and_overrides.css.scss */
+.navbar-brand:link {
+  color: white;
+}
+
+/* line 130, /home/oplindst/matrix/app/assets/stylesheets/framework_and_overrides.css.scss */
+.navbar-collapse {
+  width: inherit;
+  height: inherit;
+  padding-left: 300px;
+  padding-right: 300px;
+}
+
+/* line 137, /home/oplindst/matrix/app/assets/stylesheets/framework_and_overrides.css.scss */
+.navbar-collapse.collapse {
+  height: inherit;
+}
+
+/* line 141, /home/oplindst/matrix/app/assets/stylesheets/framework_and_overrides.css.scss */
+.navbar-inverse .navbar-nav > li > a {
+  color: white;
+}
+
+/* line 145, /home/oplindst/matrix/app/assets/stylesheets/framework_and_overrides.css.scss */
+.navbar-item {
+  font-size: 140%;
+  height: inherit;
+  padding-left: 15px;
+  padding-right: 0px;
+}
+
+/* line 152, /home/oplindst/matrix/app/assets/stylesheets/framework_and_overrides.css.scss */
+.navbar-item:hover {
+  background-color: blue;
+  color: white;
+}
+
+/* line 157, /home/oplindst/matrix/app/assets/stylesheets/framework_and_overrides.css.scss */
+.navbar-item > a {
+  position: relative;
+  display: block;
+  padding: 10px 15px;
+}
+
+/* line 163, /home/oplindst/matrix/app/assets/stylesheets/framework_and_overrides.css.scss */
+.navbar-item > span {
+  position: relative;
+  display: block;
+}
+
+/* line 168, /home/oplindst/matrix/app/assets/stylesheets/framework_and_overrides.css.scss */
+.navbar-link {
+  font-size: inherit;
+  color: white;
+}
+
+/* line 173, /home/oplindst/matrix/app/assets/stylesheets/framework_and_overrides.css.scss */
+.navbar-item a:link, .navbar-item a:visited, .navbar-item a:hover, .navbar-item a:active {
+  color: white;
+}
+
+/* line 175, /home/oplindst/matrix/app/assets/stylesheets/framework_and_overrides.css.scss */
+.dropdown-link a:link, .dropdown-link a:visited, .dropdown-link a:hover, .dropdown-link a:active {
+  color: black;
+}
+
+/* line 177, /home/oplindst/matrix/app/assets/stylesheets/framework_and_overrides.css.scss */
+.navbar-nav {
+  width: inherit;
+  height: inherit;
+}
+
+/* line 182, /home/oplindst/matrix/app/assets/stylesheets/framework_and_overrides.css.scss */
+.navbar-nav > li > a {
+  padding-top: 25px;
+  padding-bottom: 25px;
+}
+
+/* line 187, /home/oplindst/matrix/app/assets/stylesheets/framework_and_overrides.css.scss */
+.navbar-nav > li > * {
+  padding-top: 25px;
+  padding-bottom: 25px;
+}
+
+/* line 198, /home/oplindst/matrix/app/assets/stylesheets/framework_and_overrides.css.scss */
+.title {
+  color: blue;
+}
+/* line 1, /home/oplindst/matrix/app/assets/stylesheets/index.scss */
+#introduction {
+  padding-bottom: 20px;
+}
+/* line 3, /home/oplindst/matrix/app/assets/stylesheets/scaffolds.scss */
 p, ol, ul, td {
   font-family: verdana, arial, helvetica, sans-serif;
   font-size: 13px;
   line-height: 18px;
 }
 
-/* line 29, /home/oplindst/matrix/app/assets/stylesheets/scaffolds.scss */
+/* line 9, /home/oplindst/matrix/app/assets/stylesheets/scaffolds.scss */
 pre {
   background-color: #eee;
   padding: 10px;
   font-size: 11px;
 }
 
-/* line 35, /home/oplindst/matrix/app/assets/stylesheets/scaffolds.scss */
+/* line 15, /home/oplindst/matrix/app/assets/stylesheets/scaffolds.scss */
 a {
   color: #000;
 }
-/* line 37, /home/oplindst/matrix/app/assets/stylesheets/scaffolds.scss */
-a:visited {
-  color: #666;
-}
-/* line 40, /home/oplindst/matrix/app/assets/stylesheets/scaffolds.scss */
-a:hover {
-  color: #fff;
-  background-color: #000;
-}
 
-/* line 47, /home/oplindst/matrix/app/assets/stylesheets/scaffolds.scss */
+/* line 20, /home/oplindst/matrix/app/assets/stylesheets/scaffolds.scss */
 div.field, div.actions {
   margin-bottom: 10px;
 }
 
-/* line 52, /home/oplindst/matrix/app/assets/stylesheets/scaffolds.scss */
+/* line 25, /home/oplindst/matrix/app/assets/stylesheets/scaffolds.scss */
 #notice {
   color: green;
 }
 
-/* line 56, /home/oplindst/matrix/app/assets/stylesheets/scaffolds.scss */
+/* line 29, /home/oplindst/matrix/app/assets/stylesheets/scaffolds.scss */
 .field_with_errors {
   padding: 2px;
   background-color: red;
   display: table;
 }
 
-/* line 62, /home/oplindst/matrix/app/assets/stylesheets/scaffolds.scss */
+/* line 35, /home/oplindst/matrix/app/assets/stylesheets/scaffolds.scss */
 #error_explanation {
   width: 450px;
   border: 2px solid red;
@@ -8803,7 +8905,7 @@ div.field, div.actions {
   margin-bottom: 20px;
   background-color: #f0f0f0;
 }
-/* line 69, /home/oplindst/matrix/app/assets/stylesheets/scaffolds.scss */
+/* line 42, /home/oplindst/matrix/app/assets/stylesheets/scaffolds.scss */
 #error_explanation h2 {
   text-align: left;
   font-weight: bold;
@@ -8814,7 +8916,7 @@ div.field, div.actions {
   background-color: #c00;
   color: #fff;
 }
-/* line 79, /home/oplindst/matrix/app/assets/stylesheets/scaffolds.scss */
+/* line 52, /home/oplindst/matrix/app/assets/stylesheets/scaffolds.scss */
 #error_explanation ul li {
   font-size: 12px;
   list-style: square;
