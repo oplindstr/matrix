@@ -9,8 +9,6 @@ matrixApp.controller('EventsController', ["$scope", "$http", "DateHelper", funct
         $scope.upcomingEvents = [];
         $scope.pastEvents = [];
 
-        var eventList = $scope.events;
-
         var now = new Date();
 
         $scope.events.sort(function compare(a, b) {
