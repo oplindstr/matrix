@@ -42,12 +42,25 @@
 	  <div class="col-md-5 box">
 	    <h1>Ajankohtaista</h1>
 	    <p>
-	    	<%= get_stringresource("<Ajankohtaista>") %>
+	    	<%= get_setting("Ajankohtaista") %>
 	    </p>
 	  </div>
 	  <div class="col-md-2"></div>
 	  <div class="col-md-5 box">
 	    <h1>Tulevia tapahtumia</h1>
+
+	    <div ng-controller="EventsController">
+	    	<div class="upcomingEvents" ng-show="show == 'upcoming'">
+
+	        <p class="middle" ng-show="upcomingEvents.length === 0">Ei tulevia tapahtumia</p>
+
+	        <ul class="compactEvent" ng-repeat="event in upcomingEvents">
+		      <li><b class="Eventname"><%= link_to '{{event.name}}','#','ng-href' => "#{events_path()}/{{event.id}}" %></b></li>
+		      <li class="Event_descr">{{event.descr}}</li>
+		      <li><img class="location_image" src="/assets/icon-location-small-13c88b371f2d18d0400fe8031caa730158ec73720155a5e613652e3edb97e976.png"><span class="Event_info"> {{event.location}}</span></li>
+		      <li><img class="time_image" src="/assets/time_small-8f332d3e14297ef6a3ca0449841ffe5a5173814db2a6ad91c40424ba8281491f.png"><span class="Event_info">{{event.starttime}}</span></li>
+		    </ul>
+	    </div>
 	  </div>
 	</div>
 </div>

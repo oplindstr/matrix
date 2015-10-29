@@ -1,18 +1,26 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Tapahtumakalenteri</h1>
+<h1 class="middle">Tapahtumakalenteri</h1>
 
 <div ng-controller="EventsController">
 
   <div id="Events" class="container-fluid">
 
-    <div class="Events col-lg-9">
+    <div class="col-md-4"></div>
+    <div class="Events col-md-4">
+
+      <span>Näytä:</span>
+      <select name="EventSelect" id="EventSelect" ng-model="show">
+        <option selected value="upcoming">Tulevat tapahtumat</option>
+        <option value="past">Menneet tapahtumat</option>
+        <option value="all">Kaikki tapahtumat</option>
+      </select>
 
       <p></p>
 
       <div class="allEvents" ng-show="show == 'all'">
 
-        <p ng-show="events.length === 0">Ei tapahtumia</p>
+        <p class="middle" ng-show="events.length === 0">Ei tapahtumia</p>
 
         <div class="Event" ng-repeat="event in events">
           <div class="EventFields">
@@ -33,7 +41,7 @@
 
       <div class="upcomingEvents" ng-show="show == 'upcoming'">
 
-        <p ng-show="upcomingEvents.length === 0">Ei tulevia tapahtumia</p>
+        <p class="middle" ng-show="upcomingEvents.length === 0">Ei tulevia tapahtumia</p>
 
         <div class="Event" ng-repeat="event in upcomingEvents">
           <div class="EventFields">
@@ -52,7 +60,7 @@
 
       <div class="pastEvents" ng-show="show == 'past'">
 
-        <p ng-show="pastEvents.length === 0">Ei menneitä tapahtumia</p>
+        <p class="middle" ng-show="pastEvents.length === 0">Ei menneitä tapahtumia</p>
 
         <div class="Event" ng-repeat="event in pastEvents">
           <div class="EventFields">
@@ -78,8 +86,7 @@
       <% end %>
 
     </div>
-
-    <%= render 'sidebar_events' %>
+    <div class="col-md-4"></div>
 
   </div>
 

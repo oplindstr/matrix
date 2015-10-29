@@ -4,6 +4,7 @@
 @import "bootstrap";
 
 $background-color: white;
+$margin: 200px;
 
 $navbar-height: 68px;
 
@@ -16,16 +17,16 @@ body {
 }
 
 footer {
-  padding-left: 300px;
-  padding-right: 300px;
+  padding-left: $margin;
+  padding-right: $margin;
   margin-bottom: 50px;
   text-align: center;
 }
 
 header {
   padding-top: 25px;
-  margin-left: 300px;
-  margin-right: 300px;
+  margin-left: $margin;
+  margin-right: $margin;
   background-color: white;
 }
 
@@ -40,8 +41,8 @@ img {
 
 main {
   background-color: white;
-  margin-left: 300px;
-  margin-right: 300px;
+  margin-left: $margin;
+  margin-right: $margin;
   padding-bottom: 20px;
 }
 
@@ -52,8 +53,7 @@ section {
 
 .box {
   border-style: none;
-  background-color: #DDFFDD;
-  text-align: center;
+  background-color: white;
 }
 
 .column {
@@ -73,7 +73,9 @@ section {
 }
 
 .dropdown-menu {
-  top: 96%;
+  top: 93%;
+  background-color: red;
+  color: white;
 }
 
 .form {
@@ -90,7 +92,6 @@ section {
 }
 
 .login {
-  padding-left: 15vw;
   height: 80%;
 }
 
@@ -116,14 +117,35 @@ section {
   padding-right: 20vw;
 }
 
-.dropdown > .dropdown-toggle > a, .dropdown > .dropdown-toggle > a:hover, .dropdown > .dropdown-toggle > a:focus {
+.dropdown > .dropdown-toggle > a {
     color: white;
     text-decoration: none;
 }
 
-.navbar-default .navbar-nav > li > a, .navbar-default .navbar-nav > li > a:hover, .navbar-default .navbar-nav > li > a:focus {
+.dropdown > .dropdown-toggle > a:hover, .dropdown > .dropdown-toggle > a:focus {
+    background-color: blue;
     color: white;
     text-decoration: none;
+}
+
+.navbar-default .navbar-nav > li > a {
+    color: white;
+    text-decoration: none;
+}
+
+.navbar-default .navbar-nav > li > a:hover, .navbar-default .navbar-nav > li > a:focus {
+    background-color: blue;
+    color: white;
+    text-decoration: none;
+}
+
+.dropdown-menu > li > a {
+  color: white;
+}
+
+.dropdown-menu > li > a:hover {
+  color: white;
+  background-color: blue;
 }
 
 .submit {
@@ -138,4 +160,16 @@ section {
 
 #introduction {
   padding-bottom: 20px;
+}
+
+#org_name {
+  font-size: 90%;
+}
+
+#org_descr {
+  font-size: 90%;
+}
+
+.middle {
+  text-align: center;
 }

@@ -5,7 +5,7 @@ class ApplicationController < ActionController::Base
 
   helper_method :current_user
   helper_method :admin
-  helper_method :get_stringresource
+  helper_method :get_setting
 
   def current_user
     return nil if session[:user_id].nil?
@@ -25,10 +25,10 @@ class ApplicationController < ActionController::Base
     redirect_to root_path, notice:"Tunnusta ei ole vielä aktivoitu" if not current_user.activated
   end
 
-  def get_stringresource(key)
-    @resource = Stringresource.where("key = ?", key).first
-    return "" if not @resource
-    @resource.value
+  def get_setting(setting)
+    @setting = Setting.where("setting = ?", setting).first
+    return "" if not @setting
+    @setting.value
   end
 
 end

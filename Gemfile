@@ -85,3 +85,6 @@ group :development do
 end
 
 gem 'travis', '~> 1.7.5'
+
+gem 'google-api-client'
+

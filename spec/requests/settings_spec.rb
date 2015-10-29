@@ -1,9 +1,9 @@
 require 'rails_helper'
 
-RSpec.describe "Stringresources", type: :request do
-  describe "GET /stringresources" do
+RSpec.describe "Settings", type: :request do
+  describe "GET /settings" do
     it "works! (now write some real specs)" do
-      get stringresources_path
+      get settings_path
       expect(response).to have_http_status(200)
     end
   end

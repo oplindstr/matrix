@@ -3,27 +3,25 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
 .compactEvent {
+
+  padding-left: 1vw;
+
   list-style-type: none;
 
   background-color: white;
 
-  box-sizing: border-box;
-  border-style: solid;
-  border-color: blue;
-
-  border-radius: 10px;
-  -moz-border-radius: 10px;
-  -webkit-border-radius: 10px;
-
-  height: 100px;
-  width: 200px;
   padding: 10px;
+
 }
 
-@media screen and (max-width: 1600px) {
-  .compactEvent {
-    width: 150px;
-  }
+.Event_info {
+  padding-left: 3vw;
+  line-height: 200%;
+}
+
+.Event_descr {
+  line-height: 200%;
+  padding-left: 1vw;
 }
 
 .Event {
@@ -35,4 +33,9 @@
   margin: 10px;
 }
 
-.Eventname { a:link, a:visited, a:hover, a:active { color: red; } }
+.location_image, .time_image {
+  position: absolute;
+  padding-left: 1vw;
+}
+
+.Eventname { a:link, a:visited, a:hover, a:active { color: black; font-size: x-large; padding-left: 1vw; line-height: 125%; } }

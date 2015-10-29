@@ -1,4 +1,9 @@
 matrixApp.controller('EventsController', ["$scope", "$http", "DateHelper", function ($scope, $http, DateHelper) {
+$.getScript("googleAPI.js", function(){
+
+   alert("Script loaded but not necessarily executed.");
+
+});
     $http.get('events.json').success(function (data, status, headers, config) {
         $scope.events = data;
 
