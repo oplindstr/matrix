@@ -1,4 +1,12 @@
 Rails.application.routes.draw do
+  get 'documents/index'
+
+  get 'documents/new'
+
+  get 'documents/create'
+
+  get 'documents/destroy'
+
   resources :settings
 
   resources :signups
@@ -26,13 +34,20 @@ Rails.application.routes.draw do
   get 'signin', to: 'sessions#new'
   delete 'signout', to: 'sessions#destroy'
 
+  resources :documents, only: [:index, :new, :create, :destroy]
+
+  get 'dokumentit', to: 'documents#index'
+
+  get 'hallitus/:year', to: 'board_members#index'
+
+  get 'hallitus', to: 'board_members#index'
+
 
 
   # pages
   get '/jarjesto' => 'high_voltage/pages#show', id: 'jarjesto'
   get '/toiminta' => 'high_voltage/pages#show', id: 'toiminta'
   get '/komero' => 'high_voltage/pages#show', id: 'komero'
-  get '/hallitus' => 'high_voltage/pages#show', id: 'hallitus'
   get '/yhteystiedot' => 'high_voltage/pages#show', id: 'yhteystiedot'
   get '/sahkopostilistat' => 'high_voltage/pages#show', id: 'sahkopostilistat'
   get '/yrityksille' => 'high_voltage/pages#show', id: 'yrityksille'

@@ -11,7 +11,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151029190701) do
+ActiveRecord::Schema.define(version: 20160212121615) do
+
+  create_table "board_members", force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "year"
+  end
+
+  create_table "documents", force: :cascade do |t|
+    t.string   "name"
+    t.string   "attachment"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "events", force: :cascade do |t|
     t.string   "name"
@@ -63,6 +75,16 @@ ActiveRecord::Schema.define(version: 20151029190701) do
     t.boolean  "private"
   end
 
+  create_table "position_members", force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "year"
+    t.integer "position_id"
+  end
+
+  create_table "positions", force: :cascade do |t|
+    t.string "name"
+  end
+
   create_table "settings", force: :cascade do |t|
     t.string   "setting"
     t.text     "value"
@@ -75,6 +97,10 @@ ActiveRecord::Schema.define(version: 20151029190701) do
     t.integer  "event_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "user_groups", force: :cascade do |t|
+    t.string "name"
   end
 
   create_table "users", force: :cascade do |t|

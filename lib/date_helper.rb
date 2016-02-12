@@ -33,6 +33,10 @@ module DateHelper
     return time.strftime('%d.%m.%Y')
   end
 
+  def self.year
+    return Time.new.year
+  end
+
   def self.time(time)
     return time.strftime('%R')
   end

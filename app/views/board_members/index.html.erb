@@ -1,0 +1,28 @@
+<h1>Hallitus ja virkailijat</h1>
+
+<p>Matrixin toiminnasta vastaa järjestön hallitus.
+    Käytännössä varsinaisten hallituslaisten lisäksi toimintaa on kuitenkin pyörittämässä joukko ahkeria virkailijoita.
+    Jokaisella virkailijalla ja hallituksen jäsenellä on vastuualue, johon liittyviä asioita he hoitavat järjestössä.</p>
+
+<p> Hallitus valitaan joka vuosi yhdistyksen syyskokouksessa ja virkailijat uuden hallituksen järjestäytymiskokouksessa joulukuussa,
+    vaikkakin virkailijaksi voi ryhtyä myös kesken vuotta. Kaikki tehtäviä hoitavat ovat aivan tavallisia matrixlaisia.</p>
+
+<h3> Hallitukset vuosittain </h3>
+
+<% @years.each do |year| %>
+	<% if year != @min_year %>
+		<span><%= year %> | </span>
+	<% else %>
+		<span><%= year %></span>
+	<% end %>
+<% end %> 
+
+<h2> Hallitus ja virkailijat <%= @year %> </h2>
+
+<p>Hallituksen jäsenten ja varajäsenten sähköpostiosoitteet ovat muotoa etunimi.sukunimi@helsinki.fi (ilman ääkkösiä) ellei toisin mainita.</p>
+
+<% @members.each do |member| %>
+	<tr>
+        <td>Nimi</td>
+    </tr>
+<% end %>

@@ -88,3 +88,4 @@ gem 'travis', '~> 1.7.5'
 
 gem 'google-api-client'
 
+gem 'carrierwave'
