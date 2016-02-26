@@ -6,9 +6,8 @@ $(document).ready(function () {
 
     var kirjanpito = {};
 
-    kirjanpito.nayta = (function () {
-        var playerstring = $("#players")[0].innerHTML;
-        var players = playerstring.split(",");
+    kirjanpito.nayta = (function () { 
+        var players = getPlayers();
         var dealer = 1;
         var team1scoretag = $("#team1score")[0];
         var team2scoretag = $("#team2score")[0];
@@ -24,6 +23,12 @@ $(document).ready(function () {
                 }
             }
             dealer = 1;
+        }
+
+        function getPlayers() {
+            var playerstring = $("#players")[0].innerHTML;
+            var players = playerstring.split(",");
+            return players;
         }
 
         function calculateScores() {
@@ -67,12 +72,62 @@ $(document).ready(function () {
         function addEventListeners() {
             $("input[type=number]").off();
             $("input[value='-']").off();
+            $(".bid").off();
+            $(".contract").off();
+            $(".declarer").off();
+            $(".made").off();
             $("input[type=number]").change(calculateScores);
             $("input[value='-']").click(function() {
                 var value = $(this).next()[0].value;
                 $(this).next()[0].value = -1 * value;
                 calculateScores();
             });
+            $(".bid").change(updateContracts);
+            $(".bid").change(updateTeamHandScores);
+            $(".contract").change(updateTeamHandScores);
+            $(".declarer").change(updateTeamHandScores);
+            $(".made").change(updateTeamHandScores);
+
+        }
+
+        function handCount() {
+            return $(".contract").size();
+        }
+
+        function updateTeamHandScores() {
+            var handcount = handCount();
+            var players = getPlayers();
+            for (i = 0; i < handcount; i++) {
+                for (j = 0; j < 4; j++) {
+                    if ($('.declarer option:selected')[i].text.trim() == players[j].trim()) {
+                        if (j == 0 || j==2) {
+                            if ($('.made')[i].children[1].checked) {
+                                $('.team1handscore')[i].children[1].value = $(".contract")[i].children[0].value
+                            }
+                            else {
+                                $('.team1handscore')[i].children[1].value = -$(".contract")[i].children[0].value
+                            }
+                        }
+                        else {
+                            if ($('.made')[i].children[1].checked) {
+                                $('.team2handscore')[i].children[1].value = $(".contract")[i].children[0].value
+                            }
+                            else {
+                                $('.team2handscore')[i].children[1].value = -$(".contract")[i].children[0].value
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        function updateContracts() {
+            var handcount = $(".contract").size();
+            for (i = 0; i < handcount; i++) {
+                if ($(".contract")[i].children[0].value == '') {
+                    $(".contract")[i].children[0].value = $(".bid")[i].children[0].value;
+                }
+            }
         }
 
         function doEverything() {
@@ -82,10 +137,8 @@ $(document).ready(function () {
         }
 
         return {
-            showDealers: showDealers,
-            calculateScores: calculateScores,
-            addEventListeners: addEventListeners,
-            doEverything: doEverything
+            doEverything: doEverything,
+            showDealers: showDealers
         };
     })();
 

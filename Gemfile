@@ -1,5 +1,5 @@
 source 'https://rubygems.org'
-
+ruby "2.1.8"
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.0'
@@ -57,7 +57,6 @@ group :development, :test do
   gem 'byebug'
 
   # Access an IRB console on exception pages or by using <%= console %> in views
-  gem 'web-console', '~> 2.0'
 
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
@@ -77,11 +76,14 @@ group :test do
   gem "database_cleaner"
   gem "poltergeist"
   gem 'phantomjs', :require => 'phantomjs/poltergeist'
+  gem 'webrat', '0.7.1'
 end
 
 gem 'bootstrap-sass'
 group :development do
   gem 'rails_layout'
+  gem 'autotest'
+  gem 'web-console', '~> 2.0'
 end
 
 gem 'travis', '~> 1.7.5'
@@ -89,3 +91,5 @@ gem 'travis', '~> 1.7.5'
 gem 'google-api-client'
 
 gem 'carrierwave'
+
+gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw]

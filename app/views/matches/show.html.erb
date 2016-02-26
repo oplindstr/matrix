@@ -46,7 +46,7 @@
         <th colspan="3"></th>
       </tr>
       </thead>
-      <tbody id="hands" onchange="showDealers()">
+      <tbody id="hands">
    <%= f.fields_for :hands, :wrapper => false do |hand_form| %>
 
        <tr class="fields">
@@ -54,10 +54,10 @@
            <td style="display:none"><%= hand_form.number_field :match_id, value: @match.id %></td>
            <td class="team1handscore"><input type="button" value="-"> <%= hand_form.number_field :points1, class: 'points1', in: -5000..440, step: 5, value: hand_form.object.points1 || 0 %></td>
            <td class="team2handscore"><input type="button" value="-"> <%= hand_form.number_field :points2, class: 'points1', in: -5000..440, step: 5, value: hand_form.object.points2 || 0 %></td>
-           <td><%= hand_form.select :declarer, options_from_collection_for_select(@declarers, :id, :name, :selected => hand_form.object.declarer) %></td>
-           <td><%= hand_form.number_field :bid, in: 0..1000, step: 5 %></td>
-           <td><%= hand_form.number_field :contract, in: 0..1000, step: 5 %></td>
-           <td><%= hand_form.check_box :made %></td>
+           <td class="declarer"><%= hand_form.select :declarer, options_from_collection_for_select(@declarers, :id, :name, :selected => hand_form.object.declarer) %></td>
+           <td class="bid"><%= hand_form.number_field :bid, in: 0..1000, step: 5 %></td>
+           <td class="contract"><%= hand_form.number_field :contract, in: 0..1000, step: 5 %></td>
+           <td class="made"><%= hand_form.check_box :made %></td>
          <td><%= hand_form.link_to_remove "Poista käsi", data: { confirm: 'Poistetaanko käsi?' } %></td>
       </tr>
       <% end %>
