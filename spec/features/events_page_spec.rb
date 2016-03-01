@@ -1,4 +1,5 @@
 require 'rails_helper'
+require 'capybara/poltergeist'
 
 describe "Events page" do
 
@@ -18,11 +19,4 @@ describe "Events page" do
     expect(page).not_to have_content("paras")
   end
 
-  it "shows past events in all events", :js => true do
-    visit events_path
-
-    select "Kaikki tapahtumat", :from => "EventSelect"
-
-    expect(page).to have_content("paras")
-  end
 end
