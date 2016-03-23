@@ -16,6 +16,7 @@ ActiveRecord::Schema.define(version: 20160322111902) do
   create_table "board_members", force: :cascade do |t|
     t.integer  "user_id"
     t.integer  "year"
+    t.string   "attachment"
     t.string   "avatar_file_name"
     t.string   "avatar_content_type"
     t.integer  "avatar_file_size"
