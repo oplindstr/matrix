@@ -5,8 +5,14 @@ class User < ActiveRecord::Base
   validates :username, uniqueness: true
 
   has_one :player
+  has_many :board_members
   has_many :signups
   has_many :events, through: :signups
+  has_many :posts
+
+  def name
+    return "#{firstname} #{lastname}"
+  end
 
   def to_s
     if self.firstname and self.lastname

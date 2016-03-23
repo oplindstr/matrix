@@ -93,3 +93,5 @@ gem 'google-api-client'
 gem 'carrierwave'
 
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw]
+
+gem "paperclip", "~> 4.3"

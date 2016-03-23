@@ -1,0 +1,20 @@
+<% if !@board_member.errors.empty? %>
+   <div class = "alert alert-error">
+      
+      <ul>
+         <% @board_member.errors.full_messages.each do |msg| %>
+            <li><%= msg %></li>
+         <% end %>
+      </ul>
+      
+   </div>
+<% end %>
+
+<div class = "well">
+   <%= form_for @board_member, html: { multipart: true } do |f| %>
+      <%= f.select :user_id, options_from_collection_for_select(@users, :id, :name) %>
+      <%= f.select :year, @years %>
+      <%= f.file_field :avatar %>
+      <%= f.submit "Save", class: "btn btn-primary" %>
+   <% end %>
+</div>

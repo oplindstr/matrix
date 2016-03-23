@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  resources :posts
+
   get 'documents/index'
 
   get 'documents/new'
@@ -36,11 +38,15 @@ Rails.application.routes.draw do
 
   resources :documents, only: [:index, :new, :create, :destroy]
 
+  resources :board_members, only: [:index, :new, :create]
+
   get 'dokumentit', to: 'documents#index'
 
   get 'hallitus/:year', to: 'board_members#index'
 
   get 'hallitus', to: 'board_members#index'
+
+  get 'blogi', to: 'posts#index'
 
 
 

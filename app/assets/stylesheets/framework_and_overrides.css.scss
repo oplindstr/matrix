@@ -113,8 +113,9 @@ section {
   border-style: none;
   border-radius: 0px;
   margin-bottom: 5px;
-  padding-left: 300px;
-  padding-right: 20vw;
+  display: flex;
+  align-items: center;
+  justify-content: center
 }
 
 .dropdown > .dropdown-toggle > a {

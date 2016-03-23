@@ -29,6 +29,24 @@ module DateHelper
     end
   end
 
+  def self.month_name(time)
+    month = time.strftime('%m')
+    case month
+      when '01' then 'tammikuu'
+      when '02' then 'helmikuu'
+      when '03' then 'maaliskuu'
+      when '04' then 'huhtikuu'
+      when '05' then 'toukokuu'
+      when '06' then 'kesäkuu'
+      when '07' then 'heinäkuu'
+      when '08' then 'elokuu'
+      when '09' then 'syyskuu'
+      when '10' then 'lokakuu'
+      when '11' then 'marraskuu'
+      when '12' then 'joulukuu'
+    end
+  end
+
   def self.standard_date(time)
     return time.strftime('%d.%m.%Y')
   end
