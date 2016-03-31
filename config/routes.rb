@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  resources :post_comments
+
   resources :posts
 
   get 'documents/index'

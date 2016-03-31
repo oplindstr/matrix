@@ -1,14 +1,28 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Title:</strong>
-  <%= @post.title %>
-</p>
+<h1><%= @post.title %></h1>
+<br>
+<p class="post_text"><%= @post.user.name %></p>
+<p class="post_text"><%= @post.timestamp %></p>
+<br>
+<pre class="post_text"><%= @post.text %></pre>
+<% if current_user and (admin or current_user.id == @post.user_id) %>
+  <%= link_to 'Edit', edit_post_path(@post) %>
+  <%= link_to 'Destroy', @post, method: :delete, data: { confirm: 'Are you sure?' } %>
+<% end %>
+<br>
+<br>
+<% @post.post_comments.each do |comment| %>
+  <b><%= comment.user.name %></b> 
+  <span><%= comment.comment %></span>
+  <br>
+<% end %>
 
-<p>
-  <strong>Text:</strong>
-  <%= @post.text %>
-</p>
+<% if current_user %>
+
+<%= render 'post_comments/form' %>
+
+<% end %>
 
 <%= link_to 'Edit', edit_post_path(@post) %> |
 <%= link_to 'Back', posts_path %>
