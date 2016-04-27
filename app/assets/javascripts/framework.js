@@ -17,7 +17,6 @@ $(document).ready(function () {
 	        e.preventDefault();
 	        slidedDown = $(this).attr("id");
 	        $(this).find('.dropdown-menu').first().stop(true, true).delay(250).slideDown("fast");
-	        slidedDown = $(this).attr("id");
     	  };
 	    })
 	}

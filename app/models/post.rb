@@ -1,6 +1,7 @@
 class Post < ActiveRecord::Base
 	belongs_to :user
 	has_many :post_comments
+	has_many :post_tags
 
 	def timestamp
 	  time = self.created_at

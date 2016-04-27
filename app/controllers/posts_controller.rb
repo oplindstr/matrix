@@ -8,6 +8,12 @@ class PostsController < ApplicationController
     @posts = Post.all.order(created_at: :desc)
   end
 
+  def tag_specific
+    @tag = tag_params[:tag]
+    @posts = Post.where(:id => PostTag.where("tag = ?", @tag).select("post_id"))
+    render 'index'
+  end
+
   # GET /posts/1
   # GET /posts/1.json
   def show
@@ -73,6 +79,10 @@ class PostsController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def post_params
       params.require(:post).permit(:title, :text)
+    end
+
+    def tag_params
+      params.permit(:tag)
     end
 
     def ensure_that_logged_in

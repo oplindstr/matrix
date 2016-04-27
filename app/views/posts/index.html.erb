@@ -8,6 +8,13 @@
     <p class="post_text"><%= post.timestamp %></p>
     <br>
     <pre class="post_text"><%= post.text %></pre>
+    <% if post.post_tags.size > 0 %>
+      <br>
+      <span>Tunnisteet: </span>
+      <% post.post_tags.each do |tag| %>
+        <span><%= link_to tag.tag, tag.tag %> </span>
+      <% end %>
+    <% end %>
     <% if current_user and (admin or current_user.id == post.user_id) %>
       <%= link_to 'Edit', edit_post_path(post) %>
       <%= link_to 'Destroy', post, method: :delete, data: { confirm: 'Are you sure?' } %>

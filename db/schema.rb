@@ -11,12 +11,11 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160331121804) do
+ActiveRecord::Schema.define(version: 20160420103408) do
 
   create_table "board_members", force: :cascade do |t|
     t.integer  "user_id"
     t.integer  "year"
-    t.string   "attachment"
     t.string   "avatar_file_name"
     t.string   "avatar_content_type"
     t.integer  "avatar_file_size"
@@ -70,6 +69,14 @@ ActiveRecord::Schema.define(version: 20160331121804) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "news", force: :cascade do |t|
+    t.text     "text"
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
+    t.text     "header"
+    t.integer  "priority",   default: 1
+  end
+
   create_table "players", force: :cascade do |t|
     t.string   "name"
     t.float    "expectation"
@@ -95,6 +102,13 @@ ActiveRecord::Schema.define(version: 20160331121804) do
     t.integer  "post_id"
     t.integer  "user_id"
     t.text     "comment"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "post_tags", force: :cascade do |t|
+    t.integer  "post_id"
+    t.string   "tag"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

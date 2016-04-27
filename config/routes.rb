@@ -1,4 +1,8 @@
 Rails.application.routes.draw do
+  resources :post_tags
+
+  resources :news
+
   resources :post_comments
 
   resources :posts
@@ -49,10 +53,12 @@ Rails.application.routes.draw do
   get 'hallitus', to: 'board_members#index'
 
   get 'blogi', to: 'posts#index'
+  get 'blogi/:tag(.:format)', to: 'posts#tag_specific'
 
 
 
   # pages
+  get '/english' => 'high_voltage/pages#show', id: 'english'
   get '/jarjesto' => 'high_voltage/pages#show', id: 'jarjesto'
   get '/toiminta' => 'high_voltage/pages#show', id: 'toiminta'
   get '/komero' => 'high_voltage/pages#show', id: 'komero'
