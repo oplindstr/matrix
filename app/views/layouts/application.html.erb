@@ -40,6 +40,7 @@
     </header>
     <%= render 'layouts/navigation' %>
     <main role="main" ng-app="matrixApp">
+    <p id="notice"><%= notice %></p>
       <div class="login">
         <% if !session[:user_id] %>
             <%= form_tag session_path do %>
@@ -52,30 +53,13 @@
             <%= link_to 'Kirjaudu ulos', signout_path, method: :delete %>
         <% end %>
       </div>
-      <%= render 'layouts/messages' %>
       <%= yield %>
     </main>
     <footer>
-      <div class="container">
-        <div class="row">
-          <div class="col-md-4">
-          </div>
-          <div class="col-md-4">
-            <h2>Yhteistyökumppanit</h2>
-          </div>
-          <div class="col-md-4">
-          </div>
-        </div>
+      <div class="middle">
+        <h2>Yhteistyökumppanit</h2>
         <br>
-        <div class="row">
-          <div class="col-md-4">
-          </div>
-          <div class="col-md-4">
-            <%= image_tag("solinor.png") %>
-          </div>
-          <div class="col-md-4">
-          </div>
-        </div>
+        <%= image_tag("solinor.png") %>
       </div>
     </footer>
   </body>

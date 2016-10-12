@@ -13,21 +13,27 @@ p, ol, ul, td {
 }
 
 pre {
-  background-color: #eee;
+  display: block;
   padding: 10px;
   font-size: 11px;
+  background-color: #fff;
+  border: none;
+  overflow: inherit;
+  white-space: pre-wrap;
+  word-break: normal;
+  word-wrap: break-word;
 }
 
 a {
-  color: #000;
+  color: blue;
 
   &:visited {
-    color: #666;
+    color: blue;
   }
 
   &:hover {
-    color: #fff;
-    background-color: #000;
+    color: blue;
+    text-decoration: underline;
   }
 }
 

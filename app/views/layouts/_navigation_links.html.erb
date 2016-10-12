@@ -28,7 +28,20 @@
   </div>
 </li>
 <li class="navbar-item"><%= link_to 'Kalenteri', events_path, class: 'navbar-brand navbar-link' %></li>
-<li class="navbar-item"><%= link_to 'Fuksille', '/fuksille', class: 'navbar-brand navbar-link' %></li>
+<li class="navbar-item dropdown">
+  <div id = "fuksille" class="dropdown-toggle">
+    <a href="/fuksille" class="navbar-brand navbar-link">
+       Fuksille
+       <b class="caret"></b>
+    </a>
+    <ul class="dropdown-menu">
+       <li><%= link_to 'Fuksiopas', '/fuksiopas' %></li>
+       <li><%= link_to 'Tuutorit', '/tuutorit' %></li>
+       <li><%= link_to 'Sanasto', '/sanasto' %></li>
+       <li><%= link_to 'Kurssikuvauksia', '/kurssikuvauksia' %></li>
+    </ul>
+  </div>
+</li>
 <% if current_user %>
     <li class="navbar-item"><%= link_to 'Omat tiedot', current_user, class: 'navbar-brand navbar-link' %></li>
 <% else %>

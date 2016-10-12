@@ -1,5 +1,18 @@
 Rails.application.routes.draw do
+
+  resources :document_group_categories
+
+  get '/document_group_categories/:id/new_document_group' => 'document_groups#new'
+
+  resources :document_groups
+
+  get '/document_groups/:id/new_document' => 'documents#new'
+
   resources :post_tags
+
+  get '/yhteystiedot' => 'position#contact_info'
+
+  get '/toiminta' => 'events#activities'
 
   resources :news
 
@@ -31,6 +44,9 @@ Rails.application.routes.draw do
 
   resources :users
 
+  get '/users/:id/new_password' => 'users#new_password', as: 'new_password'
+  patch 'users/:id/update_password' => 'users#update_password', as: 'update_password'
+
   get 'jatkantappajat' => 'players#index'
 
   get 'ongoingmatches' => 'matches#ongoing'
@@ -46,7 +62,9 @@ Rails.application.routes.draw do
 
   resources :board_members, only: [:index, :new, :create]
 
-  get 'dokumentit', to: 'documents#index'
+  get 'dokumentit', to: 'document_groups#index'
+
+  get 'dokumentit/:name', to: 'document_groups#show'
 
   get 'hallitus/:year', to: 'board_members#index'
 
@@ -62,7 +80,6 @@ Rails.application.routes.draw do
   get '/jarjesto' => 'high_voltage/pages#show', id: 'jarjesto'
   get '/toiminta' => 'high_voltage/pages#show', id: 'toiminta'
   get '/komero' => 'high_voltage/pages#show', id: 'komero'
-  get '/yhteystiedot' => 'high_voltage/pages#show', id: 'yhteystiedot'
   get '/sahkopostilistat' => 'high_voltage/pages#show', id: 'sahkopostilistat'
   get '/yrityksille' => 'high_voltage/pages#show', id: 'yrityksille'
   get '/kerhot' => 'high_voltage/pages#show', id: 'kerhot'
@@ -70,6 +87,10 @@ Rails.application.routes.draw do
   get '/fuksille' => 'high_voltage/pages#show', id: 'fuksille'
   get '/fuksiopas' => 'high_voltage/pages#show', id: 'fuksiopas'
   get '/tuutorit' => 'high_voltage/pages#show', id: 'tuutorit'
+  get '/sanasto' => 'high_voltage/pages#show', id: 'sanasto'
+  get '/kurssikuvauksia' => 'high_voltage/pages#show', id: 'kurssikuvauksia'
+  get '/rekisteriseloste' => 'high_voltage/pages#show', id: 'rekisteriseloste'
+  get '/virkailijaksi' => 'high_voltage/pages#show', id: 'virkailijaksi'
 
 
 

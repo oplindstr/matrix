@@ -6,7 +6,11 @@
 
 <br />
 
-<%= link_to "New Document", new_document_path, class: "btn btn-primary" %>
+<% if admin %>
+
+   <%= link_to "New Document", new_document_path, class: "btn btn-primary" %>
+
+<% end %>
 <br />
 <br />
 
@@ -25,7 +29,9 @@
          <tr>
             <td><%= document.name %></td>
             <td><%= link_to "Download Document", document.attachment_url %></td>
-            <td><%= button_to "Delete",  document, method: :delete, class: "btn btn-danger", confirm: "Are you sure that you wish to delete #{document.name}?" %></td>
+            <% if admin %>
+            <td><%= button_to "Delete",  document, method: :delete, class: "btn btn-danger", data: {confirm: "Are you sure that you wish to delete #{document.name}?"} %></td>
+            <% end %>
          </tr>
          
       <% end %>

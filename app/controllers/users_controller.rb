@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_action :set_user, only: [:show, :edit, :update, :destroy]
+  before_action :set_user, only: [:show, :edit, :update, :destroy, :new_password, :update_password]
   before_action :ensure_that_current_user, only: [:show, :edit, :update]
   before_action :ensure_that_admin, only: [:index, :destroy]
 
@@ -31,8 +31,8 @@ class UsersController < ApplicationController
 
     respond_to do |format|
       if @user.save
-        format.html { redirect_to @user, notice: 'User was successfully created.' }
-        format.json { render :show, status: :created, location: @user }
+        format.html { redirect_to root_path, notice: 'User was successfully created.' }
+        format.json { render :index, status: :created, location: root_path }
       else
         format.html { render :new }
         format.json { render json: @user.errors, status: :unprocessable_entity }
@@ -64,6 +64,27 @@ class UsersController < ApplicationController
     end
   end
 
+  def new_password
+  end
+
+  def update_password
+    params = update_password_params
+    respond_to do |format|
+      if not @user.try(:authenticate, params[:current_password])
+        format.html { redirect_to new_password_path, notice: 'Nykyinen salasana väärin' }
+        format.json { render json: @user.errors, status: :unprocessable_entity, location: new_password_path } 
+      end
+      if not @user.update(:password => params[:new_password], :password_confirmation => params[:new_password_confirmation])
+        format.html { redirect_to new_password_path, notice: 'Uuden salasanan vahvistus väärin' }
+        format.json { render json: @user.errors, status: :unprocessable_entity, location: new_password_path } 
+      else
+        format.html { redirect_to @user, notice: 'Password was successfully updated.' }
+        format.json { render :show, status: :ok, location: @user }
+      end
+    end
+  end
+
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_user
@@ -79,5 +100,9 @@ class UsersController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def user_params
       params.require(:user).permit(:username, :firstname, :lastname, :email, :city, :password, :password_confirmation, :hyy_member, :mathstudent, :activated)
+    end
+
+    def update_password_params
+      params.require(:user).permit(:current_password, :new_password, :new_password_confirmation)
     end
 end

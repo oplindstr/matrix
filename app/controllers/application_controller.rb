@@ -17,6 +17,14 @@ class ApplicationController < ActionController::Base
     current_user.admin
   end
 
+  def sub_admin
+    return false if !current_user
+    return true if admin
+    @board_member = BoardMember.where("year = ? AND user_id = ?", Date.today.year, current_user.id)
+    return true if @board_member
+    false
+  end
+
   def ensure_that_admin
     redirect_to root_path, notice:"" if not admin
   end

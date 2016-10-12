@@ -1,0 +1,31 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Document Group Categories</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @document_group_categories.each do |document_group_category| %>
+      <tr>
+        <td><%= document_group_category.name %></td>
+        <td><%= link_to 'Show', document_group_category %></td>
+        <td><%= link_to 'Edit', edit_document_group_category_path(document_group_category) %></td>
+        <td><%= link_to 'Destroy', document_group_category, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Document group category', new_document_group_category_path %>
+
+<br><br>
+
+<%= link_to 'New Document', new_document_path %>

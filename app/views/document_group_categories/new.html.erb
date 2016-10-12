@@ -1,0 +1,13 @@
+<h1>New Document Group Category</h1>
+
+<%= render 'form' %>
+
+<% if @document_group_category_id %>
+
+	<%= link_to 'Back', '/document_group_categories/' + @document_group_category_id.to_s %>
+
+<% else %>
+
+	<%= link_to 'Back', '/dokumentit' %>
+
+<% end %>

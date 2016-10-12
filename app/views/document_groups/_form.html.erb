@@ -1,0 +1,42 @@
+<%= form_for(@document_group) do |f| %>
+  <% if @document_group.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@document_group.errors.count, "error") %> prohibited this document_group from being saved:</h2>
+
+      <ul>
+      <% @document_group.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :name %><br>
+    <%= f.text_field :name %>
+  </div>
+
+  <div class="field">
+    <%= f.label :display_name %><br>
+    <%= f.text_field :display_name %>
+  </div>
+
+  <% if @document_group_category_id and not @edit %>
+
+    <div class="field">
+      <%= f.hidden_field :document_group_category_id, :value => @document_group_category_id %>
+    </div>
+
+  <% else %>
+
+    <div class="field">
+      <%= f.label :document_group_category_id %><br>
+      <%= f.select :document_group_category_id, options_from_collection_for_select(@document_group_categories, :id, :name) %>
+    </div>
+
+  <% end %>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

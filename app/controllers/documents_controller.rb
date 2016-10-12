@@ -5,17 +5,24 @@ class DocumentsController < ApplicationController
    
    def new
       @document = Document.new
+      @document_group_id = params[:id]
+      if not @document_group_id
+         @document_groups = DocumentGroup.all
+      end
    end
    
    def create
       @document = Document.new(document_params)
       
-      if @document.save
-         redirect_to documents_path, notice: "The document #{@document.name} has been uploaded."
-      else
-         render "new"
+      respond_to do |format|
+         if @document.save
+            @document_group = @document.document_group
+            
+            format.html { redirect_to @document_group, notice: 'Document was successfully created.' }
+         else
+            render "new"
+         end
       end
-      
    end
    
    def destroy
@@ -26,7 +33,7 @@ class DocumentsController < ApplicationController
    
    private
       def document_params
-      params.require(:document).permit(:name, :attachment)
-   end
+         params.require(:document).permit(:name, :attachment, :document_group_id)
+      end
    
 end

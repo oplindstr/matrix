@@ -13,37 +13,47 @@
     <h2>Henkilötiedot</h2>
 
     <div class="field">
-      <%= f.label :username, 'Käyttäjätunnus' %>
-      <% if @user.new_record? %>
-          <%= f.text_field :username %>
-      <% else %>
-          <%= f.text_field :username, :readonly => true %>
-      <% end %>
-    </div>
-    <div class="field">
       <%= f.label :firstname, 'Etunimi' %>
       <%= f.text_field :firstname %>
     </div>
+
     <div class="field">
       <%= f.label :lastname, 'Sukunimi' %>
       <%= f.text_field :lastname %>
     </div>
+
     <div class="field">
       <%= f.label :email, 'Sähköpostiosoite' %>
       <%= f.email_field :email %>
     </div>
+
     <div class="field">
       <%= f.label :city, 'Kotikunta' %>
       <%= f.text_field :city %>
     </div>
-    <div class="field">
-      <%= f.label :password, 'Salasana'%>
-      <%= f.password_field :password %>
-    </div>
-    <div class="field">
-      <%= f.label :password_confirmation, 'Salasana uudelleen' %>
-      <%= f.password_field :password_confirmation %>
-    </div>
+
+    <% if @user.new_record? %>
+
+      <h2>Käyttäjätiedot</h2>
+
+      <div class="field">
+        <%= f.label :username, 'Käyttäjätunnus' %>
+        <% if @user.new_record? %>
+            <%= f.text_field :username %>
+        <% else %>
+            <%= f.text_field :username, :readonly => true %>
+        <% end %>
+      </div>
+
+      <div class="field">
+        <%= f.label :password, 'Salasana'%>
+        <%= f.password_field :password %>
+      </div>
+      <div class="field">
+        <%= f.label :password_confirmation, 'Salasana uudelleen' %>
+        <%= f.password_field :password_confirmation %>
+      </div>
+    <% end %>
 
     <h2>Muut tiedot</h2>
 

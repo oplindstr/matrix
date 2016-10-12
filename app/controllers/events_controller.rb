@@ -28,6 +28,11 @@ class EventsController < ApplicationController
   def edit
   end
 
+  def activities
+    @years = Event.pluck(:starttime).uniq{ |m| m.year }.map!{ |m| m.year }
+    render 'pages/toiminta'
+  end
+
   # POST /events
   # POST /events.json
   def create

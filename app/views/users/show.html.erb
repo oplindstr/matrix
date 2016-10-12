@@ -1,5 +1,3 @@
-<p id="notice"><%= notice %></p>
-
 <h2>Muokkaa omia tietoja</h2>
 
 <%= render 'form' %>
@@ -39,5 +37,5 @@
 
 
 
-<%= link_to 'Vaihda salasana', edit_user_path(@user) %> |
+<%= link_to 'Vaihda salasana', new_password_path(@user) %> |
 <%= link_to 'Takaisin', jatkantappajat_path %>

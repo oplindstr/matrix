@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160420103408) do
+ActiveRecord::Schema.define(version: 20160929083357) do
 
   create_table "board_members", force: :cascade do |t|
     t.integer  "user_id"
@@ -23,11 +23,26 @@ ActiveRecord::Schema.define(version: 20160420103408) do
     t.string   "avatar"
   end
 
+  create_table "document_group_categories", force: :cascade do |t|
+    t.string   "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "document_groups", force: :cascade do |t|
+    t.string   "name"
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
+    t.string   "display_name"
+    t.integer  "document_group_category_id"
+  end
+
   create_table "documents", force: :cascade do |t|
     t.string   "name"
     t.string   "attachment"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",        null: false
+    t.datetime "updated_at",        null: false
+    t.integer  "document_group_id"
   end
 
   create_table "events", force: :cascade do |t|
@@ -95,7 +110,8 @@ ActiveRecord::Schema.define(version: 20160420103408) do
   end
 
   create_table "positions", force: :cascade do |t|
-    t.string "name"
+    t.string  "name"
+    t.boolean "show_in_contact_info"
   end
 
   create_table "post_comments", force: :cascade do |t|
@@ -133,10 +149,6 @@ ActiveRecord::Schema.define(version: 20160420103408) do
     t.integer  "event_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-  end
-
-  create_table "user_groups", force: :cascade do |t|
-    t.string "name"
   end
 
   create_table "users", force: :cascade do |t|

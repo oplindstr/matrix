@@ -1,0 +1,40 @@
+<% if !flash[:notice].blank? %>
+   <div class = "alert alert-info">
+      <%= flash[:notice] %>
+   </div>
+<% end %>
+
+<h2> <%= @document_group.name %> </h2>
+
+<br />
+
+<% if admin %>
+
+   <%= link_to "New Document", '/document_groups/' + @document_group_id.to_s + '/new_document', class: "btn btn-primary" %>
+
+<% end %>
+
+<table class = "table table-bordered table-striped">
+   
+   <tbody>
+      <% @documents.each do |document| %>
+         
+         <tr>
+            <td><%= link_to document.name, document.attachment_url %></td>
+            <% if admin %>
+            <td><%= button_to "Delete",  document, method: :delete, class: "btn btn-danger", data: {confirm: "Are you sure that you wish to delete #{document.name}?"} %></td>
+            <% end %>
+         </tr>
+         
+      <% end %>
+   </tbody>
+   
+</table>
+
+<% if admin %>
+
+<%= link_to 'Edit', edit_document_group_path(@document_group) %>
+
+<% end %>
+
+<%= link_to 'Takaisin', dokumentit_path %>

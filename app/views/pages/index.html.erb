@@ -51,7 +51,11 @@
 			    </div>
 		    </div>
 
-		    <%= link_to 'Lisää uutinen', 'news/new' %>
+		    <% if admin %>
+
+		    	<%= link_to 'Lisää uutinen', 'news/new' %>
+
+		    <% end %>
 	    </p>
 	  </div>
 	  <div class="col-md-2"></div>
@@ -61,7 +65,7 @@
 	    <div ng-controller="EventsController">
 	    	<div class="upcomingEvents" ng-show="show == 'upcoming'">
 
-	        <p class="middle" ng-show="upcomingEvents.length === 0">Ei tulevia tapahtumia</p>
+	        <p ng-show="upcomingEvents.length === 0">Ei tulevia tapahtumia</p>
 
 	        <ul class="compactEvent" ng-repeat="Event in upcomingEvents">
 		      <li><b class="Eventname"><%= link_to '{{Event.name}}','#','ng-href' => "#{events_path()}/{{Event.id}}" %></b></li>

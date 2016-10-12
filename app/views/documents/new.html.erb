@@ -16,6 +16,12 @@
       <%= f.text_field :name %>
       <%= f.label :attachment %>
       <%= f.file_field :attachment %>
+      <% if @document_group_id %>
+         <%= f.hidden_field :document_group_id, :value => @document_group_id %>
+      <% else %>
+         <%= f.label :document_group_id %>
+         <%= f.select :document_group_id, options_from_collection_for_select(@document_groups, :id, :name) %>
+      <% end %>
       <%= f.submit "Save", class: "btn btn-primary" %>
    <% end %>
 </div>

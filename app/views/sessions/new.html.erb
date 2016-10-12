@@ -1,7 +1,5 @@
 <h1>Kirjaudu sisään</h1>
 
-<p id="notice"><%= notice %></p>
-
 <%= form_tag session_path do %>
     Käyttäjätunnus <%= text_field_tag :username, params[:username] %>
     Salasana <%= password_field_tag :password, params[:password] %>
