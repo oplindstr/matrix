@@ -184,6 +184,8 @@ Jos et syystä tai toisesta pääse omaan laskuharjoitusryhmääsi, voit myös v
 
 Fuksivastaavina toimivat vuonna <%= Time.now.year %> 
 
+<% if @fuksijatuutorivastaavat %>
+
   <% @fuksijatuutorivastaavat.each_with_index do |vastaava, i| %>
     <% if i == @fuksijatuutorivastaavat.size - 1 %>
 	  <%= vastaava.user.name %>
@@ -193,6 +195,8 @@ Fuksivastaavina toimivat vuonna <%= Time.now.year %>
 	  <%= vastaava.user.name %>, 
 	<% end %>
   <% end %>
+
+<% end %>
 
 </p>
 
