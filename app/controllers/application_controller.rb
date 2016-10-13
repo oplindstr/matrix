@@ -3,9 +3,15 @@ class ApplicationController < ActionController::Base
   # For APIs, you may want to use :null_session instead.
   protect_from_forgery with: :exception
 
+  before_filter :save_current_url
+
   helper_method :current_user
   helper_method :admin
   helper_method :get_setting
+
+  def save_current_url
+    session[:return_to] = request.referer
+  end
 
   def current_user
     return nil if session[:user_id].nil?
