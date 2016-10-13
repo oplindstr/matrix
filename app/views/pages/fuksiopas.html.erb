@@ -184,7 +184,7 @@ Jos et syystä tai toisesta pääse omaan laskuharjoitusryhmääsi, voit myös v
 
 Fuksivastaavina toimivat vuonna <%= Time.now.year %> 
 
-<% if @fuksijatuutorivastaavat %>
+<% if @fuksijatuutorivastaavat and @fuksijatuutorivastaavat.size > 0 %>
 
   <% @fuksijatuutorivastaavat.each_with_index do |vastaava, i| %>
     <% if i == @fuksijatuutorivastaavat.size - 1 %>
