@@ -42,6 +42,8 @@ Rails.application.routes.draw do
 
   get '/events/:id/signups(.:format)' => 'signups#show', as: 'event_signups'
 
+  get '/events/year/:year' => 'events#events_by_year'
+
   resources :users
 
   get '/users/:id/new_password' => 'users#new_password', as: 'new_password'
@@ -85,8 +87,8 @@ Rails.application.routes.draw do
   get '/kerhot' => 'high_voltage/pages#show', id: 'kerhot'
   get '/klusteri' => 'high_voltage/pages#show', id: 'klusteri'
   get '/fuksille' => 'high_voltage/pages#show', id: 'fuksille'
-  get '/fuksiopas' => 'high_voltage/pages#show', id: 'fuksiopas'
-  get '/tuutorit' => 'high_voltage/pages#show', id: 'tuutorit'
+  get '/fuksiopas' => 'pages#fuksiopas', id: 'fuksiopas'
+  get '/tuutorit' => 'pages#tuutorit', id: 'tuutorit'
   get '/sanasto' => 'high_voltage/pages#show', id: 'sanasto'
   get '/kurssikuvauksia' => 'high_voltage/pages#show', id: 'kurssikuvauksia'
   get '/rekisteriseloste' => 'high_voltage/pages#show', id: 'rekisteriseloste'

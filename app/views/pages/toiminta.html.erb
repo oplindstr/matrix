@@ -69,6 +69,6 @@
 
   <ul>
     <% @years.each do |year| %>
-      <li>Tapahtumakalenteri <%= year %></li>
+      <li><%= link_to 'Tapahtumakalenteri ' + year.to_s, 'events/year/' + year.to_s %></li>
     <% end %>
   </ul>

@@ -17,6 +17,18 @@ class Event < ActiveRecord::Base
     return self.users.count == 0
   end
 
+  def get_participants
+    users = self.users.size
+    if users and users > 0
+      return users
+    end
+    participants = self.participants
+    if participants
+      return self.participants
+    end
+    return 0
+  end
+
   def signup_open
     time = Time.now
     open = (time <= self.signup_end and time >= self.signup_start)
@@ -30,6 +42,15 @@ class Event < ActiveRecord::Base
       end
     end
     return false
+  end
+
+  def start_date
+    starttime = self.starttime
+    return starttime.day.to_s + '.' + starttime.month.to_s + '.'
+  end
+
+  def calendar_short_info
+    return self.start_date + ' ' + self.name + ', ' + self.get_participants.to_s
   end
 
   def getSignup(user_id)

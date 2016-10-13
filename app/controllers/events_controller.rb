@@ -73,6 +73,11 @@ class EventsController < ApplicationController
     end
   end
 
+  def events_by_year
+    @year = params[:year]
+    @events = Event.where("cast(strftime('%Y', starttime) as int) = ?", @year).order(:starttime)
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_event

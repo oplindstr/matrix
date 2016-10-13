@@ -1,0 +1,6 @@
+<h1>Tapahtumakalenteri <%= @year %></h1>
+<ul>
+  <% @events.each_with_index do |event, index| %>
+    <li><%= index + 1 %>. <%= event.calendar_short_info %></li>
+  <% end %>
+</ul>

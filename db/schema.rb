@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160929083357) do
+ActiveRecord::Schema.define(version: 20161013065338) do
 
   create_table "board_members", force: :cascade do |t|
     t.integer  "user_id"
@@ -60,6 +60,7 @@ ActiveRecord::Schema.define(version: 20160929083357) do
     t.text     "descr"
     t.string   "price"
     t.integer  "signup_limit"
+    t.integer  "participants"
   end
 
   create_table "hands", force: :cascade do |t|
