@@ -14,11 +14,12 @@ p, ol, ul, td {
 
 pre {
   display: block;
-  padding: 10px;
-  font-size: 11px;
+  font-family: verdana, arial, helvetica, sans-serif;
+  font-size: inherit;
   background-color: #fff;
   border: none;
   overflow: inherit;
+  padding: 0px;
   white-space: pre-wrap;
   word-break: normal;
   word-wrap: break-word;

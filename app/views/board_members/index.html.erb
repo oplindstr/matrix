@@ -10,7 +10,7 @@
 <h3> Hallitukset vuosittain </h3>
 
 <% @years.each do |year| %>
-	<%= link_to year, hallitus_path(:year => year) %>
+	<%= link_to year, hallitus_path(:vuosi => year) %>
 	<% if year != @min_year %>
 		<span> | </span>
 	<% end %>
@@ -20,9 +20,113 @@
 
 <p>Hallituksen jäsenten ja varajäsenten sähköpostiosoitteet ovat muotoa etunimi.sukunimi@helsinki.fi (ilman ääkkösiä) ellei toisin mainita.</p>
 
-<div class='col-md-6'>
+<% if not @board_members.empty? %>
 
-<% @members.each do |member| %>
-	<p> <%= member.user.name %> </p>
-	<p> <%= image_tag member.avatar_url, :class => "board_member_avatar" %> </p>
+	<h3>Hallituksen jäsenet</h3>
+
+	<% if @year == @this_year %>
+
+		<div class="board_members">
+			<% @board_members.each do |member| %>
+				<div class="board_member">
+				    <span> <%= image_tag(member.avatar, size: "16x16") %> </span>
+					<p> <%= member.name %> </p>
+					<% member.positions_by_year(@year).each do |position| %>
+						<span> <%= position.name %> </span> <br>
+					<% end %>
+					<br>
+				</div>
+			<% end %>
+		</div>
+
+	<% else %>
+
+		<div>
+			<% @board_members.each do |member| %>
+				<b><%= member.name %></b> <br>
+				<% member.positions_by_year(@year).each do |position| %>
+					<span> <%= position.name %> </span> <br>
+				<% end %>
+				<br>
+			<% end %>
+		</div>
+
+	<% end %>
+
 <% end %>
+
+<% if not @supplementary_members.empty? %>
+
+	<h3>Hallituksen varajäsenet</h3>
+
+	<% if @year == @this_year %>
+
+		<div class="board_members">
+			<% @supplementary_members.each do |member| %>
+			    <div class="board_member">
+					<p> <%= member.name %> </p>
+					<% member.positions_by_year(@year).each do |position| %>
+						<span> <%= position.name %> </span> <br>
+					<% end %>
+					<br>
+				</div>
+			<% end %>
+		</div>
+
+	<% else %>
+
+		<div>
+			<% @supplementary_members.each do |member| %>
+				<b><%= member.name %></b> <br>
+				<% member.positions_by_year(@year).each do |position| %>
+					<span> <%= position.name %> </span> <br>
+				<% end %>
+				<br>
+			<% end %>
+		</div>
+
+	<% end %>
+
+<% end %>
+
+<% if not @position_members.empty? %>
+
+	<h3>Virkailijat</h3>
+
+	<% if @year == @this_year %>
+
+		<div class="board_members">
+			<% @position_members.each do |member| %>
+			    <div class="board_member">
+					<p> <%= member.name %> </p>
+					<% member.positions_by_year(@year).each do |position| %>
+						<span> <%= position.name %> </span> <br>
+					<% end %>
+					<br>
+				</div>
+			<% end %>
+		</div>
+
+	<% else %>
+
+		<div>
+			<% @position_members.each do |member| %>
+				<b><%= member.name %></b> <br>
+				<% member.positions_by_year(@year).each do |position| %>
+					<span> <%= position.name %> </span> <br>
+				<% end %>
+				<br>
+			<% end %>
+		</div>
+
+	<% end %>
+
+<% end %>
+
+<%= link_to 'Lisää hallituksen jäsen',  new_board_member_path %>
+<br>
+<br>
+<%= link_to 'Lisää virka', new_position_member_path %>
+<br>
+<br>
+<%= link_to 'Poista merkintöjä', '/board_members_and_positions' %>

@@ -1,0 +1,45 @@
+<h1>Hallituksen jäsenet ja virat</h1>
+
+<table class = "table table-bordered table-striped">
+  <thead>
+      <tr>
+         <th>Nimi</th>
+         <th>Vuosi</th>
+         <th>Varajäsen?</th>
+         <th> </th>
+      </tr>
+   </thead>
+
+  <tbody>
+	<% @board_members.each do |member| %>
+	  <tr>
+	    <td><%= member.user.name %></td>
+		<td><%= member.year %></td>
+		<td><%= check_box_tag 'supplementary', 'supplementary', member.supplementary, disabled: true %></td>
+		<td><%= button_to "Poista", {action: "destroy", id: member.id}, method: :delete, class: "btn btn-danger", data: {confirm: "Are you sure that you wish to delete this record?"} %></td>
+	  </tr>
+	<% end %>
+  </tbody>
+</table>
+
+<table class = "table table-bordered table-striped">
+  <thead>
+      <tr>
+         <th>Nimi</th>
+         <th>Vuosi</th>
+         <th>Virka</th>
+         <th> </th>
+      </tr>
+   </thead>
+
+  <tbody>
+	<% @position_members.each do |member| %>
+	  <tr>
+	    <td><%= member.user.name %></td>
+		<td><%= member.year %></td>
+		<td><%= member.position.name %></td>
+		<td><%= button_to "Poista", {action: "destroy", controller: "position_members", id: member.id}, method: :delete, class: "btn btn-danger", data: {confirm: "Are you sure that you wish to delete this record?"} %></td>
+	  </tr>
+	<% end %>
+  </tbody>
+</table>

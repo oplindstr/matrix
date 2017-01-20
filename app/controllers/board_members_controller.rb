@@ -1,15 +1,26 @@
 class BoardMembersController < ApplicationController
 	before_action :set_year, only: [:index, :new]
-  before_action :set_uploader, only: [:index, :create]
 
    def index
-   	  @min_year = BoardMember.minimum(:year)
-      @members = BoardMember.where(year: @year)
+   	  @min_year = [BoardMember.minimum(:year), PositionMember.minimum(:year)].min
 
-      uploader = AvatarUploader.new
-      @avatar = uploader.retrieve_from_store!('public/uploads/avatars/Fuksimerkki.jpg')
+      @board_members = User.joins(:board_members).where("board_members.year = ? AND supplementary = ?", @year, false)
+      @supplementary_members = User.joins(:board_members).where('board_members.year = ? AND supplementary = ?', @year, true)
+      @position_members = User.joins(:position_members).where('position_members.year = ?', @year)
 
-      @years = BoardMember.order(year: :desc).uniq.pluck(:year)
+      @board_members = @board_members.sort_by { |f| f.priority_in_board_member_list(@year) }
+      @supplementary_members = @supplementary_members.sort_by { |f| f.priority_in_board_member_list(@year) }
+
+      @all = (@board_members | @supplementary_members) | @position_members
+
+      @all = @all.sort_by! { |f| f.priority_in_board_member_list(@year) }
+
+      @position_members = (@all - @board_members) - @supplementary_members
+
+      @years = BoardMember.order(year: :desc).uniq.pluck(:year) | PositionMember.order(year: :desc).uniq.pluck(:year)
+
+      @this_year = DateHelper.year
+
    end
 
    def new
@@ -20,34 +31,47 @@ class BoardMembersController < ApplicationController
 
    def create
       @board_member = BoardMember.new(board_member_params)
-
-      uploader = AvatarUploader.new
-
-      uploader.store!(@board_member.avatar)
       
       if @board_member.save
-         redirect_to board_members_path, notice: "The board member has been uploaded."
+         redirect_to '/hallitus', notice: "The board member has been uploaded."
       else
          render "new"
       end
+   end
+
+   def board_members_and_positions
+     @board_members = BoardMember.all.order(year: :desc)
+     @position_members = PositionMember.all.order(year: :desc)
+   end
+
+   def destroy
+      @member = BoardMember.find(params[:id])
+      @member.destroy
+      redirect_to '/board_members_and_positions', notice:  "The record has been deleted."
    end
    
    private
 
     def set_year
       if params[:year]
-        @year = params[:year]
+        if params[:year].to_i == 0
+          @year = DateHelper.year
+        else
+          @year = params[:year].to_i
+        end
+      elsif params[:vuosi]
+        if params[:vuosi].to_i == 0
+          @year = DateHelper.year
+        else
+          @year =  params[:vuosi].to_i
+        end
       else
       	@year = DateHelper.year
       end
     end
 
-    def set_uploader
-      uploader = AvatarUploader.new
-    end
-
     def board_member_params
-      params.require(:board_member).permit(:user_id, :year, :avatar)
+      params.require(:board_member).permit(:user_id, :year, :supplementary)
     end
     
 end

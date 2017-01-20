@@ -11,16 +11,13 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161013065338) do
+ActiveRecord::Schema.define(version: 20161221171849) do
 
   create_table "board_members", force: :cascade do |t|
-    t.integer  "user_id"
-    t.integer  "year"
-    t.string   "avatar_file_name"
-    t.string   "avatar_content_type"
-    t.integer  "avatar_file_size"
-    t.datetime "avatar_updated_at"
-    t.string   "avatar"
+    t.integer "user_id"
+    t.integer "year"
+    t.string  "avatar"
+    t.boolean "supplementary"
   end
 
   create_table "document_group_categories", force: :cascade do |t|
@@ -113,6 +110,7 @@ ActiveRecord::Schema.define(version: 20161013065338) do
   create_table "positions", force: :cascade do |t|
     t.string  "name"
     t.boolean "show_in_contact_info"
+    t.integer "priority"
   end
 
   create_table "post_comments", force: :cascade do |t|
@@ -159,7 +157,6 @@ ActiveRecord::Schema.define(version: 20161013065338) do
     t.datetime "updated_at",      null: false
     t.string   "firstname"
     t.boolean  "admin"
-    t.boolean  "activated"
     t.string   "email"
     t.string   "city"
     t.string   "phonenumber"
@@ -167,6 +164,7 @@ ActiveRecord::Schema.define(version: 20161013065338) do
     t.boolean  "hyy_member"
     t.boolean  "mathstudent"
     t.string   "lastname"
+    t.string   "avatar"
   end
 
 end

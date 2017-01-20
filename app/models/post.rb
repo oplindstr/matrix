@@ -11,4 +11,12 @@ class Post < ActiveRecord::Base
 	def comment_count
       return self.post_comments.size
 	end
+
+	def comment_count_text
+      if self.comment_count == 1
+      	return '1 kommentti'
+      else
+      	return self.comment_count.to_s + ' kommenttia'
+      end
+    end
 end

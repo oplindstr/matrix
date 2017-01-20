@@ -12,7 +12,10 @@ class User < ActiveRecord::Base
   has_many :signups
   has_many :events, through: :signups
   has_many :posts
+  has_many :position_members
   has_many :positions, through: :position_members
+
+  mount_uploader :avatar, AvatarUploader
 
   def name
     return "#{firstname} #{lastname}"
@@ -24,6 +27,20 @@ class User < ActiveRecord::Base
 
   def info_with_email
     return self.name + ' (' + display_email + ')'
+  end
+
+  def priority_in_board_member_list(year)
+    @minimum = self.positions_by_year(year).minimum('priority')
+    if @minimum
+      return @minimum
+    else
+      return 100
+    end
+  end
+
+  def positions_by_year(year)
+    return self.positions.where('position_members.year = ?', year).uniq.order(:priority)
+
   end
 
   def to_s

@@ -46,7 +46,7 @@
 		        <div ng-repeat="article in news">
 		        	<b>{{article.header}}</b>
 		        	<br><br>
-			        <p>{{article.text}}</p>
+			        <pre>{{article.text}}</pre>
 			        <br>
 			    </div>
 		    </div>
@@ -67,12 +67,11 @@
 
 	        <p ng-show="upcomingEvents.length === 0">Ei tulevia tapahtumia</p>
 
-	        <ul class="compactEvent" ng-repeat="Event in upcomingEvents">
-		      <li><b class="Eventname"><%= link_to '{{Event.name}}','#','ng-href' => "#{events_path()}/{{Event.id}}" %></b></li>
-		      <li class="Event_descr">{{Event.descr}}</li>
-		      <li><img class="location_image" src="/assets/icon-location-small-13c88b371f2d18d0400fe8031caa730158ec73720155a5e613652e3edb97e976.png"><span class="Event_info"> {{Event.location}}</span></li>
-		      <li><img class="time_image" src="/assets/time_small-8f332d3e14297ef6a3ca0449841ffe5a5173814db2a6ad91c40424ba8281491f.png"><span class="Event_info">{{Event.starttime}}</span></li>
-		    </ul>
+	        <div class="Event" ng-repeat="Event in upcomingEvents">
+		      <b><%= link_to '{{Event.name}}','#','ng-href' => "#{events_path()}/{{Event.id}}" %></b><br>
+		      {{Event.location}}<br>
+		      {{Event.starttime}}
+		    </div>
 	    </div>
 	  </div>
 	</div>

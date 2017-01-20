@@ -25,17 +25,27 @@
 
 <% end %>
 
-<% if admin %>
-    <%= form_for(@user) do |f| %>
-        <div class="field">
-          <%= f.label :activated, 'Aktivoi käyttäjä' %>
-          <%= f.check_box :activated %>
-        </div>
-        <%= f.submit :value => 'Tallenna' %>
-    <% end %>
+<% if sub_admin %>
+
+  <%= form_for @user, :url => { :action => "add_picture" } do |f| %>
+
+    <div class="form-area">
+
+      <h2>Lisää kuva</h2>
+
+      <div class="field">
+        <%= f.file_field :avatar %>
+      </div>
+
+    </div>
+
+    <div class="actions">
+      <%= f.submit :value => 'Tallenna'  %>
+    </div>
+
+  <% end %>
+
 <% end %>
 
 
-
-<%= link_to 'Vaihda salasana', new_password_path(@user) %> |
-<%= link_to 'Takaisin', jatkantappajat_path %>
+<%= link_to 'Vaihda salasana', new_password_path(@user) %>

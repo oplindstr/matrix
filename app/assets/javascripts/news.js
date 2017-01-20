@@ -8,5 +8,7 @@ matrixApp.controller('NewsController', ["$scope", "$http", function ($scope, $ht
             }
             return 1;
         });
+
+        $scope.news = $scope.news.slice(0,3);
     });
 }]);

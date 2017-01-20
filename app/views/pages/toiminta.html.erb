@@ -1,7 +1,7 @@
 <h1>Toiminta</h1>
 
  <p> </p>
- <p>Matrix järjestää paljon erilaista toimintaa ympäri vuoden. Parhaiten tapahtumista pysyy ajantasalla seuraamalla Matrixin <%= link_to 'kalenteria', '/events' %>, nettisivujen <%= link_to 'etusivua', root_path %> ja erityisesti <%= link_to 'sähköpostilistoja', '/sahkopostilistat' %>, jotka ovat tiedotuksen pääväylä.</p>
+ <p>Matrix järjestää paljon erilaista toimintaa ympäri vuoden. Parhaiten tapahtumista pysyy ajantasalla seuraamalla Matrixin <%= link_to 'kalenteria', '/kalenteri' %>, nettisivujen <%= link_to 'etusivua', root_path %> ja erityisesti <%= link_to 'sähköpostilistoja', '/sahkopostilistat' %>, jotka ovat tiedotuksen pääväylä.</p>
 
  <h2>Toistuva toiminta</h2>
 
@@ -69,6 +69,6 @@
 
   <ul>
     <% @years.each do |year| %>
-      <li><%= link_to 'Tapahtumakalenteri ' + year.to_s, 'events/year/' + year.to_s %></li>
+      <li><%= link_to 'Tapahtumakalenteri ' + year.to_s, 'kalenteri/vuosi/' + year.to_s %></li>
     <% end %>
   </ul>

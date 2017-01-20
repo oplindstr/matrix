@@ -22,5 +22,10 @@
 
 <% end %>
 
-<%= link_to 'Edit', edit_post_path(@post) %> |
-<%= link_to 'Back', posts_path %>
+<% if admin %>
+
+	<%= link_to 'Edit', edit_post_path(@post) %> |
+
+<% end %>
+
+<%= link_to 'Takaisin', posts_path %>

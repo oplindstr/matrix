@@ -28,8 +28,8 @@ class NewsController < ApplicationController
 
     respond_to do |format|
       if @news.save
-        format.html { redirect_to @news, notice: 'News was successfully created.' }
-        format.json { render :show, status: :created, location: @news }
+        format.html { redirect_to root_path, notice: 'Uutinen lisätty onnistuneesti' }
+        format.json { render :index, status: :created, location: root_path }
       else
         format.html { render :new }
         format.json { render json: @news.errors, status: :unprocessable_entity }

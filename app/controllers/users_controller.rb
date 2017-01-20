@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_action :set_user, only: [:show, :edit, :update, :destroy, :new_password, :update_password]
+  before_action :set_user, only: [:show, :edit, :update, :destroy, :add_picture, :new_password, :update_password]
   before_action :ensure_that_current_user, only: [:show, :edit, :update]
   before_action :ensure_that_admin, only: [:index, :destroy]
 
@@ -67,6 +67,20 @@ class UsersController < ApplicationController
   def new_password
   end
 
+  def add_picture
+    params = add_picture_params
+
+    respond_to do |format|
+      if @user.update(params)
+        format.html { redirect_to @user, notice: 'Picture was successfully added' }
+        format.json { render :show, status: :ok, location: @user }
+      else
+        format.html { render :show }
+        format.json { render json: @user.errors, status: :unprocessable_entity }
+      end
+    end
+  end
+
   def update_password
     params = update_password_params
     respond_to do |format|
@@ -104,5 +118,9 @@ class UsersController < ApplicationController
 
     def update_password_params
       params.require(:user).permit(:current_password, :new_password, :new_password_confirmation)
+    end
+
+    def add_picture_params
+      params.require(:user).permit(:avatar)
     end
 end

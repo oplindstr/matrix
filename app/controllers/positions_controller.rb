@@ -1,9 +1,10 @@
-class PositionController < ApplicationController
+class PositionsController < ApplicationController
   before_action :set_position, only: [:show, :edit, :update, :destroy]
 
   # GET /positions
   # GET /positions.json
   def index
+    @positions = Position.all
   end
 
   # GET /positions/1
@@ -32,10 +33,15 @@ class PositionController < ApplicationController
   # DELETE /positions/1
   # DELETE /positions/1.json
   def destroy
+    @position.destroy
+    respond_to do |format|
+      format.html { redirect_to positions_url, notice: 'Position was successfully destroyed.' }
+      format.json { head :no_content }
+    end
   end
 
   def contact_info
-  	@contact_positions = Position.where(show_in_contact_info: true)
+  	@contact_positions = Position.where(show_in_contact_info: true).order(:priority)
     render 'pages/yhteystiedot'
   end
 

@@ -81,6 +81,7 @@ section {
 .form {
   @extend .col-md-6;
 }
+
 .form-centered {
   @extend .col-md-6;
   @extend .text-center;
@@ -175,4 +176,19 @@ section {
   align-items: center;
   justify-content: center;
   text-align: center;
+}
+
+.board_members {
+  -webkit-column-count: 2; /* Chrome, Safari, Opera */
+  -moz-column-count: 2; /* Firefox */
+  column-count: 2;
+}
+
+.board_member {
+  display: inline-block;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  width: 400;
+  height: 400;
 }

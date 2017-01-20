@@ -19,7 +19,10 @@
     <% end %>
     <br>
     <br>
-    <p><%= link_to pluralize(post.comment_count, 'comment'), post_path(post)  %></p>
+
+    <% if post.comment_count > 0 %>
+      <p><%= link_to post.comment_count_text, post_path(post) %></p>
+    <% end %>
 
 <% end %>
 

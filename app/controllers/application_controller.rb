@@ -7,6 +7,7 @@ class ApplicationController < ActionController::Base
 
   helper_method :current_user
   helper_method :admin
+  helper_method :sub_admin
   helper_method :get_setting
 
   def save_current_url
@@ -28,15 +29,13 @@ class ApplicationController < ActionController::Base
     return true if admin
     @board_member = BoardMember.where("year = ? AND user_id = ?", Date.today.year, current_user.id)
     return true if @board_member
+    @position_member = PositionMember.where("year = ? AND user_id = ?", Date.today.year, current_user.id)
+    return true if @position_member
     false
   end
 
   def ensure_that_admin
     redirect_to root_path, notice:"" if not admin
-  end
-
-  def ensure_that_activated
-    redirect_to root_path, notice:"Tunnusta ei ole vielä aktivoitu" if not current_user.activated
   end
 
   def get_setting(setting)

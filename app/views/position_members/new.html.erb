@@ -1,8 +1,8 @@
-<% if !@board_member.errors.empty? %>
+<% if !@position_member.errors.empty? %>
    <div class = "alert alert-error">
       
       <ul>
-         <% @board_member.errors.full_messages.each do |msg| %>
+         <% @position_member.errors.full_messages.each do |msg| %>
             <li><%= msg %></li>
          <% end %>
       </ul>
@@ -11,10 +11,10 @@
 <% end %>
 
 <div class = "well">
-   <%= form_for @board_member, html: { multipart: true } do |f| %>
+   <%= form_for @position_member, html: { multipart: true } do |f| %>
       <%= f.select :user_id, options_from_collection_for_select(@users, :id, :name) %>
       <%= f.select :year, @years, :selected => Time.now.year %>
-      Varajäsen <%= f.check_box :supplementary %>
+      <%= f.select :position_id, options_from_collection_for_select(@positions, :id, :name) %>
       <%= f.submit "Save", class: "btn btn-primary" %>
    <% end %>
 </div>

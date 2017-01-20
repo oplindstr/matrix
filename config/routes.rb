@@ -10,7 +10,7 @@ Rails.application.routes.draw do
 
   resources :post_tags
 
-  get '/yhteystiedot' => 'position#contact_info'
+  get '/yhteystiedot' => 'positions#contact_info'
 
   get '/toiminta' => 'events#activities'
 
@@ -40,14 +40,21 @@ Rails.application.routes.draw do
 
   resources :events
 
-  get '/events/:id/signups(.:format)' => 'signups#show', as: 'event_signups'
+  resources :positions
 
-  get '/events/year/:year' => 'events#events_by_year'
+  get '/virat' => 'positions#index'
+
+  get '/kalenteri' => 'events#index'
+
+  get '/kalenteri/:id/ilmoittautumiset(.:format)' => 'signups#show', as: 'event_signups'
+
+  get '/kalenteri/vuosi/:year' => 'events#events_by_year'
 
   resources :users
 
   get '/users/:id/new_password' => 'users#new_password', as: 'new_password'
   patch 'users/:id/update_password' => 'users#update_password', as: 'update_password'
+  patch 'users/:id/add_picture' => 'users#add_picture', as: 'add_picture'
 
   get 'jatkantappajat' => 'players#index'
 
@@ -62,14 +69,18 @@ Rails.application.routes.draw do
 
   resources :documents, only: [:index, :new, :create, :destroy]
 
-  resources :board_members, only: [:index, :new, :create]
+  resources :board_members, only: [:index, :new, :create, :destroy]
+
+  resources :position_members
+
+  get 'board_members_and_positions', to: 'board_members#board_members_and_positions'
 
   get 'dokumentit', to: 'document_groups#index'
 
   get 'dokumentit/:name', to: 'document_groups#show'
 
-  get 'hallitus/:year', to: 'board_members#index'
-
+  get 'hallitus/:vuosi', to: 'board_members#index'
+  
   get 'hallitus', to: 'board_members#index'
 
   get 'blogi', to: 'posts#index'
