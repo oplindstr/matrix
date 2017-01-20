@@ -1,7 +1,5 @@
 class AddAvatarToUser2 < ActiveRecord::Migration
   def change
-  	change_table :users do |t|
-      t.attachment :avatar
-    end
+  	remove_attachment :users, :avatar
   end
 end
