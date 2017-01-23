@@ -44,10 +44,21 @@
 	    <p>
 	    	<div ng-controller="NewsController">
 		        <div ng-repeat="article in news">
-		        	<b>{{article.header}}</b>
-		        	<br><br>
-			        <pre>{{article.text}}</pre>
-			        <br>
+			        <div class="row">
+			        	<div class='col-md-8'>
+				        	<b>{{article.header}}</b>
+				        	<br><br>
+					        <pre>{{article.text}}</pre>
+					        <br>
+					     </div>
+					     <div class='col-md-4'>
+					     	<% if admin %>
+						     	<%= link_to 'Muokkaa', '#','ng-href' => "news/{{article.id}}/edit" %>
+						     	<br>
+						     	<%= link_to 'Poista', '#','ng-href' => "news/{{article.id}}", method: :delete, data: { confirm: 'Haluatko varmasti poistaa uutisen?' } %>
+						     <% end %>
+					     </div>
+			    	</div>
 			    </div>
 		    </div>
 

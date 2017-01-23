@@ -71,7 +71,7 @@ class BoardMembersController < ApplicationController
     end
 
     def board_member_params
-      params.require(:board_member).permit(:user_id, :year, :supplementary)
+      params.require(:board_member).permit(:user_id, :year, :supplementary, :name)
     end
     
 end

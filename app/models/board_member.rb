@@ -4,4 +4,5 @@ class BoardMember < ActiveRecord::Base
     def avatar
       return self.user.avatar_url
     end
+
 end

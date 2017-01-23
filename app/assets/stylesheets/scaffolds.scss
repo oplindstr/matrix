@@ -48,10 +48,14 @@ div {
   color: green;
 }
 
-.field_with_errors {
+.field_with_errors { 
   padding: 2px;
+  display: inline; 
+  background-color: white;
+}
+
+.field_with_errors label {
   background-color: red;
-  display: table;
 }
 
 #error_explanation {

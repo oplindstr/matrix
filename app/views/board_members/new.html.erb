@@ -12,9 +12,14 @@
 
 <div class = "well">
    <%= form_for @board_member, html: { multipart: true } do |f| %>
-      <%= f.select :user_id, options_from_collection_for_select(@users, :id, :name) %>
-      <%= f.select :year, @years, :selected => Time.now.year %>
-      Varajäsen <%= f.check_box :supplementary %>
-      <%= f.submit "Save", class: "btn btn-primary" %>
+      <%= f.label :year, 'Vuosi' %> <br>
+      <%= f.number_field :year, :selected => Time.now.year %> <br>
+      <%= f.label :user_id, 'Käyttäjä' %> <br>
+      <%= f.select :user_id, options_from_collection_for_select(@users, :id, :name), {:include_blank => 'Ei käyttäjää'} %> <br>
+      <%= f.label :supplementary, 'Varajäsen' %>
+      <%= f.check_box :supplementary %> <br>
+      <%= f.label :name, 'Nimi' %> <br>
+      <%= f.text_field :name %> <br> <br>
+      <%= f.submit "Save", class: "btn btn-primary" %> <br>
    <% end %>
 </div>

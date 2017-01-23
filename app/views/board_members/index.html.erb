@@ -123,10 +123,14 @@
 
 <% end %>
 
-<%= link_to 'Lisää hallituksen jäsen',  new_board_member_path %>
-<br>
-<br>
-<%= link_to 'Lisää virka', new_position_member_path %>
-<br>
-<br>
-<%= link_to 'Poista merkintöjä', '/board_members_and_positions' %>
+<% if admin %>
+
+	<%= link_to 'Lisää hallituksen jäseniä',  new_board_member_path %>
+	<br>
+	<br>
+	<%= link_to 'Lisää virkailija', new_position_member_path %>
+	<br>
+	<br>
+	<%= link_to 'Muokkaa virkoja', '/board_members_and_positions' %>
+
+<% end %>
