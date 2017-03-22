@@ -7,7 +7,7 @@ class Event < ActiveRecord::Base
   validate :endtimes_cannot_be_before_starttimes
 
   def full
-    if self.users.count >= self.signup_limit
+    if self.users.size > 0 and self.signup_limit and self.signuplimit > 0 and self.users.count >= self.signup_limit
       return true
     end
     return false

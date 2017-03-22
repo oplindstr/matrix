@@ -1,0 +1,28 @@
+<%= form_for(@event_parameter) do |f| %>
+  <% if @event_parameter.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@event_parameter.errors.count, "error") %> prohibited this event_parameter from being saved:</h2>
+
+      <ul>
+      <% @event_parameter.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.hidden_field :event_id, :value => @event.id %>
+  </div>
+  <div class="field">
+    <%= f.label :name, 'Nimi' %><br>
+    <%= f.text_field :name %>
+  </div>
+  <div class="field">
+    <%= f.label :event_parameter_type_id, 'Tyyppi' %><br>
+    <%= f.select(:event_parameter_type_id, options_from_collection_for_select(@event_parameter_types, :id, :name)) %>
+  </div>
+  <div class="actions">
+    <%= f.submit 'Lisää lisätietokenttä' %>
+  </div>
+<% end %>

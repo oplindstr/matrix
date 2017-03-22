@@ -70,6 +70,14 @@
 
               <% end %>
 
+              <% if !@event.members_only %>
+                <b>Ulkopuoliset voivat ilmoittautua tapahtumaan</b>
+              <% end %>
+
+              <% if !current_user and !@event.members_only and !@event.full and @event.signup_open %>
+                <%= render 'non_member_signups/form' %>
+              <% end %>
+
               <% if current_user and !@event.user_signed_up(current_user.id) and !@event.full and @event.signup_open %>
                   <%= render 'signups/form' %>
               <% end %>
@@ -78,6 +86,10 @@
                   <%= button_to 'Peru ilmoittautuminen', @signup, method: :delete, data: { confirm: 'Haluatko varmasti perua ilmoittautumisesi?' } %>
               <% end %>
 
+            <% end %>
+
+            <% if current_user %>
+              <%= link_to 'Lisää lisätietokenttä', @event.id.to_s + '/new_parameter' %>
             <% end %>
         </div>
 

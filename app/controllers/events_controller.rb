@@ -15,6 +15,10 @@ class EventsController < ApplicationController
       if current_user and @event.user_signed_up(current_user.id)
         @signup = @event.getSignup(current_user.id)
       end
+      if !current_user and !@event.members_only
+        @non_member_signup = NonMemberSignup.new
+        @non_member_signup.event_id = @event.id
+      end
     end
     @events = Event.all
   end
@@ -88,6 +92,6 @@ class EventsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def event_params
-      params.require(:event).permit(:name, :starttime, :endtime, :location, :event_type, :signup_required, :signup_start, :signup_end, :signup_cancellable_until, :descr, :price, :signup_limit)
+      params.require(:event).permit(:name, :starttime, :endtime, :location, :event_type, :signup_required, :signup_start, :signup_end, :signup_cancellable_until, :descr, :price, :signup_limit, :members_only)
     end
 end

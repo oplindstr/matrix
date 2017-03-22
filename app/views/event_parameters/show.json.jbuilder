@@ -1,0 +1,1 @@
+json.partial! "event_parameters/event_parameter", event_parameter: @event_parameter

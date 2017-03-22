@@ -1,0 +1,1 @@
+json.array! @event_parameter_types, partial: 'event_parameter_types/event_parameter_type', as: :event_parameter_type

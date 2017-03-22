@@ -1,0 +1,1 @@
+json.array! @event_parameters, partial: 'event_parameters/event_parameter', as: :event_parameter

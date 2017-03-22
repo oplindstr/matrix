@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Event:</strong>
+  <%= @event_parameter.event_id %>
+</p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @event_parameter.name %>
+</p>
+
+<p>
+  <strong>Event parameter type:</strong>
+  <%= @event_parameter.event_parameter_type_id %>
+</p>
+
+<%= link_to 'Edit', edit_event_parameter_path(@event_parameter) %> |
+<%= link_to 'Back', event_parameters_path %>

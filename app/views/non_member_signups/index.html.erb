@@ -1,0 +1,33 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Non Member Signups</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Event</th>
+      <th>Name</th>
+      <th>Email</th>
+      <th>Phonenumber</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @non_member_signups.each do |non_member_signup| %>
+      <tr>
+        <td><%= non_member_signup.event_id %></td>
+        <td><%= non_member_signup.name %></td>
+        <td><%= non_member_signup.email %></td>
+        <td><%= non_member_signup.phonenumber %></td>
+        <td><%= link_to 'Show', non_member_signup %></td>
+        <td><%= link_to 'Edit', edit_non_member_signup_path(non_member_signup) %></td>
+        <td><%= link_to 'Destroy', non_member_signup, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Non member signup', new_non_member_signup_path %>

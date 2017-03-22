@@ -66,11 +66,11 @@
         <%= f.label 'Ilmoittautuminen sitova alkaen' %><br>
         <%= f.datetime_select :signup_cancellable_until %>
       </div>
+      <div class="field">
+        <%= f.label 'Vain jäsenille' %><br>
+        <%= f.check_box :members_only %>
+      </div>
 
-  </div>
-
-  <div name="email">
-    
   </div>
 
   <div class="actions">

@@ -1,0 +1,1 @@
+json.partial! "non_member_signups/non_member_signup", non_member_signup: @non_member_signup

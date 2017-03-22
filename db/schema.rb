@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170123124703) do
+ActiveRecord::Schema.define(version: 20170316085544) do
 
   create_table "board_members", force: :cascade do |t|
     t.integer "user_id"
@@ -43,6 +43,29 @@ ActiveRecord::Schema.define(version: 20170123124703) do
     t.integer  "document_group_id"
   end
 
+  create_table "event_parameter_types", force: :cascade do |t|
+    t.string   "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "event_parameter_values", force: :cascade do |t|
+    t.integer  "event_parameter_id"
+    t.integer  "signup_id"
+    t.text     "value"
+    t.datetime "created_at",         null: false
+    t.datetime "updated_at",         null: false
+  end
+
+  create_table "event_parameters", force: :cascade do |t|
+    t.integer  "event_id"
+    t.string   "name"
+    t.integer  "event_parameter_type_id"
+    t.datetime "created_at",              null: false
+    t.datetime "updated_at",              null: false
+    t.boolean  "required"
+  end
+
   create_table "events", force: :cascade do |t|
     t.string   "name"
     t.datetime "starttime"
@@ -59,6 +82,7 @@ ActiveRecord::Schema.define(version: 20170123124703) do
     t.string   "price"
     t.integer  "signup_limit"
     t.integer  "participants"
+    t.boolean  "members_only"
   end
 
   create_table "hands", force: :cascade do |t|
@@ -89,6 +113,23 @@ ActiveRecord::Schema.define(version: 20170123124703) do
     t.datetime "updated_at",             null: false
     t.text     "header"
     t.integer  "priority",   default: 1
+  end
+
+  create_table "non_member_event_parameter_values", force: :cascade do |t|
+    t.integer  "event_parameter_id"
+    t.integer  "non_member_signup_id"
+    t.text     "value"
+    t.datetime "created_at",           null: false
+    t.datetime "updated_at",           null: false
+  end
+
+  create_table "non_member_signups", force: :cascade do |t|
+    t.integer  "event_id"
+    t.string   "name"
+    t.string   "email"
+    t.string   "phonenumber"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
   end
 
   create_table "players", force: :cascade do |t|

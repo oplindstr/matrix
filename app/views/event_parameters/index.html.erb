@@ -1,0 +1,31 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Event Parameters</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Event</th>
+      <th>Name</th>
+      <th>Event parameter type</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @event_parameters.each do |event_parameter| %>
+      <tr>
+        <td><%= event_parameter.event_id %></td>
+        <td><%= event_parameter.name %></td>
+        <td><%= event_parameter.event_parameter_type_id %></td>
+        <td><%= link_to 'Show', event_parameter %></td>
+        <td><%= link_to 'Edit', edit_event_parameter_path(event_parameter) %></td>
+        <td><%= link_to 'Destroy', event_parameter, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Event parameter', new_event_parameter_path %>

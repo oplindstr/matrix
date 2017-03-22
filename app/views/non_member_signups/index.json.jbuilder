@@ -1,0 +1,1 @@
+json.array! @non_member_signups, partial: 'non_member_signups/non_member_signup', as: :non_member_signup

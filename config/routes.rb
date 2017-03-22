@@ -1,5 +1,17 @@
 Rails.application.routes.draw do
 
+  resources :non_member_event_parameter_values
+
+  resources :event_parameter_values
+
+  resources :event_parameter_types
+
+  resources :event_parameters
+
+  get 'events/:id/new_parameter' => 'event_parameters#new'
+
+  resources :non_member_signups
+
   resources :document_group_categories
 
   get '/document_group_categories/:id/new_document_group' => 'document_groups#new'
