@@ -16,3 +16,6 @@
 !/log/.keep
 /tmp
 public/assets/**
+
+Gemfile
+Gemfile.lock
