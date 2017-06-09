@@ -16,8 +16,7 @@ class EventsController < ApplicationController
         @signup = @event.getSignup(current_user.id)
       end
       if !current_user and !@event.members_only
-        @non_member_signup = NonMemberSignup.new
-        @non_member_signup.event_id = @event.id
+        
       end
     end
     @events = Event.all

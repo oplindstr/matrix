@@ -1,0 +1,31 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Signup Parameters</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Signup</th>
+      <th>Event parameter</th>
+      <th>Value</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @signup_parameters.each do |signup_parameter| %>
+      <tr>
+        <td><%= signup_parameter.signup_id %></td>
+        <td><%= signup_parameter.event_parameter_id %></td>
+        <td><%= signup_parameter.value %></td>
+        <td><%= link_to 'Show', signup_parameter %></td>
+        <td><%= link_to 'Edit', edit_signup_parameter_path(signup_parameter) %></td>
+        <td><%= link_to 'Destroy', signup_parameter, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Signup parameter', new_signup_parameter_path %>

@@ -11,7 +11,8 @@ class SignupsController < ApplicationController
   # GET /signups/1
   # GET /signups/1.json
   def show
-    @users = @event.users
+    @signups = @event.signups
+    @signup_count = 1
     @events = Event.all
   end
 
@@ -81,6 +82,6 @@ class SignupsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def signup_params
-      params.require(:signup).permit(:user_id, :event_id)
+      params.require(:signup).permit(:user_id, :event_id, :name, :email, :phonenumber)
     end
 end

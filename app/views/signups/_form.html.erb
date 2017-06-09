@@ -16,8 +16,18 @@
     <%= f.hidden_field :user_id, value: current_user.id %>
     </div>
 <% else %>
+    <br>
     <div class="field">
-    <%= f.hidden_field :user_id, value: @signup.user_id %>
+      <%= f.label 'Nimi' %> <br>
+      <%= f.text_field :name %>
+    </div>
+    <div class="field">
+      <%= f.label 'Sähköpostiosoite' %> <br>
+      <%= f.text_field :email %>
+    </div>
+    <div class="field">
+      <%= f.label 'Puhelinnumero' %> <br>
+      <%= f.text_field :phonenumber %>
     </div>
 <% end %>
   <div class="field">

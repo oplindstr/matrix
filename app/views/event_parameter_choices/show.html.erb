@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Event parameter:</strong>
+  <%= @event_parameter_choice.event_parameter_id %>
+</p>
+
+<p>
+  <strong>Value:</strong>
+  <%= @event_parameter_choice.value %>
+</p>
+
+<%= link_to 'Edit', edit_event_parameter_choice_path(@event_parameter_choice) %> |
+<%= link_to 'Back', event_parameter_choices_path %>

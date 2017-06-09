@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Signup:</strong>
+  <%= @signup_parameter.signup_id %>
+</p>
+
+<p>
+  <strong>Event parameter:</strong>
+  <%= @signup_parameter.event_parameter_id %>
+</p>
+
+<p>
+  <strong>Value:</strong>
+  <%= @signup_parameter.value %>
+</p>
+
+<%= link_to 'Edit', edit_signup_parameter_path(@signup_parameter) %> |
+<%= link_to 'Back', signup_parameters_path %>

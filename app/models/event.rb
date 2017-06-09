@@ -7,24 +7,20 @@ class Event < ActiveRecord::Base
   validate :endtimes_cannot_be_before_starttimes
 
   def full
-    if self.users.size > 0 and self.signup_limit and self.signuplimit > 0 and self.users.count >= self.signup_limit
+    if self.signups.size > 0 and self.signup_limit and self.signup_limit > 0 and self.signups.count >= self.signup_limit
       return true
     end
     return false
   end
 
   def empty
-    return self.users.count == 0
+    return self.signups.count == 0
   end
 
-  def get_participants
-    users = self.users.size
-    if users and users > 0
-      return users
-    end
-    participants = self.participants
-    if participants
-      return self.participants
+  def get_signups
+    signups = self.signups
+    if signups and signups.size > 0
+      return signups
     end
     return 0
   end

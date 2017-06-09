@@ -6,7 +6,7 @@
 
   <div class="col-lg-9">
 
-        <% if @users %>
+        <% if @signups %>
 
             <table>
               <thead>
@@ -16,9 +16,10 @@
               </thead>
 
               <tbody>
-              <% @users.each do |user| %>
+              <% @signups.each do |signup| %>
                   <tr>
-                    <td><%= user.signup_number(@event.id) %>. <%= user %></td>
+                    <td><%= @signup_count %>. <%= signup %></td>
+                    <% @signup_count = @signup_count + 1 %>
                   </tr>
               <% end %>
               </tbody>

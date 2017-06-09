@@ -1,2 +1,0 @@
-json.extract! non_member_event_parameter_value, :id, :event_parameter_id, :non_member_signup_id, :value, :created_at, :updated_at
-json.url non_member_event_parameter_value_url(non_member_event_parameter_value, format: :json)

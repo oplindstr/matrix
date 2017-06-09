@@ -1,1 +1,0 @@
-json.array! @non_member_event_parameter_values, partial: 'non_member_event_parameter_values/non_member_event_parameter_value', as: :non_member_event_parameter_value

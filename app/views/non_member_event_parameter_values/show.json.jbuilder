@@ -1,1 +1,0 @@
-json.partial! "non_member_event_parameter_values/non_member_event_parameter_value", non_member_event_parameter_value: @non_member_event_parameter_value

@@ -1,5 +1,9 @@
 Rails.application.routes.draw do
 
+  resources :signup_parameters
+
+  resources :event_parameter_choices
+
   resources :non_member_event_parameter_values
 
   resources :event_parameter_values

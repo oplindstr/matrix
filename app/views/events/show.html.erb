@@ -48,7 +48,7 @@
 
               <p>
                 <strong>Ilmoittautuneita:</strong>
-                <%= @event.users.count %>
+                <%= @event.signups.count %>
                 <% if @event.signup_limit %>
                   / <%= @event.signup_limit %>
                 <% end %>
@@ -75,7 +75,7 @@
               <% end %>
 
               <% if !current_user and !@event.members_only and !@event.full and @event.signup_open %>
-                <%= render 'non_member_signups/form' %>
+                <%= render 'signups/form' %>
               <% end %>
 
               <% if current_user and !@event.user_signed_up(current_user.id) and !@event.full and @event.signup_open %>

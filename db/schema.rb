@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170316085544) do
+ActiveRecord::Schema.define(version: 20170609115807) do
 
   create_table "board_members", force: :cascade do |t|
     t.integer "user_id"
@@ -43,18 +43,17 @@ ActiveRecord::Schema.define(version: 20170316085544) do
     t.integer  "document_group_id"
   end
 
+  create_table "event_parameter_choices", force: :cascade do |t|
+    t.integer  "event_parameter_id"
+    t.string   "value"
+    t.datetime "created_at",         null: false
+    t.datetime "updated_at",         null: false
+  end
+
   create_table "event_parameter_types", force: :cascade do |t|
     t.string   "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-  end
-
-  create_table "event_parameter_values", force: :cascade do |t|
-    t.integer  "event_parameter_id"
-    t.integer  "signup_id"
-    t.text     "value"
-    t.datetime "created_at",         null: false
-    t.datetime "updated_at",         null: false
   end
 
   create_table "event_parameters", force: :cascade do |t|
@@ -115,23 +114,6 @@ ActiveRecord::Schema.define(version: 20170316085544) do
     t.integer  "priority",   default: 1
   end
 
-  create_table "non_member_event_parameter_values", force: :cascade do |t|
-    t.integer  "event_parameter_id"
-    t.integer  "non_member_signup_id"
-    t.text     "value"
-    t.datetime "created_at",           null: false
-    t.datetime "updated_at",           null: false
-  end
-
-  create_table "non_member_signups", force: :cascade do |t|
-    t.integer  "event_id"
-    t.string   "name"
-    t.string   "email"
-    t.string   "phonenumber"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
-  end
-
   create_table "players", force: :cascade do |t|
     t.string   "name"
     t.float    "expectation"
@@ -186,11 +168,22 @@ ActiveRecord::Schema.define(version: 20170316085544) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "signup_parameters", force: :cascade do |t|
+    t.integer  "signup_id"
+    t.integer  "event_parameter_id"
+    t.string   "value"
+    t.datetime "created_at",         null: false
+    t.datetime "updated_at",         null: false
+  end
+
   create_table "signups", force: :cascade do |t|
     t.integer  "user_id"
     t.integer  "event_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+    t.string   "name"
+    t.string   "email"
+    t.string   "phonenumber"
   end
 
   create_table "users", force: :cascade do |t|
