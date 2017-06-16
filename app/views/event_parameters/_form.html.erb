@@ -22,6 +22,10 @@
     <%= f.label :event_parameter_type_id, 'Tyyppi' %><br>
     <%= f.select(:event_parameter_type_id, options_from_collection_for_select(@event_parameter_types, :id, :name)) %>
   </div>
+  <div class="field">
+    <%= f.label :required, 'Pakollinen' %><br>
+    <%= f.check_box :required %>
+  </div>
   <div class="actions">
     <%= f.submit 'Lisää lisätietokenttä' %>
   </div>

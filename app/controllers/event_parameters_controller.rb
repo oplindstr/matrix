@@ -27,11 +27,12 @@ class EventParametersController < ApplicationController
   # POST /event_parameters.json
   def create
     @event_parameter = EventParameter.new(event_parameter_params)
+    @event = Event.find(@event_parameter.event_id)
 
     respond_to do |format|
       if @event_parameter.save
-        format.html { redirect_to @event_parameter, notice: 'Event parameter was successfully created.' }
-        format.json { render :show, status: :created, location: @event_parameter }
+        format.html { redirect_to @event, notice: 'Event parameter was successfully created.' }
+        format.json { render :show, status: :created, location: @event }
       else
         format.html { render :new }
         format.json { render json: @event_parameter.errors, status: :unprocessable_entity }
@@ -75,6 +76,6 @@ class EventParametersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def event_parameter_params
-      params.require(:event_parameter).permit(:event_id, :name, :event_parameter_type_id)
+      params.require(:event_parameter).permit(:event_id, :name, :event_parameter_type_id, :required)
     end
 end

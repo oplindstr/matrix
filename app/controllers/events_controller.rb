@@ -20,6 +20,15 @@ class EventsController < ApplicationController
       end
     end
     @events = Event.all
+    @event_parameters = @event.event_parameters
+    @signup_parameters = []
+    @event_parameters.each do |param|
+      @signup_parameter = SignupParameter.new
+      @signup_parameter.event_parameter_id = param.id
+      @signup_parameter.value = ''
+      @signup_parameters << @signup_parameter
+    end
+    byebug
   end
 
   # GET /events/new

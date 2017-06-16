@@ -11,25 +11,28 @@
     </div>
   <% end %>
 
-<% if current_user %>
-    <div class="field">
-    <%= f.hidden_field :user_id, value: current_user.id %>
-    </div>
-<% else %>
-    <br>
-    <div class="field">
-      <%= f.label 'Nimi' %> <br>
-      <%= f.text_field :name %>
-    </div>
-    <div class="field">
-      <%= f.label 'Sähköpostiosoite' %> <br>
-      <%= f.text_field :email %>
-    </div>
-    <div class="field">
-      <%= f.label 'Puhelinnumero' %> <br>
-      <%= f.text_field :phonenumber %>
-    </div>
-<% end %>
+  <% if current_user %>
+      <div class="field">
+      <%= f.hidden_field :user_id, value: current_user.id %>
+      </div>
+  <% else %>
+      <br>
+      <div class="field">
+        <%= f.label 'Nimi' %> <br>
+        <%= f.text_field :name %>
+      </div>
+      <div class="field">
+        <%= f.label 'Sähköpostiosoite' %> <br>
+        <%= f.text_field :email %>
+      </div>
+      <div class="field">
+        <%= f.label 'Puhelinnumero' %> <br>
+        <%= f.text_field :phonenumber %>
+      </div>
+  <% end %>
+
+  <%= render 'signup_parameters/form' %>
+
   <div class="field">
     <%= f.hidden_field :event_id, value: @event.id %>
   </div>
