@@ -82,7 +82,6 @@ class SignupsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def signup_params
-      byebug
-      params.require(:signup).permit(:user_id, :event_id, :name, :email, :phonenumber)
+      params.require(:signup).permit(:user_id, :event_id, :name, :email, :phonenumber, :signup_parameters_attributes => [:event_parameter_id, :value])
     end
 end

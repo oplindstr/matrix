@@ -15,20 +15,13 @@ class EventsController < ApplicationController
       if current_user and @event.user_signed_up(current_user.id)
         @signup = @event.getSignup(current_user.id)
       end
-      if !current_user and !@event.members_only
-        
-      end
     end
     @events = Event.all
     @event_parameters = @event.event_parameters
     @signup_parameters = []
     @event_parameters.each do |param|
-      @signup_parameter = SignupParameter.new
-      @signup_parameter.event_parameter_id = param.id
-      @signup_parameter.value = ''
-      @signup_parameters << @signup_parameter
+      @signup.signup_parameters.build(event_parameter_id: param.id)
     end
-    byebug
   end
 
   # GET /events/new

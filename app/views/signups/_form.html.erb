@@ -31,7 +31,32 @@
       </div>
   <% end %>
 
-  <%= render 'signup_parameters/form' %>
+  <%= f.fields_for :signup_parameters do |p| %>
+    <%= p.hidden_field :event_parameter_id, value: p.object.event_parameter_id  %>
+      <div class="field">
+          <%= p.label p.object.event_parameter.name %><br>
+
+          <% if p.object.event_parameter.event_parameter_type.name == 'Teksti' %>
+            <%= p.text_field :value %>
+          <% end %>
+
+          <% if p.object.event_parameter.event_parameter_type.name == 'Valintaruutu' %>
+            <%= p.check_box :value %>
+          <% end %>
+
+          <% if p.object.event_parameter.event_parameter_type.name == 'Valintanappi' %>
+            <%= p.radio_button :value, 'eka' %>
+            <%= p.label :multiple_classes, 'eka' %>
+            <%= p.radio_button :value, 'toka' %>
+            <%= p.label :multiple_classes, 'toka' %>
+          <% end %>
+
+          <br>
+
+        </div>
+        
+      
+  <% end %>
 
   <div class="field">
     <%= f.hidden_field :event_id, value: @event.id %>

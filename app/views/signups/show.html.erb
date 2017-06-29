@@ -12,15 +12,25 @@
               <thead>
               <tr>
                 <th>Nimi</th>
+                <% if admin %>
+                  <% @event.event_parameters.each do |param| %>
+                    <th> <%= param.name %> </th>
+                  <% end %>
+                <% end %>
               </tr>
               </thead>
 
               <tbody>
               <% @signups.each do |signup| %>
-                  <tr>
-                    <td><%= @signup_count %>. <%= signup %></td>
-                    <% @signup_count = @signup_count + 1 %>
-                  </tr>
+                <tr>
+                  <td><%= @signup_count %>. <%= signup %></td>
+                  <% @signup_count = @signup_count + 1 %>
+                  <% if admin %>
+                    <% signup.signup_parameters.each do |param| %>
+                      <td><%= param.value %></td>
+                    <% end %>
+                  <% end %>
+                </tr>
               <% end %>
               </tbody>
             </table>

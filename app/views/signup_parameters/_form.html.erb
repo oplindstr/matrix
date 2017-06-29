@@ -1,28 +1,30 @@
-<% @signup_parameters.each do |signup_parameter| %>
-  <%= fields_for 'signup_parameters[]', signup_parameter do |p| %>
-      <%= p.hidden_field :event_parameter_id, :value => signup_parameter.event_parameter_id  %>
-      <div class="field">
-        <%= p.label signup_parameter.event_parameter.name %><br>
+<%= f.fields_for :signup_parameters do |f| %>
+  <% @signup_parameters.each do |signup_parameter| %>
+    <%= f.fields_for 'signup_parameters[]', signup_parameter do |p| %>
+        <%= p.hidden_field :event_parameter_id, value: signup_parameter.event_parameter_id  %>
+        <div class="field">
+          <%= p.label signup_parameter.event_parameter.name %><br>
 
-        <% if signup_parameter.event_parameter_type.name == 'Teksti' %>
-          <%= p.text_field :value %>
-        <% end %>
+          <% if signup_parameter.event_parameter_type.name == 'Teksti' %>
+            <%= p.text_field :value %>
+          <% end %>
 
-        <% if signup_parameter.event_parameter_type.name == 'Valintaruutu' %>
-          <%= p.check_box :value %>
-        <% end %>
+          <% if signup_parameter.event_parameter_type.name == 'Valintaruutu' %>
+            <%= p.check_box :value %>
+          <% end %>
 
-        <% if signup_parameter.event_parameter_type.name == 'Valintanappi' %>
-          <%= p.radio_button :value, :value %>
-          <%= p.label :multiple_classes, 'eka' %>
-          <%= p.radio_button :value, :value %>
-          <%= p.label :multiple_classes, 'toka' %>
-        <% end %>
+          <% if signup_parameter.event_parameter_type.name == 'Valintanappi' %>
+            <%= p.radio_button :value, 'eka' %>
+            <%= p.label :multiple_classes, 'eka' %>
+            <%= p.radio_button :value, 'toka' %>
+            <%= p.label :multiple_classes, 'toka' %>
+          <% end %>
 
-        <br>
+          <br>
 
-      </div>
-      
+        </div>
+        
+    <% end %>
+    
   <% end %>
-  
 <% end %>
