@@ -27,6 +27,11 @@ class EventsController < ApplicationController
   # GET /events/new
   def new
     @event = Event.new
+    @event_parameter_types = EventParameterType.all
+    @event.event_parameters.build
+    @event.event_parameters.each do |param|
+      param.event_parameter_choices.build
+    end
   end
 
   # GET /events/1/edit
@@ -43,11 +48,13 @@ class EventsController < ApplicationController
   def create
     @event = Event.new(event_params)
 
+
     respond_to do |format|
       if @event.save
         format.html { redirect_to @event, notice: 'Event was successfully created.' }
         format.json { render :show, status: :created, location: @event }
       else
+        @event_parameter_types = EventParameterType.all
         format.html { render :new }
         format.json { render json: @event.errors, status: :unprocessable_entity }
       end
@@ -93,6 +100,6 @@ class EventsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def event_params
-      params.require(:event).permit(:name, :starttime, :endtime, :location, :event_type, :signup_required, :signup_start, :signup_end, :signup_cancellable_until, :descr, :price, :signup_limit, :members_only)
+      params.require(:event).permit(:name, :starttime, :endtime, :location, :event_type, :signup_required, :signup_start, :signup_end, :signup_cancellable_until, :descr, :price, :signup_limit, :members_only, :event_parameters_attributes => [:name, :event_parameter_type_id, :event_parameter_choices_attributes => [:value]])
     end
 end

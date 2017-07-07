@@ -11,4 +11,18 @@ class Signup < ActiveRecord::Base
   	end
   	return self.name
   end
+
+  def get_email
+  	if self.user
+  	  return self.user.email
+  	end
+  	return self.email
+  end
+
+  def get_phonenumber
+  	if self.user
+  	  return self.user.phonenumber
+  	end
+  	return self.phonenumber
+  end
 end

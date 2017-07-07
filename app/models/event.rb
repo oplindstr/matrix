@@ -2,6 +2,9 @@ class Event < ActiveRecord::Base
   has_many :signups
   has_many :users, through: :signups
   has_many :event_parameters
+  has_many :event_parameter_choices, through: :event_parameters
+
+  accepts_nested_attributes_for :event_parameters
 
   validates :name, presence: true, length: { minimum: 1 }
   validates :descr, presence: true, length: { minimum: 1 }

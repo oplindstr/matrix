@@ -45,10 +45,10 @@
           <% end %>
 
           <% if p.object.event_parameter.event_parameter_type.name == 'Valintanappi' %>
-            <%= p.radio_button :value, 'eka' %>
-            <%= p.label :multiple_classes, 'eka' %>
-            <%= p.radio_button :value, 'toka' %>
-            <%= p.label :multiple_classes, 'toka' %>
+            <% p.object.event_parameter.event_parameter_choices.each do |choice| %>
+              <%= p.radio_button :value, choice.value %>
+              <%= p.label :multiple_classes, choice.value %>
+            <% end %>
           <% end %>
 
           <br>

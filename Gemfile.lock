@@ -172,6 +172,10 @@ GEM
     multi_xml (0.6.0)
     multipart-post (2.0.0)
     nested_form (0.3.2)
+    nested_form_fields (0.8.1)
+      coffee-rails (>= 3.2.1)
+      jquery-rails
+      rails (>= 3.2.0)
     net-http-persistent (2.9.4)
     net-http-pipeline (1.0.1)
     nokogiri (1.7.0.1-x86-mingw32)
@@ -365,6 +369,7 @@ DEPENDENCIES
   jquery-turbolinks
   launchy
   nested_form
+  nested_form_fields
   paloma
   paperclip (~> 4.3)
   pg

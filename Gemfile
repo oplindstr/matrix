@@ -40,6 +40,7 @@ gem 'trueskill'
 gem 'nested_form'
 
 gem 'awesome_nested_fields'
+gem 'nested_form_fields'
 
 gem 'high_voltage', '~> 2.3.0'
 

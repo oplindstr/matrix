@@ -11,8 +11,11 @@
             <table>
               <thead>
               <tr>
+                <th></th>
                 <th>Nimi</th>
                 <% if admin %>
+                  <th>Sähköposti</th>
+                  <th>Puhelinnumero</th>
                   <% @event.event_parameters.each do |param| %>
                     <th> <%= param.name %> </th>
                   <% end %>
@@ -23,13 +26,16 @@
               <tbody>
               <% @signups.each do |signup| %>
                 <tr>
-                  <td><%= @signup_count %>. <%= signup %></td>
-                  <% @signup_count = @signup_count + 1 %>
+                  <td><%= @signup_count %>. </td>
+                  <td><%= signup %></td>
                   <% if admin %>
+                    <td><%= signup.get_email %></td>
+                    <td><%= signup.get_phonenumber %></td>
                     <% signup.signup_parameters.each do |param| %>
                       <td><%= param.value %></td>
                     <% end %>
                   <% end %>
+                  <% @signup_count = @signup_count + 1 %>
                 </tr>
               <% end %>
               </tbody>
