@@ -37,6 +37,8 @@ gem 'httparty'
 
 gem 'trueskill'
 
+gem 'figaro'
+
 gem 'nested_form'
 
 gem 'awesome_nested_fields'

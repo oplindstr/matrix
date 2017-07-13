@@ -48,6 +48,8 @@
                 <span> Salasana: </span><%= password_field_tag :password, params[:password], :class => "login-input" %>
                 <%= submit_tag "Kirjaudu", :class => "login-input" %>
             <% end %>
+            <span><%= link_to 'Unohditko salasanasi?', password_recovery_path %></span><br>
+            <span><%= link_to 'Unohditko käyttäjätunnuksesi?', username_recovery_path %></span>
         <% else %>
             <%= current_user.firstname %> <%= current_user.lastname %> kirjautuneena.
             <%= link_to 'Kirjaudu ulos', signout_path, method: :delete %>

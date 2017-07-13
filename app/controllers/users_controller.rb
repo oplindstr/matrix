@@ -13,6 +13,7 @@ class UsersController < ApplicationController
   # GET /users/1.json
   def show
     @player = @user.player
+    @member = Membership.where(user_id: @user.id, year: DateHelper.year).exists?
   end
 
   # GET /users/new
@@ -65,6 +66,49 @@ class UsersController < ApplicationController
   end
 
   def new_password
+  end
+
+  def username_recovery
+  end
+
+  def recover_username
+    params = username_recovery_params
+    @user = User.where(email: params[:email]).first
+    respond_to do |format|
+      if @user
+
+        UserMailer.recover_username(@user).deliver_now
+        format.html { redirect_to root_path, notice: 'Käyttäjätunnus lähetetty antamaasi sähköpostiosoitteeseen' }
+        format.json { render root_path, status: :ok, location: root_path }
+      else
+        format.html { redirect_to username_recovery_path, notice: 'Käyttäjää tällä sähköpostiosoitteella ei ole olemassa' }
+        format.json { render :username_recovery, status: :unprocessable_entity, location: username_recovery_path }
+      end
+    end
+  end
+
+  def password_recovery
+  end
+
+  def recover_password
+    params = password_recovery_params
+    @user = User.where(username: params[:username], email: params[:email]).first
+    respond_to do |format|
+      if @user 
+        @password = SecureRandom.hex(4) 
+        if @user.update(:password => @password, :password_confirmation => @password)
+          UserMailer.recover_password(@user, @password).deliver_now
+          format.html { redirect_to root_path, notice: 'Uusi salasana lähetetty antamaasi sähköpostiosoitteeseen' }
+          format.json { render root_path, status: :ok, location: root_path }
+        else
+          format.html { redirect_to password_recovery_path, notice: 'Salasanan vaihto epäonnistui' }
+          format.json { render :password_recovery, status: :unprocessable_entity, location: password_recovery_path }
+        end
+      else
+        format.html { redirect_to password_recovery_path, notice: 'Käyttäjää tällä käyttäjätunnuksella ja sähköpostiosoitteella ei ole olemassa' }
+        format.json { render :password_recovery, status: :unprocessable_entity, location: password_recovery_path }
+      end
+    end
   end
 
   def add_picture
@@ -122,5 +166,13 @@ class UsersController < ApplicationController
 
     def add_picture_params
       params.require(:user).permit(:avatar)
+    end
+
+    def username_recovery_params
+      params.permit(:email)
+    end
+
+    def password_recovery_params
+      params.permit(:username, :email)
     end
 end

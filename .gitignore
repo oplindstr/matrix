@@ -16,3 +16,6 @@
 !/log/.keep
 /tmp
 public/assets/**
+
+# Ignore application configuration
+/config/application.yml

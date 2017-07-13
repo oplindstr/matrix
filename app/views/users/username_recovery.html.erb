@@ -1,0 +1,16 @@
+<%= form_tag recover_username_path do %>
+
+	<h2>Käyttäjätunnuksen haku</h2>
+
+	<div class="field">
+		<p>Anna sähköpostiosoitteesi</p>
+		<%= email_field_tag :email %>
+	</div>
+
+	<div class="actions">
+      <%= submit_tag 'Hae' %>
+    </div>
+
+    <%= link_to 'Takaisin', root_path %>
+
+<% end %>

@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  resources :memberships
+
   resources :signup_parameters
 
   resources :event_parameter_choices
@@ -69,8 +71,13 @@ Rails.application.routes.draw do
   resources :users
 
   get '/users/:id/new_password' => 'users#new_password', as: 'new_password'
+  get '/salasanan_palautus' => 'users#password_recovery', as: 'password_recovery'
+  get '/kayttajatunnuksen_palautus' => 'users#username_recovery', as: 'username_recovery'
+  post 'users/recover_username' => 'users#recover_username', as: 'recover_username'
+  post 'users/recover_password' => 'users#recover_password', as: 'recover_password'
   patch 'users/:id/update_password' => 'users#update_password', as: 'update_password'
   patch 'users/:id/add_picture' => 'users#add_picture', as: 'add_picture'
+
 
   get 'jatkantappajat' => 'players#index'
 

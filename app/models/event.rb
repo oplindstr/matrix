@@ -50,7 +50,7 @@ class Event < ActiveRecord::Base
   end
 
   def calendar_short_info
-    return self.start_date + ' ' + self.name + ', ' + self.get_participants.to_s
+    return self.start_date + ' ' + self.name + ', ' + self.get_signups.size.to_s
   end
 
   def getSignup(user_id)

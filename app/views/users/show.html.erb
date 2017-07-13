@@ -1,5 +1,9 @@
 <h2>Muokkaa omia tietoja</h2>
 
+<% if not @member %>
+  <p>Jäsenmaksuasi tälle lukuvuodelle ei ole merkitty maksetuksi. Älä välitä tästä, jos olet maksanut sen.</p>
+<% end %>
+
 <%= render 'form' %>
 
 <% if @user.player %>

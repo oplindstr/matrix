@@ -40,7 +40,6 @@ class User < ActiveRecord::Base
 
   def positions_by_year(year)
     return self.positions.where('position_members.year = ?', year).uniq.order(:priority)
-
   end
 
   def to_s
