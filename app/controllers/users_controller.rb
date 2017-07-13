@@ -95,8 +95,7 @@ class UsersController < ApplicationController
     @user = User.where(username: params[:username], email: params[:email]).first
     respond_to do |format|
       if @user 
-        @password = SecureRandom.hex(4) 
-        byebug
+        @password = SecureRandom.hex(4)
         if @user.update(:password => @password, :password_confirmation => @password)
           UserMailer.recover_password(@user, @password).deliver_now
           format.html { redirect_to root_path, notice: 'Uusi salasana lähetetty antamaasi sähköpostiosoitteeseen' }
