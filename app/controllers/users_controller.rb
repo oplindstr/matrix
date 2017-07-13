@@ -96,6 +96,7 @@ class UsersController < ApplicationController
     respond_to do |format|
       if @user 
         @password = SecureRandom.hex(4) 
+        byebug
         if @user.update(:password => @password, :password_confirmation => @password)
           UserMailer.recover_password(@user, @password).deliver_now
           format.html { redirect_to root_path, notice: 'Uusi salasana lähetetty antamaasi sähköpostiosoitteeseen' }
