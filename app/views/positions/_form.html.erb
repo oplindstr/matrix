@@ -12,15 +12,18 @@
   <% end %>
 
   <div class="field">
-    <%= f.text_area :name %>
+    <%= f.label 'Nimi' %> <br>
+    <%= f.text_field :name %>
   </div>
 
   <div class="field">
+    <%= f.label 'Prioriteetti' %> <br>
     <%= f.number_field :priority %>
   </div>
 
   <div class="field">
-    <%= f.checkbox :show_in_contact_info %>
+    <%= f.label 'Näytä yhteystiedoissa' %> <br>
+    <%= f.check_box :show_in_contact_info %>
   </div>
   
 

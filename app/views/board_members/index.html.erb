@@ -26,18 +26,43 @@
 
 	<% if @year == @this_year %>
 
-		<div class="board_members">
-			<% @board_members.each do |member| %>
-				<div class="board_member">
-				    <span> <%= image_tag(member.avatar, size: "16x16") %> </span>
-					<p> <%= member.name %> </p>
-					<% member.positions_by_year(@year).each do |position| %>
-						<span> <%= position.name %> </span> <br>
+		<% @index = 0 %>
+
+		<table>
+
+			<div class="board_members">
+				<% loop do %>
+					<% @member = @board_members[@index] %>
+					<tr>
+					    <td class='board_member'> 
+						    <span><%= image_tag(@member.get_avatar, size: "240x320") %> </span>
+							<b> <%= @member.name %> </b>
+							<br><br>
+							<% @member.positions_by_year(@year).each do |position| %>
+								<span> <%= position.name %> </span> <br>
+							<% end %>
+							<br>
+						<td>
+					<% @index = @index + 1 %>
+					<% @member = @board_members[@index] %>
+					<% if @member %>
+					    <td class='board_member'> 
+						    <span><%= image_tag(@member.get_avatar, size: "240x320") %> </span>
+							<b> <%= @member.name %> </b>
+							<br><br>
+							<% @member.positions_by_year(@year).each do |position| %>
+								<span> <%= position.name %> </span> <br>
+							<% end %>
+							<br>
+						<td>
+					</tr>
 					<% end %>
-					<br>
-				</div>
-			<% end %>
-		</div>
+					<% @index = @index + 1 %>
+					<% break if @index >= @board_members.size %>
+				<% end %>
+			</div>
+
+		</table>
 
 	<% else %>
 
@@ -61,17 +86,43 @@
 
 	<% if @year == @this_year %>
 
-		<div class="board_members">
-			<% @supplementary_members.each do |member| %>
-			    <div class="board_member">
-					<p> <%= member.name %> </p>
-					<% member.positions_by_year(@year).each do |position| %>
-						<span> <%= position.name %> </span> <br>
+		<% @index = 0 %>
+
+		<table>
+
+			<div class="board_members">
+				<% loop do %>
+					<% @member = @supplementary_members[@index] %>
+					<tr>
+					    <td class='board_member'> 
+						    <span><%= image_tag(@member.get_avatar, size: "240x320") %> </span>
+							<b> <%= @member.name %> </b>
+							<br><br>
+							<% @member.positions_by_year(@year).each do |position| %>
+								<span> <%= position.name %> </span> <br>
+							<% end %>
+							<br>
+						<td>
+					<% @index = @index + 1 %>
+					<% @member = @supplementary_members[@index] %>
+					<% if @member %>
+					    <td class='board_member'> 
+						    <span><%= image_tag(@member.get_avatar, size: "240x320") %> </span>
+							<b> <%= @member.name %> </b>
+							<br><br>
+							<% @member.positions_by_year(@year).each do |position| %>
+								<span> <%= position.name %> </span> <br>
+							<% end %>
+							<br>
+						<td>
+					</tr>
 					<% end %>
-					<br>
-				</div>
-			<% end %>
-		</div>
+					<% @index = @index + 1 %>
+					<% break if @index >= @supplementary_members.size %>
+				<% end %>
+			</div>
+
+		</table>
 
 	<% else %>
 
@@ -95,17 +146,43 @@
 
 	<% if @year == @this_year %>
 
-		<div class="board_members">
-			<% @position_members.each do |member| %>
-			    <div class="board_member">
-					<p> <%= member.name %> </p>
-					<% member.positions_by_year(@year).each do |position| %>
-						<span> <%= position.name %> </span> <br>
+		<% @index = 0 %>
+
+		<table>
+
+			<div class="board_members">
+				<% loop do %>
+					<% @member = @position_members[@index] %>
+					<tr>
+					    <td class='board_member'> 
+						    <span><%= image_tag(@member.get_avatar, size: "240x320") %> </span>
+							<b> <%= @member.name %> </b>
+							<br><br>
+							<% @member.positions_by_year(@year).each do |position| %>
+								<span> <%= position.name %> </span> <br>
+							<% end %>
+							<br>
+						<td>
+					<% @index = @index + 1 %>
+					<% @member = @position_members[@index] %>
+					<% if @member %>
+					    <td class='board_member'> 
+						    <span><%= image_tag(@member.get_avatar, size: "240x320") %> </span>
+							<b> <%= @member.name %> </b>
+							<br><br>
+							<% @member.positions_by_year(@year).each do |position| %>
+								<span> <%= position.name %> </span> <br>
+							<% end %>
+							<br>
+						<td>
+					</tr>
 					<% end %>
-					<br>
-				</div>
-			<% end %>
-		</div>
+					<% @index = @index + 1 %>
+					<% break if @index >= @position_members.size %>
+				<% end %>
+			</div>
+
+		</table>
 
 	<% else %>
 
@@ -131,6 +208,9 @@
 	<%= link_to 'Lisää virkailija', new_position_member_path %>
 	<br>
 	<br>
-	<%= link_to 'Muokkaa virkoja', '/board_members_and_positions' %>
+	<%= link_to 'Muokkaa hallituksen jäseniä ja virkoja', '/board_members_and_positions' %>
+	<br>
+	<br>
+	<%= link_to 'Lisää uusi virka', new_position_path %>
 
 <% end %>

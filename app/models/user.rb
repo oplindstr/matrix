@@ -60,4 +60,8 @@ class User < ActiveRecord::Base
     signup_id = signup.id
     return Signup.where('event_id = ? and id <= ?', event_id ,signup_id).count
   end
+
+  def get_avatar
+    return self.avatar_url
+  end
 end

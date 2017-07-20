@@ -19,7 +19,8 @@
       <%= f.label :supplementary, 'Varajäsen' %>
       <%= f.check_box :supplementary %> <br>
       <%= f.label :name, 'Nimi' %> <br>
-      <%= f.text_field :name %> <br> <br>
+      <%= f.text_field :name %> <br>
+      <%= f.file_field :avatar %> <br> <br>
       <%= f.submit "Save", class: "btn btn-primary" %> <br>
    <% end %>
 </div>

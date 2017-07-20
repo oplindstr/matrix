@@ -20,7 +20,6 @@ class BoardMembersController < ApplicationController
       @years = BoardMember.order(year: :desc).uniq.pluck(:year) | PositionMember.order(year: :desc).uniq.pluck(:year)
 
       @this_year = DateHelper.year
-
    end
 
    def new
@@ -71,7 +70,7 @@ class BoardMembersController < ApplicationController
     end
 
     def board_member_params
-      params.require(:board_member).permit(:user_id, :year, :supplementary, :name)
+      params.require(:board_member).permit(:user_id, :year, :supplementary, :name, :avatar)
     end
     
 end
