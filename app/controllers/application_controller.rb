@@ -9,6 +9,7 @@ class ApplicationController < ActionController::Base
   helper_method :admin
   helper_method :sub_admin
   helper_method :get_setting
+  helper_method :ensure_that_admin
 
   def save_current_url
     session[:return_to] = request.referer

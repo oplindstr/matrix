@@ -53,6 +53,9 @@
         <% else %>
             <%= current_user.firstname %> <%= current_user.lastname %> kirjautuneena.
             <%= link_to 'Kirjaudu ulos', signout_path, method: :delete %>
+            <% if admin %>
+              <%= link_to 'Admin-toiminnot', '/admin' %>
+            <% end %>
         <% end %>
       </div>
       <%= yield %>

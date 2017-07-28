@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170713104102) do
+ActiveRecord::Schema.define(version: 20170728134458) do
 
   create_table "board_members", force: :cascade do |t|
     t.integer "user_id"
@@ -84,28 +84,6 @@ ActiveRecord::Schema.define(version: 20170713104102) do
     t.boolean  "members_only"
   end
 
-  create_table "hands", force: :cascade do |t|
-    t.integer  "match_id"
-    t.integer  "points1"
-    t.integer  "points2"
-    t.integer  "declarer"
-    t.integer  "bid"
-    t.integer  "contract"
-    t.boolean  "made"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  create_table "matches", force: :cascade do |t|
-    t.integer  "player1"
-    t.integer  "player2"
-    t.integer  "player3"
-    t.integer  "player4"
-    t.integer  "winners"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
   create_table "memberships", force: :cascade do |t|
     t.integer  "user_id"
     t.integer  "year"
@@ -119,17 +97,6 @@ ActiveRecord::Schema.define(version: 20170713104102) do
     t.datetime "updated_at",             null: false
     t.text     "header"
     t.integer  "priority",   default: 1
-  end
-
-  create_table "players", force: :cascade do |t|
-    t.string   "name"
-    t.float    "expectation"
-    t.float    "deviation"
-    t.datetime "created_at",   null: false
-    t.datetime "updated_at",   null: false
-    t.string   "abbreviation"
-    t.integer  "user_id"
-    t.boolean  "private"
   end
 
   create_table "position_members", force: :cascade do |t|

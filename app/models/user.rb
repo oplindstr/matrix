@@ -7,13 +7,13 @@ class User < ActiveRecord::Base
   validates :lastname, presence: true
   validates :email, uniqueness: true
 
-  has_one :player
   has_many :board_members
   has_many :signups
   has_many :events, through: :signups
   has_many :posts
   has_many :position_members
   has_many :positions, through: :position_members
+  has_many :memberships
 
   mount_uploader :avatar, AvatarUploader
 
