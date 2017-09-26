@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170926071443) do
+ActiveRecord::Schema.define(version: 20170926082149) do
 
   create_table "board_members", force: :cascade do |t|
     t.integer "user_id"
@@ -117,7 +117,7 @@ ActiveRecord::Schema.define(version: 20170926071443) do
     t.boolean "show_in_contact_info"
     t.integer "priority"
     t.boolean "admin"
-    t.boolean "position_type"
+    t.integer "position_type"
   end
 
   create_table "post_comments", force: :cascade do |t|
