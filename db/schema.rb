@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170728134458) do
+ActiveRecord::Schema.define(version: 20170926071443) do
 
   create_table "board_members", force: :cascade do |t|
     t.integer "user_id"
@@ -106,10 +106,18 @@ ActiveRecord::Schema.define(version: 20170728134458) do
     t.string  "name"
   end
 
+  create_table "position_types", force: :cascade do |t|
+    t.string   "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "positions", force: :cascade do |t|
     t.string  "name"
     t.boolean "show_in_contact_info"
     t.integer "priority"
+    t.boolean "admin"
+    t.boolean "position_type"
   end
 
   create_table "post_comments", force: :cascade do |t|
@@ -140,6 +148,7 @@ ActiveRecord::Schema.define(version: 20170728134458) do
     t.text     "value"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string   "descr"
   end
 
   create_table "signup_parameters", force: :cascade do |t|

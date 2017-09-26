@@ -33,27 +33,32 @@
 
   <%= f.fields_for :signup_parameters do |p| %>
     <%= p.hidden_field :event_parameter_id, value: p.object.event_parameter_id  %>
-      <div class="field">
-          <%= p.label p.object.event_parameter.name %><br>
-
-          <% if p.object.event_parameter.event_parameter_type.name == 'Teksti' %>
-            <%= p.text_field :value %>
-          <% end %>
-
-          <% if p.object.event_parameter.event_parameter_type.name == 'Valintaruutu' %>
-            <%= p.check_box :value %>
-          <% end %>
-
-          <% if p.object.event_parameter.event_parameter_type.name == 'Valintanappi' %>
-            <% p.object.event_parameter.event_parameter_choices.each do |choice| %>
-              <%= p.radio_button :value, choice.value %>
-              <%= p.label :multiple_classes, choice.value %>
+      <% if p.object.event_parameter %>
+        <div class="field">
+            <% if p.object.event_parameter.event_parameter_type.name == 'Teksti' %>
+              <%= p.label p.object.event_parameter.name %><br>
+              <%= p.text_field :value %>
             <% end %>
-          <% end %>
 
-          <br>
+            <% if p.object.event_parameter.event_parameter_type.name == 'Valintaruutu' %>
+              <%= p.label p.object.event_parameter.name %><br>
+              <%= p.check_box :value %>
+            <% end %>
 
-        </div>
+            <% if p.object.event_parameter.event_parameter_type.name == 'Valintanappi' %>
+              <% if p.object.event_parameter.event_parameter_choices.size > 0 %>
+                <%= p.label p.object.event_parameter.name %><br>
+                <% p.object.event_parameter.event_parameter_choices.each do |choice| %>
+                  <%= p.radio_button :value, choice.value %>
+                  <%= p.label :value, choice.value %>
+                <% end %>
+              <% end %>
+            <% end %>
+
+            <br>
+
+          </div>
+        <% end %>
         
       
   <% end %>
@@ -62,6 +67,10 @@
     <%= f.hidden_field :event_id, value: @event.id %>
   </div>
   <div class="actions">
-    <%= f.submit :value => 'Ilmoittaudun' %>
+    <% if current_user and @event.user_signed_up(current_user.id) %>
+      <%= f.submit :value => 'Muokkaa ilmoittautumista' %>
+    <% else %>
+      <%= f.submit :value => 'Ilmoittaudun' %>
+    <% end %>
   </div>
 <% end %>

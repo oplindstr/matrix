@@ -46,10 +46,10 @@ class SignupsController < ApplicationController
   def update
     respond_to do |format|
       if @signup.update(signup_params)
-        format.html { redirect_to @signup, notice: 'Signup was successfully updated.' }
-        format.json { render :show, status: :ok, location: @signup }
+        format.html { redirect_to event_path(@signup.event_id), notice: 'Ilmoittautumisen muokkaus onnistui' }
+        format.json { render :show, status: :created, location: event_path(@signup.event_id) }
       else
-        format.html { render :edit }
+        format.html { render :back }
         format.json { render json: @signup.errors, status: :unprocessable_entity }
       end
     end
@@ -82,6 +82,6 @@ class SignupsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def signup_params
-      params.require(:signup).permit(:user_id, :event_id, :name, :email, :phonenumber, :signup_parameters_attributes => [:event_parameter_id, :value])
+      params.require(:signup).permit(:id, :user_id, :event_id, :name, :email, :phonenumber, :signup_parameters_attributes => [:id, :event_parameter_id, :value])
     end
 end

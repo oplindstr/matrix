@@ -31,6 +31,32 @@ matrixApp.controller('EventsController', ["$scope", "$http", "DateHelper", funct
     });
 }]);
 
-matrixApp.controller('NewEventController', ["$scope", function ($scope) {
-    $scope.signup = false;
+matrixApp.controller('EditEventController', ["$scope", "$http", function ($scope, $http) {
+    $http.get('edit.json').success(function (data, status, headers, config) {
+        $scope.signup = data.event.signup_required;
+    });
 }]);
+
+matrixApp.controller('EventParameterController', ["$scope", function ($scope) {
+}]);
+
+function show_event_parameter_choices(id, value) {  
+    var element = $('#' + id);
+    if (value == 3) {
+        element.next().show();
+    }
+    else {
+        element.next().hide();
+    }
+}
+
+$(document).ready(function () {
+    $(".event_parameter_choices").each(function() {
+        if ($(this).prev().val() == 3) {
+            $(this).show();
+        }
+        else {
+            $(this).hide();
+        }
+    });
+});

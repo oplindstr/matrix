@@ -21,6 +21,11 @@
     <%= f.text_area :text, style: 'width:100%', rows: 7 %>
   </div>
 
+  <div class="field">
+    <%= f.label :priority, 'Prioriteetti' %><br>
+    <%= f.number_field :priority %>
+  </div>
+
   <div class="actions">
     <%= f.submit "Tallenna" %>
   </div>

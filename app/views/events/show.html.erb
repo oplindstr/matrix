@@ -1,40 +1,55 @@
-<div ng-controller="EventsController">
+<div id="Event" class="container-fluid">
 
-  <div id="Event" class="container-fluid">
+  <div class="col-lg-9">
 
-    <div class="col-lg-9">
+      <p></p>
 
-        <p></p>
+      <div class="Event EventFields">
 
-        <div class="Event EventFields">
+          <h2><%= @event.name %></h2>
 
-            <h2><%= @event.name %></h2>
+          <p>
+          <strong>Päivä:</strong>
+          <%= DateHelper.weekday(@event.starttime) %> <%= DateHelper.standard_date(@event.starttime) %>
+          </p>
 
-            <p>
-            <strong>Päivä:</strong>
-            <%= DateHelper.weekday(@event.starttime) %> <%= DateHelper.standard_date(@event.starttime) %>
-            </p>
+          <p>
+          <strong>Aika:</strong>
+          <%= DateHelper.time(@event.starttime)%>
+          </p>
 
-            <p>
-            <strong>Aika:</strong>
-            <%= DateHelper.time(@event.starttime)%>
-            </p>
+          <% if not (@event.location.nil? || @event.location.empty?) %>
 
             <p>
             <strong>Paikka:</strong>
             <%= @event.location %>
             </p>
 
+          <% end %>
+
+          <% if not (@event.event_type.nil? || @event.event_type.empty?) %>
+
             <p>
             <strong>Tyyppi:</strong>
             <%= @event.event_type %>
             </p>
 
+          <% end %>
+
+          <% if not (@event.price.nil? || @event.price.empty?) %>
+
             <p>
-            <%= @event.descr %>
+            <strong>Hinta:</strong>
+            <%= @event.price %> €
             </p>
 
-            <% if @event.signup_required %>
+          <% end %>
+
+          <p>
+          <%= @event.descr %>
+          </p>
+
+          <% if @event.signup_required %>
 
             <p>
             <strong>Ilmoittautumisaika:</strong>
@@ -46,56 +61,51 @@
             <%= DateHelper.full_date(@event.signup_cancellable_until) %>
             </p>
 
-              <p>
-                <strong>Ilmoittautuneita:</strong>
-                <%= @event.signups.count %>
-                <% if @event.signup_limit %>
-                  / <%= @event.signup_limit %>
-                <% end %>
-              </p>
-
-              <% if @event.full %>
-                  <p>Tapahtuma on täynnä!</p>
+            <p>
+              <strong>Ilmoittautuneita:</strong>
+              <%= @event.signups.count %>
+              <% if @event.signup_limit %>
+                / <%= @event.signup_limit %>
               <% end %>
+            </p>
 
-              <% if !@event.empty %>
+            <% if @event.full %>
+                <p>Tapahtuma on täynnä!</p>
+            <% end %>
 
-                <p><%= link_to 'Näytä ilmoittautuneet', event_signups_path(@event.id) %></p>
+            <% if !@event.empty %>
 
-              <% end %>
+              <p><%= link_to 'Näytä ilmoittautuneet', event_signups_path(@event.id) %></p>
 
-              <% if @event.empty and @event.signup_open %>
+            <% end %>
 
-                <p>Tapahtumaan ei ole vielä ilmoittautunut ketään</p>
+            <% if @event.empty and @event.signup_open %>
 
-              <% end %>
+              <p>Tapahtumaan ei ole vielä ilmoittautunut ketään</p>
 
-              <% if !@event.members_only %>
-                <b>Ulkopuoliset voivat ilmoittautua tapahtumaan</b>
-              <% end %>
+            <% end %>
 
-              <% if !current_user and !@event.members_only and !@event.full and @event.signup_open %>
+            <% if !@event.members_only %>
+              <b>Ulkopuoliset voivat ilmoittautua tapahtumaan</b>
+            <% end %>
+
+            <% if !current_user and !@event.members_only and !@event.full and @event.signup_open %>
+              <%= render 'signups/form' %>
+            <% end %>
+
+            <% if current_user and !@event.user_signed_up(current_user.id) and !@event.full and @event.signup_open %>
+                <%= render 'signups/form' %>
+            <% end %>
+
+            <% if current_user and @event.user_signed_up(current_user.id) and @event.signup_cancellable %>
+              <% if @event_parameters.size > 0 %>
                 <%= render 'signups/form' %>
               <% end %>
-
-              <% if current_user and !@event.user_signed_up(current_user.id) and !@event.full and @event.signup_open %>
-                  <%= render 'signups/form' %>
-              <% end %>
-
-              <% if current_user and @event.user_signed_up(current_user.id) and @event.signup_cancellable %>
-                  <%= button_to 'Peru ilmoittautuminen', @signup, method: :delete, data: { confirm: 'Haluatko varmasti perua ilmoittautumisesi?' } %>
-              <% end %>
-
+                <%= button_to 'Peru ilmoittautuminen', @signup, method: :delete, data: { confirm: 'Haluatko varmasti perua ilmoittautumisesi?' } %>
             <% end %>
 
-            <% if current_user %>
-              <%= link_to 'Lisää lisätietokenttä', @event.id.to_s + '/new_parameter' %>
-            <% end %>
-        </div>
-
-    </div>
-
-    <%= render 'sidebar_events' %>
+          <% end %>
+      </div>
 
   </div>
 

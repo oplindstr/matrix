@@ -32,7 +32,9 @@
                     <td><%= signup.get_email %></td>
                     <td><%= signup.get_phonenumber %></td>
                     <% signup.signup_parameters.each do |param| %>
-                      <td><%= param.value %></td>
+                      <% if param.event_parameter %>
+                        <td><%= param.value %></td>
+                      <% end %>
                     <% end %>
                   <% end %>
                   <% @signup_count = @signup_count + 1 %>

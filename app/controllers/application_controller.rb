@@ -22,7 +22,11 @@ class ApplicationController < ActionController::Base
 
   def admin
     return nil if not current_user
-    current_user.admin
+    return current_user.admin
+    #@position_member = PositionMember.where("year = ? AND user_id = ?", Date.today.year, current_user.id)
+    #@position = Position.find(@position_member.position_id)
+    #return true if @position.admin
+    #current_user.admin
   end
 
   def sub_admin

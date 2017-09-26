@@ -69,6 +69,8 @@
 
   <ul>
     <% @years.each do |year| %>
-      <li><%= link_to 'Tapahtumakalenteri ' + year.to_s, 'kalenteri/vuosi/' + year.to_s %></li>
+      <% if year <= Date.today.year %>
+        <li><%= link_to 'Tapahtumakalenteri ' + year.to_s, 'kalenteri/vuosi/' + year.to_s %></li>
+      <% end %>
     <% end %>
   </ul>

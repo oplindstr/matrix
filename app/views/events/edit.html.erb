@@ -1,6 +1,123 @@
 <h1>Editing Event</h1>
 
-<%= render 'form' %>
+<%= form_for @event do |f| %>
+  <% if @event.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@event.errors.count, "error") %> prohibited this event from being saved:</h2>
 
-<%= link_to 'Show', @event %> |
-<%= link_to 'Back', events_path %>
+      <ul>
+      <% @event.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+	<div ng-controller="EditEventController">
+
+	  <div class="field">
+	    <%= f.label 'Nimi' %> (pakollinen kenttä)<br>
+	    <%= f.text_field :name %>
+	  </div>
+	    <div class="field">
+	      <%= f.label 'Kuvaus' %> (pakollinen kenttä)<br>
+	      <%= f.text_area :descr, :rows => "10", :cols => "50" %>
+	    </div>
+	  <div class="field">
+	    <%= f.label 'Alkaa' %><br>
+	    <%= f.datetime_select :starttime %>
+	  </div>
+	  <div class="field">
+	    <%= f.label 'Loppuu' %><br>
+	    <%= f.datetime_select :endtime %>
+	  </div>
+	  <div class="field">
+	    <%= f.label 'Paikka' %><br>
+	    <%= f.text_field :location %>
+	  </div>
+	    <div class="field">
+	      <%= f.label 'Hinta' %><br>
+	      <%= f.number_field :price %>
+	    </div>
+
+	  <div class="field">
+	    <%= f.label 'Tyyppi' %><br>
+	    <%= f.text_field :event_type %>
+	  </div>
+	  <div class="field">
+	    <%= f.label 'Täytyykö ilmoittautua' %><br>
+	    <%= f.check_box :signup_required, data: { "ng-model" => "signup" } %>
+	  </div>
+
+	  <div name="signup-options" ng-show="signup">
+
+	    <div class="field">
+	      <%= f.label 'Ilmoittautumisraja' %><br>
+	      <%= f.number_field :signup_limit %>
+	    </div>
+
+	      <div class="field">
+	        <%= f.label 'Ilmoittautuminen alkaa' %><br>
+	        <%= f.datetime_select :signup_start %>
+	      </div>
+	      <div class="field">
+	        <%= f.label 'Ilmoittautuminen päättyy' %><br>
+	        <%= f.datetime_select :signup_end %>
+	      </div>
+	      <div class="field">
+	        <%= f.label 'Ilmoittautuminen sitova alkaen' %><br>
+	        <%= f.datetime_select :signup_cancellable_until %>
+	      </div>
+	      <div class="field">
+	        <%= f.label 'Vain jäsenille' %><br>
+	        <%= f.check_box :members_only %>
+	      </div>
+
+	      <h2>Lisätiedot</h2>
+        <div class='items'>
+          <%= f.nested_fields_for :event_parameters, :wrapper => false do |p| %>
+            <div class="fields">
+              <div class="field">
+                <%= p.hidden_field :id  %>
+              </div>
+              <div class="field">
+                <%= p.label 'Nimi' %><br>
+                <%= p.text_field :name  %>  
+              </div>
+              <%= p.remove_nested_fields_link "Poista kenttä", :class => 'btn btn-danger', data: { confirm: 'Are you sure?' } %>
+              <div class="field">
+                <%= p.label 'Tyyppi' %><br>
+                <%= p.select :event_parameter_type_id, options_from_collection_for_select(@event_parameter_types, :id, :name, p.object.event_parameter_type_id), {}, {"onchange" => "show_event_parameter_choices(this.id, this.value)"} %>
+                <div class="event_parameter_choices" hidden>
+                  <%= p.nested_fields_for :event_parameter_choices, :wrapper => false do |c| %>
+                    <div class='fields'>
+                      <div class="field">
+		                <%= c.hidden_field :id  %>
+		              </div>
+                      <div class="field">
+                        <%= c.label 'Vaihtoehto' %><br>
+                        <%= c.text_field :value %>  
+                      </div>
+                      <%= c.remove_nested_fields_link "Poista vaihtoehto", :class => 'btn btn-danger' %>
+                    </div>
+                  <% end %>
+                  <br>
+                  <%= p.add_nested_fields_link :event_parameter_choices, "Lisää vaihtoehto", :class => 'btn btn-primary' %>
+                </div>
+              </div>
+            </div>
+         <% end %>
+        </div>
+         <%= f.add_nested_fields_link :event_parameters, "Lisää kenttä", :class => 'btn btn-primary' %>
+	  </div>
+	  <br>
+
+	  <div class="actions">
+	    <%= f.submit 'Tallenna' %>
+	  </div>
+
+	</div>
+
+<% end %>
+
+<%= link_to 'Takaisin', @event %>

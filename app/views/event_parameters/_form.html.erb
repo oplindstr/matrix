@@ -1,32 +1,48 @@
-<%= form_for(@event_parameter) do |f| %>
-  <% if @event_parameter.errors.any? %>
+<%= form_for @event, as: :post, url: event_parameter_path do |f| %>
+  <% if @event.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(@event_parameter.errors.count, "error") %> prohibited this event_parameter from being saved:</h2>
+      <h2><%= pluralize(@event.errors.count, "error") %> prohibited this event from being saved:</h2>
 
       <ul>
-      <% @event_parameter.errors.full_messages.each do |message| %>
+      <% @event.errors.full_messages.each do |message| %>
         <li><%= message %></li>
       <% end %>
       </ul>
     </div>
   <% end %>
 
-  <div class="field">
-    <%= f.hidden_field :event_id, :value => @event.id %>
-  </div>
-  <div class="field">
-    <%= f.label :name, 'Nimi' %><br>
-    <%= f.text_field :name %>
-  </div>
-  <div class="field">
-    <%= f.label :event_parameter_type_id, 'Tyyppi' %><br>
-    <%= f.select(:event_parameter_type_id, options_from_collection_for_select(@event_parameter_types, :id, :name)) %>
-  </div>
-  <div class="field">
-    <%= f.label :required, 'Pakollinen' %><br>
-    <%= f.check_box :required %>
-  </div>
+  <h2>Lisätiedot</h2>
+
+      <div name='event_parameters'>
+        <div class='items'>
+          <%= f.nested_fields_for :event_parameters, :wrapper => false do |p| %>
+            <div class="fields">
+              <div class="field">
+                <%= p.label 'Nimi' %><br>
+                <%= p.text_field :name  %>
+              </div>
+              <div class="field">
+                <%= p.label 'Tyyppi' %><br>
+                <%= p.select(:event_parameter_type_id, options_from_collection_for_select(@event_parameter_types, :id, :name, p.object.event_parameter_type_id)) %>
+                <div name="event_parameter_choices">
+                  <%= p.nested_fields_for :event_parameter_choices, :wrapper => false do |c| %>
+                     <div class='fields'>
+                      <div class="field">
+                        <%= c.label 'Vaihtoehto' %><br>
+                        <%= c.text_field :value %>
+                      </div>
+                    </div>
+                  <% end %>
+                  <%= p.add_nested_fields_link :event_parameter_choices, "Lisää vaihtoehto", :class => 'btn btn-primary' %>
+                </div>
+              </div>
+            </div>
+         <% end %>
+        </div>
+         <%= f.add_nested_fields_link :event_parameters, "Lisää kenttä", :class => 'btn btn-primary' %>
+      </div>
+
   <div class="actions">
-    <%= f.submit 'Lisää lisätietokenttä' %>
+    <%= f.submit 'Tallenna lisätietokentät' %>
   </div>
 <% end %>

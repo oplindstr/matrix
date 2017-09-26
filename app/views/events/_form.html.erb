@@ -11,8 +11,6 @@
     </div>
   <% end %>
 
-<div ng-controller="NewEventController">
-
   <div class="field">
     <%= f.label 'Nimi' %> (pakollinen kenttä)<br>
     <%= f.text_field :name %>
@@ -44,7 +42,7 @@
   </div>
   <div class="field">
     <%= f.label 'Täytyykö ilmoittautua' %><br>
-    <input name="event[signup_required]" type="hidden" value="0" /><input type="checkbox" ng-model="signup" value="1" name="event[signup_required]" id="event_signup_required" />
+    <%= f.check_box :signup_required, data: { "ng-model" => "signup" } %>
   </div>
 
   <div name="signup-options" ng-show="signup">
@@ -83,8 +81,8 @@
               </div>
               <div class="field">
                 <%= p.label 'Tyyppi' %><br>
-                <%= p.select(:event_parameter_type_id, options_from_collection_for_select(@event_parameter_types, :id, :name)) %>
-                <div name="event_parameter_choices" ng-show="test">
+                <%= p.select(:event_parameter_type_id, options_from_collection_for_select(@event_parameter_types, :id, :name, p.object.event_parameter_type_id)) %>
+                <div name="event_parameter_choices" ng-show="choices">
                   <%= p.nested_fields_for :event_parameter_choices, :wrapper => false do |c| %>
                      <div class='fields'>
                       <div class="field">
@@ -93,6 +91,7 @@
                       </div>
                     </div>
                   <% end %>
+                  <br>
                   <%= p.add_nested_fields_link :event_parameter_choices, "Lisää vaihtoehto", :class => 'btn btn-primary' %>
                 </div>
               </div>
@@ -101,13 +100,12 @@
         </div>
          <%= f.add_nested_fields_link :event_parameters, "Lisää kenttä", :class => 'btn btn-primary' %>
       </div>
+      <br>
 
   </div>
 
   <div class="actions">
     <%= f.submit 'Tallenna' %>
   </div>
-
-</div>
 
 <% end %>

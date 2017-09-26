@@ -1,6 +1,6 @@
 class EventParametersController < ApplicationController
-  before_action :set_event_parameter, only: [:show, :edit, :update, :destroy]
-  before_action :set_event_id, only: [:new]
+  before_action :set_event_parameter, only: [:show, :edit, :destroy]
+  before_action :set_event, only: [:new, :update]
 
   # GET /event_parameters
   # GET /event_parameters.json
@@ -15,7 +15,6 @@ class EventParametersController < ApplicationController
 
   # GET /event_parameters/new
   def new
-    @event_parameter = EventParameter.new
     @event_parameter_types = EventParameterType.all
   end
 
@@ -44,12 +43,14 @@ class EventParametersController < ApplicationController
   # PATCH/PUT /event_parameters/1.json
   def update
     respond_to do |format|
-      if @event_parameter.update(event_parameter_params)
-        format.html { redirect_to @event_parameter, notice: 'Event parameter was successfully updated.' }
-        format.json { render :show, status: :ok, location: @event_parameter }
+      params = event_parameter_params
+      byebug
+      if @event.update(event_parameter_params)
+        format.html { redirect_to @event, notice: 'Lisätietokentät lisätty' }
+        format.json { render :show, status: :ok, location: @event }
       else
         format.html { render :edit }
-        format.json { render json: @event_parameter.errors, status: :unprocessable_entity }
+        format.json { render json: @event.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -70,12 +71,13 @@ class EventParametersController < ApplicationController
       @event_parameter = EventParameter.find(params[:id])
     end
 
-    def set_event_id
+    def set_event
       @event = Event.find(params[:id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
-    def event_parameter_params
-      params.require(:event_parameter).permit(:event_id, :name, :event_parameter_type_id, :required)
+     def event_parameter_params
+      byebug
+      params.require(:event).permit(:event_parameters_attributes => [:name, :event_parameter_type_id, :event_parameter_choices_attributes => [:value]])
     end
 end

@@ -4,7 +4,7 @@ class NewsController < ApplicationController
   # GET /news
   # GET /news.json
   def index
-    @news = News.all
+    @news = News.all.order(:priority)
   end
 
   # GET /news/1
@@ -28,8 +28,8 @@ class NewsController < ApplicationController
 
     respond_to do |format|
       if @news.save
-        format.html { redirect_to root_path, notice: 'Uutinen lisätty onnistuneesti' }
-        format.json { render :index, status: :created, location: root_path }
+        format.html { redirect_to news_index_path, notice: 'Uutinen lisätty onnistuneesti' }
+        format.json { render :index, status: :created, location: news_index_path }
       else
         format.html { render :new }
         format.json { render json: @news.errors, status: :unprocessable_entity }
@@ -42,8 +42,8 @@ class NewsController < ApplicationController
   def update
     respond_to do |format|
       if @news.update(news_params)
-        format.html { redirect_to root_path, notice: 'Uutisen päivitys onnistui' }
-        format.json { render :show, status: :ok, location: root_path }
+        format.html { redirect_to news_index_path, notice: 'Uutisen päivitys onnistui' }
+        format.json { render :index, status: :ok, location: news_index_path }
       else
         format.html { render :edit }
         format.json { render json: @news.errors, status: :unprocessable_entity }
@@ -56,8 +56,8 @@ class NewsController < ApplicationController
   def destroy
     @news.destroy
     respond_to do |format|
-      format.html { redirect_to root_path, notice: 'Uutinen poistettu onnistuneesti' }
-      format.json { head :no_content }
+      format.html { redirect_to news_index_path, notice: 'Uutinen poistettu onnistuneesti' }
+      format.json { render :index, status: :ok, location: news_index_path }
     end
   end
 
