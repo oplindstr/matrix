@@ -91,7 +91,7 @@ class EventsController < ApplicationController
 
   def events_by_year
     @year = params[:year]
-    @events = Event.where("cast(strftime('%Y', starttime) as int) = ?", @year).order(:starttime)
+    @events = Event.all.order(:starttime).select{|m| m.starttime.year == @year.to_i }
   end
 
   private
