@@ -53,6 +53,7 @@ Rails.application.routes.draw do
   post '/users/recover_password' => 'users#recover_password', as: 'recover_password'
   patch '/users/:id/update_password' => 'users#update_password', as: 'update_password'
   patch '/users/:id/add_picture' => 'users#add_picture', as: 'add_picture'
+  patch '/users/:id/remove_picture' => 'users#remove_picture', as: 'remove_picture'
   
   get '/signin', to: 'sessions#new'
   delete '/signout', to: 'sessions#destroy'

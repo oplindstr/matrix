@@ -3,17 +3,21 @@ class PagesController < ApplicationController
 
   def fuksiopas
     @virkatyyppi = PositionType.where('name = ?', 'Tuutorivastaava').first
-  	@fuksijatuutorivastaava = Position.where('position_type = ?', @virkatyyppi).first
-  	if @fuksijatuutorivastaava
-      @fuksijatuutorivastaavat = @fuksijatuutorivastaava.current_members
+    if @virkatyyppi
+    	@fuksijatuutorivastaava = Position.where('position_type = ?', @virkatyyppi).first
+    	if @fuksijatuutorivastaava
+        @fuksijatuutorivastaavat = @fuksijatuutorivastaava.current_members
+      end
     end
   end
 
   def tuutorit
   	@virkatyyppi = PositionType.where('name = ?', 'Tuutorivastaava').first
-    @fuksijatuutorivastaava = Position.where('position_type = ?', @virkatyyppi).first
-    if @fuksijatuutorivastaava
-      @fuksijatuutorivastaavat = @fuksijatuutorivastaava.current_members
+    if @virkatyyppi
+      @fuksijatuutorivastaava = Position.where('position_type = ?', @virkatyyppi).first
+      if @fuksijatuutorivastaava
+        @fuksijatuutorivastaavat = @fuksijatuutorivastaava.current_members
+      end
     end
   end
 

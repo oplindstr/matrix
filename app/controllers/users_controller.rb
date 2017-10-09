@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_action :set_user, only: [:show, :edit, :update, :destroy, :add_picture, :new_password, :update_password]
+  before_action :set_user, only: [:show, :edit, :update, :destroy, :add_picture, :new_password, :update_password, :remove_picture]
   before_action :ensure_that_current_user, only: [:show, :edit, :update]
   before_action :ensure_that_admin, only: [:index, :destroy]
 
@@ -28,6 +28,7 @@ class UsersController < ApplicationController
   # POST /users.json
   def create
     @user = User.new(user_params)
+    @user.joined = Time.now
 
     respond_to do |format|
       if @user.save
@@ -116,6 +117,18 @@ class UsersController < ApplicationController
     respond_to do |format|
       if @user.update(params)
         format.html { redirect_to @user, notice: 'Picture was successfully added' }
+        format.json { render :show, status: :ok, location: @user }
+      else
+        format.html { render :show }
+        format.json { render json: @user.errors, status: :unprocessable_entity }
+      end
+    end
+  end
+
+  def remove_picture
+    respond_to do |format|
+      if @user.remove_avatar!
+        format.html { redirect_to @user, notice: 'Picture was successfully removed' }
         format.json { render :show, status: :ok, location: @user }
       else
         format.html { render :show }

@@ -5,6 +5,10 @@ class Signup < ActiveRecord::Base
   has_many :signup_parameters
   accepts_nested_attributes_for :signup_parameters, :allow_destroy => true
 
+  validates :name, length: { maximum: 500 }
+  validates :email, length: { maximum: 500 }
+  validates :phonenumber, length: { maximum: 500 }
+
   def to_s
   	if self.user
   	  return self.user

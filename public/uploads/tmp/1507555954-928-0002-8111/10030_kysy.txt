@@ -1,0 +1,21 @@
+Pakolliset kentät?
+
+mites toi et add userista ei enää pääse edittiin?
+Muuttuu varmaan tabeiks jossain vaiheessa? add/edit/delete
+
+organization list: jätin oikeustarkistukset sellaisekseen koska ei mitään hajua mitä tapahtuu.
+Organisaatiotason oikeustarkistukset per servicen omat oikeudet add/edit/delete tekemättä, koska mahdollisesti ristiriita tuon numerosotkun kanssa.
+
+Deleted nyt ainoa piilossa oleva. Piilotetaan lisää.
+
+Ei pysty (vielä) vaihtamaan käyttäjän organisaatiota
+Miten korjataan, että vaihtaa organisaatiota kesken kaiken. Nyt käy vaan niin, että tiedot jää siihen ja userin id.
+
+Miten costcentren on tarkoitus toimia? Riittääkö että se on vaan yksi tekstikenttä per käyttäjä. Sille on kenttä vain Employee taulussa.
+
+CR:t 3153, 3622, 3751
+
+U_type_id handlaus?
+Tässä ikkunassa vain normaalien käyttäjien editointi?
+
+Taulut: users, user_billing, user_numpac

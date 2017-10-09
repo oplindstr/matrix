@@ -6,10 +6,15 @@ class Event < ActiveRecord::Base
 
   accepts_nested_attributes_for :event_parameters, allow_destroy: true
 
-  validates :name, presence: true, length: { minimum: 1 }
-  validates :descr, presence: true, length: { minimum: 1 }
+  validates :name, presence: true, length: { in: 1..500 }
+  validates :descr, presence: true, length: { maximum: 25000 }
+  validates :location, length: { maximum: 100 }
+  validates :event_type, length: { maximum: 100 }
   validates :starttime, presence: true
+  validates :price, :inclusion => 0..5000
+  validates :signup_limit, :inclusion => 0..5000
   validate :endtimes_cannot_be_before_starttimes
+  validate :date_ranges
 
   def full
     if self.signups.size > 0 and self.signup_limit and self.signup_limit > 0 and self.signups.count >= self.signup_limit
@@ -69,6 +74,51 @@ class Event < ActiveRecord::Base
 
     if self.signup_end and self.signup_start and self.signup_end < self.signup_start
       errors.add(:signup_start, "Ilmoittautuminen ei voi loppua ennen kuin se alkaa")
+    end
+  end
+
+  def date_ranges
+    @earliest = Date.new(1991)
+    @latest = Date.new(3000)
+    if self.starttime
+      if self.starttime < @earliest
+        errors.add(:starttime, "Tapahtuman alkuaika liian aikaisin")
+      end
+      if self.starttime > @latest
+        errors.add(:starttime, "Tapahtuman alkuaika liian myöhään")
+      end
+    end
+    if self.endtime
+      if self.endtime < @earliest
+        errors.add(:endtime, "Tapahtuman loppuaika liian aikaisin")
+      end
+      if self.endtime > @latest
+        errors.add(:endtime, "Tapahtuman loppuaika liian myöhään")
+      end
+    end
+    if self.signup_start
+      if self.signup_start < @earliest
+        errors.add(:signup_start, "Ilmoittautumisen alkuaika liian aikaisin")
+      end
+      if self.signup_start > @latest
+        errors.add(:signup_start, "Ilmoittautumisen alkuaika liian myöhään")
+      end
+    end
+    if self.signup_end
+      if self.signup_end < @earliest
+        errors.add(:signup_end, "Ilmoittautumisen loppuaika liian aikaisin")
+      end
+      if self.signup_end > @latest
+        errors.add(:signup_end, "Ilmoittautumisen loppuaika liian myöhään")
+      end
+    end
+    if self.signup_cancellable_until
+      if self.signup_cancellable_until < @earliest
+        errors.add(:signup_cancellable_until, "Ilmoittautumisen sitovuus liian aikaisin")
+      end
+      if self.signup_cancellable_until > @latest
+        errors.add(:signup_cancellable_until, "Ilmoittautumisen sitovuus liian myöhään")
+      end
     end
   end
 end

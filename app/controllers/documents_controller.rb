@@ -13,14 +13,14 @@ class DocumentsController < ApplicationController
    
    def create
       @document = Document.new(document_params)
+      @document_group = @document.document_group
       
       respond_to do |format|
          if @document.save
-            @document_group = @document.document_group
-            
             format.html { redirect_to @document_group, notice: 'Document was successfully created.' }
          else
-            render "new"
+            @document_group_id = @document_group.id
+            format.html { render :new }
          end
       end
    end

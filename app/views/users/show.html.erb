@@ -8,14 +8,36 @@
 
 <% if sub_admin %>
 
+  <% if @user.get_avatar %>
+
+    <h2>Lisätty kuva</h2>
+
+    <%= image_tag(@user.get_avatar, size: "240x320") %>
+
+    <p>Näytetään hallitus ja virkailijat sivulla</p>
+
+    <%= form_for @user, :url => { :action => "remove_picture" } do |f| %>
+
+      <div class="actions">
+        <%= f.submit 'Poista kuva', data: { confirm: 'Oletko varma?' }  %>
+      </div>
+
+    <% end %>
+
+  <% end %>
+
   <%= form_for @user, :url => { :action => "add_picture" } do |f| %>
 
     <div class="form-area">
 
-      <h2>Lisää kuva</h2>
+      <% if @user.get_avatar %>
+        <h2>Vaihda kuva</h2>
+      <% else %>
+        <h2>Lisää kuva</h2>
+      <% end %>
 
       <div class="field">
-        <%= f.file_field :avatar %>
+        <%= f.file_field :avatar, accept: 'image/png,image/jpg,image/jpeg' %> (kuvan koko korkeintaan 5 MB)
       </div>
 
     </div>

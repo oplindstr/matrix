@@ -1,5 +1,5 @@
 class News < ActiveRecord::Base
-	validates :header, presence: true
-	validates :text, presence: true
-	validates :priority, :numericality => { :greater_than_or_equal_to => 0 }
+	validates :header, presence: true, length: { maximum: 500 }
+	validates :text, presence: true, length: { maximum: 25000 }
+	validates :priority, :inclusion => 0..5000
 end
