@@ -51,3 +51,4 @@ class PositionAvatarUploader < CarrierWave::Uploader::Base
   def size_range
     1..5.megabyte
   end
+end
