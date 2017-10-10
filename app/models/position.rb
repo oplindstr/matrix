@@ -8,9 +8,8 @@ class Position < ActiveRecord::Base
 	validates :priority, :inclusion => 0..5000
 
 	def current_members
-	  if self.position_members
-	  	@year = self.position_members.select(:year).order(year: :desc).first.year
-	  	return self.position_members.where('year = ?', @year)
+	  if self.position_members.size > 0
+	  	return self.position_members.where('year = ?', Time.now.year)
 	  end
 	end
 end

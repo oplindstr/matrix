@@ -2,18 +2,24 @@
 
 <p>Opintojen alussa fuksit eli ensimmäisen vuoden opiskelijat jaetaan omiin pienryhmiinsä. Näitä pienryhmiä johtaa tuutori, joka on vanhempi opiskelija. Tuutoroinnin tarkoituksena on tutustuttaa fuksit yliopistomaailmaan sekä toisiinsa.</p><p>Tuutoriryhmiin jakaminen tapahtuu <a href="http://wiki.helsinki.fi/display/mathstatOpiskelu/Orientoivat+opinnot" class="external-link" rel="nofollow">orientoivissa opinnoissa</a>, jotka sijoittuvat välittömästi ennen varsinaisten opintojen alkua. Tuutorit kertovat oleelliset asiat yliopisto-opiskelusta ja auttavat alkuun opintojen kanssa.</p><p>Matematiikan laitoksella on opintojen alkuun sijoittuvan tuutoroinnin lisäksi käytössä <a href="http://wiki.helsinki.fi/display/mathstatOpiskelu/Ohjaajatuutorointi" class="external-link" rel="nofollow">ohjaajatuutorijärjestelmä</a>, joka tarjoaa tukea ensimmäisen opiskeluvuoden ajan.</p>
 
-Matrixin Fuksi- ja tuutorivastaavina toimivat vuonna <%= Time.now.year %> 
-
 <% if @virkatyyppi and @fuksijatuutorivastaavat and @fuksijatuutorivastaavat.size > 0 %>
+
+  Matrixin 
+
+  <% if @fuksijatuutorivastaavat.size == 1 %>
+    Fuksi- ja tuutorivastaavana vuonna <%= Time.now.year %> toimii 
+  <% else %>
+    Fuksi- ja tuutorivastaavina vuonna <%= Time.now.year %> toimivat 
+  <% end %>
 
   <% @fuksijatuutorivastaavat.each_with_index do |vastaava, i| %>
     <% if i == @fuksijatuutorivastaavat.size - 1 %>
-	  <%= vastaava.user.name %>
-	<% elsif i == @fuksijatuutorivastaavat.size - 2 %>
-	  <%= vastaava.user.name %> ja 
-	<% else %>
-	  <%= vastaava.user.name %>, 
-	<% end %>
+      <%= vastaava.get_name %>
+    <% elsif i == @fuksijatuutorivastaavat.size - 2 %>
+      <%= vastaava.get_name %> ja 
+    <% else %>
+      <%= vastaava.get_name %>, 
+    <% end %>
   <% end %>
 
 <% end %>

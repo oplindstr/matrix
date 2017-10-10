@@ -1,5 +1,5 @@
 class BoardMembersController < ApplicationController
-	before_action :set_year, only: [:index, :new]
+	before_action :set_year, only: [:index, :new, :create]
 
    def index
    	  @min_year = [BoardMember.minimum(:year), PositionMember.minimum(:year)].min
@@ -19,22 +19,27 @@ class BoardMembersController < ApplicationController
 
       @years = BoardMember.order(year: :desc).uniq.pluck(:year) | PositionMember.order(year: :desc).uniq.pluck(:year)
 
+      @years.sort_by! { |y| -y }
+
       @this_year = DateHelper.year
    end
 
    def new
       @board_member = BoardMember.new
       @users = User.all
-      @years = (1995..@year+1).to_a
    end
 
    def create
       @board_member = BoardMember.new(board_member_params)
       
-      if @board_member.save
-         redirect_to '/hallitus', notice: "The board member has been uploaded."
-      else
-         render "new"
+      respond_to do |format|
+        if @board_member.save
+          format.html { redirect_to '/hallitus?vuosi=' + @board_member.year.to_s, notice: "The board member has been uploaded." }
+        else
+          @users = User.all
+          @user = @board_member.user_id
+          format.html { render :new, status: :unprocessable_entity, location: new_board_member_path }
+        end
       end
    end
 

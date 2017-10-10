@@ -178,22 +178,25 @@ Jos et syystä tai toisesta pääse omaan laskuharjoitusryhmääsi, voit myös v
 
 <p><span id="Fuksiopas-Ketkäovatfuksi-jatuutorivastaavamme?"> </span>
 
-<strong>Ketkä ovat fuksi- ja tuutorivastaavamme?</strong>
+<% if @virkatyyppi and @fuksijatuutorivastaava and @fuksijatuutorivastaavat.size > 0 %>
 
-<br/> 
+  <strong>Ketkä ovat fuksi- ja tuutorivastaavamme?</strong>
 
-Fuksivastaavina toimivat vuonna <%= Time.now.year %> 
-
-<% if @virkatyyppi and @fuksijatuutorivastaavat and @fuksijatuutorivastaavat.size > 0 %>
+  <br/> 
+  <% if @fuksijatuutorivastaavat.size == 1 %>
+    Fuksi- ja tuutorivastaavana vuonna <%= Time.now.year %> toimii 
+  <% else %>
+    Fuksi- ja tuutorivastaavina vuonna <%= Time.now.year %> toimivat 
+  <% end %>
 
   <% @fuksijatuutorivastaavat.each_with_index do |vastaava, i| %>
     <% if i == @fuksijatuutorivastaavat.size - 1 %>
-	  <%= vastaava.user.name %>
-	<% elsif i == @fuksijatuutorivastaavat.size - 2 %>
-	  <%= vastaava.user.name %> ja 
-	<% else %>
-	  <%= vastaava.user.name %>, 
-	<% end %>
+      <%= vastaava.get_name %>
+    <% elsif i == @fuksijatuutorivastaavat.size - 2 %>
+      <%= vastaava.get_name %> ja 
+    <% else %>
+      <%= vastaava.get_name %>, 
+    <% end %>
   <% end %>
 
 <% end %>
