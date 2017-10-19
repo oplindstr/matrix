@@ -2,7 +2,15 @@ class BoardMembersController < ApplicationController
 	before_action :set_year, only: [:index, :new, :create]
 
    def index
-   	  @min_year = [BoardMember.minimum(:year), PositionMember.minimum(:year)].min
+      if BoardMember.count > 0 and PositionMember.count > 0
+   	    @min_year = [BoardMember.minimum(:year), PositionMember.minimum(:year)].min
+      elsif BoardMember.count > 0
+        @min_year = BoardMember.minimum(:year)
+      elsif PositionMember.count > 0
+        @min_year = PositionMember.minimum(:year)
+      else
+        @min_year = DateHelper.year
+      end
 
       @board_members = User.joins(:board_members).where("board_members.year = ? AND supplementary = ?", @year, false)
       @supplementary_members = User.joins(:board_members).where('board_members.year = ? AND supplementary = ?', @year, true)

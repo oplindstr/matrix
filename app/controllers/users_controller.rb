@@ -126,8 +126,11 @@ class UsersController < ApplicationController
   end
 
   def remove_picture
+    @user.remove_avatar!
+
     respond_to do |format|
-      if @user.remove_avatar!
+      if @user.save
+        @user.avatar = nil
         format.html { redirect_to @user, notice: 'Picture was successfully removed' }
         format.json { render :show, status: :ok, location: @user }
       else
