@@ -90,16 +90,16 @@
             <% end %>
 
             <% if !current_user and !@event.members_only and !@event.full and @event.signup_open %>
-              <%= render 'signups/form' %>
+              <%= render 'signup_form' %>
             <% end %>
 
             <% if current_user and !@event.user_signed_up(current_user.id) and !@event.full and @event.signup_open %>
-                <%= render 'signups/form' %>
+                <%= render 'signup_form' %>
             <% end %>
 
             <% if current_user and @event.user_signed_up(current_user.id) and @event.signup_cancellable %>
               <% if @event_parameters.size > 0 %>
-                <%= render 'signups/form' %>
+                <%= render 'signup_form' %>
               <% end %>
                 <%= button_to 'Peru ilmoittautuminen', @signup, method: :delete, data: { confirm: 'Haluatko varmasti perua ilmoittautumisesi?' } %>
             <% end %>

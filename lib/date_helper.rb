@@ -51,6 +51,14 @@ module DateHelper
     return time.strftime('%d.%m.%Y')
   end
 
+  def self.date(time)
+    return time.strftime('%d.%m.')
+  end
+
+  def self.standard_time(time)
+    return weekday(time) + ' ' + date(time) + ' klo ' + time(time)
+  end
+
   def self.year
     return Time.new.year
   end

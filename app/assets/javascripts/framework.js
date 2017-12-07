@@ -1,24 +1,25 @@
-$(document).ready(function () {
+document.addEventListener('DOMContentLoaded', function () {
 
-	window.isMobile = /iphone|ipod|ipad|android|blackberry|opera mini|opera mobi|skyfire|maemo|windows phone|palm|iemobile|symbian|symbianos|fennec/i.test(navigator.userAgent.toLowerCase());
+  // Get all "navbar-burger" elements
+  var $navbarBurgers = Array.prototype.slice.call(document.querySelectorAll('.navbar-burger'), 0);
+  
+  // Check if there are any navbar burgers
+  if ($navbarBurgers.length > 0) {
 
-	var slidedDown = "none";
+    // Add a click event on each of them
+    $navbarBurgers.forEach(function ($el) {
+      $el.addEventListener('click', function () {
 
-	if (isMobile) {
-		$('.dropdown-toggle').on("click", function (e) {
-		  $('.dropdown-menu').stop(true, true).delay(250).slideUp("fast");
-		  if (slidedDown !== $(this).attr("id")) {
-	        e.preventDefault();
-	        slidedDown = $(this).attr("id");
-	        $(this).find('.dropdown-menu').first().stop(true, true).delay(250).slideDown("fast");
-    	  };
-	    })
-	}
-	else {
-	$('.dropdown-toggle').hover(function() {
-	  $(this).find('.dropdown-menu').first().stop(true, true).delay(250).slideDown("fast");
-	}, function() {
-	  $(this).find('.dropdown-menu').first().stop(true, true).delay(100).slideUp("fast")
-	});
-	}
+        // Get the target from the "data-target" attribute
+        var target = $el.dataset.target;
+        var $target = document.getElementById(target);
+
+        // Toggle the class on both the "navbar-burger" and the "navbar-menu"
+        $el.classList.toggle('is-active');
+        $target.classList.toggle('is-active');
+
+      });
+    });
+  }
+
 });

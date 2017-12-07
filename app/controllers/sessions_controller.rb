@@ -9,9 +9,9 @@ class SessionsController < ApplicationController
       session[:user_id] = @user.id
       redirect_to session.delete(:return_to), notice: "Tervetuloa #{@user.firstname}!"
     elsif @user && !@user.authenticate(params[:password])
-      redirect_to :back, notice: "Salasana väärin"
+      redirect_to :back, alert: "Salasana väärin"
     else !@user
-      redirect_to :back, notice: "Käyttäjää #{params[:username]} ei ole!"
+      redirect_to :back, alert: "Käyttäjää #{params[:username]} ei ole!"
     end
   end
 

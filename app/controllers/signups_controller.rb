@@ -35,7 +35,9 @@ class SignupsController < ApplicationController
         format.html { redirect_to event_path(@signup.event_id), notice: 'Ilmoittautuminen onnistui!' }
         format.json { render :show, status: :created, location: event_path(@signup.event_id) }
       else
-        format.html { render :back }
+        @event = Event.find(@signup.event_id)
+        @event_parameters = @event.event_parameters
+        format.html { render 'events/show'}
         format.json { render json: @signup.errors, status: :unprocessable_entity }
       end
     end
@@ -49,7 +51,9 @@ class SignupsController < ApplicationController
         format.html { redirect_to event_path(@signup.event_id), notice: 'Ilmoittautumisen muokkaus onnistui' }
         format.json { render :show, status: :created, location: event_path(@signup.event_id) }
       else
-        format.html { render :back }
+        @event = Event.find(@signup.event_id)
+        @event_parameters = @event.event_parameters
+        format.html { render 'events/show'}
         format.json { render json: @signup.errors, status: :unprocessable_entity }
       end
     end

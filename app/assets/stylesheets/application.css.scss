@@ -1,15 +1,36 @@
-/*
- * This is a manifest file that'll be compiled into application.css, which will include all the files
- * listed below.
- *
- * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
- * or vendor/assets/stylesheets of plugins, if any, can be referenced here using a relative path.
- *
- * You're free to add application-wide styles to this file and they'll appear at the bottom of the
- * compiled file so the styles you add here take precedence over styles defined in any styles
- * defined in the other CSS/SCSS files in this directory. It is generally better to create a new
- * file per style scope.
- *
- *= require_tree .
- *= require_self
- */
+$navbar-item-hover-background-color: transparent;
+
+$section-padding: 1rem 1rem;
+
+$box-padding: 1rem;
+
+@import "bulma";
+
+.column > img {
+	display: block;
+	margin: 0 auto;
+}
+
+.navbar-start > .navbar-item {
+	font-weight: bold;
+}
+
+.navbar-start > .navbar-item > .navbar-link > a {
+	font-weight: bold;
+}
+
+footer img {
+	padding: 1rem 1rem;
+}
+
+#success-notification {
+	color: green;
+}
+
+#error-notification {
+	color: red;
+}
+
+.box {
+	margin: 0rem 0.5rem;
+}

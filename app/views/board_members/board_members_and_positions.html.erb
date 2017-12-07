@@ -13,11 +13,7 @@
   <tbody>
 	<% @board_members.each do |member| %>
 	  <tr>
-    <% if member.user %>
-	  <td><%= member.user.name %></td>
-    <% else %>
-    <td><%= member.name %></td>
-    <% end %>
+	  <td><%= member.name %></td>
 		<td><%= member.year %></td>
 		<td><%= check_box_tag 'supplementary', 'supplementary', member.supplementary, disabled: true %></td>
 		<td><%= button_to "Poista", {action: "destroy", id: member.id}, method: :delete, class: "btn btn-danger", data: {confirm: "Are you sure that you wish to delete this record?"} %></td>

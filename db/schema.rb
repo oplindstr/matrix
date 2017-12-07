@@ -11,14 +11,13 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170926082149) do
+ActiveRecord::Schema.define(version: 20171114140946) do
 
   create_table "board_members", force: :cascade do |t|
     t.integer "user_id"
     t.integer "year"
     t.string  "avatar"
     t.boolean "supplementary"
-    t.string  "name"
   end
 
   create_table "document_group_categories", force: :cascade do |t|
@@ -103,7 +102,6 @@ ActiveRecord::Schema.define(version: 20170926082149) do
     t.integer "user_id"
     t.integer "year"
     t.integer "position_id"
-    t.string  "name"
   end
 
   create_table "position_types", force: :cascade do |t|

@@ -12,29 +12,32 @@ class BoardMembersController < ApplicationController
         @min_year = DateHelper.year
       end
 
-      @board_members = User.joins(:board_members).where("board_members.year = ? AND supplementary = ?", @year, false)
-      @supplementary_members = User.joins(:board_members).where('board_members.year = ? AND supplementary = ?', @year, true)
-      @position_members = User.joins(:position_members).where('position_members.year = ?', @year)
-
-      @board_members = @board_members.sort_by { |f| f.priority_in_board_member_list(@year) }
-      @supplementary_members = @supplementary_members.sort_by { |f| f.priority_in_board_member_list(@year) }
-
-      @all = (@board_members | @supplementary_members) | @position_members
-
-      @all = @all.sort_by! { |f| f.priority_in_board_member_list(@year) }
-
-      @position_members = (@all - @board_members) - @supplementary_members
-
       @years = BoardMember.order(year: :desc).uniq.pluck(:year) | PositionMember.order(year: :desc).uniq.pluck(:year)
 
       @years.sort_by! { |y| -y }
 
       @this_year = DateHelper.year
+
+      @all_board_members = BoardMember.where("year = ?", @year)
+
+      @board_members = @all_board_members.select{ |m| m.supplementary == false }
+
+      @supplementary_members = @all_board_members.select{ |m| m.supplementary == true }
+
+      @user_ids = @all_board_members.pluck(:user_id)
+
+      @position_members = User.joins(:position_members).where('position_members.year = ?', @year).uniq
+      @position_members = @position_members.select{ |m| not @user_ids.include? m.id }
+
+      @board_members = @board_members.sort_by { |f| f.user.priority_in_board_member_list(@year) }
+      @supplementary_members = @supplementary_members.sort_by { |f| f.user.priority_in_board_member_list(@year) }
+      @position_members = @position_members.sort_by { |f| f.priority_in_board_member_list(@year) }
    end
 
    def new
       @board_member = BoardMember.new
       @users = User.all
+      @this_year = DateHelper.year
    end
 
    def create
@@ -83,7 +86,7 @@ class BoardMembersController < ApplicationController
     end
 
     def board_member_params
-      params.require(:board_member).permit(:user_id, :year, :supplementary, :name, :avatar)
+      params.require(:board_member).permit(:user_id, :year, :supplementary, :avatar)
     end
     
 end

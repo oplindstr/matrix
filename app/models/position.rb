@@ -4,7 +4,6 @@ class Position < ActiveRecord::Base
 
 	belongs_to :position_type
 
-	validates :name, uniqueness: true, presence: true, length: { maximum: 500 }
 	validates :priority, :inclusion => 0..5000
 
 	def current_members

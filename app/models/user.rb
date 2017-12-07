@@ -25,11 +25,17 @@ class User < ActiveRecord::Base
   end
 
   def display_email
-    return self.email.gsub!("@", " (at) ")
+    if self.email and self.email.length > 0
+      return self.email.gsub!("@", " (at) ")
+    end
+    return nil
   end
 
   def info_with_email
-    return self.name + ' (' + display_email + ')'
+    if self.email and self.email.length > 0
+      return self.name + ' (' + display_email + ')'
+    end
+    return self.name
   end
 
   def priority_in_board_member_list(year)
@@ -66,5 +72,13 @@ class User < ActiveRecord::Base
 
   def get_avatar
     return self.avatar_url
+  end
+
+  def membership(year)
+    membership = Membership.where('user_id = ? and year = ?', self.id, year).first
+    if membership
+      return true
+    end
+    return false
   end
 end

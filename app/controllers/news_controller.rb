@@ -1,10 +1,11 @@
 class NewsController < ApplicationController
   before_action :set_news, only: [:show, :edit, :update, :destroy]
+  before_action :ensure_that_sub_admin
 
   # GET /news
   # GET /news.json
   def index
-    @news = News.all.order(:priority)
+    @news = News.all.order(priority: :desc, id: :desc)
   end
 
   # GET /news/1

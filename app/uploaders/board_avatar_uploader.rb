@@ -11,7 +11,7 @@ class BoardAvatarUploader < CarrierWave::Uploader::Base
   # Override the directory where uploaded files will be stored.
   # This is a sensible default for uploaders that are meant to be mounted:
   def store_dir
-    "hallituskuvat/" + self.model.year.to_s
+    "hallituskuvat/" + self.model.year.to_s + '/' + self.model.user.id.to_s
   end
 
   # Provide a default URL as a default if there hasn't been a file uploaded:
@@ -49,6 +49,6 @@ class BoardAvatarUploader < CarrierWave::Uploader::Base
   # end
 
   def size_range
-    1..5.megabyte
+    0..5.megabyte
   end
 end

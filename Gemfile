@@ -26,25 +26,14 @@ gem 'jbuilder', '~> 2.0'
 gem 'sdoc', '~> 0.4.0', group: :doc
 
 # Use ActiveModel has_secure_password
-gem 'bcrypt', '3.1.11'
+gem 'bcrypt', '~> 3.1.11'
 
 # Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
 gem 'jquery-turbolinks'
 
-gem 'httparty'
-
-gem 'trueskill'
-
-gem 'figaro'
-
-gem 'nested_form'
-
-gem 'awesome_nested_fields'
 gem 'nested_form_fields'
 
-gem 'high_voltage', '~> 2.3.0'
-
-gem 'paloma'
+gem "bulma-rails", "~> 0.6.1"
 
 # Use Unicorn as the app server
 # gem 'unicorn'
@@ -71,7 +60,6 @@ group :test do
   gem 'simplecov', require: false
   gem "selenium-webdriver"
   gem "headless"
-  gem "database_cleaner"
   gem "poltergeist"
   gem 'phantomjs', :require => 'phantomjs/poltergeist'
   gem 'webrat', '0.7.1'
@@ -86,10 +74,6 @@ end
 
 gem 'travis', '~> 1.7.5'
 
-gem 'google-api-client'
-
 gem 'carrierwave'
 
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
-
-gem "paperclip", "~> 4.3"

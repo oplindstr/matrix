@@ -27,11 +27,18 @@ class PositionMembersController < ApplicationController
   # position /positions.json
   def create
   	@position_member = PositionMember.new(position_member_params)
-      
-    if @position_member.save
-       redirect_to '/hallitus', notice: "The position member has been uploaded."
-    else
-       render "new"
+    
+    respond_to do |format|
+      if @position_member.save
+         format.html { redirect_to '/hallitus', notice: "The position member has been uploaded." }
+      else
+        @year = DateHelper.year
+        @position_member = PositionMember.new
+        @users = User.all
+        @years = (1995..@year+1).to_a
+        @positions = Position.all
+        format.html { render :new, status: :unprocessable_entity, location: new_position_member_path }
+      end
     end
   end
 

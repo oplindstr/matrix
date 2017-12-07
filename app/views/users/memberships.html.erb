@@ -1,0 +1,28 @@
+<h1>Lukuvuoden <%= @year %>-<%= @year+1 %> jäsenyydet</h1>
+
+<%= form_tag update_memberships_path do %>
+<%= hidden_field_tag :year, @year %>
+<table>
+  <thead>
+    <tr>
+      <th>Nimi</th>
+      <th>Sähköpostiosoite</th>
+      <th>Jäsenyys voimassa</th>
+    </tr>
+  </thead>
+
+<tbody>
+  <% @users.each do |user| %> 
+  <tr>
+  	<td><%= user.name %></td>
+  	<td><%= user.email %></td>
+    <%= fields_for "users[]", user do |f| %>
+      <td><%= f.check_box :member, checked: user.membership(@year) %></td>
+    <% end %>
+  <% end %>
+  </tr>
+</tbody>
+
+</table>
+<%= submit_tag 'Tallenna muutokset' %>
+<% end %>

@@ -35,30 +35,35 @@
     <%= p.hidden_field :event_parameter_id, value: p.object.event_parameter_id  %>
       <% if p.object.event_parameter %>
         <div class="field">
-            <% if p.object.event_parameter.event_parameter_type.name == 'Teksti' %>
-              <%= p.label p.object.event_parameter.name %><br>
-              <%= p.text_field :value %>
-            <% end %>
+          <%= p.label :id, p.object.event_parameter.name %>
 
-            <% if p.object.event_parameter.event_parameter_type.name == 'Valintaruutu' %>
-              <%= p.label p.object.event_parameter.name %><br>
-              <%= p.check_box :value %>
-            <% end %>
+          <% if p.object.event_parameter.required %>
+            *
+          <% end %>
 
-            <% if p.object.event_parameter.event_parameter_type.name == 'Valintanappi' %>
-              <% if p.object.event_parameter.event_parameter_choices.size > 0 %>
-                <%= p.label p.object.event_parameter.name %><br>
-                <% p.object.event_parameter.event_parameter_choices.each do |choice| %>
-                  <%= p.radio_button :value, choice.value %>
-                  <%= p.label :value, choice.value %>
-                <% end %>
+          <br>
+
+          <% if p.object.event_parameter.event_parameter_type.name == 'Teksti' %>
+            <%= p.text_field :value %>
+          <% end %>
+
+          <% if p.object.event_parameter.event_parameter_type.name == 'Valintaruutu' %>
+            <%= p.check_box :value %>
+          <% end %>
+
+          <% if p.object.event_parameter.event_parameter_type.name == 'Valintanappi' %>
+            <% if p.object.event_parameter.event_parameter_choices.size > 0 %>
+              <% p.object.event_parameter.event_parameter_choices.each do |choice| %>
+                <%= p.radio_button :value, choice.value %>
+                <%= p.label :value, choice.value %>
               <% end %>
             <% end %>
+          <% end %>
 
-            <br>
+          <br>
 
-          </div>
-        <% end %>
+        </div>
+      <% end %>
         
       
   <% end %>

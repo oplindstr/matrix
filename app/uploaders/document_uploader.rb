@@ -51,7 +51,7 @@ class DocumentUploader < CarrierWave::Uploader::Base
   # end
 
   def size_range
-    1..5.megabyte
+    0..5.megabyte
   end
 
 end

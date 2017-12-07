@@ -1,50 +1,52 @@
-<h1>Yhteystiedot</h1>
+<div class="box">
+  <h1 class="title">Yhteystiedot</h1>
+  <br>
+  <h3 class="subtitle">Postiosoite ja toimisto</h3>
 
-<h3>Postiosoite ja toimisto</h3>
+  <p>Matrixin postiosoite on</p>
 
-<p>Matrixin postiosoite on<p>
+  Matematiikan ja tilastotieteen laitos<br>
+  Matrix ry<br>
+  PL 68 Gustaf Hällströmin katu 2 B<br>
+  00014 Helsingin yliopisto<br>
 
-Matematiikan ja tilastotieteen laitos<br>
-Matrix ry<br>
-PL 68 Gustaf Hällströmin katu 2 B<br>
-00014 Helsingin yliopisto<br>
+  <p>Toimistona palvelee Exactumin matematiikan ja tilastotieteen laitoksen opiskelijahuone, Exactum C338.</p>
+  <br>
+  <h3 class="subtitle">Sähköpostit</h3>
 
-<p>Toimistona palvelee Exactumin matematiikan ja tilastotieteen laitoksen opiskelijahuone, Exactum C338.</p>
+  <ul>
+    <% @contact_positions.each do |position| %>
+      <li>
+        <% if position.current_members.size <= 1 %>
+          <%= position.name %>: 
+        <% else %>
+          <%= position.name %>t:
+        <% end %> 
+        <% position.current_members.each_with_index do |member, i| %>
+          <% if i == position.current_members.size - 1 %>
+  	      <%= member.user.info_with_email %>
+  	    <% elsif i == position.current_members.size - 2 %>
+  	      <%= member.user.info_with_email %> ja 
+  	    <% else %>
+  	      <%= member.user.info_with_email %>, 
+  	    <% end %>
+  	  <% end %> 
+  	</li>
+    <% end %>
+    <li>Aktiivisähköpostilista: matrix-ry</li>
+  </ul>
 
-<h3>Sähköpostit</h3>
+  <p>Muiden vastaavien ja aktiivien tiedot löydät <%= link_to 'täältä', '/hallitus' %>.</p>
+  <p>Katso myös tietoa Matrixin muista <%= link_to 'sähköpostilistoista', '/sahkopostilistat' %>.</p>
+  <br>
+  <h3 class="subtitle">Sosiaalinen media</h3>
 
-<ul>
-  <% @contact_positions.each do |position| %>
-    <li>
-      <% if position.current_members.size <= 1 %>
-        <%= position.name %>: 
-      <% else %>
-        <%= position.name %>t:
-      <% end %> 
-      <% position.current_members.each_with_index do |member, i| %>
-        <% if i == position.current_members.size - 1 %>
-	      <%= member.user.info_with_email %>
-	    <% elsif i == position.current_members.size - 2 %>
-	      <%= member.user.info_with_email %> ja 
-	    <% else %>
-	      <%= member.user.info_with_email %>, 
-	    <% end %>
-	  <% end %> 
-	</li>
-  <% end %>
-  <li>Aktiivisähköpostilista: matrix-ry</li>
-</ul>
+  IRCnet: #matrix-ry (IRC-ohjeet TKO-älyn <%= link_to 'fuksiwikissä', 'http://fuksiwiki.tko-aly.fi/IRC-ohjeet' %>)<br>
+  Facebook-sivu: <%= link_to 'Matrix ry', 'https://www.facebook.com/matrixry/' %><br>
+  Facebook-ryhmä: <%= link_to 'Matrix ry', 'https://www.facebook.com/groups/4931342997/' %><br>
+  Instagram: <%= link_to '@matrix_ry', 'https://www.instagram.com/matrix_ry/' %><br>
+  <br>
+  <h3 class="subtitle">Opetusvälitys</h3>
 
-<p>Muiden vastaavien ja aktiivien tiedot löydät <%= link_to 'täältä', '/hallitus' %>.</p>
-<p>Katso myös tietoa Matrixin muista <%= link_to 'sähköpostilistoista', '/sahkopostilistat' %>.</p>
-
-<h3>Sosiaalinen media</h3>
-
-IRCnet: #matrix-ry (IRC-ohjeet TKO-älyn <%= link_to 'fuksiwikissä', 'http://fuksiwiki.tko-aly.fi/IRC-ohjeet' %>)<br>
-Facebook-sivu: <%= link_to 'Matrix ry', 'https://www.facebook.com/matrixry/' %><br>
-Facebook-ryhmä: <%= link_to 'Matrix ry', 'https://www.facebook.com/groups/4931342997/' %><br>
-Instagram: <%= link_to '@matrix_ry', 'https://www.instagram.com/matrix_ry/' %><br>
-
-<h3>Opetusvälitys</h3>
-
-<p>Matrixin postituslistaa matrix-opet (at) helsinki.fi jaellaan opetustehtävistä kiinnostuneilla matematiikan opiskelijoille. Listalle voi siis lähettää vapaasti työtarjouksia sijaisuuksista ja yksityisopetuksesta. Matrix ei kuitenkaan muuten koordinoi opetusvälitystä listan kautta.</p>
+  <p>Matrixin postituslistaa matrix-opet (at) helsinki.fi jaellaan opetustehtävistä kiinnostuneilla matematiikan opiskelijoille. Listalle voi siis lähettää vapaasti työtarjouksia sijaisuuksista ja yksityisopetuksesta. Matrix ei kuitenkaan muuten koordinoi opetusvälitystä listan kautta.</p>
+</div>

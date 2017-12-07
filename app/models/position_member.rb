@@ -1,26 +1,23 @@
 class PositionMember < ActiveRecord::Base
-	belongs_to :position
-	belongs_to :user
+  belongs_to :position
+  belongs_to :user
 
-	validates :name, length: { maximum: 500 }
-	validates :year, :inclusion => 1991..3000, presence: true
+  validates :year, :inclusion => 1991..3000, presence: true
+  
+  validate :unique_user_and_position_in_year
 
-	mount_uploader :avatar, PositionAvatarUploader
+  def get_avatar
+    return self.user.avatar_url
+  end
 
-	def get_avatar
-	  if self.avatar_url
-	    return self.avatar_url
-	  end
-	  if self.user and self.user.avatar_url
-	    return self.user.avatar_url
-	  end
-  	end
+  def name
+    return self.user.name
+  end
 
-  	def get_name
-  	  if self.user
-  	    return self.user.name
-  	  else
-  		return self.name
-  	  end
-  	end
+  def unique_user_and_position_in_year
+    @position_members = PositionMember.where("user_id = ? and year = ? and position_id = ?", self.user_id, self.year, self.position_id)
+    if @position_members.size > 0
+      errors.add(:user_id, 'Tällä henkilöllä on jo tämä virka tälle vuodelle')
+    end
+  end
 end

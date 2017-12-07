@@ -1,10 +1,12 @@
-<h1> Admin-toiminnot </h1>
+<div class="box">
+	<h1 class="title"> Admin-toiminnot </h1>
 
-<br>
+	<br>
 
-<%= link_to 'Asetukset', settings_path %><br>
-<%= link_to 'Dokumentit', documents_path %><br>
-<%= link_to 'Hallituksen jäsenet ja virkailijat', board_members_and_positions_path %><br>
-<%= link_to 'Jäsenet', users_path %><br>
-<%= link_to 'Tapahtumat', events_path %><br>
-<%= link_to 'Uutiset (Ajankohtaista)', news_index_path %><br>
+	<% if admin %>
+	  <%= link_to 'Jäsenet', memberships_path %><br>
+	<% end %>
+	<% if sub_admin %>
+	  <%= link_to 'Uutiset', news_index_path %><br>
+	<% end %>
+</div>

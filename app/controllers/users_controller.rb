@@ -157,6 +157,36 @@ class UsersController < ApplicationController
     end
   end
 
+  def memberships
+    @year = params[:vuosi]
+    if !@year
+      @year = Time.now.year
+    end
+    @users = User.all
+    @users = @users.sort_by{ |u| u.name }
+  end
+
+  def update_memberships
+    params = update_memberships_params
+    year = params[:year]
+    params[:users].each do |param|
+      user = User.find(param[0])
+      member = param[1][:member]
+      membership = Membership.where('user_id = ? and year = ?', user.id, year).first
+      if member = '0' and membership
+        membership.destroy
+      elsif member = '1' and !membership
+        membership = Membership.new
+        membership.user_id = user.id
+        membership.year = year
+        membership.save
+      end
+    end
+    respond_to do |format|
+      format.html { redirect_to memberships_path, notice: 'Success' }
+      format.json { render :memberships, status: :ok, location: memberships_path }
+    end
+  end
 
   private
     # Use callbacks to share common setup or constraints between actions.
@@ -189,5 +219,9 @@ class UsersController < ApplicationController
 
     def password_recovery_params
       params.permit(:username, :email)
+    end
+
+    def update_memberships_params
+      params.permit(:year, :users => [:member])
     end
 end

@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  root :to => 'pages#index', :as => 'root'
+
   resources :board_members, only: [:index, :new, :create, :destroy]
   resources :document_group_categories
   resources :document_groups
@@ -9,7 +11,6 @@ Rails.application.routes.draw do
   resources :event_parameter_values
   resources :event_parameters
   resources :events
-  resources :memberships
   resources :news
   resources :position_members
   resources :positions
@@ -23,9 +24,6 @@ Rails.application.routes.draw do
 
   resource :session, only: [:new, :create, :delete]
 
-  get '/blogi', to: 'posts#index'
-  get '/blogi/:tag(.:format)', to: 'posts#tag_specific'
-
   get '/board_members_and_positions', to: 'board_members#board_members_and_positions'
 
   get '/document_group_categories/:id/new_document_group' => 'document_groups#new'
@@ -35,7 +33,8 @@ Rails.application.routes.draw do
 
   get '/dokumentit/:name', to: 'document_groups#show'
 
-  get '/events/:id/new_parameter' => 'event_parameters#new'
+  post '/events/:id/sign_up', to: 'events#sign_up'
+  post '/events/:id/update_signup', to: 'events#update_signup'
 
   get '/hallitus', to: 'board_members#index'
   get '/hallitus/:vuosi', to: 'board_members#index'
@@ -54,29 +53,36 @@ Rails.application.routes.draw do
   patch '/users/:id/update_password' => 'users#update_password', as: 'update_password'
   patch '/users/:id/add_picture' => 'users#add_picture', as: 'add_picture'
   patch '/users/:id/remove_picture' => 'users#remove_picture', as: 'remove_picture'
+
+  get '/memberships' => 'users#memberships', as: 'memberships'
+  get '/memberships/:vuosi' => 'users#memberships'
+  post '/update_memberships' => 'users#update_memberships', as: 'update_memberships'
   
   get '/signin', to: 'sessions#new'
   delete '/signout', to: 'sessions#destroy'
 
   # pages
-  get '/admin' => 'pages#admin_tools', id: 'admin'
-  get '/english' => 'high_voltage/pages#show', id: 'english'
-  get '/jarjesto' => 'high_voltage/pages#show', id: 'jarjesto'
-  get '/komero' => 'high_voltage/pages#show', id: 'komero'
-  get '/sahkopostilistat' => 'high_voltage/pages#show', id: 'sahkopostilistat'
-  get '/yrityksille' => 'high_voltage/pages#show', id: 'yrityksille'
-  get '/kerhot' => 'high_voltage/pages#show', id: 'kerhot'
-  get '/klusteri' => 'high_voltage/pages#show', id: 'klusteri'
-  get '/fuksille' => 'high_voltage/pages#show', id: 'fuksille'
+  get '/admin' => 'pages#admin_tools'
+  get '/english' => 'pages#english', id: 'english'
+  get '/jarjesto' => 'pages#jarjesto', id: 'jarjesto'
+  get '/komero' => 'pages#komero', id: 'komero'
+  get '/sahkopostilistat' => 'pages#sahkopostilistat', id: 'sahkopostilistat'
+  get '/yrityksille' => 'pages#yrityksille', id: 'yrityksille'
+  get '/kerhot' => 'pages#kerhot', id: 'kerhot'
+  get '/klusteri' => 'pages#klusteri', id: 'klusteri'
+  get '/fuksille' => 'pages#fuksille', id: 'fuksille'
   get '/fuksiopas' => 'pages#fuksiopas', id: 'fuksiopas'
   get '/tuutorit' => 'pages#tuutorit', id: 'tuutorit'
-  get '/sanasto' => 'high_voltage/pages#show', id: 'sanasto'
-  get '/kurssikuvauksia' => 'high_voltage/pages#show', id: 'kurssikuvauksia'
-  get '/rekisteriseloste' => 'high_voltage/pages#show', id: 'rekisteriseloste'
+  get '/sanasto' => 'pages#sanasto', id: 'sanasto'
+  get '/kurssikuvauksia' => 'pages#kurssikuvauksia', id: 'kurssikuvauksia'
+  get '/rekisteriseloste' => 'pages#rekisteriseloste', id: 'rekisteriseloste'
   get '/toiminta' => 'pages#toiminta', id: 'toiminta'
-  get '/virkailijaksi' => 'high_voltage/pages#show', id: 'virkailijaksi'
+  get '/virkailijaksi' => 'pages#virkailijaksi', id: 'virkailijaksi'
+
   get '/virat' => 'positions#index'
   get '/yhteystiedot' => 'positions#contact_info'
+
+  get '/test' => 'pages#test'
 
 
 

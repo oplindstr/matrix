@@ -12,9 +12,12 @@
 
 <div class = "well">
    <%= form_for @position_member, html: { multipart: true } do |f| %>
-      <%= f.select :user_id, options_from_collection_for_select(@users, :id, :name) %>
-      <%= f.select :year, @years, :selected => Time.now.year %>
-      <%= f.select :position_id, options_from_collection_for_select(@positions, :id, :name) %>
-      <%= f.submit "Save", class: "btn btn-primary" %>
+     <%= f.label :user_id, 'Käyttäjä' %> <br>
+     <%= f.select :user_id, options_from_collection_for_select(@users, :id, :name) %><br>
+     <%= f.label :year, 'Vuosi' %> <br>
+     <%= f.select :year, @years, :selected => Time.now.year %><br>
+     <%= f.label :position_id, 'Virka' %> <br>
+     <%= f.select :position_id, options_from_collection_for_select(@positions, :id, :name) %><br><br>
+     <%= f.submit "Save", class: "btn btn-primary" %>
    <% end %>
 </div>

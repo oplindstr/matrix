@@ -1,0 +1,48 @@
+<% if @year == @this_year %>
+	<% @index = 0 %>
+	<% loop do %>
+	<div class="columns">
+		<% @member = members[@index] %>
+	    <div class='column is-half container'> 
+		    <% if @member.get_avatar %>
+			    <span><%= image_tag(@member.get_avatar, size: "240x320") %> </span>
+			    <br><br>
+			<% end %>
+			<b> <%= @member.name %> </b>
+			<br><br>
+			<% @member.user.positions_by_year(@year).each do |position| %>
+				<span> <%= position.name %> </span> <br>
+			<% end %>
+			<br>
+		</div>
+		<% @index = @index + 1 %>
+		<% @member = members[@index] %>
+		<% if @member %>
+		    <div class='column is-half container'>
+			    <% if @member.get_avatar %>
+				    <span><%= image_tag(@member.get_avatar, size: "240x320") %> </span>
+				    <br><br>
+				<% end %>
+				<b> <%= @member.name %> </b>
+				<br><br>
+				<% @member.user.positions_by_year(@year).each do |position| %>
+					<span> <%= position.name %> </span> <br>
+				<% end %>
+				<br>
+			</div>
+		<% end %>
+	</div>
+	<% @index = @index + 1 %>
+	<% break if @index >= members.size %>
+	<% end %>
+<% else %>
+	<div>
+		<% members.each do |member| %>
+			<b><%= member.name %></b> <br>
+			<% member.user.positions_by_year(@year).each do |position| %>
+				<span> <%= position.name %> </span> <br>
+			<% end %>
+			<br>
+		<% end %>
+	</div>
+<% end %>

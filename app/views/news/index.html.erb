@@ -1,12 +1,15 @@
 <h1>Uutiset</h1>
-<% @news.each do |news| %>
-  <b><%= news.header %></b> <%= link_to 'Muokkaa', edit_news_path(news) %> | <%= link_to 'Poista', news, method: :delete, data: { confirm: 'Are you sure?' } %><br>
-  <p>Luotu: <%= news.created_at %><br>
-  <pre><%= news.text %></pre><br>
-  <p>Prioriteetti: <%= news.priority %></p><br>
-  
-  <br>
-<% end %>
+<div class='list'>
+	<% @news.each do |news| %>
+	  <b class='list-header'><%= news.header %></b>
+	  <br>
+	  <pre class='list-text'><%= news.text %></pre>
+	  <p class='list-text'>Prioriteetti: <%= news.priority %></p>
+	  <%= link_to 'Muokkaa', edit_news_path(news) %> | <%= link_to 'Poista', news, method: :delete, data: { confirm: 'Are you sure?' } %>
+	  <br>
+	  <br>
+	<% end %>
+</div>
 
 <br>
 

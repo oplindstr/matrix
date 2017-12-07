@@ -6,13 +6,13 @@ class Event < ActiveRecord::Base
 
   accepts_nested_attributes_for :event_parameters, allow_destroy: true
 
-  validates :name, presence: true, length: { in: 1..500 }
+  validates :name, presence: true, length: { in: 0..500 }
   validates :descr, presence: true, length: { maximum: 25000 }
   validates :location, length: { maximum: 100 }
   validates :event_type, length: { maximum: 100 }
   validates :starttime, presence: true
-  validates :price, :inclusion => 0..5000
-  validates :signup_limit, :inclusion => 0..5000
+  validates :price, allow_blank: true, numericality: { less_than_or_equal_to: 500 }
+  validates :signup_limit, allow_blank: true, numericality: { less_than_or_equal_to: 5000 }
   validate :endtimes_cannot_be_before_starttimes
   validate :date_ranges
 

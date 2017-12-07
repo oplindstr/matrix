@@ -1,234 +1,66 @@
-<h1>Hallitus ja virkailijat</h1>
+<div class="box">
+	<h1 class="title">Hallitus ja virkailijat</h1>
 
-<p>Matrixin toiminnasta vastaa järjestön hallitus.
-    Käytännössä varsinaisten hallituslaisten lisäksi toimintaa on kuitenkin pyörittämässä joukko ahkeria virkailijoita.
-    Jokaisella virkailijalla ja hallituksen jäsenellä on vastuualue, johon liittyviä asioita he hoitavat järjestössä.</p>
+	<p>Matrixin toiminnasta vastaa järjestön hallitus.
+	    Käytännössä varsinaisten hallituslaisten lisäksi toimintaa on kuitenkin pyörittämässä joukko ahkeria virkailijoita.
+	    Jokaisella virkailijalla ja hallituksen jäsenellä on vastuualue, johon liittyviä asioita he hoitavat järjestössä.</p>
 
-<p> Hallitus valitaan joka vuosi yhdistyksen syyskokouksessa ja virkailijat uuden hallituksen järjestäytymiskokouksessa joulukuussa,
-    vaikkakin virkailijaksi voi ryhtyä myös kesken vuotta. Kaikki tehtäviä hoitavat ovat aivan tavallisia matrixlaisia. Lue lisää <%= link_to 'virkailijaksi ryhtymisestä!', '/virkailijaksi' %></p>
+	<p> Hallitus valitaan joka vuosi yhdistyksen syyskokouksessa ja virkailijat uuden hallituksen järjestäytymiskokouksessa joulukuussa,
+	    vaikkakin virkailijaksi voi ryhtyä myös kesken vuotta. Kaikki tehtäviä hoitavat ovat aivan tavallisia matrixlaisia. Lue lisää <%= link_to 'virkailijaksi ryhtymisestä!', '/virkailijaksi' %></p>
+	<br>
+	<h3 class="subtitle"> Hallitukset vuosittain </h3>
 
-<h3> Hallitukset vuosittain </h3>
+	<% @years.each do |year| %>
+		<%= link_to year, hallitus_path(:vuosi => year) %>
+		<% if year != @min_year %>
+			<span> | </span>
+		<% end %>
+	<% end %> 
+	<br>
+	<br>
+	<h2 class="subtitle"> Hallitus ja virkailijat <%= @year %> </h2>
 
-<% @years.each do |year| %>
-	<%= link_to year, hallitus_path(:vuosi => year) %>
-	<% if year != @min_year %>
-		<span> | </span>
-	<% end %>
-<% end %> 
+	<p>Hallituksen jäsenten ja varajäsenten sähköpostiosoitteet ovat muotoa etunimi.sukunimi@helsinki.fi (ilman ääkkösiä) ellei toisin mainita.</p>
 
-<h2> Hallitus ja virkailijat <%= @year %> </h2>
+	<% if not @board_members.empty? %>
+		<br>
+		<h3 class="subtitle">Hallituksen jäsenet</h3>
 
-<p>Hallituksen jäsenten ja varajäsenten sähköpostiosoitteet ovat muotoa etunimi.sukunimi@helsinki.fi (ilman ääkkösiä) ellei toisin mainita.</p>
-
-<% if not @board_members.empty? %>
-
-	<h3>Hallituksen jäsenet</h3>
-
-	<% if @year == @this_year %>
-
-		<% @index = 0 %>
-
-		<table>
-
-			<div class="board_members">
-				<% loop do %>
-					<% @member = @board_members[@index] %>
-					<tr>
-					    <td class='board_member'> 
-						    <% if @member.get_avatar %>
-							    <span><%= image_tag(@member.get_avatar, size: "240x320") %> </span>
-							    <br><br>
-							<% end %>
-							<b> <%= @member.name %> </b>
-							<br><br>
-							<% @member.positions_by_year(@year).each do |position| %>
-								<span> <%= position.name %> </span> <br>
-							<% end %>
-							<br>
-						<td>
-					<% @index = @index + 1 %>
-					<% @member = @board_members[@index] %>
-					<% if @member %>
-					    <td class='board_member'> 
-						    <% if @member.get_avatar %>
-							    <span><%= image_tag(@member.get_avatar, size: "240x320") %> </span>
-							    <br><br>
-							<% end %>
-							<b> <%= @member.name %> </b>
-							<br><br>
-							<% @member.positions_by_year(@year).each do |position| %>
-								<span> <%= position.name %> </span> <br>
-							<% end %>
-							<br>
-						<td>
-					</tr>
-					<% end %>
-					<% @index = @index + 1 %>
-					<% break if @index >= @board_members.size %>
-				<% end %>
-			</div>
-
-		</table>
-
-	<% else %>
-
-		<div>
-			<% @board_members.each do |member| %>
-				<b><%= member.name %></b> <br>
-				<% member.positions_by_year(@year).each do |position| %>
-					<span> <%= position.name %> </span> <br>
-				<% end %>
-				<br>
-			<% end %>
-		</div>
+		<%= render :partial => "board_member_list", :locals => 
+	  { :members => @board_members } %>
 
 	<% end %>
 
-<% end %>
+	<% if not @supplementary_members.empty? %>
+		<br>
+		<h3 class="subtitle">Hallituksen varajäsenet</h3>
 
-<% if not @supplementary_members.empty? %>
-
-	<h3>Hallituksen varajäsenet</h3>
-
-	<% if @year == @this_year %>
-
-		<% @index = 0 %>
-
-		<table>
-
-			<div class="board_members">
-				<% loop do %>
-					<% @member = @supplementary_members[@index] %>
-					<tr>
-					    <td class='board_member'> 
-						    <% if @member.get_avatar %>
-							    <span><%= image_tag(@member.get_avatar, size: "240x320") %> </span>
-							    <br><br>
-							<% end %>
-							<b> <%= @member.name %> </b>
-							<br><br>
-							<% @member.positions_by_year(@year).each do |position| %>
-								<span> <%= position.name %> </span> <br>
-							<% end %>
-							<br>
-						<td>
-					<% @index = @index + 1 %>
-					<% @member = @supplementary_members[@index] %>
-					<% if @member %>
-					    <td class='board_member'> 
-						    <% if @member.get_avatar %>
-							    <span><%= image_tag(@member.get_avatar, size: "240x320") %> </span>
-							    <br><br>
-							<% end %>
-							<b> <%= @member.name %> </b>
-							<br><br>
-							<% @member.positions_by_year(@year).each do |position| %>
-								<span> <%= position.name %> </span> <br>
-							<% end %>
-							<br>
-						<td>
-					</tr>
-					<% end %>
-					<% @index = @index + 1 %>
-					<% break if @index >= @supplementary_members.size %>
-				<% end %>
-			</div>
-
-		</table>
-
-	<% else %>
-
-		<div>
-			<% @supplementary_members.each do |member| %>
-				<b><%= member.name %></b> <br>
-				<% member.positions_by_year(@year).each do |position| %>
-					<span> <%= position.name %> </span> <br>
-				<% end %>
-				<br>
-			<% end %>
-		</div>
+		<%= render :partial => "board_member_list", :locals => 
+	  { :members => @supplementary_members } %>
 
 	<% end %>
 
-<% end %>
+	<% if not @position_members.empty? %>
+		<br>
+		<h3 class="subtitle">Virkailijat</h3>
 
-<% if not @position_members.empty? %>
-
-	<h3>Virkailijat</h3>
-
-	<% if @year == @this_year %>
-
-		<% @index = 0 %>
-
-		<table>
-
-			<div class="board_members">
-				<% loop do %>
-					<% @member = @position_members[@index] %>
-					<tr>
-					    <td class='board_member'> 
-					    	<% if @member.get_avatar %>
-							    <span><%= image_tag(@member.get_avatar, size: "240x320") %> </span>
-							    <br><br>
-							<% end %>
-							<b> <%= @member.name %> </b>
-							<br><br>
-							<% @member.positions_by_year(@year).each do |position| %>
-								<span> <%= position.name %> </span> <br>
-							<% end %>
-							<br>
-						<td>
-					<% @index = @index + 1 %>
-					<% @member = @position_members[@index] %>
-					<% if @member %>
-					    <td class='board_member'> 
-						    <% if @member.get_avatar %>
-							    <span><%= image_tag(@member.get_avatar, size: "240x320") %> </span>
-							    <br><br>
-							<% end %>
-							<b> <%= @member.name %> </b>
-							<br><br>
-							<% @member.positions_by_year(@year).each do |position| %>
-								<span> <%= position.name %> </span> <br>
-							<% end %>
-							<br>
-						<td>
-					</tr>
-					<% end %>
-					<% @index = @index + 1 %>
-					<% break if @index >= @position_members.size %>
-				<% end %>
-			</div>
-
-		</table>
-
-	<% else %>
-
-		<div>
-			<% @position_members.each do |member| %>
-				<b><%= member.name %></b> <br>
-				<% member.positions_by_year(@year).each do |position| %>
-					<span> <%= position.name %> </span> <br>
-				<% end %>
-				<br>
-			<% end %>
-		</div>
+		<%= render :partial => "position_member_list", :locals => 
+	  { :members => @position_members } %>
 
 	<% end %>
 
-<% end %>
+	<% if admin %>
 
-<% if admin %>
+		<%= link_to 'Lisää hallituksen jäseniä',  new_board_member_path %>
+		<br>
+		<br>
+		<%= link_to 'Lisää virkailija', new_position_member_path %>
+		<br>
+		<br>
+		<%= link_to 'Muokkaa hallituksen jäseniä ja virkoja', '/board_members_and_positions' %>
+		<br>
+		<br>
+		<%= link_to 'Lisää uusi virka', new_position_path %>
 
-	<%= link_to 'Lisää hallituksen jäseniä',  new_board_member_path %>
-	<br>
-	<br>
-	<%= link_to 'Lisää virkailija', new_position_member_path %>
-	<br>
-	<br>
-	<%= link_to 'Muokkaa hallituksen jäseniä ja virkoja', '/board_members_and_positions' %>
-	<br>
-	<br>
-	<%= link_to 'Lisää uusi virka', new_position_path %>
-
-<% end %>
+	<% end %>
+</div>
