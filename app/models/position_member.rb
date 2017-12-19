@@ -14,6 +14,10 @@ class PositionMember < ActiveRecord::Base
     return self.user.name
   end
 
+  def email
+    self.user.email
+  end
+
   def unique_user_and_position_in_year
     @position_members = PositionMember.where("user_id = ? and year = ? and position_id = ?", self.user_id, self.year, self.position_id)
     if @position_members.size > 0

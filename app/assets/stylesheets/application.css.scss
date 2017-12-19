@@ -3,6 +3,7 @@ $navbar-item-hover-background-color: transparent;
 $section-padding: 1rem 1rem;
 
 $box-padding: 1rem;
+$box-shadow: 0 2px 3px rgba(blue, 0.3), 0 0 0 1px rgba(blue, 0.3);
 
 @import "bulma";
 
@@ -33,4 +34,41 @@ footer img {
 
 .box {
 	margin: 0rem 0.5rem;
+	overflow-y: auto;
+}
+
+.board_member_image > img {
+	width: 240px;
+	height: 320px;
+}
+
+@media screen and (min-width: 768px) {
+  .fixed-height-col {
+  	height: 500px;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .box {
+  	border-radius: 0;
+  	padding: 0;
+  	margin: 0;
+  	border-style: none;
+  	box-shadow: none;
+  	-webkit-box-shadow: none;
+	overflow-y: visible;
+  }
+}
+
+pre {
+	background-color: white;
+	padding: 0;
+	font-family: inherit;
+	font-size: inherit;
+	overflow: inherit;
+	white-space: pre-wrap;       
+	white-space: -moz-pre-wrap;  
+    white-space: -pre-wrap;      
+    white-space: -o-pre-wrap;    
+    word-wrap: break-word;  
 }

@@ -10,17 +10,15 @@
 	<br>
 	<h3 class="subtitle"> Hallitukset vuosittain </h3>
 
-	<% @years.each do |year| %>
-		<%= link_to year, hallitus_path(:vuosi => year) %>
-		<% if year != @min_year %>
-			<span> | </span>
-		<% end %>
-	<% end %> 
-	<br>
-	<br>
-	<h2 class="subtitle"> Hallitus ja virkailijat <%= @year %> </h2>
-
-	<p>Hallituksen jäsenten ja varajäsenten sähköpostiosoitteet ovat muotoa etunimi.sukunimi@helsinki.fi (ilman ääkkösiä) ellei toisin mainita.</p>
+	<nav class="breadcrumb" aria-label="breadcrumbs">
+	  <ul>
+	  	<% @years.each do |year| %>
+	      <li><%= link_to year, hallitus_path(:vuosi => year) %></li>
+	    <% end %>
+	  </ul>
+	</nav>
+	
+	<h2 class="title"> Hallitus ja virkailijat <%= @year %> </h2>
 
 	<% if not @board_members.empty? %>
 		<br>

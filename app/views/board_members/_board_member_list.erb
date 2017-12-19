@@ -1,34 +1,52 @@
 <% if @year == @this_year %>
 	<% @index = 0 %>
 	<% loop do %>
-	<div class="columns">
+	<div class="columns section has-text-centered">
 		<% @member = members[@index] %>
-	    <div class='column is-half container'> 
-		    <% if @member.get_avatar %>
-			    <span><%= image_tag(@member.get_avatar, size: "240x320") %> </span>
-			    <br><br>
-			<% end %>
-			<b> <%= @member.name %> </b>
-			<br><br>
-			<% @member.user.positions_by_year(@year).each do |position| %>
-				<span> <%= position.name %> </span> <br>
-			<% end %>
-			<br>
+    	<div class="column is-half">
+    		<div class="columns">
+    			<div class="column is-1">
+    			</div>
+    			<div class="column is-10">
+				    <% if @member.get_avatar %>
+					    <span class="board_member_image"><%= image_tag(@member.get_avatar) %> </span>
+					    <br><br>
+					<% end %>
+					<b> <%= @member.name %> </b><br>
+					<i> <%= @member.email %> </i>
+					<br><br>
+					<% @member.user.positions_by_year(@year).each do |position| %>
+						<span> <%= position.name %> </span> <br>
+					<% end %>
+					<br>
+				</div>
+				<div class="column is-1">
+				</div>
+			</div>
 		</div>
 		<% @index = @index + 1 %>
 		<% @member = members[@index] %>
 		<% if @member %>
-		    <div class='column is-half container'>
-			    <% if @member.get_avatar %>
-				    <span><%= image_tag(@member.get_avatar, size: "240x320") %> </span>
-				    <br><br>
-				<% end %>
-				<b> <%= @member.name %> </b>
-				<br><br>
-				<% @member.user.positions_by_year(@year).each do |position| %>
-					<span> <%= position.name %> </span> <br>
-				<% end %>
-				<br>
+		    <div class="column is-half">
+	    		<div class="columns">
+	    			<div class="column is-1">
+	    			</div>
+	    			<div class="column is-10">
+					    <% if @member.get_avatar %>
+						    <span class="board_member_image"><%= image_tag(@member.get_avatar) %> </span>
+						    <br><br>
+						<% end %>
+						<b> <%= @member.name %> </b><br>
+						<i> <%= @member.email %> </i>
+						<br><br>
+						<% @member.user.positions_by_year(@year).each do |position| %>
+							<span> <%= position.name %> </span> <br>
+						<% end %>
+						<br>
+					</div>
+					<div class="column is-1">
+					</div>
+				</div>
 			</div>
 		<% end %>
 	</div>

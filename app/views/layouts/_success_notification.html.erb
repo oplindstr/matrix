@@ -1,5 +1,9 @@
 <% if notice %>
 	<section class="section container">
-	  <p id="success-notification"><%= notice %></p>
+		<article class="message is-success">
+		  <div class="message-body">
+		    <%= notice %>
+		  </div>
+		</article>
 	</section>
 <% end %>

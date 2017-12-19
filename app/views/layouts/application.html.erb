@@ -18,8 +18,8 @@
     <%= render 'layouts/error_notification' %>
     <% if current_user %>
       <section class="section container">
-        <%= current_user.firstname %> <%= current_user.lastname %> kirjautuneena.
-        <%= link_to 'Kirjaudu ulos', signout_path, method: :delete %>
+        <%= current_user.firstname %> <%= current_user.lastname %> kirjautuneena.<br>
+        <%= link_to 'Kirjaudu ulos', signout_path, method: :delete %><br>
         <% if sub_admin %>
           <%= link_to 'Admin-toiminnot', '/admin' %>
         <% end %>
@@ -48,7 +48,7 @@
                   <div class="field-body">
                     <div class="field">
                       <div class="control">
-                        <input id="username" name="username" class="input is-small" type="text" placeholder="Small sized input">
+                        <input id="username" name="username" class="input is-small" type="text" required>
                       </div>
                     </div>
                   </div>
@@ -60,7 +60,7 @@
                   <div class="field-body">
                     <div class="field">
                       <div class="control">
-                        <input id="password" name="password" class="input is-small" type="password" placeholder="Small sized input">
+                        <input id="password" name="password" class="input is-smal" type="password" required>
                       </div>
                     </div>
                   </div>

@@ -1,5 +1,9 @@
 <% if alert %>
 	<section class="section container">
-	  <p id="error-notification"><%= alert %></p>
+		<article class="message is-danger">
+		  <div class="message-body">
+		    <%= alert %>
+		  </div>
+		</article>
 	</section>
 <% end %>

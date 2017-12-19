@@ -21,6 +21,10 @@ class BoardMember < ActiveRecord::Base
     self.user.name
   end
 
+  def email
+    self.user.email
+  end
+
   def unique_user_in_year
     @board_members = BoardMember.where("user_id = ? and year = ?", self.user_id, self.year)
     if @board_members.size > 0
