@@ -22,8 +22,6 @@ set :ssh_options,     { forward_agent: true, user: fetch(:user), keys: %w(~/.ssh
 set :puma_preload_app, true
 set :puma_worker_timeout, nil
 set :puma_init_active_record, true  # Change to false when not using ActiveRecord
-set :bundle_flags, '--deployment'
-set :bundle_env_variables, { nokogiri_use_system_libraries: 1 }
 
 ## Defaults:
 # set :scm,           :git
