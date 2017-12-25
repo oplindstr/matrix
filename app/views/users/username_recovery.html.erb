@@ -1,16 +1,24 @@
-<%= form_tag recover_username_path do %>
+<div class="box">
 
-	<h2>Käyttäjätunnuksen haku</h2>
+	<h2 class="title">Käyttäjätunnuksen haku</h2>
 
-	<div class="field">
-		<p>Anna sähköpostiosoitteesi</p>
-		<%= email_field_tag :email %>
-	</div>
+	<%= form_tag recover_username_path do %>
 
-	<div class="actions">
-      <%= submit_tag 'Hae' %>
-    </div>
+		<div class="field">
+	      <%= label_tag :email, 'Sähköpostiosoite', :class => 'label' %>
+	      <div class="control">
+	        <%= text_field_tag :email, nil, :class => 'input', :required => true %>
+	      </div>
+	    </div>
 
-    <%= link_to 'Takaisin', root_path %>
+		<div class="actions">
+	      <%= submit_tag 'Hae', :class => "button is-link" %>
+	    </div>
 
-<% end %>
+	<% end %>
+
+	<br>
+
+	<%= link_to 'Takaisin', :back %>
+
+</div>

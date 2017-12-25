@@ -1,167 +1,149 @@
 <%= form_for(@user) do |f| %>
-    <% if @user.errors.any? %>
-        <div id="error_explanation">
-          <h2><%= pluralize(@user.errors.count, "error") %> prohibited this user from being saved:</h2>
-          <ul>
-            <% @user.errors.full_messages.each do |msg| %>
-                <li><%= msg %></li>
-            <% end %>
-          </ul>
-        </div>
-    <% end %>
+  <% if @user.errors.any? %>
+      <div id="error_explanation">
+        <h2><%= pluralize(@user.errors.count, "error") %> prohibited this user from being saved:</h2>
+        <ul>
+          <% @user.errors.full_messages.each do |msg| %>
+              <li><%= msg %></li>
+          <% end %>
+        </ul>
+      </div>
+  <% end %>
 
-    <div class="form-area">
+  <h2 class="subtitle">Henkilötiedot</h2>
 
-      <h2>Henkilötiedot</h2>
+  <div class="field">
 
-      <div class="container">
+    <div class="row">
+      <div class="col-md-3">
+        <%= f.label :firstname, 'Etunimi' %>
+      </div>
+      <div class="col-md-3">
+        <%= f.text_field :firstname %>
+      </div>
+      <div class="col-md-6">
+      </div>
+    </div>
+  </div>
 
-        <div class="field">
+  <div class="field">
 
-          <div class="row">
-            <div class="col-md-3">
-              <%= f.label :firstname, 'Etunimi' %>
-            </div>
-            <div class="col-md-3">
-              <%= f.text_field :firstname %>
-            </div>
-            <div class="col-md-6">
-            </div>
-          </div>
-        </div>
-
-        <div class="field">
-
-          <div class="row">
-            <div class="col-md-3">
-              <%= f.label :lastname, 'Sukunimi' %>
-            </div>
-            <div class="col-md-3">
-              <%= f.text_field :lastname %>
-            </div>
-            <div class="col-md-6">
-            </div>
-          </div>
-
-        </div>
-
-        <div class="field">
-
-          <div class="row">
-            <div class="col-md-3">
-              <%= f.label :email, 'Sähköpostiosoite' %>
-            </div>
-            <div class="col-md-3">
-              <%= f.email_field :email %>
-            </div>
-            <div class="col-md-6">
-            </div>
-          </div>
-
-        </div>
-
-        <div class="field">
-
-          <div class="row">
-            <div class="col-md-3">
-              <%= f.label :city, 'Kotikunta' %>
-            </div>
-            <div class="col-md-3">
-              <%= f.text_field :city %>
-            </div>
-            <div class="col-md-6">
-            </div>
-          </div>
-
-        </div>
-
+    <div class="row">
+      <div class="col-md-3">
+        <%= f.label :lastname, 'Sukunimi' %>
+      </div>
+      <div class="col-md-3">
+        <%= f.text_field :lastname %>
+      </div>
+      <div class="col-md-6">
+      </div>
     </div>
 
-    <% if @user.new_record? %>
+  </div>
 
-      <div class="form-area">
+  <div class="field">
 
-        <h2>Käyttäjätiedot</h2>
+    <div class="row">
+      <div class="col-md-3">
+        <%= f.label :email, 'Sähköpostiosoite' %>
+      </div>
+      <div class="col-md-3">
+        <%= f.email_field :email %>
+      </div>
+      <div class="col-md-6">
+      </div>
+    </div>
 
-        <div class="container">
+  </div>
 
-          <div class="field">
+  <div class="field">
 
-            <div class="row">
-              <div class="col-md-3">
-                <%= f.label :username, 'Käyttäjätunnus' %>
-              </div>
-              <div class="col-md-3">
-                <% if @user.new_record? %>
-                  <%= f.text_field :username %>
-                <% else %>
-                  <%= f.text_field :username, :readonly => true %>
-                <% end %>
-              </div>
-              <div class="col-md-6">
-              </div>
-            </div>
-            
-          </div>
+    <div class="row">
+      <div class="col-md-3">
+        <%= f.label :city, 'Kotikunta' %>
+      </div>
+      <div class="col-md-3">
+        <%= f.text_field :city %>
+      </div>
+      <div class="col-md-6">
+      </div>
+    </div>
 
-          <div class="field">
+  </div>
 
-            <div class="row">
-              <div class="col-md-3">
-                <%= f.label :password, 'Salasana'%>
-              </div>
-              <div class="col-md-3">
-                <%= f.password_field :password %>
-              </div>
-              <div class="col-md-6">
-              </div>
-            </div>
+  <% if @user.new_record? %>
 
-          </div>
+    <h2 class="subtitle">Käyttäjätiedot</h2>
 
+    <div class="field">
 
-          <div class="field">
-
-            <div class="row">
-              <div class="col-md-3">
-                <%= f.label :password_confirmation, 'Salasana uudelleen' %>
-              </div>
-              <div class="col-md-3">
-                <%= f.password_field :password_confirmation %>
-              </div>
-              <div class="col-md-6">
-              </div>
-            </div>
-
-          </div>
-
+      <div class="row">
+        <div class="col-md-3">
+          <%= f.label :username, 'Käyttäjätunnus' %>
         </div>
-
+        <div class="col-md-3">
+          <% if @user.new_record? %>
+            <%= f.text_field :username %>
+          <% else %>
+            <%= f.text_field :username, :readonly => true %>
+          <% end %>
+        </div>
+        <div class="col-md-6">
+        </div>
       </div>
-    <% end %>
+      
+    </div>
 
-    <div class="form-area">
+    <div class="field">
 
-      <h2>Muut tiedot</h2>
-
-      <div class="field">
-        <%= f.check_box :hyy_member %>
-        <%= f.label :hyy_member, 'Opiskelen Helsingin Yliopistossa tutkinto- tai jatko-opiskelijana' %>
-      </div>
-
-      <div class="field">
-        <%= f.check_box :mathstudent %>
-        <%= f.label :mathstudent, 'Opiskelen jossain Helsingin yliopiston Matemaattis-luonnontieteellisen tiedekunnan vastuulla olevassa koulutusohjelmassa' %>
-      </div>
-
-      <div class="field">
-        <%= f.check_box :admin %>
-        <%= f.label :admin, 'Admin (tässä vielä testaamisen vuoksi)' %>
+      <div class="row">
+        <div class="col-md-3">
+          <%= f.label :password, 'Salasana'%>
+        </div>
+        <div class="col-md-3">
+          <%= f.password_field :password %>
+        </div>
+        <div class="col-md-6">
+        </div>
       </div>
 
     </div>
 
-    <div class="actions">
-      <%= f.submit :value => 'Tallenna', data: { confirm: 'Are you sure?' } %>
+
+    <div class="field">
+
+      <div class="row">
+        <div class="col-md-3">
+          <%= f.label :password_confirmation, 'Salasana uudelleen' %>
+        </div>
+        <div class="col-md-3">
+          <%= f.password_field :password_confirmation %>
+        </div>
+        <div class="col-md-6">
+        </div>
+      </div>
+
     </div>
+  <% end %>
+
+  <h2 class="subtitle">Muut tiedot</h2>
+
+  <div class="field">
+    <%= f.check_box :hyy_member %>
+    <%= f.label :hyy_member, 'Opiskelen Helsingin Yliopistossa tutkinto- tai jatko-opiskelijana' %>
+  </div>
+
+  <div class="field">
+    <%= f.check_box :mathstudent %>
+    <%= f.label :mathstudent, 'Opiskelen jossain Helsingin yliopiston Matemaattis-luonnontieteellisen tiedekunnan vastuulla olevassa koulutusohjelmassa' %>
+  </div>
+
+  <div class="field">
+    <%= f.check_box :admin %>
+    <%= f.label :admin, 'Admin (tässä vielä testaamisen vuoksi)' %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit :value => 'Tallenna', data: { confirm: 'Oletko?' } %>
+  </div>
 <% end %>
