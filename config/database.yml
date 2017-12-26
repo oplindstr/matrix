@@ -22,8 +22,9 @@ test:
 
 production:
   adapter: postgresql
-  database: production.sql
+  database: matrix_production
   pool: 5
   timeout: 5000
+  host: localhost
   username: pguser
   password: BnvrUkit11
