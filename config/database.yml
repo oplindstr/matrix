@@ -21,7 +21,7 @@ test:
   database: db/test.sqlite3
 
 production:
-  database: matrix_production
+  database: postgres
   adapter: postgresql
   encoding: unicode
   pool: 5
