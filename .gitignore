@@ -20,4 +20,3 @@ public/assets/**
 
 # Ignore application configuration
 /config/application.yml
-/config/secrets.yml
