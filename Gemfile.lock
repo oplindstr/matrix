@@ -46,7 +46,6 @@ GEM
       ZenTest (>= 4.4.1)
     backports (3.10.3)
     bcrypt (3.1.11)
-    bcrypt (3.1.11-x86-mingw32)
     better_errors (2.4.0)
       coderay (>= 1.0.0)
       erubi (>= 1.0.0)
@@ -347,7 +346,7 @@ PLATFORMS
 
 DEPENDENCIES
   autotest
-  bcrypt (~> 3.1.11)
+  bcrypt
   better_errors
   bootstrap-sass
   bulma-rails (~> 0.6.1)
