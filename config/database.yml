@@ -26,5 +26,5 @@ production:
   encoding: unicode
   pool: 5
   host: localhost
-  username: pguser
+  username: postgres
   password: BnvrUkit11
