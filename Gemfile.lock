@@ -303,6 +303,8 @@ GEM
     sshkit (1.15.1)
       net-scp (>= 1.1.2)
       net-ssh (>= 2.8.0)
+    sshkit-sudo (0.1.0)
+      sshkit (~> 1.8)
     therubyracer (0.12.3)
       libv8 (~> 3.16.14.15)
       ref
@@ -392,6 +394,7 @@ DEPENDENCIES
   simplecov
   spring
   sqlite3
+  sshkit-sudo
   therubyracer
   travis (~> 1.7.5)
   tzinfo-data
