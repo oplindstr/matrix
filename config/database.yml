@@ -25,3 +25,5 @@ production:
   database: production.sql
   pool: 5
   timeout: 5000
+  username: ENV['pg_database_user']
+  password: ENV['pg_database_password']
