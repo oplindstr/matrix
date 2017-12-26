@@ -38,6 +38,8 @@ gem 'nested_form_fields'
 
 gem "bulma-rails", "~> 0.6.1"
 
+gem 'figaro'
+
 # Use Unicorn as the app server
 # gem 'unicorn'
 

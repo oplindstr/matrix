@@ -27,4 +27,4 @@ production:
   pool: 5
   host: localhost
   username: postgres
-  password: BnvrUkit11
+  password: <%= ENV["APP_DATABASE_PASSWORD"] %>
