@@ -20,42 +20,46 @@
 
   <% if sub_admin %>
 
-    <% if @user.get_avatar %>
+    <br>
 
-      <h2>Lisätty kuva</h2>
+    <h1 class="subtitle">Virkailijakuva</h1>
+
+    <p class="help">Kuva näytetään hallitus ja virkailijat sivulla</p>
+
+    <br>
+
+    <% if @user.get_avatar %>
 
       <%= image_tag(@user.get_avatar, size: "240x320") %>
 
-      <p>Näytetään hallitus ja virkailijat sivulla</p>
+      <br>
 
       <%= form_for @user, :url => { :action => "remove_picture" } do |f| %>
 
         <div class="actions">
-          <%= f.submit 'Poista kuva', data: { confirm: 'Oletko varma?' }  %>
+          <%= f.submit 'Poista', data: { confirm: 'Oletko varma?' }, :class => 'button is-danger'  %>
         </div>
 
       <% end %>
+
+      <br>
 
     <% end %>
 
     <%= form_for @user, :url => { :action => "add_picture" } do |f| %>
 
-      <div class="form-area">
+      <% if @user.get_avatar %>
+        <h2 class="subtitle">Vaihda kuva</h2>
+      <% else %>
+        <h2 class="subtitle">Lisää kuva</h2>
+      <% end %>
 
-        <% if @user.get_avatar %>
-          <h2>Vaihda kuva</h2>
-        <% else %>
-          <h2>Lisää kuva</h2>
-        <% end %>
-
-        <div class="field">
-          <%= f.file_field :avatar, accept: 'image/png,image/jpg,image/jpeg' %> (kuvan koko korkeintaan 5 MB)
-        </div>
-
+      <div class="field">
+        <%= f.file_field :avatar, accept: 'image/png,image/jpg,image/jpeg' %> (kuvan koko korkeintaan 5 MB)
       </div>
 
       <div class="actions">
-        <%= f.submit :value => 'Tallenna'  %>
+        <%= f.submit :value => 'Tallenna', :class => 'button is-link'  %>
       </div>
 
     <% end %>

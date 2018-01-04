@@ -1,14 +1,21 @@
-<p id="notice"><%= notice %></p>
+<div class="box">
 
-<p>
-  <strong>Name:</strong>
-  <%= @document_group_category.name %>
-</p>
+	<h2 class="title"><%= @document_group_category.name %></h2>
 
-<%= link_to 'Luo uusi alakategoria', '/document_group_categories/' + @document_group_category_id.to_s + '/new_document_group' %>
+	<%= link_to 'Luo uusi alakategoria', '/document_group_categories/' + @document_group_category_id.to_s + '/new_document_group' %><br>
+	<%= link_to 'Muokkaa kategoriaa', edit_document_group_category_path(@document_group_category) %><br>
+	<%= link_to 'Poista kategoria', @document_group_category, method: :delete, data: { confirm: 'Oletko varma?' } %>
 
-<br>
-<br>
+	<br>
+	<br>
 
-<%= link_to 'Edit', edit_document_group_category_path(@document_group_category) %> |
-<%= link_to 'Back', '/dokumentit' %>
+	<ul>
+
+    <% @document_groups.each do |document_group| %>
+
+    	<li><%= link_to document_group, "/dokumentit/" + document_group.name.tr(' ', '+') %></li>
+
+    <% end %>
+
+    </ul>
+</div>

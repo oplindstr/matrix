@@ -1,12 +1,10 @@
 <div class="box">
 
-  <h1 class="title">Dokumentit</h1>
+  <h1 class="title is-spaced">Dokumentit</h1>
 
   <% @document_group_categories.each do |document_group_category| %>
-
-    <br>
            
-    <% if admin %>
+    <% if sub_admin %>
 
       <h3 class="subtitle"><%= link_to document_group_category.name, document_group_category %></h3>
 
@@ -16,22 +14,27 @@
 
     <% end %>
 
+    <ul>
+
     <% @document_groups.select{ |m| m.document_group_category and m.document_group_category.id == document_group_category.id}.each do |document_group| %>
 
-    	<p><%= link_to document_group, "/dokumentit/" + document_group.name.tr(' ', '+') %></p>
+    	<li><%= link_to document_group, "/dokumentit/" + document_group.name.tr(' ', '+') %></li>
 
     <% end %>
+
     </ul>
+
+    <br>
            
   <% end %>
 
-  <% if admin %>
+  <% if sub_admin %>
 
-    <%= link_to 'New Document group category', new_document_group_category_path %>
+    <%= link_to 'Luo uusi dokumenttikategoria (päätaso)', new_document_group_category_path %>
 
     <br><br>
 
-    <%= link_to 'New Document', new_document_path %>
+    <%= link_to 'Lisää dokumentti', new_document_path %>
 
   <% end %>
 </div>

@@ -2,21 +2,25 @@
 
    <h2 class="title"> <%= @document_group.name %> </h2>
 
-   <% if admin %>
+   <% if sub_admin %>
 
-      <%= link_to "New Document", '/document_groups/' + @document_group_id.to_s + '/new_document', class: "btn btn-primary" %>
+      <%= link_to "Uusi dokumentti", '/document_groups/' + @document_group_id.to_s + '/new_document', class: "btn btn-primary" %><br>
+      <%= link_to 'Muokkaa kategoriaa', edit_document_group_path(@document_group) %><br>
+      <%= link_to 'Poista kategoria', @document_group, method: :delete, data: { confirm: 'Oletko varma?' } %>
 
+      <br>
+      <br>
    <% end %>
 
-   <table>
+   <table class="table">
       
       <tbody>
          <% @documents.each do |document| %>
             
             <tr>
                <td><%= link_to document.name, document.attachment_url %></td>
-               <% if admin %>
-               <td><%= button_to "Delete",  document, method: :delete, class: "btn btn-danger", data: {confirm: "Are you sure that you wish to delete #{document.name}?"} %></td>
+               <% if sub_admin %>
+               <td><%= button_to "Poista",  document, method: :delete, class: "button is-danger", data: {confirm: "Oletko varma?"} %></td>
                <% end %>
             </tr>
             
@@ -24,13 +28,5 @@
       </tbody>
       
    </table>
-
-   <% if admin %>
-
-   <br>
-
-   <%= link_to 'Edit', edit_document_group_path(@document_group) %>
-
-   <% end %>
 
 </div>

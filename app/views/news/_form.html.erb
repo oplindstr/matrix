@@ -12,21 +12,20 @@
   <% end %>
 
   <div class="field">
-    <%= f.label :header, 'Otsikko' %><br>
-    <%= f.text_field :header %>
+    <%= f.label :header, 'Otsikko', :class => 'label' %>
+    <div class='control'>
+      <%= f.text_field :header, :class => 'input', :required => true %>
+    </div>
   </div>
 
   <div class="field">
-    <%= f.label :text, 'Teksti' %><br>
-    <%= f.text_area :text %>
-  </div>
-
-  <div class="field">
-    <%= f.label :priority, 'Prioriteetti' %><br>
-    <%= f.number_field :priority %>
+    <%= f.label :text, 'Teksti', :class => 'label' %>
+    <div class='control'>
+      <%= f.text_area :text, :class => 'input textarea', :required => true %>
+    </div>
   </div>
 
   <div class="actions">
-    <%= f.submit "Tallenna" %>
+    <%= f.submit "Tallenna", :class => 'button is-link' %>
   </div>
 <% end %>

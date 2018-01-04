@@ -1,27 +1,41 @@
-<% if !@document.errors.empty? %>
-   <div class = "alert alert-error">
-      
-      <ul>
-         <% @document.errors.full_messages.each do |msg| %>
-            <li><%= msg %></li>
-         <% end %>
-      </ul>
-      
-   </div>
-<% end %>
+<div class="box">
 
-<div class = "well">
-   <%= form_for @document, html: { multipart: true } do |f| %>
-      <%= f.label :name %>
-      <%= f.text_field :name %>
-      <%= f.label :attachment %>
-      <%= f.file_field :attachment, accept: 'text/txt' %>
-      <% if @document_group_id %>
-         <%= f.hidden_field :document_group_id, :value => @document_group_id %>
-      <% else %>
-         <%= f.label :document_group_id %>
-         <%= f.select :document_group_id, options_from_collection_for_select(@document_groups, :id, :name) %>
-      <% end %>
-      <%= f.submit "Save", class: "btn btn-primary" %>
+   <h3 class="title">Uusi dokumentti</h3>
+
+   <%= form_for(@document) do |f| %>
+
+     <div class="field">
+       <%= f.label :name, 'Nimi', :class => 'label' %>
+       <div class="control">
+         <%= f.text_field :name, :class => 'input', :required => true %>
+       </div>
+     </div>
+
+     <div class="field">
+       <div class="control">
+         <%= f.file_field :attachment, accept: 'text/txt' %>
+       </div>
+     </div>
+
+     <div class="field">
+        <% if @document_group_id %>
+            <%= f.hidden_field :document_group_id, :value => @document_group_id %>
+         <% else %>
+            <%= f.label :document_group_id, 'Dokumenttikategoria', :class => 'label'  %>
+            <div class="select">
+               <%= f.select :document_group_id, options_from_collection_for_select(@document_groups, :id, :name) %>
+            </div>
+         <% end %>
+      </div>
+
+     <div class="actions">
+       <%= f.submit :value => 'Tallenna', :class => 'button is-link' %>
+     </div>
    <% end %>
+
+   <% if @document_group_id %>
+      <br>
+      <%= link_to 'Takaisin', document_group_path(@document_group_id) %>
+   <% end %>
+
 </div>

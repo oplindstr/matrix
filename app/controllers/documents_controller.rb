@@ -1,13 +1,10 @@
 class DocumentsController < ApplicationController
-   def index
-      @documents = Document.all
-   end
    
    def new
       @document = Document.new
       @document_group_id = params[:id]
       if not @document_group_id
-         @document_groups = DocumentGroup.all
+         @document_groups = DocumentGroup.all.order(:name)
       end
    end
    
@@ -27,8 +24,9 @@ class DocumentsController < ApplicationController
    
    def destroy
       @document = Document.find(params[:id])
+      @document_group = @document.document_group
       @document.destroy
-      redirect_to documents_path, notice:  "The document #{@document.name} has been deleted."
+      redirect_to document_group_path(@document_group), notice:  "The document #{@document.name} has been deleted."
    end
    
    private

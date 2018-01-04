@@ -19,12 +19,12 @@ class DocumentGroupsController < ApplicationController
   def new
     @document_group = DocumentGroup.new
     @document_group_category_id = params[:id]
+    @document_group_category = DocumentGroupCategory.find(@document_group_category_id)
   end
 
   # GET /document_groups/1/edit
   def edit
-    @document_group_category_id = params[:id]
-    @edit = true
+    @document_group_category_id = @document_group.document_group_category_id
   end
 
   # POST /document_groups
@@ -38,7 +38,11 @@ class DocumentGroupsController < ApplicationController
         format.json { render :show, status: :created, location: @document_group }
       else
         @document_group_categories = DocumentGroupCategory.all.sort { |a,b| a.name.downcase <=> b.name.downcase }
-        @document_group_category_id = params[:id]
+        @document_group_category_id = @document_group.document_group_category_id
+        if @document_group_category_id
+          @document_group_category = DocumentGroupCategory.find(@document_group_category_id)
+        end
+        @alert = @document_group.errors
         format.html { render :new }
         format.json { render json: @document_group.errors, status: :unprocessable_entity }
       end
@@ -53,6 +57,8 @@ class DocumentGroupsController < ApplicationController
         format.html { redirect_to @document_group, notice: 'Document group was successfully updated.' }
         format.json { render :show, status: :ok, location: @document_group }
       else
+        @document_group_categories = DocumentGroupCategory.all.sort { |a,b| a.name.downcase <=> b.name.downcase }
+        @alert = @document_group.errors
         format.html { render :edit }
         format.json { render json: @document_group.errors, status: :unprocessable_entity }
       end
@@ -64,7 +70,7 @@ class DocumentGroupsController < ApplicationController
   def destroy
     @document_group.destroy
     respond_to do |format|
-      format.html { redirect_to document_groups_url, notice: 'Document group was successfully destroyed.' }
+      format.html { redirect_to '/dokumentit', notice: 'Document group was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
@@ -76,6 +82,9 @@ class DocumentGroupsController < ApplicationController
         @document_group = DocumentGroup.where("name = ?", params[:name].tr('+', ' ')).first
       else
         @document_group = DocumentGroup.find(params[:id])
+      end
+      if not @document_group
+        redirect_to '/dokumentit'
       end
     end
 

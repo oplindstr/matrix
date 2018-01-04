@@ -1,13 +1,19 @@
-<h1>New Document Group</h1>
+<div class="box">
 
-<%= render 'form' %>
+	<% if @document_group_category_id %>
+		<h1 class="title">Uusi alakategoria kategoriaan <%= @document_group_category.name %></h1>
+	<% else %>
+		<h1 class="title">Uusi dokumenttialakategoria</h1>
+	<% end %>
 
-<% if @document_group_category_id %>
+	<%= render 'form' %>
 
-	<%= link_to 'Back', '/document_group_categories/' + @document_group_category_id.to_s %>
+	<% if @document_group_category_id %>
 
-<% else %>
+		<br>
 
-	<%= link_to 'Back', '/dokumentit' %>
+		<%= link_to 'Takaisin', '/document_group_categories/' + @document_group_category_id.to_s %>
 
-<% end %>
+	<% end %>
+
+</div>

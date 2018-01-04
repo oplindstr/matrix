@@ -1,27 +1,20 @@
 <%= form_for(@document_group) do |f| %>
-  <% if @document_group.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@document_group.errors.count, "error") %> prohibited this document_group from being saved:</h2>
 
-      <ul>
-      <% @document_group.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
+  <div class="field">
+    <%= f.label :name, 'Nimi', :class => 'label' %>
+    <div class="control">
+      <%= f.text_field :name, :class => 'input', :required => true %>
     </div>
-  <% end %>
-
-  <div class="field">
-    <%= f.label :name %><br>
-    <%= f.text_field :name %>
   </div>
 
   <div class="field">
-    <%= f.label :display_name %><br>
-    <%= f.text_field :display_name %>
+    <%= f.label :display_name, 'Lyhyt nimi', :class => 'label' %>
+    <div class="control">
+      <%= f.text_field :display_name, :class => 'input', :required => true %>
+    </div>
   </div>
 
-  <% if @document_group_category_id and not @edit %>
+  <% if @document_group_category_id and @document_group.new_record? %>
 
     <div class="field">
       <%= f.hidden_field :document_group_category_id, :value => @document_group_category_id %>
@@ -30,13 +23,15 @@
   <% else %>
 
     <div class="field">
-      <%= f.label :document_group_category_id %><br>
-      <%= f.select :document_group_category_id, options_from_collection_for_select(@document_group_categories, :id, :name) %>
+      <%= f.label :document_group_category_id, 'Yläkategoria', :class => 'label' %>
+      <div class="select">
+        <%= f.select :document_group_category_id, options_from_collection_for_select(@document_group_categories, :id, :name, :selected => @document_group_category_id), :required => true %>
+      </div>
     </div>
 
   <% end %>
 
   <div class="actions">
-    <%= f.submit %>
+    <%= f.submit :value => 'Tallenna', :class => 'button is-link' %>
   </div>
 <% end %>

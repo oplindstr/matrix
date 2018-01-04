@@ -11,6 +11,7 @@ class DocumentGroupCategoriesController < ApplicationController
   # GET /document_group_categories/1.json
   def show
     @document_group_category_id = @document_group_category.id
+    @document_groups = DocumentGroup.where('document_group_category_id = ?', @document_group_category_id).order(:name)
   end
 
   # GET /document_group_categories/new
@@ -57,7 +58,7 @@ class DocumentGroupCategoriesController < ApplicationController
   def destroy
     @document_group_category.destroy
     respond_to do |format|
-      format.html { redirect_to document_group_categories_url, notice: 'Document group category was successfully destroyed.' }
+      format.html { redirect_to '/dokumentit', notice: 'Document group category was successfully destroyed.' }
       format.json { head :no_content }
     end
   end

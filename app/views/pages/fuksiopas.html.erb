@@ -47,7 +47,9 @@
     <li><a href="#Fuksiopas-Missäonmatematiikanlaitos?">Missä on matematiikan laitos?</a></li>
     <li><a href="#Fuksiopas-Missäpidetäänmatematiikankurssienluennotjalaskuharjoitukset?">Missä pidetään matematiikan kurssien luennot ja laskuharjoitukset?</a></li>
     <li><a href="#Fuksiopas-A">Missä ovat fysiikan, kemian ja TKT:n laitokset sekä tiedekunnan kanslia?</a></li>
-    <li><a href="#Fuksiopas-Ketkäovatfuksi-jatuutorivastaavamme?">Ketkä ovat fuksi- ja tuutorivastaavamme?</a></li>
+    <% if @fuksijatuutorivastaavat and @fuksijatuutorivastaavat.size > 0 %>
+      <li><a href="#Fuksiopas-Ketkäovatfuksi-jatuutorivastaavamme?">Ketkä ovat fuksi- ja tuutorivastaavamme?</a></li>
+    <% end %>
     <li><a href="#Fuksiopas-MissäpaikkaXoikeinsijaitsee?">Missä paikka X oikein sijaitsee?</a></li>
   </ul>
   <br>
@@ -201,6 +203,9 @@
         <%= vastaava.name %>, 
       <% end %>
     <% end %>
+
+    <br>
+    <br>
 
   <% end %>
 

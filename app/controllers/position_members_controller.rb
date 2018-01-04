@@ -1,5 +1,6 @@
 class PositionMembersController < ApplicationController
   before_action :set_year, only: [:index, :new]
+  before_action :ensure_that_admin
   
   # GET /positions
   # GET /positions.json

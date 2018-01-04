@@ -1,5 +1,11 @@
-<h1>Editing Document Group</h1>
+<div class="box">
 
-<%= render 'form' %>
+	<h1 class="title">Muokkaa kategoriaa</h1>
 
-<%= link_to 'Back', '/dokumentit/' + @document_group.url %>
+	<%= render 'form' %>
+
+	<br>
+
+	<%= link_to 'Takaisin', document_group_path(@document_group) %>
+
+</div>

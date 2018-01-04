@@ -6,4 +6,16 @@
 		  </div>
 		</article>
 	</section>
+<% elsif @alert %>
+	<section class="section container">
+		<article class="message is-danger">
+		  <div class="message-body">
+		    <ul>
+		      <% @alert.full_messages.each do |message| %>
+		        <li><%= message %></li>
+		      <% end %>
+		      </ul>
+		  </div>
+		</article>
+	</section>
 <% end %>
