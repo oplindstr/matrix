@@ -1,91 +1,33 @@
-<h1 class="middle">Tapahtumakalenteri</h1>
+<div class="box">
 
-<div ng-controller="EventsController">
+  <h1 class="title is-spaced">Kalenteri</h1>
 
-  <div id="Events" class="container-fluid">
+  <% @events.each do |event| %>
 
-    <div class="col-md-4"></div>
-    <div class="Events col-md-4">
-
-      <span>Näytä:</span>
-      <select name="EventSelect" id="EventSelect" ng-model="show">
-        <option selected value="upcoming">Tulevat tapahtumat</option>
-        <option value="past">Menneet tapahtumat</option>
-        <option value="all">Kaikki tapahtumat</option>
-      </select>
-
-      <p></p>
-
-      <div class="allEvents" ng-show="show == 'all'">
-
-        <p class="middle" ng-show="events.length === 0">Ei tapahtumia</p>
-
-        <div class="Event" ng-repeat="event in events">
-          <div class="EventFields">
-              <b class="Eventname"><a href="events/{{event.id}}">{{event.name}}</a></b><br>
-              <span class="Eventfield">Aika:</span> <span class="Eventfield">{{event.starttime}}</span><br>
-              Paikka: {{event.location}}<br>
-              Hinta: <span ng-if="!event.price">Ei maksua</span>{{event.price}}<br>
-              <p></p>
-              <p>{{event.descr}}</p>
-              <p></p>
-          </div>
-
-          <br>
-        </div>
-
-
-      </div>
-
-      <div class="upcomingEvents" ng-show="show == 'upcoming'">
-
-        <p class="middle" ng-show="upcomingEvents.length === 0">Ei tulevia tapahtumia</p>
-
-        <div class="Event" ng-repeat="event in upcomingEvents">
-          <div class="EventFields">
-              <b class="Eventname"><a href="events/{{event.id}}">{{event.name}}</a></b><br>
-              <span class="Eventfield">Aika:</span> <span class="Eventfield">{{event.starttime}}</span><br>
-              Paikka: {{event.location}}<br>
-              Hinta: <span ng-if="!event.price">Ei maksua</span>{{event.price}}<br>
-              <p></p>
-              <p>{{event.descr}}</p>
-              <p></p>
-          </div>
-          <br>
-        </div>
-
-      </div>
-
-      <div class="pastEvents" ng-show="show == 'past'">
-
-        <p class="middle" ng-show="pastEvents.length === 0">Ei menneitä tapahtumia</p>
-
-        <div class="Event" ng-repeat="event in pastEvents">
-          <div class="EventFields">
-              <b class="Eventname"><a href="events/{{event.id}}">{{event.name}}</a></b><br>
-              <span class="Eventfield">Aika:</span> <span class="Eventfield">{{event.starttime}}</span><br>
-              Paikka: {{event.location}}<br>
-              Hinta: <span ng-if="!event.price">Ei maksua</span>{{event.price}}<br>
-              <p></p>
-              <p>{{event.descr}}</p>
-              <p></p>
-          </div>
-          <br>
-        </div>
-
-      </div>
-
-      <p></p>
-
-      <% if admin %>
-
-          <%= link_to 'Lisää tapahtuma', new_event_path %>
-
+    <h2 class="subtitle"><%= link_to event.name, event %></h2>
+    <p><%= DateHelper.standard_time(event.starttime) %></p>
+    <% if event.location and event.location.length > 0 %>
+      <p>@ <%= event.location %></p>
+    <% end %>
+    <p>
+      <% if event.signup_open %>
+        <br>
+        <i>Ilmoittautuminen tapahtumaan on käynnissä ja päättyy <%= DateHelper.standard_time2(event.signup_end) %> </i>
+      <% elsif event.signup_required %>
+        <br>
+        <i>Ilmoittautuminen tapahtumaan alkaa <%= DateHelper.standard_time2(event.signup_start) %> </i>
       <% end %>
+    </p>
 
-    </div>
-    <div class="col-md-4"></div>
+    <br>
 
-  </div>
+    <pre><%= event.descr %></pre>
+
+    <% if event != @events.last %>
+      <hr>
+    <% end %>
+
+  <% end %>
 
 </div>
+

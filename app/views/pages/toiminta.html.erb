@@ -66,13 +66,17 @@
 
     <br>
 
-    <h2 class="subtitle">Tapahtumakalenterit</h2>
+    <% if @years %>
 
-    <p>Menneiden tapahtumista löytyy tietoa tapahtumakalentereista. Tapahtuman jäljessä osallistujamäärä.</p>
+      <h2 class="subtitle">Tapahtumakalenterit</h2>
 
-    <ul>
-      <% @years.each do |year| %>
-        <li><%= link_to 'Tapahtumakalenteri ' + year.to_s, 'kalenteri/vuosi/' + year.to_s %></li>
-      <% end %>
-    </ul>
+      <p>Menneiden tapahtumista löytyy tietoa tapahtumakalentereista. Tapahtuman jäljessä osallistujamäärä.</p>
+
+      <ul>
+        <% @years.each do |year| %>
+          <li><%= link_to 'Tapahtumakalenteri ' + year.to_s, 'kalenteri/vuosi/' + year.to_s %></li>
+        <% end %>
+      </ul>
+
+    <% end %>
 </div>

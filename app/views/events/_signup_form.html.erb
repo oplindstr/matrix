@@ -21,7 +21,7 @@
       <div class="field">
         <%= f.label :name, 'Nimi', :class => 'label' %>
         <div class="control">
-          <%= f.text_field :name, :class => 'input', :required => false %>
+          <%= f.text_field :name, :class => 'input', :required => true %>
         </div>
         <p class="help is-danger">
           Pakollinen kenttä
@@ -48,8 +48,8 @@
 
             <% if p.object.event_parameter.event_parameter_type.name == 'Valintaruutu' %>
               <label class="checkbox">
-              <%= p.check_box :value, :required => p.object.event_parameter.required %>
-              <%= p.object.event_parameter.name %>
+                <%= p.check_box :value, :required => p.object.event_parameter.required %>
+                <%= p.object.event_parameter.name %>
               </label>
             <% end %>
 
@@ -83,7 +83,7 @@
   </div>
   <div class="actions">
     <% if current_user and @event.user_signed_up(current_user.id) %>
-      <%= f.submit :value => 'Muokkaa ilmoittautumista', :class => "is-link" %>
+      <%= f.submit :value => 'Muokkaa ilmoittautumista', :class => " button is-link" %>
     <% else %>
       <%= f.submit :value => 'Ilmoittaudun', :class => "button is-link" %>
     <% end %>

@@ -5,9 +5,9 @@ class User < ActiveRecord::Base
   validates :username, presence: true, uniqueness: true, length: { in: 1..100 }
   validates :firstname, presence: true, length: { in: 1..100 }
   validates :lastname, presence: true, length: { in: 1..100 }
-  validates :email, uniqueness: true, length: { in: 1..100 }
+  validates :email, uniqueness: true, length: { maximum: 100 }
   validates :password, length: { maximum: 100 }
-  validates :city, length: { in: 1..100 }
+  validates :city, length: { maximum: 100 }
   validates :phonenumber, length: { maximum: 100 }
 
   has_many :board_members

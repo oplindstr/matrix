@@ -53,7 +53,10 @@
 		      <% end %>
 		      <% if event.signup_open %>
 		      	<br>
-		      	<i>Ilmoittautuminen tapahtumaan on käynnissä</i>
+		      	<i>Ilmoittautuminen tapahtumaan on käynnissä ja päättyy <%= DateHelper.standard_time2(event.signup_end) %> </i>
+		      <% elsif event.signup_required %>
+		      	<br>
+		      	<i>Ilmoittautuminen tapahtumaan alkaa <%= DateHelper.standard_time2(event.signup_start) %> </i>
 		      <% end %>
 		      <% if event != @events.last %>
 		      	<hr>

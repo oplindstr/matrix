@@ -5,12 +5,7 @@ class EventsController < ApplicationController
   # GET /events
   # GET /events.json
   def index
-    @events = Event.all
-
-    respond_to do |format|
-      format.html # index.html.erb
-      format.json { render json: @events }
-    end
+    @events = Event.all.where('starttime > ?', Time.now).order(:starttime)
   end
 
   # GET /events/1

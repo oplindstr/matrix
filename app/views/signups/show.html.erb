@@ -1,53 +1,49 @@
-<h2><%= @event.name %></h2>
+<div class="box">
 
-<h3>Ilmoittautuneet</h3>
+  <h2 class="title is-spaced"><%= @event.name %></h2>
 
-<div id="Event" class="container-fluid">
+  <h3 class="subtitle">Ilmoittautuneet</h3>
 
-  <div class="col-lg-9">
+  <% if @signups %>
 
-        <% if @signups %>
+  <table class="table is-narrow">
+    <thead>
+    <tr>
+      <th></th>
+      <th>Nimi</th>
+      <% if admin %>
+        <th>Sähköposti</th>
+        <th>Puhelinnumero</th>
+        <% @event.event_parameters.each do |param| %>
+          <th> <%= param.name %> </th>
+        <% end %>
+      <% end %>
+    </tr>
+    </thead>
 
-            <table>
-              <thead>
-              <tr>
-                <th></th>
-                <th>Nimi</th>
-                <% if admin %>
-                  <th>Sähköposti</th>
-                  <th>Puhelinnumero</th>
-                  <% @event.event_parameters.each do |param| %>
-                    <th> <%= param.name %> </th>
-                  <% end %>
-                <% end %>
-              </tr>
-              </thead>
+    <tbody>
+    <% @signups.each do |signup| %>
+      <tr>
+        <td><%= @signup_count %>. </td>
+        <td><%= signup %></td>
+        <% if admin %>
+          <td><%= signup.get_email %></td>
+          <td><%= signup.get_phonenumber %></td>
+          <% signup.signup_parameters.each do |param| %>
+            <% if param.event_parameter %>
+              <td><%= param.value %></td>
+            <% end %>
+          <% end %>
+        <% end %>
+        <% @signup_count = @signup_count + 1 %>
+      </tr>
+    <% end %>
+    </tbody>
+  </table>
 
-              <tbody>
-              <% @signups.each do |signup| %>
-                <tr>
-                  <td><%= @signup_count %>. </td>
-                  <td><%= signup %></td>
-                  <% if admin %>
-                    <td><%= signup.get_email %></td>
-                    <td><%= signup.get_phonenumber %></td>
-                    <% signup.signup_parameters.each do |param| %>
-                      <% if param.event_parameter %>
-                        <td><%= param.value %></td>
-                      <% end %>
-                    <% end %>
-                  <% end %>
-                  <% @signup_count = @signup_count + 1 %>
-                </tr>
-              <% end %>
-              </tbody>
-            </table>
+  <br>
 
-            <br>
-        </div>
+  <%= link_to 'Takaisin tapahtumaan', event_path(@event.id) %>
 
-   </div>
-
-    <%= link_to 'Takaisin tapahtumaan', event_path(@event.id) %>
-
-<% end %>
+  <% end %>
+</div>

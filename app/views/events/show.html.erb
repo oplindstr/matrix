@@ -51,10 +51,12 @@
     <%= DateHelper.full_date(@event.signup_start) %> - <%= DateHelper.full_date(@event.signup_end) %>
     </p>
 
-    <p>
-    <strong>Ilmoittautuminen sitova alkaen:</strong>
-    <%= DateHelper.full_date(@event.signup_cancellable_until) %>
-    </p>
+    <% if @event.signup_cancellable and @event.signup_cancellable_until < @event.signup_end %>
+      <p>
+      <strong>Ilmoittautuminen sitova alkaen:</strong>
+      <%= DateHelper.full_date(@event.signup_cancellable_until) %>
+      </p>
+    <% end %>
 
     <p>
       <strong>Ilmoittautuneita:</strong>
@@ -69,9 +71,8 @@
     <% end %>
 
     <% if !@event.empty %>
-
       <p><%= link_to 'Näytä ilmoittautuneet', event_signups_path(@event.id) %></p>
-
+      <br>
     <% end %>
 
     <% if !@event.members_only %>
@@ -102,6 +103,4 @@
     <%= link_to 'Muokkaa tapahtumaa', edit_event_path(@event) %> |
 
   <% end %>
-
-  <%= link_to 'Takaisin', :back %>
 </div>

@@ -35,7 +35,7 @@ class UsersController < ApplicationController
         format.html { redirect_to root_path, notice: 'User was successfully created.' }
         format.json { render :index, status: :created, location: root_path }
       else
-        format.html { render :new }
+        format.html { render :new, alert: @user.errors }
         format.json { render json: @user.errors, status: :unprocessable_entity }
       end
     end
@@ -81,7 +81,7 @@ class UsersController < ApplicationController
         format.html { redirect_to root_path, notice: 'Käyttäjätunnus lähetetty antamaasi sähköpostiosoitteeseen' }
         format.json { render root_path, status: :ok, location: root_path }
       else
-        format.html { redirect_to username_recovery_path, notice: 'Käyttäjää tällä sähköpostiosoitteella ei ole olemassa' }
+        format.html { redirect_to username_recovery_path, alert: 'Käyttäjää tällä sähköpostiosoitteella ei ole olemassa' }
         format.json { render :username_recovery, status: :unprocessable_entity, location: username_recovery_path }
       end
     end
@@ -101,11 +101,11 @@ class UsersController < ApplicationController
           format.html { redirect_to root_path, notice: 'Uusi salasana lähetetty antamaasi sähköpostiosoitteeseen' }
           format.json { render root_path, status: :ok, location: root_path }
         else
-          format.html { redirect_to password_recovery_path, notice: 'Salasanan vaihto epäonnistui' }
+          format.html { redirect_to password_recovery_path, alert: 'Salasanan vaihto epäonnistui' }
           format.json { render :password_recovery, status: :unprocessable_entity, location: password_recovery_path }
         end
       else
-        format.html { redirect_to password_recovery_path, notice: 'Käyttäjää tällä käyttäjätunnuksella ja sähköpostiosoitteella ei ole olemassa' }
+        format.html { redirect_to password_recovery_path, alert: 'Käyttäjää tällä käyttäjätunnuksella ja sähköpostiosoitteella ei ole olemassa' }
         format.json { render :password_recovery, status: :unprocessable_entity, location: password_recovery_path }
       end
     end
@@ -144,11 +144,11 @@ class UsersController < ApplicationController
     params = update_password_params
     respond_to do |format|
       if not @user.try(:authenticate, params[:current_password])
-        format.html { redirect_to new_password_path, notice: 'Nykyinen salasana väärin' }
+        format.html { redirect_to new_password_path, alert: 'Nykyinen salasana väärin' }
         format.json { render json: @user.errors, status: :unprocessable_entity, location: new_password_path } 
       end
       if not @user.update(:password => params[:new_password], :password_confirmation => params[:new_password_confirmation])
-        format.html { redirect_to new_password_path, notice: 'Uuden salasanan vahvistus väärin' }
+        format.html { redirect_to new_password_path, alert: 'Uuden salasanan vahvistus väärin' }
         format.json { render json: @user.errors, status: :unprocessable_entity, location: new_password_path } 
       else
         format.html { redirect_to @user, notice: 'Password was successfully updated.' }
