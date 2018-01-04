@@ -1,54 +1,69 @@
-<h2>Muokkaa omia tietoja</h2>
+<div class="box">
 
-<% if not @member %>
-  <p>Jäsenmaksuasi tälle lukuvuodelle ei ole merkitty maksetuksi. Älä välitä tästä, jos olet maksanut sen.</p>
-<% end %>
+  <h2 class="title is-spaced">Omat tiedot</h2>
 
-<%= render 'form' %>
+  <h3 class="subtitle">Jäsenyys</h3>
 
-<% if sub_admin %>
+  <% if not @member %>
+    <p class="has-text-danger">Jäsenmaksuasi tälle lukuvuodelle ei ole merkitty maksetuksi. Älä välitä tästä, jos olet maksanut sen.</p>
+  <% else %>
+    <% if @membership_max_year > @membership_this_year %>
+      <p>Jäsenyytesi on voimassa lukuvuoden <%= @membership_max_year + 1 %> alkuun asti</p>
+    <% else %>
+      <p>Jäsenyytesi on voimassa lukuvuoden <%= @membership_this_year %>-<%= @membership_this_year + 1 %></p>
+    <% end %>
+  <% end %>
 
-  <% if @user.get_avatar %>
+  <br>
 
-    <h2>Lisätty kuva</h2>
+  <%= render 'form' %>
 
-    <%= image_tag(@user.get_avatar, size: "240x320") %>
+  <% if sub_admin %>
 
-    <p>Näytetään hallitus ja virkailijat sivulla</p>
+    <% if @user.get_avatar %>
 
-    <%= form_for @user, :url => { :action => "remove_picture" } do |f| %>
+      <h2>Lisätty kuva</h2>
+
+      <%= image_tag(@user.get_avatar, size: "240x320") %>
+
+      <p>Näytetään hallitus ja virkailijat sivulla</p>
+
+      <%= form_for @user, :url => { :action => "remove_picture" } do |f| %>
+
+        <div class="actions">
+          <%= f.submit 'Poista kuva', data: { confirm: 'Oletko varma?' }  %>
+        </div>
+
+      <% end %>
+
+    <% end %>
+
+    <%= form_for @user, :url => { :action => "add_picture" } do |f| %>
+
+      <div class="form-area">
+
+        <% if @user.get_avatar %>
+          <h2>Vaihda kuva</h2>
+        <% else %>
+          <h2>Lisää kuva</h2>
+        <% end %>
+
+        <div class="field">
+          <%= f.file_field :avatar, accept: 'image/png,image/jpg,image/jpeg' %> (kuvan koko korkeintaan 5 MB)
+        </div>
+
+      </div>
 
       <div class="actions">
-        <%= f.submit 'Poista kuva', data: { confirm: 'Oletko varma?' }  %>
+        <%= f.submit :value => 'Tallenna'  %>
       </div>
 
     <% end %>
 
   <% end %>
 
-  <%= form_for @user, :url => { :action => "add_picture" } do |f| %>
+  <br>
 
-    <div class="form-area">
+  <%= link_to 'Vaihda salasana', new_password_path(@user) %>
 
-      <% if @user.get_avatar %>
-        <h2>Vaihda kuva</h2>
-      <% else %>
-        <h2>Lisää kuva</h2>
-      <% end %>
-
-      <div class="field">
-        <%= f.file_field :avatar, accept: 'image/png,image/jpg,image/jpeg' %> (kuvan koko korkeintaan 5 MB)
-      </div>
-
-    </div>
-
-    <div class="actions">
-      <%= f.submit :value => 'Tallenna'  %>
-    </div>
-
-  <% end %>
-
-<% end %>
-
-
-<%= link_to 'Vaihda salasana', new_password_path(@user) %>
+</div>

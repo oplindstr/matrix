@@ -91,7 +91,8 @@
       <% if @event_parameters.size > 0 %>
         <%= render 'signup_form' %>
       <% end %>
-        <%= button_to 'Peru ilmoittautuminen', @signup, method: :delete, data: { confirm: 'Haluatko varmasti perua ilmoittautumisesi?' } %>
+      <br>
+      <%= button_to 'Peru ilmoittautuminen', @signup, method: :delete, data: { confirm: 'Haluatko varmasti perua ilmoittautumisesi?' }, class: 'button is-danger' %>
     <% end %>
 
   <% end %>

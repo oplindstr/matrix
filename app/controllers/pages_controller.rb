@@ -29,7 +29,7 @@ class PagesController < ApplicationController
   end
 
   def toiminta
-    @this_year = Time.now.year
+    @this_year = Time.now.beginning_of_year
     @years = Event.where('starttime < ?', @this_year).order(starttime: :desc).pluck(:starttime).uniq{ |m| m.year }.map!{ |m| m.year }
   end
 

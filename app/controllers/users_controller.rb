@@ -12,7 +12,18 @@ class UsersController < ApplicationController
   # GET /users/1
   # GET /users/1.json
   def show
-    @member = Membership.where(user_id: @user.id, year: DateHelper.year).exists?
+    if Time.now.month >= 8
+      @membership_this_year = DateHelper.year
+    else
+      @membership_this_year = DateHelper.year - 1
+    end
+    @memberships = Membership.where('user_id = ? and year >= ?', @user.id, @membership_this_year).pluck(:year)
+    if !@memberships.empty?
+      @membership_max_year = @memberships.max
+      @member = true
+    else
+      @member = false
+    end
   end
 
   # GET /users/new

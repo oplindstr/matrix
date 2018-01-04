@@ -23,28 +23,30 @@ class ApplicationController < ActionController::Base
   def admin
     return false if !current_user
     return true if current_user.admin
-    @position_member = PositionMember.where("year = ? AND user_id = ?", Date.today.year, current_user.id)
-    @position = Position.find(@position_member.position_id)
-    return true if @position.admin
+    @position_member = PositionMember.where("year = ? AND user_id = ?", Date.today.year, current_user.id).first
+    if @position_member
+      @position = Position.find(@position_member.position_id)
+      return true if @position.admin
+    end
     false
   end
 
   def sub_admin
     return false if !current_user
     return true if admin
-    @board_member = BoardMember.where("year = ? AND user_id = ?", Date.today.year, current_user.id)
+    @board_member = BoardMember.where("year = ? AND user_id = ?", Date.today.year, current_user.id).first
     return true if @board_member
-    @position_member = PositionMember.where("year = ? AND user_id = ?", Date.today.year, current_user.id)
+    @position_member = PositionMember.where("year = ? AND user_id = ?", Date.today.year, current_user.id).first
     return true if @position_member
     false
   end
 
   def ensure_that_admin
-    redirect_to root_path, notice:"" if not admin
+    redirect_to root_path if not admin
   end
 
   def ensure_that_sub_admin
-    redirect_to root_path, notice:"" if not sub_admin
+    redirect_to root_path if not sub_admin
   end
 
   def get_setting(setting)

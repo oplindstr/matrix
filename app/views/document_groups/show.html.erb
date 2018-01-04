@@ -2,8 +2,6 @@
 
    <h2 class="title"> <%= @document_group.name %> </h2>
 
-   <br />
-
    <% if admin %>
 
       <%= link_to "New Document", '/document_groups/' + @document_group_id.to_s + '/new_document', class: "btn btn-primary" %>
@@ -34,9 +32,5 @@
    <%= link_to 'Edit', edit_document_group_path(@document_group) %>
 
    <% end %>
-
-   <br>
-
-   <%= link_to 'Takaisin', dokumentit_path %>
 
 </div>

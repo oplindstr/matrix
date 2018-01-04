@@ -18,9 +18,11 @@
     <div class="control">
       <%= f.text_field :firstname, :class => 'input', :required => true %>
     </div>
-    <p class="help is-danger">
-      Pakollinen kenttä
-    </p>
+    <% if @user.new_record? %>
+      <p class="help is-danger">
+        Pakollinen kenttä
+      </p>
+    <% end %>
   </div>
 
   <div class="field">
@@ -28,9 +30,11 @@
     <div class="control">
       <%= f.text_field :lastname, :class => 'input', :required => true %>
     </div>
-    <p class="help is-danger">
-      Pakollinen kenttä
-    </p>
+    <% if @user.new_record? %>
+      <p class="help is-danger">
+        Pakollinen kenttä
+      </p>
+    <% end %>
   </div>
 
   <div class="field">
@@ -38,9 +42,11 @@
     <div class="control">
       <%= f.text_field :email, :class => 'input', :type => 'email', :required => true %>
     </div>
-    <p class="help is-danger">
-      Pakollinen kenttä
-    </p>
+    <% if @user.new_record? %>
+      <p class="help is-danger">
+        Pakollinen kenttä
+      </p>
+    <% end %>
   </div>
 
   <div class="field">
@@ -59,9 +65,11 @@
       <div class="control">
         <%= f.text_field :username, :class => 'input', :required => true %>
       </div>
-      <p class="help is-danger">
-        Pakollinen kenttä
-      </p>
+      <% if @user.new_record? %>
+        <p class="help is-danger">
+          Pakollinen kenttä
+        </p>
+      <% end %>
     </div>
 
     <div class="field">
@@ -69,9 +77,11 @@
       <div class="control">
         <%= f.password_field :password, :class => 'input', :required => true %>
       </div>
-      <p class="help is-danger">
-        Pakollinen kenttä
-      </p>
+      <% if @user.new_record? %>
+        <p class="help is-danger">
+          Pakollinen kenttä
+        </p>
+      <% end %>
     </div>
 
     <div class="field">
@@ -79,9 +89,11 @@
       <div class="control">
         <%= f.password_field :password_confirmation, :class => 'input', :required => true %>
       </div>
-      <p class="help is-danger">
-        Pakollinen kenttä
-      </p>
+      <% if @user.new_record? %>
+        <p class="help is-danger">
+          Pakollinen kenttä
+        </p>
+      <% end %>
     </div>
 
   <% end %>
