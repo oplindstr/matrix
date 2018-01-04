@@ -184,9 +184,9 @@ class UsersController < ApplicationController
       user = User.find(param[0])
       member = param[1][:member]
       membership = Membership.where('user_id = ? and year = ?', user.id, year).first
-      if member = '0' and membership
+      if member == '0' and membership
         membership.destroy
-      elsif member = '1' and !membership
+      elsif member == '1' and !membership
         membership = Membership.new
         membership.user_id = user.id
         membership.year = year
