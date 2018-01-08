@@ -36,8 +36,15 @@ class Event < ActiveRecord::Base
   end
 
   def signup_open
+    if (!self.signup_required)
+      return false
+    end
     time = Time.now
-    open = (time <= self.signup_end and time >= self.signup_start)
+    if (!self.signup_end)
+      open = time >= self.signup_start
+    else
+      open = (time <= self.signup_end and time >= self.signup_start)
+    end
     return open
   end
 

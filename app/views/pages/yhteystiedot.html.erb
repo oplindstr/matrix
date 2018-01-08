@@ -18,7 +18,7 @@
 
   <ul>
     <% @contact_positions.each do |position| %>
-      <% if !position.current_members.empty? %>
+      <% if position.current_members and !position.current_members.empty? %>
         <li>
           <% if position.current_members.size == 1 %>
             <%= position.name %>: 

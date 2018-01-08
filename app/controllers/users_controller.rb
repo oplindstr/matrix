@@ -209,6 +209,7 @@ class UsersController < ApplicationController
     if !current_user or current_user.id != @user.id
       ensure_that_admin
     end
+    false
   end
 
     # Never trust parameters from the scary internet, only allow the white list through.
