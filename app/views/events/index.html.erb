@@ -10,7 +10,7 @@
       <p>@ <%= event.location %></p>
     <% end %>
     <p>
-      <% if event.signup_open %>
+      <% if event.signup_open and event.signup_end %>
         <br>
         <i>Ilmoittautuminen tapahtumaan on käynnissä ja päättyy <%= DateHelper.standard_time2(event.signup_end) %> </i>
       <% elsif event.signup_required and event.signup_start %>
