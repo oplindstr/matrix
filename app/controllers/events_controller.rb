@@ -1,6 +1,7 @@
 class EventsController < ApplicationController
-  before_action :set_event, only: [:show, :update, :destroy]
+  before_action :set_event, only: [:show, :update, :destroy, :edit]
   before_action :set_signup, only: [:update_signup]
+  before_action :ensure_that_sub_admin, only: [:new, :edit]
 
   # GET /events
   # GET /events.json
@@ -41,7 +42,6 @@ class EventsController < ApplicationController
 
   # GET /events/1/edit
   def edit
-    @event = Event.find(params[:id])
     @event_parameter_types = EventParameterType.all
   end
 
@@ -127,9 +127,7 @@ class EventsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_event
-      if request.format.symbol != :json
-        @event = Event.find(params[:id])
-      end
+      @event = Event.find(params[:id])
     end
 
     def set_signup

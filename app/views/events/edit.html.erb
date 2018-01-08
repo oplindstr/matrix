@@ -1,5 +1,11 @@
-<h1>Muokkaa tapahtumaa</h1>
+<div class="box">
 
-<%= render 'event_form' %>
+	<h1 class="title">Muokkaa tapahtumaa</h1>
 
-<%= link_to 'Takaisin', events_path %>
+	<%= render 'event_form' %>
+
+	<br>
+	
+	<%= link_to 'Takaisin tapahtumaan', event_path(@event) %>
+
+</div>

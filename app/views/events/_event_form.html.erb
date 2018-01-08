@@ -1,106 +1,142 @@
-<%= form_for @event do |f| %>
-  <% if @event.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@event.errors.count, "error") %> prohibited this event from being saved:</h2>
-
-      <ul>
-      <% @event.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
+<%= form_for @event, :html => { :onsubmit => "return confirm('Oletko varma?')" } do |f| %>
 
   <%= javascript_include_tag 'events' %>
 
   <div class="field">
-    <%= f.label :name, 'Nimi' %> (pakollinen kenttä)<br>
-    <%= f.text_field :name %>
-  </div>
-    <div class="field">
-      <%= f.label :descr, 'Kuvaus' %> (pakollinen kenttä)<br>
-      <%= f.text_area :descr, :rows => "10", :cols => "50" %>
+    <%= f.label :name, 'Nimi', :class => 'label' %>
+    <div class="control">
+      <%= f.text_field :name, :class => 'input', :required => true %>
     </div>
-  <div class="field">
-    <%= f.label :starttime, 'Alkaa' %><br>
-    <%= f.datetime_select :starttime %>
+    <p class="help is-danger">
+      Pakollinen kenttä
+    </p>
   </div>
   <div class="field">
-    <%= f.label :endtime, 'Loppuu' %><br>
-    <%= f.datetime_select :endtime %>
+    <%= f.label :descr, 'Kuvaus', :class => 'label' %>
+    <div class="control">
+      <%= f.text_area :descr, :class => 'input textarea', :required => true %>
+    </div>
+    <p class="help is-danger">
+      Pakollinen kenttä
+    </p>
   </div>
   <div class="field">
-    <%= f.label :location, 'Paikka' %><br>
-    <%= f.text_field :location %>
+    <%= f.label :starttime, 'Alkaa', :class => 'label' %>
+    <div class="control">
+      <%= f.datetime_field :starttime, :type => 'datetime-local', :required => true %>
+    </div>
+    <p class="help is-danger">
+      Pakollinen kenttä
+    </p>
+  </div>
+  <div class="field">
+    <%= f.label :endtime, 'Loppuu', :class => 'label' %>
+    <div class="control">
+      <%= f.datetime_field :endtime, :type => 'datetime-local' %>
+    </div>
+  </div>
+  <div class="field">
+    <%= f.label :location, 'Paikka', :class => 'label' %>
+    <div class="control">
+      <%= f.text_field :location, :class => 'input' %>
+    </div>
   </div>
     <div class="field">
-      <%= f.label :price, 'Hinta' %><br>
-      <%= f.number_field :price %>
+      <%= f.label :price, 'Hinta', :class => 'label' %>
+      <div class="control">
+        <%= f.number_field :price, :class => 'input' %>
+      </div>
     </div>
 
   <div class="field">
-    <%= f.label :event_type, 'Tyyppi' %><br>
-    <%= f.text_field :event_type %>
+    <%= f.label :event_type, 'Tyyppi', :class => 'label' %>
+    <div class="control">
+      <%= f.text_field :event_type, :class => 'input' %>
+    </div>
   </div>
   <div class="field">
-    <%= f.label :signup_required, 'Täytyykö ilmoittautua' %><br>
-    <%= f.check_box :signup_required, { :onchange => '$("#signup-options").toggle()' } %>
+    <label class="checkbox">
+      <%= f.check_box :signup_required, { :onchange => 'toggle_signup_options()' } %>
+      Täytyykö ilmoittautua
+    </label>
   </div>
 
   <div id="signup-options">
 
     <div class="field">
-      <%= f.label :signup_limit, 'Ilmoittautumisraja' %><br>
-      <%= f.number_field :signup_limit %>
+      <%= f.label :signup_limit, 'Ilmoittautumisraja', :class => 'label' %>
+      <div class="control">
+        <%= f.number_field :signup_limit, :class => 'input' %>
+      </div>
     </div>
 
       <div class="field">
-        <%= f.label :signup_start, 'Ilmoittautuminen alkaa' %><br>
-        <%= f.datetime_select :signup_start %>
+        <%= f.label :signup_start, 'Ilmoittautuminen alkaa', :class => 'label' %>
+        <div class="control">
+          <%= f.datetime_field :signup_start, :type => 'datetime-local' %>
+        </div>
       </div>
       <div class="field">
-        <%= f.label :signup_end, 'Ilmoittautuminen päättyy' %><br>
-        <%= f.datetime_select :signup_end %>
+        <%= f.label :signup_end, 'Ilmoittautuminen päättyy', :class => 'label' %>
+        <div class="control">
+          <%= f.datetime_field :signup_end, :type => 'datetime-local' %>
+        </div>
       </div>
       <div class="field">
-        <%= f.label :signup_cancellable_until, 'Ilmoittautuminen sitova alkaen' %><br>
-        <%= f.datetime_select :signup_cancellable_until %>
+        <%= f.label :signup_cancellable_until, 'Ilmoittautuminen sitova alkaen', :class => 'label' %>
+        <div class="control">
+          <%= f.datetime_field :signup_cancellable_until, :type => 'datetime-local' %>
+        </div>
       </div>
       <div class="field">
-        <%= f.label :members_only, 'Vain jäsenille' %><br>
-        <%= f.check_box :members_only %>
+        <label class="checkbox">
+          <%= f.check_box :members_only %>
+          Vain jäsenille
+        </label>
       </div>
 
-      <h2>Lisätiedot</h2>
+      <h2 class="subtitle">Lisätiedot</h2>
 
       <div name='event_parameters'>
         <div class='items'>
           <%= f.nested_fields_for :event_parameters, :wrapper => false do |p| %>
             <div class="fields">
               <div class="field">
-                <%= p.label :name, 'Nimi' %><br>
-                <%= p.text_field :name  %>
+                <%= p.label :name, 'Nimi', :class => 'label' %>
+                <div class="control">
+                  <%= p.text_field :name, :class => 'input', :required => true  %>
+                </div>
               </div>
               <div class="field">
-                <%= p.label 'Tyyppi' %><br>
-                <%= p.select(:event_parameter_type_id, options_from_collection_for_select(@event_parameter_types, :id, :name, p.object.event_parameter_type_id), {}, :onchange => "show_event_parameter_choices(this.id, this.value)") %>
+                <%= p.label 'Tyyppi', :class => 'label' %>
+                <div class="select">
+                  <%= p.select(:event_parameter_type_id, options_from_collection_for_select(@event_parameter_types, :id, :name, p.object.event_parameter_type_id), {}, :onchange => "show_event_parameter_choices(this.id, this.value)") %>
+                </div>
                 <div class="event_parameter_choices" style="display: none">
+                  <br>
+                  <h2 class="subtitle">Valintanapin vaihtoehdot</h2>
                   <%= p.nested_fields_for :event_parameter_choices, :wrapper => false do |c| %>
-                     <div class='fields'>
-                      <div class="field">
-                        <%= c.label :value, 'Vaihtoehto' %><br>
-                        <%= c.text_field :value %>
+                    <div class="field">
+                      <%= c.label :value, 'Vaihtoehto', :class => 'label' %>
+                      <div class="control">
+                        <%= c.text_field :value, :class => 'input' %>
                       </div>
                     </div>
+                    <%= c.remove_nested_fields_link 'Poista vaihtoehto' %>
                   <% end %>
                   <br>
                   <%= p.add_nested_fields_link :event_parameter_choices, "Lisää vaihtoehto", :class => 'btn btn-primary' %>
                 </div>
               </div>
               <div class="field">
-                <%= p.label :required, 'Pakollinen' %><br>
-                <%= p.check_box :required  %>
+                <label class="checkbox">
+                  <%= p.check_box :required %>
+                  Pakollinen
+                </label>
+              </div>
+              <%= p.remove_nested_fields_link 'Poista kenttä' %>
             </div>
+            <hr>
          <% end %>
         </div>
          <%= f.add_nested_fields_link :event_parameters, "Lisää kenttä", :class => 'btn btn-primary' %>
@@ -110,7 +146,7 @@
   </div>
 
   <div class="actions">
-    <%= f.submit 'Tallenna' %>
+    <%= f.submit 'Tallenna', :class => 'button is-link' %>
   </div>
 
 <% end %>
