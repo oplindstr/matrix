@@ -56,6 +56,7 @@ class EventsController < ApplicationController
         format.html { redirect_to @event, notice: 'Event was successfully created.' }
         format.json { render :show, status: :created, location: @event }
       else
+        @alert = @event.errors
         @event_parameter_types = EventParameterType.all
         format.html { render :new }
         format.json { render json: @event.errors, status: :unprocessable_entity }
@@ -71,6 +72,8 @@ class EventsController < ApplicationController
         format.html { redirect_to @event, notice: 'Event was successfully updated.' }
         format.json { render :show, status: :ok, location: @event }
       else
+        @event_parameter_types = EventParameterType.all
+        @alert = @event.errors
         format.html { render :edit }
         format.json { render json: @event.errors, status: :unprocessable_entity }
       end
