@@ -46,12 +46,14 @@
 
   <% if @event.signup_required %>
 
-    <p>
-    <strong>Ilmoittautumisaika:</strong>
-    <%= DateHelper.full_date(@event.signup_start) %> - <%= DateHelper.full_date(@event.signup_end) %>
-    </p>
+    <% if @event.signup_start and @event.signup_end %>
+      <p>
+      <strong>Ilmoittautumisaika:</strong>
+      <%= DateHelper.full_date(@event.signup_start) %> - <%= DateHelper.full_date(@event.signup_end) %>
+      </p>
+    <% end %>
 
-    <% if @event.signup_cancellable and @event.signup_cancellable_until < @event.signup_end %>
+    <% if @event.signup_cancellable and @event.signup_end and @event.signup_cancellable_until < @event.signup_end %>
       <p>
       <strong>Ilmoittautuminen sitova alkaen:</strong>
       <%= DateHelper.full_date(@event.signup_cancellable_until) %>

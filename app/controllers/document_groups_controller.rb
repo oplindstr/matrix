@@ -83,6 +83,7 @@ class DocumentGroupsController < ApplicationController
       else
         @document_group = DocumentGroup.find(params[:id])
       end
+      byebug
       if not @document_group
         redirect_to '/dokumentit'
       end

@@ -39,6 +39,9 @@ class Event < ActiveRecord::Base
     if (!self.signup_required)
       return false
     end
+    if (!self.signup_end and !self.signup_start)
+      return false
+    end
     time = Time.now
     if (!self.signup_end)
       open = time >= self.signup_start
@@ -71,7 +74,10 @@ class Event < ActiveRecord::Base
   end
 
   def signup_cancellable
-    return Time.now <= self.signup_cancellable_until
+    if self.signup_cancellable_until
+      return Time.now <= self.signup_cancellable_until
+    end
+    return false
   end
 
   def endtimes_cannot_be_before_starttimes

@@ -13,7 +13,7 @@
       <% if event.signup_open %>
         <br>
         <i>Ilmoittautuminen tapahtumaan on käynnissä ja päättyy <%= DateHelper.standard_time2(event.signup_end) %> </i>
-      <% elsif event.signup_required %>
+      <% elsif event.signup_required and event.signup_start %>
         <br>
         <i>Ilmoittautuminen tapahtumaan alkaa <%= DateHelper.standard_time2(event.signup_start) %> </i>
       <% end %>
