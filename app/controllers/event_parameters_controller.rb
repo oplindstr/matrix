@@ -1,7 +1,7 @@
 class EventParametersController < ApplicationController
   before_action :set_event_parameter, only: [:show, :edit, :destroy]
   before_action :set_event, only: [:new, :update]
-  before_Action :ensure_that_sub_admin
+  before_action :ensure_that_sub_admin
 
   # GET /event_parameters
   # GET /event_parameters.json
