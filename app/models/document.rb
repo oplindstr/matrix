@@ -1,10 +1,11 @@
 class Document < ActiveRecord::Base
    belongs_to :document_group
 
-   validates :name, presence: true, length: { maximum: 500 }
-   
+   validates :name, presence: { message: 'Nimi puuttuu' }
+   validates :name, length: { maximum: 500, 'Anna nimi, jonka pituus on enintään 500 merkkiä' }
+
    mount_uploader :attachment, DocumentUploader
-   validates_presence_of :attachment
+   validates :attachment, presence: { message: 'Tiedosto puuttuu' }
 
    validate :unique_name_in_group
 

@@ -5,9 +5,9 @@ class Signup < ActiveRecord::Base
   has_many :signup_parameters
   accepts_nested_attributes_for :signup_parameters, :allow_destroy => true
 
-  validates :name, length: { maximum: 500 }
-  validates :email, length: { maximum: 500 }
-  validates :phonenumber, length: { maximum: 500 }
+  validates :name, length: { maximum: 500, message: 'Anna nimi, jonka pituus on korkeintaan 500 merkkiä' }
+  validates :email, length: { maximum: 500, message: 'Anna sähköpostiosoite, jonka pituus on korkeintaan 500 merkkiä' }
+  validates :phonenumber, length: { maximum: 500, message: 'Anna puhelinnumero, jonka pituus on korkeintaan 500 merkkiä' }
   validate :name_required_for_non_members
 
   def to_s
@@ -33,7 +33,7 @@ class Signup < ActiveRecord::Base
 
   def name_required_for_non_members
     if !self.user_id and (!self.name or self.name.length == 0)
-      errors.add(:name, 'Name is required for non members')
+      errors.add(:name, 'Ulkopuolisen ilmoittautumiseen vaaditaan nimi')
     end
   end
 end

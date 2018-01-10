@@ -1,5 +1,6 @@
 class EventParameterChoicesController < ApplicationController
   before_action :set_event_parameter_choice, only: [:show, :edit, :update, :destroy]
+  before_action :ensure_that_sub_admin
 
   # GET /event_parameter_choices
   # GET /event_parameter_choices.json
@@ -28,9 +29,10 @@ class EventParameterChoicesController < ApplicationController
 
     respond_to do |format|
       if @event_parameter_choice.save
-        format.html { redirect_to @event_parameter_choice, notice: 'Event parameter choice was successfully created.' }
+        format.html { redirect_to @event_parameter_choice, notice: 'Valintanapin vaihtoehto lisätty' }
         format.json { render :show, status: :created, location: @event_parameter_choice }
       else
+        @alert = @event_parameter_choice.errors
         format.html { render :new }
         format.json { render json: @event_parameter_choice.errors, status: :unprocessable_entity }
       end
@@ -42,9 +44,10 @@ class EventParameterChoicesController < ApplicationController
   def update
     respond_to do |format|
       if @event_parameter_choice.update(event_parameter_choice_params)
-        format.html { redirect_to @event_parameter_choice, notice: 'Event parameter choice was successfully updated.' }
+        format.html { redirect_to @event_parameter_choice, notice: 'Valintanapin vaihtoehdon muokkaus onnistui' }
         format.json { render :show, status: :ok, location: @event_parameter_choice }
       else
+        @alert = @event_parameter_choice.errors
         format.html { render :edit }
         format.json { render json: @event_parameter_choice.errors, status: :unprocessable_entity }
       end
@@ -56,7 +59,7 @@ class EventParameterChoicesController < ApplicationController
   def destroy
     @event_parameter_choice.destroy
     respond_to do |format|
-      format.html { redirect_to event_parameter_choices_url, notice: 'Event parameter choice was successfully destroyed.' }
+      format.html { redirect_to event_parameter_choices_url, notice: 'Valintanapin vaihtoehto poistettu' }
       format.json { head :no_content }
     end
   end

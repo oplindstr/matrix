@@ -1,8 +1,9 @@
 class BoardMember < ActiveRecord::Base
 	belongs_to :user
   
-  validates :user, presence: true
-  validates :year, :inclusion => 1991..3000, presence: true
+  validates :user, presence: { message: "Käyttäjä puuttuu" }
+  validates :year, inclusion: {in: 1991..3000, message: 'Anna vuosiluku väliltä 1991-3000' }
+  validates :year, presence: { message: "Vuosi puuttuu" }
 
 	mount_uploader :avatar, BoardAvatarUploader
 

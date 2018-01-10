@@ -10,7 +10,6 @@ Rails.application.routes.draw do
   resources :event_parameter_types
   resources :event_parameter_values
   resources :event_parameters
-  resources :events
   resources :news
   resources :position_members
   resources :positions
@@ -23,6 +22,8 @@ Rails.application.routes.draw do
   resources :users
 
   resource :session, only: [:new, :create, :delete]
+
+  resource :events, only: [:new, :create, :destroy, :edit, :update, :index]
 
   get '/board_members_and_positions', to: 'board_members#board_members_and_positions'
 
@@ -40,6 +41,8 @@ Rails.application.routes.draw do
   get '/hallitus/:vuosi', to: 'board_members#index'
 
   get '/kalenteri' => 'events#index'
+
+  get '/kalenteri/:id' => 'events#show', as: 'event'
 
   get '/kalenteri/:id/ilmoittautumiset(.:format)' => 'signups#show', as: 'event_signups'
 
@@ -61,6 +64,9 @@ Rails.application.routes.draw do
   get '/signin', to: 'sessions#new'
   delete '/signout', to: 'sessions#destroy'
 
+  get '/omat_tiedot', to: 'users#self', as: 'self'
+  get '/liity', to: 'users#new'
+
   # pages
   get '/admin' => 'pages#admin_tools'
   get '/english' => 'pages#english', id: 'english'
@@ -81,8 +87,6 @@ Rails.application.routes.draw do
 
   get '/virat' => 'positions#index'
   get '/yhteystiedot' => 'positions#contact_info'
-
-  get '/test' => 'pages#test'
 
 
 

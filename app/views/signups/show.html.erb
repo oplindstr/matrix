@@ -13,7 +13,6 @@
       <th>Nimi</th>
       <% if admin %>
         <th>Sähköposti</th>
-        <th>Puhelinnumero</th>
         <% @event.event_parameters.each do |param| %>
           <th> <%= param.name %> </th>
         <% end %>
@@ -28,7 +27,6 @@
         <td><%= signup %></td>
         <% if admin %>
           <td><%= signup.get_email %></td>
-          <td><%= signup.get_phonenumber %></td>
           <% signup.signup_parameters.each do |param| %>
             <% if param.event_parameter %>
               <td><%= param.value %></td>

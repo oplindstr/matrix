@@ -1,6 +1,7 @@
 class EventParametersController < ApplicationController
   before_action :set_event_parameter, only: [:show, :edit, :destroy]
   before_action :set_event, only: [:new, :update]
+  before_Action :ensure_that_sub_admin
 
   # GET /event_parameters
   # GET /event_parameters.json
@@ -30,9 +31,10 @@ class EventParametersController < ApplicationController
 
     respond_to do |format|
       if @event_parameter.save
-        format.html { redirect_to @event, notice: 'Event parameter was successfully created.' }
+        format.html { redirect_to @event, notice: 'Lisätietokenttä lisätty' }
         format.json { render :show, status: :created, location: @event }
       else
+        @alert = @event_parameter.errors
         format.html { render :new }
         format.json { render json: @event_parameter.errors, status: :unprocessable_entity }
       end
@@ -45,10 +47,11 @@ class EventParametersController < ApplicationController
     respond_to do |format|
       params = event_parameter_params
       byebug
-      if @event.update(event_parameter_params)
+      if @event.update(params)
         format.html { redirect_to @event, notice: 'Lisätietokentät lisätty' }
         format.json { render :show, status: :ok, location: @event }
       else
+        @alert = @event.errors
         format.html { render :edit }
         format.json { render json: @event.errors, status: :unprocessable_entity }
       end
@@ -60,7 +63,7 @@ class EventParametersController < ApplicationController
   def destroy
     @event_parameter.destroy
     respond_to do |format|
-      format.html { redirect_to event_parameters_url, notice: 'Event parameter was successfully destroyed.' }
+      format.html { redirect_to event_parameters_url, notice: 'Lisätietokenttä poistettu' }
       format.json { head :no_content }
     end
   end
@@ -77,7 +80,6 @@ class EventParametersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
      def event_parameter_params
-      byebug
       params.require(:event).permit(:event_parameters_attributes => [:name, :event_parameter_type_id, :event_parameter_choices_attributes => [:value]])
     end
 end

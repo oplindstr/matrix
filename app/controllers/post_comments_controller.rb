@@ -1,5 +1,6 @@
 class PostCommentsController < ApplicationController
   before_action :set_post_comment, only: [:show, :edit, :update, :destroy]
+  before_action :ensure_that_admin
 
   # GET /post_comments
   # GET /post_comments.json
@@ -29,9 +30,10 @@ class PostCommentsController < ApplicationController
 
     respond_to do |format|
       if @post_comment.save
-        format.html { redirect_to @post, notice: 'Post comment was successfully created.' }
+        format.html { redirect_to @post, notice: 'Kommentti lisätty' }
         format.json { render :show, status: :created, location: @post }
       else
+        @alert = @post_comment.errors
         format.html { render :new }
         format.json { render json: @post_comment.errors, status: :unprocessable_entity }
       end
@@ -43,9 +45,10 @@ class PostCommentsController < ApplicationController
   def update
     respond_to do |format|
       if @post_comment.update(post_comment_params)
-        format.html { redirect_to @post_comment, notice: 'Post comment was successfully updated.' }
+        format.html { redirect_to @post_comment, notice: 'Kommenttia muokattu' }
         format.json { render :show, status: :ok, location: @post_comment }
       else
+        @alert = @post_comment.errors
         format.html { render :edit }
         format.json { render json: @post_comment.errors, status: :unprocessable_entity }
       end
@@ -57,7 +60,7 @@ class PostCommentsController < ApplicationController
   def destroy
     @post_comment.destroy
     respond_to do |format|
-      format.html { redirect_to post_comments_url, notice: 'Post comment was successfully destroyed.' }
+      format.html { redirect_to post_comments_url, notice: 'Kommentti poistettu' }
       format.json { head :no_content }
     end
   end

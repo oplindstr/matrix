@@ -1,5 +1,6 @@
 class PositionsController < ApplicationController
   before_action :set_position, only: [:show, :edit, :update, :destroy]
+  before_action :ensure_that_sub_admin, except: [:contact_info]
 
   # GET /positions
   # GET /positions.json
@@ -27,9 +28,10 @@ class PositionsController < ApplicationController
     @position = Position.new(position_params)
     respond_to do |format|
       if @position.save
-        format.html { redirect_to positions_path, notice: 'Position was successfully created.' }
+        format.html { redirect_to positions_path, notice: 'Uusi virka lisätty' }
         format.json { render :show, status: :ok, location: positions_path }
       else
+        @alert = @position.errors
         format.html { render :new }
         format.json { render json: @position.errors, status: :unprocessable_entity }
       end
@@ -41,9 +43,10 @@ class PositionsController < ApplicationController
   def update
     respond_to do |format|
       if @position.update(position_params)
-        format.html { redirect_to positions_path, notice: 'Position was successfully updated.' }
+        format.html { redirect_to positions_path, notice: 'Viran päivitys onnistui' }
         format.json { render :show, status: :ok, location: positions_path }
       else
+        @alert = @position.errors
         format.html { render :edit }
         format.json { render json: @position.errors, status: :unprocessable_entity }
       end
@@ -55,7 +58,7 @@ class PositionsController < ApplicationController
   def destroy
     @position.destroy
     respond_to do |format|
-      format.html { redirect_to positions_url, notice: 'Position was successfully destroyed.' }
+      format.html { redirect_to positions_url, notice: 'Virka poistettu' }
       format.json { head :no_content }
     end
   end

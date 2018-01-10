@@ -2,7 +2,8 @@ class PositionMember < ActiveRecord::Base
   belongs_to :position
   belongs_to :user
 
-  validates :year, :inclusion => 1991..3000, presence: true
+  validates :year, inclusion: { in: 1991..3000, message: 'Anna vuosi väliltä 1991-3000' }
+  validates :year, presence: { message: 'Vuosi puuttuu' }
   
   validate :unique_user_and_position_in_year
 

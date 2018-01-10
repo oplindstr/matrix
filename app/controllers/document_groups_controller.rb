@@ -1,6 +1,7 @@
 class DocumentGroupsController < ApplicationController
   before_action :set_document_group, only: [:edit, :update, :destroy, :show]
   before_action :set_document_group_categories, only: [:index, :new, :edit]
+  before_action :ensure_that_sub_admin, except: [:index, :show]
 
   # GET /document_groups
   # GET /document_groups.json
@@ -34,7 +35,7 @@ class DocumentGroupsController < ApplicationController
 
     respond_to do |format|
       if @document_group.save
-        format.html { redirect_to '/dokumentit/' + @document_group.url, notice: 'Document group was successfully created.' }
+        format.html { redirect_to '/dokumentit/' + @document_group.url, notice: 'Dokumenttien alakategoria luotu' }
         format.json { render :show, status: :created, location: @document_group }
       else
         @document_group_categories = DocumentGroupCategory.all.sort { |a,b| a.name.downcase <=> b.name.downcase }
@@ -54,7 +55,7 @@ class DocumentGroupsController < ApplicationController
   def update
     respond_to do |format|
       if @document_group.update(document_group_params)
-        format.html { redirect_to @document_group, notice: 'Document group was successfully updated.' }
+        format.html { redirect_to @document_group, notice: 'Dokumenttien alakategorian muokkaus onnistui' }
         format.json { render :show, status: :ok, location: @document_group }
       else
         @document_group_categories = DocumentGroupCategory.all.sort { |a,b| a.name.downcase <=> b.name.downcase }
@@ -70,7 +71,7 @@ class DocumentGroupsController < ApplicationController
   def destroy
     @document_group.destroy
     respond_to do |format|
-      format.html { redirect_to '/dokumentit', notice: 'Document group was successfully destroyed.' }
+      format.html { redirect_to '/dokumentit', notice: 'Dokumenttien alakategoria poistettu' }
       format.json { head :no_content }
     end
   end
@@ -83,7 +84,6 @@ class DocumentGroupsController < ApplicationController
       else
         @document_group = DocumentGroup.find(params[:id])
       end
-      byebug
       if not @document_group
         redirect_to '/dokumentit'
       end

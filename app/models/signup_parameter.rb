@@ -3,7 +3,7 @@ class SignupParameter < ActiveRecord::Base
 	belongs_to :signup
 	has_one :event_parameter_type, through: :event_parameter
 
-	validates :value, length: { maximum: 25000 }
+	validates :value, length: { maximum: 500, message: 'Lisätiedot voivat olla korkeintaan 500 merkkiä pitkiä' }
 	validate :required_parameter_cannot_be_empty
 
 	def required_parameter_cannot_be_empty

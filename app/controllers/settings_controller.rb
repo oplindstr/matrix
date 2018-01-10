@@ -1,6 +1,6 @@
 class SettingsController < ApplicationController
   before_action :set_setting, only: [:show, :edit, :update, :destroy]
-  before_action :ensure_that_admin, only: [:index, :destroy, :show, :update, :edit]
+  before_action :ensure_that_sub_admin
 
   # GET /settings
   # GET /settings.json
@@ -29,9 +29,10 @@ class SettingsController < ApplicationController
 
     respond_to do |format|
       if @setting.save
-        format.html { redirect_to @setting, notice: 'Setting was successfully created.' }
+        format.html { redirect_to @setting, notice: 'Asetus luotu' }
         format.json { render :show, status: :created, location: @setting }
       else
+        @alert = @setting.errors
         format.html { render :new }
         format.json { render json: @setting.errors, status: :unprocessable_entity }
       end
@@ -43,9 +44,10 @@ class SettingsController < ApplicationController
   def update
     respond_to do |format|
       if @setting.update(setting_params)
-        format.html { redirect_to @setting, notice: 'Setting was successfully updated.' }
+        format.html { redirect_to @setting, notice: 'Asetuksen muokkaus onnistui' }
         format.json { render :show, status: :ok, location: @setting }
       else
+        @alert = @setting.errors
         format.html { render :edit }
         format.json { render json: @setting.errors, status: :unprocessable_entity }
       end
@@ -57,7 +59,7 @@ class SettingsController < ApplicationController
   def destroy
     @setting.destroy
     respond_to do |format|
-      format.html { redirect_to settings_url, notice: 'Setting was successfully destroyed.' }
+      format.html { redirect_to settings_url, notice: 'Asetus poistettu' }
       format.json { head :no_content }
     end
   end

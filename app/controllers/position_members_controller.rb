@@ -1,6 +1,6 @@
 class PositionMembersController < ApplicationController
   before_action :set_year, only: [:index, :new]
-  before_action :ensure_that_admin
+  before_action :ensure_that_sub_admin
   
   # GET /positions
   # GET /positions.json
@@ -31,8 +31,9 @@ class PositionMembersController < ApplicationController
     
     respond_to do |format|
       if @position_member.save
-         format.html { redirect_to '/hallitus', notice: "The position member has been uploaded." }
+         format.html { redirect_to '/hallitus', notice: "Käyttäjän virka lisätty" }
       else
+        @alert = @position_member.errors
         @year = DateHelper.year
         @position_member = PositionMember.new
         @users = User.all
@@ -53,7 +54,7 @@ class PositionMembersController < ApplicationController
   def destroy
       @member = PositionMember.find(params[:id])
       @member.destroy
-      redirect_to '/board_members_and_positions', notice:  "The record has been deleted."
+      redirect_to '/board_members_and_positions', notice:  "Käyttäjän virka poistettu"
    end
 
   private

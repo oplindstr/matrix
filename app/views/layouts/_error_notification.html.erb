@@ -11,8 +11,10 @@
 		<article class="message is-danger">
 		  <div class="message-body">
 		    <ul>
-		      <% @alert.full_messages.each do |message| %>
-		        <li><%= message %></li>
+		      <% @alert.messages.values.each do |message| %>
+		        <% message.each do  |m| %>
+		          <li> <%= m %> </li>
+		        <%end %>
 		      <% end %>
 		      </ul>
 		  </div>

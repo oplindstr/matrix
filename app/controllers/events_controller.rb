@@ -1,7 +1,7 @@
 class EventsController < ApplicationController
   before_action :set_event, only: [:show, :update, :destroy, :edit]
   before_action :set_signup, only: [:update_signup]
-  before_action :ensure_that_sub_admin, only: [:new, :edit]
+  before_action :ensure_that_sub_admin, except: [:index, :show, :sign_up, :update_signup]
 
   # GET /events
   # GET /events.json
@@ -53,7 +53,7 @@ class EventsController < ApplicationController
 
     respond_to do |format|
       if @event.save
-        format.html { redirect_to @event, notice: 'Event was successfully created.' }
+        format.html { redirect_to @event, notice: 'Tapahtuma lisätty' }
         format.json { render :show, status: :created, location: @event }
       else
         @alert = @event.errors
@@ -69,7 +69,7 @@ class EventsController < ApplicationController
   def update
     respond_to do |format|
       if @event.update(event_params)
-        format.html { redirect_to @event, notice: 'Event was successfully updated.' }
+        format.html { redirect_to @event, notice: 'Tapahtuman muokkaus onnistui' }
         format.json { render :show, status: :ok, location: @event }
       else
         @event_parameter_types = EventParameterType.all
@@ -85,7 +85,7 @@ class EventsController < ApplicationController
   def destroy
     @event.destroy
     respond_to do |format|
-      format.html { redirect_to events_url, notice: 'Event was successfully destroyed.' }
+      format.html { redirect_to events_url, notice: 'Tapahtuma poistettu' }
       format.json { head :no_content }
     end
   end
@@ -93,31 +93,43 @@ class EventsController < ApplicationController
   def sign_up
     @signup = Signup.new(signup_params)
 
-    respond_to do |format|
-      if @signup.save
-        format.html { redirect_to event_path(@signup.event_id), notice: 'Ilmoittautuminen onnistui!' }
-        format.json { render :show, status: :created, location: event_path(@signup.event_id) }
-      else
-        @event = Event.find(@signup.event_id)
-        @event_parameters = @event.event_parameters
-        @action = 'sign_up'
-        format.html { render :show }
-        format.json { render json: @signup.errors, status: :unprocessable_entity }
+    if @signup.user_id and (!current_user or current_user.id != @signup.user_id)
+       redirect_to root_path
+    else
+      respond_to do |format|
+        if @signup.save
+          format.html { redirect_to event_path(@signup.event_id), notice: 'Ilmoittautuminen onnistui!' }
+          format.json { render :show, status: :created, location: event_path(@signup.event_id) }
+        else
+          @alert = @signup.errors
+          @event = Event.find(@signup.event_id)
+          @event_parameters = @event.event_parameters
+          @action = 'sign_up'
+          format.html { render :show }
+          format.json { render json: @signup.errors, status: :unprocessable_entity }
+        end
       end
     end
   end
 
   def update_signup
-    respond_to do |format|
-      if @signup.update(signup_params)
-        format.html { redirect_to event_path(@signup.event_id), notice: 'Ilmoittautumisen muokkaus onnistui' }
-        format.json { render :show, status: :created, location: event_path(@signup.event_id) }
-      else
-        @event = Event.find(@signup.event_id)
-        @event_parameters = @event.event_parameters
-        @action = 'update_signup'
-        format.html { render 'events/show'}
-        format.json { render json: @signup.errors, status: :unprocessable_entity }
+    if !@signup.user_id and !sub_admin
+      redirect_to root_path
+    elsif @signup.user_id and (!current_user or current_user.id != @signup.user_id)
+      redirect_to root_path
+    else
+      respond_to do |format|
+        if @signup.update(signup_params)
+          format.html { redirect_to event_path(@signup.event_id), notice: 'Ilmoittautumisen muokkaus onnistui' }
+          format.json { render :show, status: :created, location: event_path(@signup.event_id) }
+        else
+          @alert = @signup.errors
+          @event = Event.find(@signup.event_id)
+          @event_parameters = @event.event_parameters
+          @action = 'update_signup'
+          format.html { render 'events/show'}
+          format.json { render json: @signup.errors, status: :unprocessable_entity }
+        end
       end
     end
   end
@@ -134,9 +146,7 @@ class EventsController < ApplicationController
     end
 
     def set_signup
-      if request.format.symbol != :json
-        @signup = Signup.find(params[:id])
-      end
+      @signup = Signup.find(params[:id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

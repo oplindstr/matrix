@@ -1,15 +1,4 @@
 <%= form_for(@post_tag) do |f| %>
-  <% if @post_tag.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@post_tag.errors.count, "error") %> prohibited this post_tag from being saved:</h2>
-
-      <ul>
-      <% @post_tag.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
 
   <div class="field">
     <%= f.label :post_id %><br>

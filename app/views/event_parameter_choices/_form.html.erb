@@ -1,15 +1,4 @@
 <%= form_for(@event_parameter_choice) do |f| %>
-  <% if @event_parameter_choice.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@event_parameter_choice.errors.count, "error") %> prohibited this event_parameter_choice from being saved:</h2>
-
-      <ul>
-      <% @event_parameter_choice.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
 
   <div class="field">
     <%= f.label :event_parameter_id %><br>

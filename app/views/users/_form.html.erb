@@ -1,15 +1,4 @@
 <%= form_for @user, :html => { :onsubmit => "return confirm('Oletko varma?')" } do |f| %>
-  <% if @user.errors.any? %>
-    <article class="message is-danger">
-      <div class="message-body">
-        <ul>
-          <% @user.errors.full_messages.each do |msg| %>
-            <li><%= msg %></li>
-          <% end %>
-        </ul>
-      </div>
-    </article>
-  <% end %>
 
   <h2 class="subtitle">Henkilötiedot</h2>
 

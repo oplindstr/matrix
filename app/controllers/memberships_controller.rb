@@ -1,5 +1,6 @@
 class MembershipsController < ApplicationController
   before_action :set_membership, only: [:show, :edit, :update, :destroy]
+  before_action :ensure_that_admin
 
   # GET /memberships
   # GET /memberships.json
@@ -28,9 +29,10 @@ class MembershipsController < ApplicationController
 
     respond_to do |format|
       if @membership.save
-        format.html { redirect_to @membership, notice: 'Membership was successfully created.' }
+        format.html { redirect_to @membership, notice: 'Jäsenyys merkintä käyttäjälle lisätty' }
         format.json { render :show, status: :created, location: @membership }
       else
+        @alert = @membership.errors
         format.html { render :new }
         format.json { render json: @membership.errors, status: :unprocessable_entity }
       end
@@ -42,9 +44,10 @@ class MembershipsController < ApplicationController
   def update
     respond_to do |format|
       if @membership.update(membership_params)
-        format.html { redirect_to @membership, notice: 'Membership was successfully updated.' }
+        format.html { redirect_to @membership, notice: 'Jäsenyyden merkinnän muokkaus onnistui' }
         format.json { render :show, status: :ok, location: @membership }
       else
+        @alert = @membership.errors
         format.html { render :edit }
         format.json { render json: @membership.errors, status: :unprocessable_entity }
       end
@@ -56,7 +59,7 @@ class MembershipsController < ApplicationController
   def destroy
     @membership.destroy
     respond_to do |format|
-      format.html { redirect_to memberships_url, notice: 'Membership was successfully destroyed.' }
+      format.html { redirect_to memberships_url, notice: 'Jäsenyyden merkintä poistettu' }
       format.json { head :no_content }
     end
   end

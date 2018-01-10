@@ -1,5 +1,6 @@
 class SignupParametersController < ApplicationController
   before_action :set_signup_parameter, only: [:show, :edit, :update, :destroy]
+  before_action :ensure_that_sub_admin
 
   # GET /signup_parameters
   # GET /signup_parameters.json
@@ -28,9 +29,10 @@ class SignupParametersController < ApplicationController
 
     respond_to do |format|
       if @signup_parameter.save
-        format.html { redirect_to @signup_parameter, notice: 'Signup parameter was successfully created.' }
+        format.html { redirect_to @signup_parameter, notice: 'Ilmoittautumisen lisätieto lisätty' }
         format.json { render :show, status: :created, location: @signup_parameter }
       else
+        @alert = @signup_parameter.errors
         format.html { render :new }
         format.json { render json: @signup_parameter.errors, status: :unprocessable_entity }
       end
@@ -42,9 +44,10 @@ class SignupParametersController < ApplicationController
   def update
     respond_to do |format|
       if @signup_parameter.update(signup_parameter_params)
-        format.html { redirect_to @signup_parameter, notice: 'Signup parameter was successfully updated.' }
+        format.html { redirect_to @signup_parameter, notice: 'Ilmoittautumisen lisätiedon muokkaus onnistui' }
         format.json { render :show, status: :ok, location: @signup_parameter }
       else
+        @alert = @signup_parameter.errors
         format.html { render :edit }
         format.json { render json: @signup_parameter.errors, status: :unprocessable_entity }
       end
@@ -56,7 +59,7 @@ class SignupParametersController < ApplicationController
   def destroy
     @signup_parameter.destroy
     respond_to do |format|
-      format.html { redirect_to signup_parameters_url, notice: 'Signup parameter was successfully destroyed.' }
+      format.html { redirect_to signup_parameters_url, notice: 'Ilmoittautumisen lisätieto poistettu' }
       format.json { head :no_content }
     end
   end

@@ -4,7 +4,7 @@ class Position < ActiveRecord::Base
 
 	belongs_to :position_type
 
-	validates :priority, :inclusion => 0..5000
+	validates :priority, inclusion: { in: 0..5000, message: 'Anna prioriteetiksi korkeintaan 5000' }
 
 	def current_members
 	  if self.position_members.size > 0

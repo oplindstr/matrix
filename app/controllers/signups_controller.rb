@@ -1,6 +1,7 @@
 class SignupsController < ApplicationController
   before_action :set_signup, only: [:edit, :update, :destroy]
   before_action :set_event, only: [:show]
+  before_action :ensure_that_sub_admin, except: [:create, :update, :destroy, :show]
 
   # GET /signups
   # GET /signups.json
@@ -30,15 +31,20 @@ class SignupsController < ApplicationController
   def create
     @signup = Signup.new(signup_params)
 
-    respond_to do |format|
-      if @signup.save
-        format.html { redirect_to event_path(@signup.event_id), notice: 'Ilmoittautuminen onnistui!' }
-        format.json { render :show, status: :created, location: event_path(@signup.event_id) }
-      else
-        @event = Event.find(@signup.event_id)
-        @event_parameters = @event.event_parameters
-        format.html { render 'events/show'}
-        format.json { render json: @signup.errors, status: :unprocessable_entity }
+    if @signup.user_id and (!current_user or current_user.id != @signup.user_id)
+       redirect_to root_path
+    else
+      respond_to do |format|
+        if @signup.save
+          format.html { redirect_to event_path(@signup.event_id), notice: 'Ilmoittautuminen onnistui!' }
+          format.json { render :show, status: :created, location: event_path(@signup.event_id) }
+        else
+          @alert = @signup.errors
+          @event = Event.find(@signup.event_id)
+          @event_parameters = @event.event_parameters
+          format.html { render 'events/show'}
+          format.json { render json: @signup.errors, status: :unprocessable_entity }
+        end
       end
     end
   end
@@ -46,15 +52,22 @@ class SignupsController < ApplicationController
   # PATCH/PUT /signups/1
   # PATCH/PUT /signups/1.json
   def update
-    respond_to do |format|
-      if @signup.update(signup_params)
-        format.html { redirect_to event_path(@signup.event_id), notice: 'Ilmoittautumisen muokkaus onnistui' }
-        format.json { render :show, status: :created, location: event_path(@signup.event_id) }
-      else
-        @event = Event.find(@signup.event_id)
-        @event_parameters = @event.event_parameters
-        format.html { render 'events/show'}
-        format.json { render json: @signup.errors, status: :unprocessable_entity }
+    if !@signup.user_id and !sub_admin
+      redirect_to root_path
+    elsif @signup.user_id and (!current_user or current_user.id != @signup.user_id)
+      redirect_to root_path
+    else
+      respond_to do |format|
+        if @signup.update(signup_params)
+          format.html { redirect_to event_path(@signup.event_id), notice: 'Ilmoittautumisen muokkaus onnistui' }
+          format.json { render :show, status: :created, location: event_path(@signup.event_id) }
+        else
+          @alert = @signup.errors
+          @event = Event.find(@signup.event_id)
+          @event_parameters = @event.event_parameters
+          format.html { render 'events/show'}
+          format.json { render json: @signup.errors, status: :unprocessable_entity }
+        end
       end
     end
   end
@@ -62,11 +75,21 @@ class SignupsController < ApplicationController
   # DELETE /signups/1
   # DELETE /signups/1.json
   def destroy
-    event_id = @signup.event_id
-    @signup.destroy
-    respond_to do |format|
-      format.html { redirect_to event_path(event_id), notice: 'Ilmoittautuminen peruttu onnistuneesti' }
-      format.json { head :no_content }
+    if !@signup.user_id and !sub_admin
+      redirect_to root_path
+    elsif @signup.user_id and (!current_user or current_user.id != @signup.user_id)
+      redirect_to root_path
+    else
+      @event_id = @signup.event_id
+      @user = User.find(@signup.user_id)
+      if @user
+        ensure_that_current_user
+      end
+      @signup.destroy
+      respond_to do |format|
+        format.html { redirect_to event_path(@event_id), notice: 'Ilmoittautuminen peruttu' }
+        format.json { head :no_content }
+      end
     end
   end
 

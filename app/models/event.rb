@@ -6,13 +6,15 @@ class Event < ActiveRecord::Base
 
   accepts_nested_attributes_for :event_parameters, allow_destroy: true
 
-  validates :name, presence: true, length: { in: 0..500 }
-  validates :descr, presence: true, length: { maximum: 25000 }
-  validates :location, length: { maximum: 100 }
-  validates :event_type, length: { maximum: 100 }
-  validates :starttime, presence: true
-  validates :price, allow_blank: true, numericality: { less_than_or_equal_to: 500 }
-  validates :signup_limit, allow_blank: true, numericality: { less_than_or_equal_to: 5000 }
+  validates :name, presence: { message: 'Nimi puuttuu' }
+  validates :name, length: { in: 0..500, message: 'Anna nimi, jonka pituus on korkeintaan 500 merkkiä' }
+  validates :descr, presence: { message: 'Kuvaus puuttuu' }
+  validates :descr, length: { maximum: 25000, message: 'Anna kuvaus, jonka pituus on korkeintaan 25000 merkkiä' } 
+  validates :location, length: { maximum: 500, message: 'Anna paikka, jonka pituus on korkeintaan 500 merkkiä' }
+  validates :event_type, length: { maximum: 100, message: 'Anna tyyppi, jonka pituus on korkeintaan 100 merkkiä' }
+  validates :starttime, presence: { message: 'Alkuaika puuttuu' }
+  validates :price, allow_blank: true, numericality: { less_than_or_equal_to: 1000, message: 'Anna hinnaksi korkeintaan 1000€' }
+  validates :signup_limit, allow_blank: true, numericality: { less_than_or_equal_to: 5000, message: 'Anna ilmoittautumismääräksi korkeintaan 5000' }
   validate :endtimes_cannot_be_before_starttimes
   validate :date_ranges
 
@@ -95,42 +97,42 @@ class Event < ActiveRecord::Base
     @latest = Date.new(3000)
     if self.starttime
       if self.starttime < @earliest
-        errors.add(:starttime, "Tapahtuman alkuaika liian aikaisin")
+        errors.add(:starttime, "Tapahtuman alkuajan pitää olla vuonna 1991 tai myöhemmin")
       end
       if self.starttime > @latest
-        errors.add(:starttime, "Tapahtuman alkuaika liian myöhään")
+        errors.add(:starttime, "Tapahtuman alkuajan pitää olla ennen vuotta 3000")
       end
     end
     if self.endtime
       if self.endtime < @earliest
-        errors.add(:endtime, "Tapahtuman loppuaika liian aikaisin")
+        errors.add(:endtime, "Tapahtuman loppuajan pitää olla vuonna 1991 tai myöhemmin")
       end
       if self.endtime > @latest
-        errors.add(:endtime, "Tapahtuman loppuaika liian myöhään")
+        errors.add(:endtime, "Tapahtuman loppuajan pitää olla ennen vuotta 3000")
       end
     end
     if self.signup_start
       if self.signup_start < @earliest
-        errors.add(:signup_start, "Ilmoittautumisen alkuaika liian aikaisin")
+        errors.add(:signup_start, "Ilmoittautumisen alkuajan pitää olla vuonna 1991 tai myöhemmin")
       end
       if self.signup_start > @latest
-        errors.add(:signup_start, "Ilmoittautumisen alkuaika liian myöhään")
+        errors.add(:signup_start, "Ilmoittautumisen alkuajan pitää olla ennen vuotta 3000")
       end
     end
     if self.signup_end
       if self.signup_end < @earliest
-        errors.add(:signup_end, "Ilmoittautumisen loppuaika liian aikaisin")
+        errors.add(:signup_end, "Ilmoittautumisen loppuajan pitää olla vuonna 1991 tai myöhemmin")
       end
       if self.signup_end > @latest
-        errors.add(:signup_end, "Ilmoittautumisen loppuaika liian myöhään")
+        errors.add(:signup_end, "Ilmoittautumisen loppuajan pitää olla ennen vuotta 3000")
       end
     end
     if self.signup_cancellable_until
       if self.signup_cancellable_until < @earliest
-        errors.add(:signup_cancellable_until, "Ilmoittautumisen sitovuus liian aikaisin")
+        errors.add(:signup_cancellable_until, "Ilmoittautumisen sitovuuden pitää olla vuonna 1991 tai myöhemmin")
       end
       if self.signup_cancellable_until > @latest
-        errors.add(:signup_cancellable_until, "Ilmoittautumisen sitovuus liian myöhään")
+        errors.add(:signup_cancellable_until, "Ilmoittautumisen sitovuuden pitää olla ennen vuotta 3000")
       end
     end
   end

@@ -1,4 +1,5 @@
 class DocumentsController < ApplicationController
+   before_action :ensure_that_sub_admin
    
    def new
       @document = Document.new
@@ -14,8 +15,9 @@ class DocumentsController < ApplicationController
       
       respond_to do |format|
          if @document.save
-            format.html { redirect_to @document_group, notice: 'Document was successfully created.' }
+            format.html { redirect_to @document_group, notice: 'Dokumentti luotu' }
          else
+            @alert = @document.errors
             @document_group_id = @document_group.id
             format.html { render :new }
          end
@@ -26,7 +28,7 @@ class DocumentsController < ApplicationController
       @document = Document.find(params[:id])
       @document_group = @document.document_group
       @document.destroy
-      redirect_to document_group_path(@document_group), notice:  "The document #{@document.name} has been deleted."
+      redirect_to document_group_path(@document_group), notice:  "Dokumentti poistettu"
    end
    
    private

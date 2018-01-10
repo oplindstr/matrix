@@ -10,6 +10,8 @@ class ApplicationController < ActionController::Base
   helper_method :sub_admin
   helper_method :get_setting
   helper_method :ensure_that_admin
+  helper_method :ensure_that_sub_admin
+  helper_method :ensure_that_current_user
 
   def save_current_url
     session[:return_to] = request.referer
@@ -23,10 +25,12 @@ class ApplicationController < ActionController::Base
   def admin
     return false if !current_user
     return true if current_user.admin
-    @position_member = PositionMember.where("year = ? AND user_id = ?", Date.today.year, current_user.id).first
-    if @position_member
-      @position = Position.find(@position_member.position_id)
-      return true if @position.admin
+    @position_members = PositionMember.where("year = ? AND user_id = ?", Date.today.year, current_user.id)
+    if @position_members and !@position_members.empty?
+      @position_members.each do |position|
+        @position = Position.find(position.position_id)
+        return true if @position.admin
+      end
     end
     false
   end
@@ -47,6 +51,13 @@ class ApplicationController < ActionController::Base
 
   def ensure_that_sub_admin
     redirect_to root_path if not sub_admin
+  end
+
+  def ensure_that_current_user
+    if !current_user or current_user.id != @user.id
+      ensure_that_admin
+    end
+    false
   end
 
   def get_setting(setting)

@@ -1,5 +1,6 @@
 class BoardMembersController < ApplicationController
 	before_action :set_year, only: [:index, :new, :create]
+  before_action :ensure_that_sub_admin, except: [:index]
 
    def index
       if BoardMember.count > 0 and PositionMember.count > 0
@@ -45,8 +46,9 @@ class BoardMembersController < ApplicationController
       
       respond_to do |format|
         if @board_member.save
-          format.html { redirect_to '/hallitus?vuosi=' + @board_member.year.to_s, notice: "The board member has been uploaded." }
+          format.html { redirect_to '/hallitus?vuosi=' + @board_member.year.to_s, notice: "Hallituksen jäsen lisätty" }
         else
+          @alert = @board_member.errors
           @users = User.all
           @user = @board_member.user_id
           format.html { render :new, status: :unprocessable_entity, location: new_board_member_path }
@@ -62,7 +64,7 @@ class BoardMembersController < ApplicationController
    def destroy
       @member = BoardMember.find(params[:id])
       @member.destroy
-      redirect_to '/board_members_and_positions', notice:  "The record has been deleted."
+      redirect_to '/board_members_and_positions', notice:  "Hallituksen jäsen poistettu"
    end
    
    private

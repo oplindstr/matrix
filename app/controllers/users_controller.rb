@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
   before_action :set_user, only: [:show, :edit, :update, :destroy, :add_picture, :new_password, :update_password, :remove_picture]
-  before_action :ensure_that_current_user, only: [:show, :edit, :update]
-  before_action :ensure_that_admin, only: [:index, :destroy]
+  before_action :ensure_that_current_user, only: [:edit, :update, :destroy, :new_password, :update_password, :add_picture, :remove_picture]
+  before_action :ensure_that_admin, only: [:index, :memberships, :update_memberships, :show]
 
   # GET /users
   # GET /users.json
@@ -26,6 +26,27 @@ class UsersController < ApplicationController
     end
   end
 
+  def self
+    if (!current_user)
+      redirect_to root_path
+    else
+      @user = User.find(current_user.id)
+      if Time.now.month >= 8
+        @membership_this_year = DateHelper.year
+      else
+        @membership_this_year = DateHelper.year - 1
+      end
+      @memberships = Membership.where('user_id = ? and year >= ?', @user.id, @membership_this_year).pluck(:year)
+      if !@memberships.empty?
+        @membership_max_year = @memberships.max
+        @member = true
+      else
+        @member = false
+      end
+      render 'show'
+    end
+  end
+
   # GET /users/new
   def new
     @user = User.new
@@ -43,9 +64,10 @@ class UsersController < ApplicationController
 
     respond_to do |format|
       if @user.save
-        format.html { redirect_to root_path, notice: 'User was successfully created.' }
+        format.html { redirect_to root_path, notice: 'Jäseneksi liittyminen onnistui' }
         format.json { render :index, status: :created, location: root_path }
       else
+        @alert = @user.errors
         format.html { render :new, alert: @user.errors }
         format.json { render json: @user.errors, status: :unprocessable_entity }
       end
@@ -55,12 +77,14 @@ class UsersController < ApplicationController
   # PATCH/PUT /users/1
   # PATCH/PUT /users/1.json
   def update
+    @user.skip_password_validation = true
     respond_to do |format|
-      if @user.update(user_params)
-        format.html { redirect_to @user, notice: 'User was successfully updated.' }
+      if @user.update(update_user_params)
+        format.html { redirect_to @user, notice: 'Jäsentietojen muokkaus onnistui' }
         format.json { render :show, status: :ok, location: @user }
       else
-        format.html { render :edit }
+        @alert = @user.errors
+        format.html { render :show }
         format.json { render json: @user.errors, status: :unprocessable_entity }
       end
     end
@@ -71,7 +95,7 @@ class UsersController < ApplicationController
   def destroy
     @user.destroy
     respond_to do |format|
-      format.html { redirect_to users_url, notice: 'User was successfully destroyed.' }
+      format.html { redirect_to users_url, notice: 'Käyttäjätunnus poistettu' }
       format.json { head :no_content }
     end
   end
@@ -127,9 +151,10 @@ class UsersController < ApplicationController
 
     respond_to do |format|
       if @user.update(params)
-        format.html { redirect_to @user, notice: 'Picture was successfully added' }
+        format.html { redirect_to @user, notice: 'Hallitussivun kuva lisätty' }
         format.json { render :show, status: :ok, location: @user }
       else
+        @alert = @user.errors
         format.html { render :show }
         format.json { render json: @user.errors, status: :unprocessable_entity }
       end
@@ -142,9 +167,10 @@ class UsersController < ApplicationController
     respond_to do |format|
       if @user.save
         @user.avatar = nil
-        format.html { redirect_to @user, notice: 'Picture was successfully removed' }
+        format.html { redirect_to @user, notice: 'Hallitussivun kuva poistettu' }
         format.json { render :show, status: :ok, location: @user }
       else
+        @alert = @user.errors
         format.html { render :show }
         format.json { render json: @user.errors, status: :unprocessable_entity }
       end
@@ -162,7 +188,7 @@ class UsersController < ApplicationController
         format.html { redirect_to new_password_path, alert: 'Uuden salasanan vahvistus väärin' }
         format.json { render json: @user.errors, status: :unprocessable_entity, location: new_password_path } 
       else
-        format.html { redirect_to @user, notice: 'Password was successfully updated.' }
+        format.html { redirect_to @user, notice: 'Salasana vaihdettu' }
         format.json { render :show, status: :ok, location: @user }
       end
     end
@@ -194,7 +220,7 @@ class UsersController < ApplicationController
       end
     end
     respond_to do |format|
-      format.html { redirect_to memberships_path, notice: 'Success' }
+      format.html { redirect_to memberships_path, notice: 'Jäsenyyksien muokkaus onnistui' }
       format.json { render :memberships, status: :ok, location: memberships_path }
     end
   end
@@ -205,16 +231,13 @@ class UsersController < ApplicationController
       @user = User.find(params[:id])
     end
 
-  def ensure_that_current_user
-    if !current_user or current_user.id != @user.id
-      ensure_that_admin
-    end
-    false
-  end
-
     # Never trust parameters from the scary internet, only allow the white list through.
     def user_params
       params.require(:user).permit(:username, :firstname, :lastname, :email, :city, :password, :password_confirmation, :hyy_member, :mathstudent, :activated, :admin)
+    end
+
+    def update_user_params
+      params.require(:user).permit(:firstname, :lastname, :email, :city, :hyy_member, :mathstudent, :activated, :admin)
     end
 
     def update_password_params

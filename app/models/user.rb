@@ -2,13 +2,20 @@ class User < ActiveRecord::Base
 
   has_secure_password
 
-  validates :username, presence: true, uniqueness: true, length: { in: 1..100 }
-  validates :firstname, presence: true, length: { in: 1..100 }
-  validates :lastname, presence: true, length: { in: 1..100 }
-  validates :email, uniqueness: true, length: { maximum: 100 }
-  validates :password, length: { maximum: 100 }
-  validates :city, length: { maximum: 100 }
-  validates :phonenumber, length: { maximum: 100 }
+  attr_accessor :skip_password_validation
+
+  validates :username, presence: { message: "Käyttäjätunnus on pakollinen kenttä" }
+  validates :username, uniqueness: { message: "Käyttäjätunnus on jo olemassa" }
+  validates :username, length: { in: 1..100, message: "Valitse käyttäjätunnus, jonka pituus on enintään 100 merkkiä" }
+  validates :firstname, presence: { message: "Etunimi on pakollinen kenttä" }
+  validates :firstname, length: { in: 1..100, message: "Valitse etunimi, jonka pituus on enintään 100 merkkiä" }
+  validates :lastname, presence: { message: "Sukunimi on pakollinen kenttä" }
+  validates :lastname, length: { in: 1..100, message: "Valitse sukunimi, jonka pituus on enintään 100 merkkiä" }
+  validates :email, uniqueness: { message: "Antamasi sähköpostiosoite on jo käytössä" }
+  validates :email, length: { maximum: 100, message: "Valitse sähköpostiosoite, jonka pituus on enintään 100 merkkiä" }
+  validates :password, length: { maximum: 100, message: "Valitse salasana, jonka pituus on enintään 100 merkkiä" }, unless: :skip_password_validation
+  validates :password, length: { minimum: 6, message: "Valitse salasana, jonka pituus on vähintään 6 merkkiä" }, unless: :skip_password_validation
+  validates :city, length: { maximum: 100, message: "Valitse kotikunta, jonka pituus on 100 merkkiä tai alle" }
 
   has_many :board_members
   has_many :signups

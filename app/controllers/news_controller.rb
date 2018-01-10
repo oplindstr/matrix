@@ -29,9 +29,10 @@ class NewsController < ApplicationController
 
     respond_to do |format|
       if @news.save
-        format.html { redirect_to news_index_path, notice: 'Uutinen lisätty onnistuneesti' }
+        format.html { redirect_to news_index_path, notice: 'Uutinen lisätty' }
         format.json { render :index, status: :created, location: news_index_path }
       else
+        @alert = @news.errors
         format.html { render :new }
         format.json { render json: @news.errors, status: :unprocessable_entity }
       end
@@ -46,6 +47,7 @@ class NewsController < ApplicationController
         format.html { redirect_to news_index_path, notice: 'Uutisen päivitys onnistui' }
         format.json { render :index, status: :ok, location: news_index_path }
       else
+        @alert = @news.errors
         format.html { render :edit }
         format.json { render json: @news.errors, status: :unprocessable_entity }
       end
@@ -57,7 +59,7 @@ class NewsController < ApplicationController
   def destroy
     @news.destroy
     respond_to do |format|
-      format.html { redirect_to news_index_path, notice: 'Uutinen poistettu onnistuneesti' }
+      format.html { redirect_to news_index_path, notice: 'Uutinen poistettu' }
       format.json { render :index, status: :ok, location: news_index_path }
     end
   end

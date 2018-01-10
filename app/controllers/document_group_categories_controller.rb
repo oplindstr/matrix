@@ -1,5 +1,6 @@
 class DocumentGroupCategoriesController < ApplicationController
   before_action :set_document_group_category, only: [:show, :edit, :update, :destroy]
+  before_action :ensure_that_sub_admin
 
   # GET /document_group_categories
   # GET /document_group_categories.json
@@ -30,9 +31,10 @@ class DocumentGroupCategoriesController < ApplicationController
 
     respond_to do |format|
       if @document_group_category.save
-        format.html { redirect_to @document_group_category, notice: 'Dokumenttikategoria luotu' }
+        format.html { redirect_to @document_group_category, notice: 'Dokumenttien pääkategoria luotu' }
         format.json { render :show, status: :created, location: @document_group_category }
       else
+        @alert = @document_group_category.errors
         format.html { render :new }
         format.json { render json: @document_group_category.errors, status: :unprocessable_entity }
       end
@@ -44,9 +46,10 @@ class DocumentGroupCategoriesController < ApplicationController
   def update
     respond_to do |format|
       if @document_group_category.update(document_group_category_params)
-        format.html { redirect_to @document_group_category, notice: 'Document group category was successfully updated.' }
+        format.html { redirect_to @document_group_category, notice: 'Dokumenttien pääkategorian muokkaus onnistui' }
         format.json { render :show, status: :ok, location: @document_group_category }
       else
+        @alert = @document_group_category.errors
         format.html { render :edit }
         format.json { render json: @document_group_category.errors, status: :unprocessable_entity }
       end
@@ -58,7 +61,7 @@ class DocumentGroupCategoriesController < ApplicationController
   def destroy
     @document_group_category.destroy
     respond_to do |format|
-      format.html { redirect_to '/dokumentit', notice: 'Document group category was successfully destroyed.' }
+      format.html { redirect_to '/dokumentit', notice: 'Dokumenttien pääkategoria poistettu' }
       format.json { head :no_content }
     end
   end

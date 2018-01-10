@@ -40,9 +40,9 @@
           </div>
         </div>
         <% if current_user %>
-          <%= link_to 'Omat tiedot', current_user, :class => "navbar-item" %>
+          <%= link_to 'Omat tiedot', '/omat_tiedot', :class => "navbar-item" %>
         <% else %>
-          <%= link_to 'Liity jäseneksi', new_user_path, :class => "navbar-item" %>
+          <%= link_to 'Liity jäseneksi', '/liity', :class => "navbar-item" %>
         <% end %>
       </div>
     </div>
