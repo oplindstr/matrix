@@ -2,7 +2,7 @@ class Document < ActiveRecord::Base
    belongs_to :document_group
 
    validates :name, presence: { message: 'Nimi puuttuu' }
-   validates :name, length: { maximum: 500, 'Anna nimi, jonka pituus on enintään 500 merkkiä' }
+   validates :name, length: { maximum: 500, message: 'Anna nimi, jonka pituus on enintään 500 merkkiä' }
 
    mount_uploader :attachment, DocumentUploader
    validates :attachment, presence: { message: 'Tiedosto puuttuu' }
