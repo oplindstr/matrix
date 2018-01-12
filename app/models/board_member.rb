@@ -23,7 +23,7 @@ class BoardMember < ActiveRecord::Base
   end
 
   def email
-    self.user.email
+    self.user.display_email
   end
 
   def unique_user_in_year

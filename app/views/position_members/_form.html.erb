@@ -1,0 +1,29 @@
+<%= form_for @position_member, html: { :multipart => true, :onsubmit => "return confirm('Oletko varma?')" } do |f| %>
+  <div class="field">
+    <%= f.label :name, 'Vuosi', :class => 'label' %>
+    <div class="control">
+      <% if @position_member.new_record? %>
+      	<%= f.number_field :year, :class => 'input', :required => true, :min => 1991, :max => 3000, :value => @this_year %>
+      <% else %>
+      	<%= f.number_field :year, :class => 'input', :required => true, :min => 1991, :max => 3000 %>
+      <% end %>
+    </div>
+  </div>
+  <div class="field">
+    <%= f.label :user_id, 'Käyttäjä', :class => 'label' %>
+    <div class="control">
+      <div class="select">
+        <%= f.select :user_id, options_from_collection_for_select(@users, :id, :name, @position_member.user_id) %>
+      </div>
+    </div>
+  </div>
+  <div class="field">
+    <%= f.label :position_id, 'Virka', :class => 'label' %>
+    <div class="control">
+      <div class="select">
+        <%= f.select :position_id, options_from_collection_for_select(@positions, :id, :name, @position_member.position_id) %>
+      </div>
+    </div>
+  </div>
+  <%= f.submit "Tallenna", class: "button is-link" %> <br>
+<% end %>

@@ -1,45 +1,55 @@
-<h1>Hallituksen jäsenet ja virat</h1>
+<div class="box">
+  <h1 class="title is-spaced">Hallituksen jäsenet ja virat</h1>
 
-<table class = "table table-bordered table-striped">
-  <thead>
-      <tr>
-         <th>Nimi</th>
-         <th>Vuosi</th>
-         <th>Varajäsen?</th>
-         <th> </th>
-      </tr>
-   </thead>
+  <h2 class="subtitle">Hallitus</h2>
 
-  <tbody>
-	<% @board_members.each do |member| %>
-	  <tr>
-	  <td><%= member.name %></td>
-		<td><%= member.year %></td>
-		<td><%= check_box_tag 'supplementary', 'supplementary', member.supplementary, disabled: true %></td>
-		<td><%= button_to "Poista", {action: "destroy", id: member.id}, method: :delete, class: "btn btn-danger", data: {confirm: "Are you sure that you wish to delete this record?"} %></td>
-	  </tr>
-	<% end %>
-  </tbody>
-</table>
+  <table class = "table">
+    <thead>
+        <tr>
+           <th>Nimi</th>
+           <th>Vuosi</th>
+           <th>Varajäsen?</th>
+           <th> </th>
+           <th> </th>
+        </tr>
+     </thead>
 
-<table class = "table table-bordered table-striped">
-  <thead>
-      <tr>
-         <th>Nimi</th>
-         <th>Vuosi</th>
-         <th>Virka</th>
-         <th> </th>
-      </tr>
-   </thead>
+    <tbody>
+  	<% @board_members.each do |member| %>
+  	  <tr>
+    	  <td><%= member.name %></td>
+    		<td><%= member.year %></td>
+    		<td><%= check_box_tag 'supplementary', 'supplementary', member.supplementary, disabled: true %></td>
+        <td><%= link_to 'Muokkaa', edit_board_member_path(member), :class => 'button is-link' %></td>
+    		<td><%= button_to "Poista", {action: "destroy", id: member.id}, method: :delete, class: "button is-danger", data: {confirm: "Oletko varma?"} %></td>
+  	  </tr>
+  	<% end %>
+    </tbody>
+  </table>
 
-  <tbody>
-	<% @position_members.each do |member| %>
-	  <tr>
-	    <td><%= member.user.name %></td>
-		<td><%= member.year %></td>
-		<td><%= member.position.name %></td>
-		<td><%= button_to "Poista", {action: "destroy", controller: "position_members", id: member.id}, method: :delete, class: "btn btn-danger", data: {confirm: "Are you sure that you wish to delete this record?"} %></td>
-	  </tr>
-	<% end %>
-  </tbody>
-</table>
+  <h2 class="subtitle">Virat</h2>
+
+  <table class = "table">
+    <thead>
+        <tr>
+           <th>Nimi</th>
+           <th>Vuosi</th>
+           <th>Virka</th>
+           <th> </th>
+           <th> </th>
+        </tr>
+     </thead>
+
+    <tbody>
+  	<% @position_members.each do |member| %>
+  	  <tr>
+  	    <td><%= member.user.name %></td>
+    		<td><%= member.year %></td>
+    		<td><%= member.position.name %></td>
+        <td><%= link_to 'Muokkaa', edit_position_member_path(member), :class => 'button is-link' %></td>
+    		<td><%= button_to "Poista", {action: "destroy", controller: "position_members", id: member.id}, method: :delete, class: "button is-danger", data: {confirm: "Oletko varma?"} %></td>
+  	  </tr>
+  	<% end %>
+    </tbody>
+  </table>
+</div>

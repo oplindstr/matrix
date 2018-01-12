@@ -1,13 +1,5 @@
-<div class = "well">
-   <%= form_for @board_member, html: { multipart: true } do |f| %>
-      <%= f.label :year, 'Vuosi' %> <br>
-      <%= f.number_field :year, :value => @this_year %> <br>
-      <%= f.label :user_id, 'Käyttäjä' %> <br>
-      <%= f.select :user_id, options_from_collection_for_select(@users, :id, :name, @user) %> <br>
-      <%= f.label :supplementary, 'Varajäsen' %>
-      <%= f.check_box :supplementary %> <br>
-      <%= f.label :avatar, 'Kuva' %>
-      <%= f.file_field :avatar %> <br> <br>
-      <%= f.submit "Save", class: "btn btn-primary" %> <br>
-   <% end %>
+<div class="box">
+   <h1 class="title">Lisää hallituksen jäsen</h1>
+
+   <%= render 'form' %>
 </div>

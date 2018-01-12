@@ -33,6 +33,11 @@
 	<div class='column is-half'>
 		<div class="box fixed-height-col">
 		    <h1 class="title is-4">Ajankohtaista</h1>
+		    <% if sub_admin %>
+		    	<%= link_to 'Lisää uutinen', new_news_path %>
+		    	<br>
+		    	<br>
+		    <% end %>
 		    <% @news.each do |news| %>
 		      <h1 class="title is-5"><%= news.header %></h1>
 		      <pre><%= news.text %></pre>
@@ -45,6 +50,11 @@
 	<div class="column is-half">
 		<div class="box fixed-height-col">
 		    <h1 class="title is-4">Tulevia tapahtumia</h1>
+		    <% if sub_admin %>
+		    	<%= link_to 'Lisää tapahtuma', new_events_path %>
+		    	<br>
+		    	<br>
+		    <% end %>
 		    <% @events.each do |event| %>
 		      <h1 class="title is-5"><%= link_to event.name, event_path(event.id) %></h1>
 		      <p><%= DateHelper.standard_time(event.starttime) %></p>

@@ -46,7 +46,7 @@
 
     <% end %>
 
-    <%= form_for @user, :url => { :action => "add_picture" } do |f| %>
+    <%= form_for(@user, :url => "add_picture", :method => 'patch') do |f| %>
 
       <% if @user.get_avatar %>
         <h2 class="subtitle">Vaihda kuva</h2>
@@ -55,7 +55,7 @@
       <% end %>
 
       <div class="field">
-        <%= f.file_field :avatar, accept: 'image/png,image/jpg,image/jpeg' %> (kuvan koko korkeintaan 5 MB)
+        <%= f.file_field :avatar, accept: 'image/png,image/jpg,image/jpeg', :required => true %> (kuvan koko korkeintaan 5 MB)
       </div>
 
       <div class="actions">

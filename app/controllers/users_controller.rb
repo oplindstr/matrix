@@ -1,6 +1,7 @@
 class UsersController < ApplicationController
-  before_action :set_user, only: [:show, :edit, :update, :destroy, :add_picture, :new_password, :update_password, :remove_picture]
-  before_action :ensure_that_current_user, only: [:edit, :update, :destroy, :new_password, :update_password, :add_picture, :remove_picture]
+  before_action :set_user, only: [:self, :show, :edit, :update, :destroy, :new_password, :update_password, :remove_picture]
+  before_action :set_user_with_user_id, only: [:add_picture]
+  before_action :ensure_that_current_user, only: [:self, :edit, :update, :destroy, :new_password, :update_password, :add_picture, :remove_picture]
   before_action :ensure_that_admin, only: [:index, :memberships, :update_memberships, :show]
 
   # GET /users
@@ -27,24 +28,19 @@ class UsersController < ApplicationController
   end
 
   def self
-    if (!current_user)
-      redirect_to root_path
+    if Time.now.month >= 8
+      @membership_this_year = DateHelper.year
     else
-      @user = User.find(current_user.id)
-      if Time.now.month >= 8
-        @membership_this_year = DateHelper.year
-      else
-        @membership_this_year = DateHelper.year - 1
-      end
-      @memberships = Membership.where('user_id = ? and year >= ?', @user.id, @membership_this_year).pluck(:year)
-      if !@memberships.empty?
-        @membership_max_year = @memberships.max
-        @member = true
-      else
-        @member = false
-      end
-      render 'show'
+      @membership_this_year = DateHelper.year - 1
     end
+    @memberships = Membership.where('user_id = ? and year >= ?', @user.id, @membership_this_year).pluck(:year)
+    if !@memberships.empty?
+      @membership_max_year = @memberships.max
+      @member = true
+    else
+      @member = false
+    end
+    render 'show'
   end
 
   # GET /users/new
@@ -80,8 +76,13 @@ class UsersController < ApplicationController
     @user.skip_password_validation = true
     respond_to do |format|
       if @user.update(update_user_params)
-        format.html { redirect_to @user, notice: 'Jäsentietojen muokkaus onnistui' }
-        format.json { render :show, status: :ok, location: @user }
+        if admin and current_user.id != @user.id
+          format.html { redirect_to @user, notice: 'Jäsentietojen muokkaus onnistui' }
+          format.json { render :show, status: :ok, location: @user }
+        else
+          format.html { redirect_to self_path, notice: 'Jäsentietojen muokkaus onnistui' }
+          format.json { render :show, status: :ok, location: self_path }
+        end
       else
         @alert = @user.errors
         format.html { render :show }
@@ -148,11 +149,17 @@ class UsersController < ApplicationController
 
   def add_picture
     params = add_picture_params
+    @user.skip_password_validation = true
 
     respond_to do |format|
       if @user.update(params)
-        format.html { redirect_to @user, notice: 'Hallitussivun kuva lisätty' }
-        format.json { render :show, status: :ok, location: @user }
+        if admin and current_user.id != @user.id
+          format.html { redirect_to @user, notice: 'Hallitussivun kuva lisätty' }
+          format.json { render :show, status: :ok, location: @user }
+        else
+          format.html { redirect_to self_path, notice: 'Hallitussivun kuva lisätty' }
+          format.json { render :show, status: :ok, location: self_path }
+        end
       else
         @alert = @user.errors
         format.html { render :show }
@@ -163,12 +170,18 @@ class UsersController < ApplicationController
 
   def remove_picture
     @user.remove_avatar!
+    @user.skip_password_validation = true
 
     respond_to do |format|
       if @user.save
         @user.avatar = nil
-        format.html { redirect_to @user, notice: 'Hallitussivun kuva poistettu' }
-        format.json { render :show, status: :ok, location: @user }
+        if admin and current_user.id != @user.id
+          format.html { redirect_to @user, notice: 'Hallitussivun kuva poistettu' }
+          format.json { render :show, status: :ok, location: @user }
+        else
+          format.html { redirect_to self_path, notice: 'Hallitussivun kuva poistettu' }
+          format.json { render :show, status: :ok, location: self_path }
+        end
       else
         @alert = @user.errors
         format.html { render :show }
@@ -188,8 +201,13 @@ class UsersController < ApplicationController
         format.html { redirect_to new_password_path, alert: 'Uuden salasanan vahvistus väärin' }
         format.json { render json: @user.errors, status: :unprocessable_entity, location: new_password_path } 
       else
-        format.html { redirect_to @user, notice: 'Salasana vaihdettu' }
-        format.json { render :show, status: :ok, location: @user }
+        if admin and current_user.id != @user.id
+          format.html { redirect_to @user, notice: 'Salasana vaihdettuy' }
+          format.json { render :show, status: :ok, location: @user }
+        else
+          format.html { redirect_to self_path, notice: 'Salasana vaihdettu' }
+          format.json { render :show, status: :ok, location: self_path }
+        end
       end
     end
   end
@@ -228,7 +246,17 @@ class UsersController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_user
-      @user = User.find(params[:id])
+      @user = User.find(current_user.id)
+      if admin and params[:id]
+        @user = User.find(params[:id])
+      end
+    end
+
+    def set_user_with_user_id
+      @user = User.find(current_user.id)
+      if admin and params[:user_id]
+        @user = User.find(params[:user_id])
+      end
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

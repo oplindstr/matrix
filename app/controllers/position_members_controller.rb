@@ -17,11 +17,22 @@ class PositionMembersController < ApplicationController
   	@position_member = PositionMember.new
     @users = User.all
     @years = (1995..@year+1).to_a
-    @positions = Position.all
+    if admin
+      @positions = Position.all.order(:name)
+    else
+      @positions = Position.where('admin is null or admin = ?', false).order(:name)
+    end
   end
 
   # GET /positions/1/edit
   def edit
+    @position_member = PositionMember.find(params[:id])
+    @users = User.all
+    if admin
+      @positions = Position.all.order(:name)
+    else
+      @positions = Position.where('admin is null or admin = ?', false).order(:name)
+    end
   end
 
   # position /positions
@@ -38,7 +49,11 @@ class PositionMembersController < ApplicationController
         @position_member = PositionMember.new
         @users = User.all
         @years = (1995..@year+1).to_a
-        @positions = Position.all
+        if admin
+          @positions = Position.all.order(:name)
+        else
+          @positions = Position.where('admin is null or admin = ?', false).order(:name)
+        end
         format.html { render :new, status: :unprocessable_entity, location: new_position_member_path }
       end
     end
@@ -47,6 +62,21 @@ class PositionMembersController < ApplicationController
   # PATCH/PUT /positions/1
   # PATCH/PUT /positions/1.json
   def update
+    @position_member = PositionMember.find(params[:id])
+    respond_to do |format|
+      if @position_member.update(position_member_params)
+        format.html { redirect_to '/board_members_and_positions', notice: "Virkailijaa muokattu" }
+      else
+        @alert = @position_member.errors
+        @users = User.all
+        if admin
+          @positions = Position.all.order(:name)
+        else
+          @positions = Position.where('admin is null or admin = ?', false).order(:name)
+        end
+        format.html { render :new, status: :unprocessable_entity, location: edit_board_member_path }
+      end
+    end
   end
 
   # DELETE /positions/1
@@ -58,6 +88,7 @@ class PositionMembersController < ApplicationController
    end
 
   private
+
   	def set_year
       @year = DateHelper.year
     end

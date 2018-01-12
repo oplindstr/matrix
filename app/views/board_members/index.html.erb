@@ -1,6 +1,19 @@
 <div class="box">
 	<h1 class="title">Hallitus ja virkailijat</h1>
 
+	<% if sub_admin %>
+
+		<%= link_to 'Lisää hallituksen jäsen',  new_board_member_path %>
+		<br>
+		<%= link_to 'Lisää virkailija', new_position_member_path %>
+		<br>
+		<%= link_to 'Muokkaa hallituksen jäseniä ja virkoja', '/board_members_and_positions' %>
+		<br>
+		<%= link_to 'Lisää uusi virka', new_position_path %>
+		<br>
+		<br>
+	<% end %>
+
 	<p>Matrixin toiminnasta vastaa järjestön hallitus.
 	    Käytännössä varsinaisten hallituslaisten lisäksi toimintaa on kuitenkin pyörittämässä joukko ahkeria virkailijoita.
 	    Jokaisella virkailijalla ja hallituksen jäsenellä on vastuualue, johon liittyviä asioita he hoitavat järjestössä.</p>
@@ -44,21 +57,6 @@
 
 		<%= render :partial => "position_member_list", :locals => 
 	  { :members => @position_members } %>
-
-	<% end %>
-
-	<% if admin %>
-
-		<%= link_to 'Lisää hallituksen jäseniä',  new_board_member_path %>
-		<br>
-		<br>
-		<%= link_to 'Lisää virkailija', new_position_member_path %>
-		<br>
-		<br>
-		<%= link_to 'Muokkaa hallituksen jäseniä ja virkoja', '/board_members_and_positions' %>
-		<br>
-		<br>
-		<%= link_to 'Lisää uusi virka', new_position_path %>
 
 	<% end %>
 </div>

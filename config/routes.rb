@@ -2,7 +2,7 @@ Rails.application.routes.draw do
 
   root :to => 'pages#index', :as => 'root'
 
-  resources :board_members, only: [:index, :new, :create, :destroy]
+  resources :board_members, only: [:edit, :update, :index, :new, :create, :destroy]
   resources :document_group_categories
   resources :document_groups
   resources :documents, only: [:index, :new, :create, :destroy]
@@ -56,6 +56,9 @@ Rails.application.routes.draw do
   patch '/users/:id/update_password' => 'users#update_password', as: 'update_password'
   patch '/users/:id/add_picture' => 'users#add_picture', as: 'add_picture'
   patch '/users/:id/remove_picture' => 'users#remove_picture', as: 'remove_picture'
+
+  patch 'add_picture' => 'users#add_picture'
+  patch 'remove_picture' => 'users#remove_picture'
 
   get '/memberships' => 'users#memberships', as: 'memberships'
   get '/memberships/:vuosi' => 'users#memberships'
