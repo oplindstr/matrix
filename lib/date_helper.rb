@@ -60,14 +60,14 @@ module DateHelper
   end
 
   def self.standard_time(time)
-    if get_year(time).to_i > self.year
+    if get_year(time).to_i != self.year
       return weekday(time) + ' ' + standard_date(time) + ' klo ' + time(time)
     end
     return weekday(time) + ' ' + date(time) + ' klo ' + time(time)
   end
 
   def self.standard_time2(time)
-    if get_year(time).to_i > self.year
+    if get_year(time).to_i != self.year
       return weekday(time) + 'na ' + standard_date(time) + ' klo ' + time(time)
     end
     return weekday(time) + 'na ' + date(time) + ' klo ' + time(time)

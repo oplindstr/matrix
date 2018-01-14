@@ -16,7 +16,9 @@ class BoardMember < ActiveRecord::Base
   end
 
   def name
-    self.user.name
+    if self.user
+      self.user.name
+    end
   end
 
   def email

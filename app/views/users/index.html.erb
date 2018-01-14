@@ -1,0 +1,26 @@
+<div class="box">
+
+  <h2 class="title is-spaced">Käyttäjät</h2>
+
+  <table class="table">
+      <thead>
+        <tr>
+          <th>Nimi</th>
+          <th>Sähköpostiosoite</th>
+          <th></th>
+        </tr>
+      </thead>
+
+    <tbody>
+      <% @users.each do |user| %> 
+      <tr>
+        <td><%= user.name %></td>
+        <td><%= user.email %></td>
+        <td><%= link_to 'Poista', post, method: :delete, data: { confirm: 'Oletko varma?' } %></td>
+      <% end %>
+      </tr>
+    </tbody>
+
+    </table>
+
+</div>
