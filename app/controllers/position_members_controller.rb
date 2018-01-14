@@ -28,7 +28,8 @@ class PositionMembersController < ApplicationController
   # GET /positions/1/edit
   def edit
     @position_member = PositionMember.find(params[:id])
-    @users = User.all.order(:name)
+    @users = User.all
+    @users = @users.sort_by { |f| f.name }
     if admin
       @positions = Position.all.order(:name)
     else
@@ -90,6 +91,7 @@ class PositionMembersController < ApplicationController
       else
         @alert = @position_member.errors
         @users = User.all
+        @users = @users.sort_by { |f| f.name }
         if admin
           @positions = Position.all.order(:name)
         else

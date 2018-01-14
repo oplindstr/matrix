@@ -43,7 +43,8 @@ class BoardMembersController < ApplicationController
 
  def edit
     @board_member = BoardMember.find(params[:id])
-    @users = User.all.order(:name)
+    @users = User.all
+    @users = @users.sort_by { |f| f.name }
  end
 
  def update
@@ -62,6 +63,7 @@ class BoardMembersController < ApplicationController
       else
         @alert = @board_member.errors
         @users = User.all
+        @users = @users.sort_by { |f| f.name }
         format.html { render :new, status: :unprocessable_entity, location: edit_board_member_path }
       end
     end
