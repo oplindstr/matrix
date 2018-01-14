@@ -28,7 +28,7 @@ class PositionMembersController < ApplicationController
   # GET /positions/1/edit
   def edit
     @position_member = PositionMember.find(params[:id])
-    @users = User.all
+    @users = User.all.order(:name)
     if admin
       @positions = Position.all.order(:name)
     else

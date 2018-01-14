@@ -202,7 +202,7 @@ class UsersController < ApplicationController
         format.json { render json: @user.errors, status: :unprocessable_entity, location: new_password_path } 
       else
         if admin and current_user.id != @user.id
-          format.html { redirect_to @user, notice: 'Salasana vaihdettuy' }
+          format.html { redirect_to @user, notice: 'Salasana vaihdettu' }
           format.json { render :show, status: :ok, location: @user }
         else
           format.html { redirect_to self_path, notice: 'Salasana vaihdettu' }

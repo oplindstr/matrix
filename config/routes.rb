@@ -47,12 +47,13 @@ Rails.application.routes.draw do
 
   get '/menneet_tapahtumat' => 'events#past_events', as: 'past_events'
  
-  get '/users/:id/new_password' => 'users#new_password', as: 'new_password'
+  get '/uusi_salasana' => 'users#new_password', as: 'new_password'
   get '/salasanan_palautus' => 'users#password_recovery', as: 'password_recovery'
   get '/kayttajatunnuksen_palautus' => 'users#username_recovery', as: 'username_recovery'
   post '/users/recover_username' => 'users#recover_username', as: 'recover_username'
   post '/users/recover_password' => 'users#recover_password', as: 'recover_password'
-  patch '/users/:id/update_password' => 'users#update_password', as: 'update_password'
+  patch '/update_password' => 'users#update_password', as: 'update_password'
+  patch '/users/:id/update_password' => 'users#update_password'
   patch '/users/:id/add_picture' => 'users#add_picture', as: 'add_picture'
   patch '/users/:id/remove_picture' => 'users#remove_picture', as: 'remove_picture'
 

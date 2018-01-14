@@ -43,7 +43,7 @@ class BoardMembersController < ApplicationController
 
  def edit
     @board_member = BoardMember.find(params[:id])
-    @users = User.all
+    @users = User.all.order(:name)
  end
 
  def update
