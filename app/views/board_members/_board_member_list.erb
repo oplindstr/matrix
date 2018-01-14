@@ -11,6 +11,9 @@
 				    <% if @member.get_avatar %>
 					    <span class="board_member_image"><%= image_tag(@member.get_avatar) %> </span>
 					    <br><br>
+					<% else %>
+						<span class="board_member_image"><%= image_tag('placeholder_avatar.jpg') %> </span>
+					    <br><br>
 					<% end %>
 					<b> <%= @member.name %> </b><br>
 					<i> <%= @member.email %> </i>
@@ -34,6 +37,9 @@
 	    			<div class="column is-10">
 					    <% if @member.get_avatar %>
 						    <span class="board_member_image"><%= image_tag(@member.get_avatar) %> </span>
+						    <br><br>
+						<% else %>
+							<span class="board_member_image"><%= image_tag('placeholder_avatar.jpg') %> </span>
 						    <br><br>
 						<% end %>
 						<b> <%= @member.name %> </b><br>

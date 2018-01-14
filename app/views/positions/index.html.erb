@@ -1,29 +1,31 @@
-<h1>Listing positions</h1>
+<div class="box">
+   
+  <h1 class="title">Virat</h1>
 
-<table>
-  <thead>
-    <tr>
-      <th>Position</th>
-      <th>Priority</th>
-      <th>Show in contact info</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @positions.each do |position| %>
+  <table class="table">
+    <thead>
       <tr>
-        <td><%= position.name %></td>
-        <td><%= position.priority %></td>
-        <td><%= position.show_in_contact_info %></td>
-        <td><%= link_to 'Show', position %></td>
-        <td><%= link_to 'Edit', edit_position_path(position) %></td>
-        <td><%= link_to 'Destroy', position, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <th>Virka</th>
+        <th>Prioriteetti</th>
+        <th>Näytä yhteystiedoissa</th>
+        <th colspan="2"></th>
       </tr>
-    <% end %>
-  </tbody>
-</table>
+    </thead>
 
-<br>
+    <tbody>
+      <% @positions.each do |position| %>
+        <tr>
+          <td><%= position.name %></td>
+          <td><%= position.priority %></td>
+          <td><%= check_box_tag 'Näytä yhteystiedoissa', 'Näytä yhteystiedoissa', position.show_in_contact_info, disabled: true %></td>
+          <td><%= link_to 'Muokkaa', edit_position_path(position), :class => 'button is-link' %></td>
+          <td><%= link_to 'Poista', position, method: :delete, data: { confirm: 'Are you sure?' }, :class => 'button is-danger' %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
 
-<%= link_to 'Uusi virka', new_position_path %>
+  <br>
+
+  <%= link_to 'Uusi virka', new_position_path %>
+</div>

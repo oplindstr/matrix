@@ -48,6 +48,14 @@ class BoardMembersController < ApplicationController
 
  def update
     @board_member = BoardMember.find(params[:id])
+    if params[:avatar]
+      @user = User.find(board_member_params[:user_id])
+      if !@user.avatar_url
+        @user.skip_password_validation = true
+        @user.avatar = params[:avatar]
+        @user.save!
+      end
+    end
     respond_to do |format|
       if @board_member.update(board_member_params)
         format.html { redirect_to '/board_members_and_positions', notice: "Hallituksen jäsentä muokattu" }
@@ -61,7 +69,15 @@ class BoardMembersController < ApplicationController
 
  def create
     @board_member = BoardMember.new(board_member_params)
-    
+    @user = User.find(board_member_params[:user_id])
+    if params[:avatar]
+      @user = User.find(board_member_params[:user_id])
+      if !@user.avatar_url
+        @user.skip_password_validation = true
+        @user.avatar = params[:avatar]
+        @user.save!
+      end
+    end
     respond_to do |format|
       if @board_member.save
         format.html { redirect_to '/hallitus?vuosi=' + @board_member.year.to_s, notice: "Hallituksen jäsen lisätty" }
@@ -69,6 +85,7 @@ class BoardMembersController < ApplicationController
         @alert = @board_member.errors
         @users = User.all
         @user = @board_member.user_id
+        @this_year = DateHelper.year
         format.html { render :new, status: :unprocessable_entity, location: new_board_member_path }
       end
     end
@@ -106,7 +123,7 @@ class BoardMembersController < ApplicationController
   end
 
   def board_member_params
-    params.require(:board_member).permit(:user_id, :year, :supplementary, :avatar)
+    params.require(:board_member).permit(:user_id, :year, :supplementary)
   end
     
 end

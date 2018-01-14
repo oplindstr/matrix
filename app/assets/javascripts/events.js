@@ -32,4 +32,55 @@ $(document).ready(function () {
     $("#event_signup_start")[0].defaultValue = $("#event_signup_start")[0].defaultValue.substring(0,23);
     $("#event_signup_end")[0].defaultValue = $("#event_signup_end")[0].defaultValue.substring(0,23);
     $("#event_signup_cancellable_until")[0].defaultValue = $("#event_signup_cancellable_until")[0].defaultValue.substring(0,23);
+
+    $('.flatpickr').flatpickr({
+        enableTime: true,
+        time_24hr: true,
+        locale: {
+            firstDayOfWeek: 1,
+            weekdays: {
+                shorthand: ["Su", "Ma", "Ti", "Ke", "To", "Pe", "La"],
+                longhand: [
+                  "Sunnuntai",
+                  "Maanantai",
+                  "Tiistai",
+                  "Keskiviikko",
+                  "Torstai",
+                  "Perjantai",
+                  "Lauantai",
+                ],
+            },
+
+            months: {
+                shorthand: [
+                  "Tammi",
+                  "Helmi",
+                  "Maalis",
+                  "Huhti",
+                  "Touko",
+                  "Kesä",
+                  "Heinä",
+                  "Elo",
+                  "Syys",
+                  "Loka",
+                  "Marras",
+                  "Joulu",
+                ],
+                longhand: [
+                  "Tammikuu",
+                  "Helmikuu",
+                  "Maaliskuu",
+                  "Huhtikuu",
+                  "Toukokuu",
+                  "Kesäkuu",
+                  "Heinäkuu",
+                  "Elokuu",
+                  "Syyskuu",
+                  "Lokakuu",
+                  "Marraskuu",
+                  "Joulukuu",
+                ],
+            }
+        }
+    });
 });

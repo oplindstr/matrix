@@ -10,9 +10,6 @@ class BoardMember < ActiveRecord::Base
   validate :unique_user_in_year
 	
   def get_avatar
-    if self.avatar_url
-      return self.avatar_url
-    end
     if self.user.avatar_url
     	return self.user.avatar_url
     end
@@ -27,7 +24,11 @@ class BoardMember < ActiveRecord::Base
   end
 
   def unique_user_in_year
-    @board_members = BoardMember.where("user_id = ? and year = ?", self.user_id, self.year)
+    if self.id
+      @board_members = BoardMember.where("user_id = ? and year = ? and id != ?", self.user_id, self.year, self.id)
+    else
+      @board_members = BoardMember.where("user_id = ? and year = ?", self.user_id, self.year)
+    end
     if @board_members.size > 0
       errors.add(:user_id, 'Tämä henkilö on jo tämän vuoden hallituksessa')
     end

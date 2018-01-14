@@ -7,9 +7,9 @@
 		<br>
 		<%= link_to 'Lisää virkailija', new_position_member_path %>
 		<br>
-		<%= link_to 'Muokkaa hallituksen jäseniä ja virkoja', '/board_members_and_positions' %>
+		<%= link_to 'Muokkaa hallituksen jäseniä ja virkailijoita', '/board_members_and_positions' %>
 		<br>
-		<%= link_to 'Lisää uusi virka', new_position_path %>
+		<%= link_to 'Virat', positions_path %>
 		<br>
 		<br>
 	<% end %>
@@ -30,33 +30,36 @@
 	    <% end %>
 	  </ul>
 	</nav>
+
+	<% if not @board_members.empty? or not @supplementary_members.empty? or not @position_members.empty? %>
 	
-	<h2 class="title"> Hallitus ja virkailijat <%= @year %> </h2>
+		<h2 class="title"> Hallitus ja virkailijat <%= @year %> </h2>
 
-	<% if not @board_members.empty? %>
-		<br>
-		<h3 class="subtitle">Hallituksen jäsenet</h3>
+		<% if not @board_members.empty? %>
+			<br>
+			<h3 class="subtitle">Hallituksen jäsenet</h3>
 
-		<%= render :partial => "board_member_list", :locals => 
-	  { :members => @board_members } %>
+			<%= render :partial => "board_member_list", :locals => 
+		  { :members => @board_members } %>
 
-	<% end %>
+		<% end %>
 
-	<% if not @supplementary_members.empty? %>
-		<br>
-		<h3 class="subtitle">Hallituksen varajäsenet</h3>
+		<% if not @supplementary_members.empty? %>
+			<br>
+			<h3 class="subtitle">Hallituksen varajäsenet</h3>
 
-		<%= render :partial => "board_member_list", :locals => 
-	  { :members => @supplementary_members } %>
+			<%= render :partial => "board_member_list", :locals => 
+		  { :members => @supplementary_members } %>
 
-	<% end %>
+		<% end %>
 
-	<% if not @position_members.empty? %>
-		<br>
-		<h3 class="subtitle">Virkailijat</h3>
+		<% if not @position_members.empty? %>
+			<br>
+			<h3 class="subtitle">Virkailijat</h3>
 
-		<%= render :partial => "position_member_list", :locals => 
-	  { :members => @position_members } %>
+			<%= render :partial => "position_member_list", :locals => 
+		  { :members => @position_members } %>
 
+		<% end %>
 	<% end %>
 </div>

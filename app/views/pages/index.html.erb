@@ -51,7 +51,7 @@
 		<div class="box fixed-height-col">
 		    <h1 class="title is-4">Tulevia tapahtumia</h1>
 		    <% if sub_admin %>
-		    	<%= link_to 'Lisää tapahtuma', new_events_path %>
+		    	<%= link_to 'Lisää tapahtuma', new_event_path %>
 		    	<br>
 		    	<br>
 		    <% end %>
@@ -62,15 +62,15 @@
 		      	<p>@ <%= event.location %></p>
 		      <% end %>
 		      <% if event.signup_open %>
-		      	<br>
-		      	<% if event.signup_end %>
-		      		<i>Ilmoittautuminen tapahtumaan on käynnissä ja päättyy <%= DateHelper.standard_time2(event.signup_end) %> </i>
-		      	<% else %>
-		      		<i>Ilmoittautuminen tapahtumaan on käynnissä</i>
-		      	<% end %>
-		      <% elsif event.signup_required and event.signup_start %>
-		      	<br>
-		      	<i>Ilmoittautuminen tapahtumaan alkaa <%= DateHelper.standard_time2(event.signup_start) %> </i>
+		        <br>
+		        <% if event.signup_end %>
+		          <i>Ilmoittautuminen tapahtumaan on käynnissä ja päättyy <%= DateHelper.standard_time2(event.signup_end) %> </i>
+		        <% else %>
+		          <i>Ilmoittautuminen tapahtumaan on käynnissä </i>
+		        <% end %>
+		      <% elsif event.signup_required and event.signup_start and event.signup_start > Time.now %>
+		        <br>
+		        <i>Ilmoittautuminen tapahtumaan alkaa <%= DateHelper.standard_time2(event.signup_start) %> </i>
 		      <% end %>
 		      <% if event != @events.last %>
 		      	<hr>

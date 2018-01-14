@@ -2,6 +2,16 @@
 
   <h2 class="title"><%= @event.name %></h2>
 
+  <% if sub_admin %>
+
+    <%= link_to 'Muokkaa tapahtumaa', edit_event_path(@event) %>
+    <br>
+    <%= link_to 'Poista tapahtuma', @event, method: :delete, data: { confirm: 'Oletko varma?' } %>
+    <br>
+    <br>
+
+  <% end %>
+
   <p>
   <strong>Päivä:</strong>
   <%= DateHelper.weekday(@event.starttime) %> <%= DateHelper.standard_date(@event.starttime) %>
@@ -68,24 +78,20 @@
       <% end %>
     </p>
 
-    <% if @event.full %>
-        <p>Tapahtuma on täynnä!</p>
-    <% end %>
-
     <% if !@event.empty %>
       <p><%= link_to 'Näytä ilmoittautuneet', event_signups_path(@event.id) %></p>
       <br>
     <% end %>
 
-    <% if !@event.members_only %>
+    <% if !@event.members_only and !current_user %>
       <b>Ulkopuoliset voivat ilmoittautua tapahtumaan</b>
     <% end %>
 
-    <% if !current_user and !@event.members_only and !@event.full and @event.signup_open %>
+    <% if !current_user and !@event.members_only and @event.signup_open %>
       <%= render 'signup_form' %>
     <% end %>
 
-    <% if current_user and !@event.user_signed_up(current_user.id) and !@event.full and @event.signup_open %>
+    <% if current_user and !@event.user_signed_up(current_user.id) and @event.signup_open %>
         <%= render 'signup_form' %>
     <% end %>
 
@@ -93,17 +99,9 @@
       <% if @event_parameters.size > 0 %>
         <%= render 'signup_form' %>
       <% end %>
-      <br>
       <%= button_to 'Peru ilmoittautuminen', @signup, method: :delete, data: { confirm: 'Haluatko varmasti perua ilmoittautumisesi?' }, class: 'button is-danger' %>
     <% end %>
 
   <% end %>
 
-  <br>
-
-  <% if sub_admin %>
-
-    <%= link_to 'Muokkaa tapahtumaa', edit_event_path(@event) %>
-
-  <% end %>
 </div>

@@ -2,7 +2,7 @@ class UsersController < ApplicationController
   before_action :set_user, only: [:self, :show, :edit, :update, :destroy, :new_password, :update_password, :remove_picture]
   before_action :set_user_with_user_id, only: [:add_picture]
   before_action :ensure_that_current_user, only: [:self, :edit, :update, :destroy, :new_password, :update_password, :add_picture, :remove_picture]
-  before_action :ensure_that_admin, only: [:index, :memberships, :update_memberships, :show]
+  before_action :ensure_that_admin, only: [:index, :memberships, :memberships_by_year, :update_memberships, :show]
 
   # GET /users
   # GET /users.json
@@ -215,10 +215,23 @@ class UsersController < ApplicationController
   def memberships
     @year = params[:vuosi]
     if !@year
-      @year = Time.now.year
+      if Time.now.month >= 8
+        @year = DateHelper.year
+      else
+        @year = DateHelper.year - 1
+      end
     end
+    @year = @year.to_i
     @users = User.all
     @users = @users.sort_by{ |u| u.name }
+    @non_members = @users.select{ |m| !m.membership(@year) }
+  end
+
+  def memberships_by_year
+    if !params[:year]
+      redirect_to memberships_path
+    end
+    redirect_to '/memberships/' + params[:year].to_s
   end
 
   def update_memberships
@@ -286,5 +299,9 @@ class UsersController < ApplicationController
 
     def update_memberships_params
       params.permit(:year, :users => [:member])
+    end
+
+    def memberships_by_year_params
+      params.permit(:year)
     end
 end

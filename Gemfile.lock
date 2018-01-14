@@ -40,23 +40,24 @@ GEM
     airbrussh (1.3.0)
       sshkit (>= 1.6.1, != 1.7.0)
     arel (6.0.4)
-    autoprefixer-rails (7.2.3)
+    autoprefixer-rails (7.2.5)
       execjs
     autotest (4.4.6)
       ZenTest (>= 4.4.1)
     backports (3.11.0)
     bcrypt (3.1.11)
+    bcrypt (3.1.11-x86-mingw32)
     better_errors (2.4.0)
       coderay (>= 1.0.0)
       erubi (>= 1.0.0)
       rack (>= 0.9.0)
-    binding_of_caller (0.7.3)
+    binding_of_caller (0.8.0)
       debug_inspector (>= 0.0.1)
     bootstrap-sass (3.3.7)
       autoprefixer-rails (>= 5.2.1)
       sass (>= 3.3.4)
     builder (3.2.3)
-    bulma-rails (0.6.1)
+    bulma-rails (0.6.2)
       sass (~> 3.2)
     byebug (9.1.0)
     capistrano (3.10.1)
@@ -77,14 +78,14 @@ GEM
       capistrano (~> 3.7)
       capistrano-bundler
       puma (~> 3.4)
-    capybara (2.16.1)
+    capybara (2.17.0)
       addressable
       mini_mime (>= 0.1.3)
       nokogiri (>= 1.3.3)
       rack (>= 1.0.0)
       rack-test (>= 0.5.4)
-      xpath (~> 2.0)
-    carrierwave (1.2.1)
+      xpath (>= 2.0, < 4.0)
+    carrierwave (1.2.2)
       activemodel (>= 4.0.0)
       activesupport (>= 4.0.0)
       mime-types (>= 1.16)
@@ -122,6 +123,8 @@ GEM
     ffi (1.9.18-x86-mingw32)
     figaro (1.1.1)
       thor (~> 0.14)
+    flatpickr_rails (1.1.0)
+      railties (>= 3.0)
     gh (0.15.1)
       addressable (~> 2.4.0)
       backports
@@ -160,8 +163,8 @@ GEM
     mime-types-data (3.2016.0521)
     mini_mime (1.0.0)
     mini_portile2 (2.3.0)
-    minitest (5.10.3)
-    multi_json (1.12.2)
+    minitest (5.11.1)
+    multi_json (1.13.1)
     multipart-post (2.0.0)
     nested_form_fields (0.8.2)
       coffee-rails (>= 3.2.1)
@@ -179,7 +182,7 @@ GEM
     pg (0.21.0)
     pg (0.21.0-x86-mingw32)
     phantomjs (2.1.1.0)
-    pkg-config (1.2.8)
+    pkg-config (1.2.9)
     poltergeist (1.17.0)
       capybara (~> 2.1)
       cliver (~> 0.3.1)
@@ -188,6 +191,11 @@ GEM
       coderay (~> 1.0)
       method_source (~> 0.8)
       slop (~> 3.4)
+    pry (0.9.12.6-i386-mingw32)
+      coderay (~> 1.0)
+      method_source (~> 0.8)
+      slop (~> 3.4)
+      win32console (~> 1.3)
     pry (0.9.12.6-x86-mingw32)
       coderay (~> 1.0)
       method_source (~> 0.8)
@@ -239,7 +247,7 @@ GEM
       ffi (>= 0.5.0, < 2)
     rdoc (4.3.0)
     ref (2.0.0)
-    rspec-core (3.7.0)
+    rspec-core (3.7.1)
       rspec-support (~> 3.7.0)
     rspec-expectations (3.7.0)
       diff-lcs (>= 1.2.0, < 2.0)
@@ -260,7 +268,7 @@ GEM
       rspec-support (~> 3.7.0)
     rspec-support (3.7.0)
     rubyzip (1.2.1)
-    sass (3.5.4)
+    sass (3.5.5)
       sass-listen (~> 4.0.0)
     sass-listen (4.0.0)
       rb-fsevent (~> 0.9, >= 0.9.4)
@@ -314,16 +322,16 @@ GEM
       pry (~> 0.9, < 0.10)
       pusher-client (~> 0.4)
       typhoeus (~> 0.6, >= 0.6.8)
-    turbolinks (5.0.1)
-      turbolinks-source (~> 5)
-    turbolinks-source (5.0.3)
+    turbolinks (5.1.0)
+      turbolinks-source (~> 5.1)
+    turbolinks-source (5.1.0)
     typhoeus (0.8.0)
       ethon (>= 0.8.0)
     tzinfo (1.2.4)
       thread_safe (~> 0.1)
     tzinfo-data (1.2017.3)
       tzinfo (>= 1.0.0)
-    uglifier (4.0.2)
+    uglifier (4.1.3)
       execjs (>= 0.3.0, < 3)
     web-console (2.3.0)
       activemodel (>= 4.0)
@@ -339,8 +347,8 @@ GEM
       websocket-extensions (>= 0.1.0)
     websocket-extensions (0.1.3)
     win32console (1.3.2-x86-mingw32)
-    xpath (2.1.0)
-      nokogiri (~> 1.3)
+    xpath (3.0.0)
+      nokogiri (~> 1.8)
 
 PLATFORMS
   ruby
@@ -363,13 +371,14 @@ DEPENDENCIES
   coffee-rails (~> 4.1.0)
   factory_girl_rails
   figaro
+  flatpickr_rails
   headless
   jbuilder (~> 2.0)
   jquery-rails
   jquery-turbolinks
   launchy
   nested_form_fields
-  pg
+  pg (~> 0.20)
   phantomjs
   pkg-config
   poltergeist

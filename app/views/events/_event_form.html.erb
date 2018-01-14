@@ -23,16 +23,17 @@
   <div class="field">
     <%= f.label :starttime, 'Alkaa', :class => 'label' %>
     <div class="control">
-      <%= f.datetime_field :starttime, :type => 'datetime-local', :required => true %>
+      <%= f.datetime_field :starttime, :class => 'flatpickr input', :required => true %>
     </div>
     <p class="help is-danger">
       Pakollinen kenttä
     </p>
   </div>
+
   <div class="field">
     <%= f.label :endtime, 'Loppuu', :class => 'label' %>
     <div class="control">
-      <%= f.datetime_field :endtime, :type => 'datetime-local' %>
+      <%= f.datetime_field :endtime, :class => 'flatpickr input' %>
     </div>
   </div>
   <div class="field">
@@ -73,19 +74,19 @@
       <div class="field">
         <%= f.label :signup_start, 'Ilmoittautuminen alkaa', :class => 'label' %>
         <div class="control">
-          <%= f.datetime_field :signup_start, :type => 'datetime-local' %>
+          <%= f.datetime_field :signup_start, :class => 'flatpickr input' %>
         </div>
       </div>
       <div class="field">
         <%= f.label :signup_end, 'Ilmoittautuminen päättyy', :class => 'label' %>
         <div class="control">
-          <%= f.datetime_field :signup_end, :type => 'datetime-local' %>
+          <%= f.datetime_field :signup_end, :class => 'flatpickr input' %>
         </div>
       </div>
       <div class="field">
         <%= f.label :signup_cancellable_until, 'Ilmoittautuminen sitova alkaen', :class => 'label' %>
         <div class="control">
-          <%= f.datetime_field :signup_cancellable_until, :type => 'datetime-local' %>
+          <%= f.datetime_field :signup_cancellable_until, :class => 'flatpickr input' %>
         </div>
       </div>
       <div class="field">
@@ -144,6 +145,17 @@
       <br>
 
   </div>
+
+  <% if !@event.new_record? %>
+
+    <div class="field">
+      <%= f.label :participants, 'Osallistujamäärä', :class => 'label' %>
+      <div class="control">
+        <%= f.number_field :participants, :class => 'input' %>
+      </div>
+    </div>
+
+  <% end %>
 
   <div class="actions">
     <%= f.submit 'Tallenna', :class => 'button is-link' %>

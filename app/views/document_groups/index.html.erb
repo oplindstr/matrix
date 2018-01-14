@@ -2,6 +2,16 @@
 
   <h1 class="title is-spaced">Dokumentit</h1>
 
+  <% if sub_admin %>
+
+    <%= link_to 'Luo uusi dokumenttikategoria (päätaso)', new_document_group_category_path %>
+    <br>
+    <%= link_to 'Lisää dokumentti', new_document_path %>
+    <br>
+    <br>
+
+  <% end %>
+
   <% @document_group_categories.each do |document_group_category| %>
            
     <% if sub_admin %>
@@ -26,15 +36,5 @@
 
     <br>
            
-  <% end %>
-
-  <% if sub_admin %>
-
-    <%= link_to 'Luo uusi dokumenttikategoria (päätaso)', new_document_group_category_path %>
-
-    <br><br>
-
-    <%= link_to 'Lisää dokumentti', new_document_path %>
-
   <% end %>
 </div>

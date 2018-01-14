@@ -90,8 +90,12 @@
       <div class="container">
         <div class="content has-text-centered">
           <h1 class="title">Yhteistyökumppanit</h1>
-          <%= image_tag("solinor.png", size: "200x35") %>
-          <%= image_tag("accenture.png", size: "200x35") %>
+          <%= link_to 'https://solinor.fi' do %>
+            <%= image_tag("solinor.png", size: "200x35") %>
+          <% end %>
+          <%= link_to 'https://www.accenture.com/' do %>
+            <%= image_tag("accenture.png", size: "200x35") %>
+          <% end %>
         </div>
       </div>
     </footer>

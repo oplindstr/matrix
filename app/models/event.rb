@@ -37,6 +37,20 @@ class Event < ActiveRecord::Base
     return 0
   end
 
+  def signup_count
+    if self.participants
+      return self.participants
+    end
+    signups = self.signups
+    if signups and signups.size > 0
+      if self.signup_limit and signups.size > self.signup_limit
+        return signup_limit
+      end
+      return signups.size
+    end
+    return 0
+  end
+
   def signup_open
     if (!self.signup_required)
       return false
@@ -51,6 +65,13 @@ class Event < ActiveRecord::Base
       open = (time <= self.signup_end and time >= self.signup_start)
     end
     return open
+  end
+
+  def signup_started
+    if self.signup_required and self.signup_start < Time.now
+      return true
+    end
+    false
   end
 
   def user_signed_up(id)
@@ -68,7 +89,7 @@ class Event < ActiveRecord::Base
   end
 
   def calendar_short_info
-    return self.start_date + ' ' + self.name + ', ' + self.get_signups.size.to_s
+    return self.start_date + ' ' + self.name + ', ' + self.signup_count.to_s
   end
 
   def getSignup(user_id)
@@ -89,6 +110,12 @@ class Event < ActiveRecord::Base
 
     if self.signup_end and self.signup_start and self.signup_end < self.signup_start
       errors.add(:signup_start, "Ilmoittautuminen ei voi loppua ennen kuin se alkaa")
+    end
+  end
+
+  def signup_end_cannot_be_after_event_end
+    if self.signup_end > self.endtime
+      errors.add(:signup_end, "Ilmoittautuminen ei voi loppua tapahtuman loppumisen jälkeen")
     end
   end
 

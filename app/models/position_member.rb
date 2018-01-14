@@ -20,7 +20,11 @@ class PositionMember < ActiveRecord::Base
   end
 
   def unique_user_and_position_in_year
-    @position_members = PositionMember.where("user_id = ? and year = ? and position_id = ?", self.user_id, self.year, self.position_id)
+    if self.id
+      @position_members = PositionMember.where("user_id = ? and year = ? and position_id = ? and id != ?", self.user_id, self.year, self.position_id, self.id)
+    else
+      @position_members = PositionMember.where("user_id = ? and year = ? and position_id = ?", self.user_id, self.year, self.position_id)
+    end
     if @position_members.size > 0
       errors.add(:user_id, 'Tällä henkilöllä on jo tämä virka tälle vuodelle')
     end

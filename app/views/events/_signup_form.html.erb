@@ -5,6 +5,10 @@
     <h3 class="subtitle">Muokkaa ilmoittautumistietoja</h3>
   <% else %>
     <h3 class="subtitle">Ilmoittaudu</h3>
+    <% if @event.full %>
+        <p class='help is-danger'>Tapahtuma on täynnä! Ilmoittaudut varasijalle.</p>
+        <br>
+    <% end %>
   <% end %>
 
   <% if current_user %>

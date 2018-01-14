@@ -1,22 +1,30 @@
 <%= form_for(@position) do |f| %>
 
   <div class="field">
-    <%= f.label 'Nimi' %> <br>
-    <%= f.text_field :name %>
+    <%= f.label 'Nimi', :class => 'label' %>
+    <div class="control">
+      <%= f.text_field :name, :class => 'input' %>
+    </div>
   </div>
 
   <div class="field">
-    <%= f.label 'Prioriteetti' %> <br>
-    <%= f.number_field :priority %>
+    <%= f.label 'Prioriteetti', :class => 'label' %>
+    <div class="control">
+      <%= f.number_field :priority, :class => 'input' %>
+    </div>
   </div>
 
+
+
   <div class="field">
-    <%= f.label 'Näytä yhteystiedoissa' %> <br>
-    <%= f.check_box :show_in_contact_info %>
+    <label class="checkbox">
+      <%= f.check_box :show_in_contact_info %>
+      Näytä yhteystiedoissa
+    </label>
   </div>
   
 
   <div class="actions">
-    <%= f.submit "Lisää virka" %>
+    <%= f.submit "Tallenna", :class => 'button is-link' %>
   </div>
 <% end %>

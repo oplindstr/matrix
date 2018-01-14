@@ -25,5 +25,7 @@
       </div>
     </div>
   </div>
+  <%= label_tag :avatar, 'Kuva', :class => 'label' %>
+  <%= file_field_tag :avatar %> <br> <br>
   <%= f.submit "Tallenna", class: "button is-link" %> <br>
 <% end %>

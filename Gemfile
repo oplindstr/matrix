@@ -40,6 +40,8 @@ gem "bulma-rails", "~> 0.6.1"
 
 gem 'figaro'
 
+gem 'flatpickr_rails'
+
 # Use Unicorn as the app server
 # gem 'unicorn'
 

@@ -12,9 +12,18 @@ class SignupsController < ApplicationController
   # GET /signups/1
   # GET /signups/1.json
   def show
-    @signups = @event.signups
-    @signup_count = 1
-    @events = Event.all
+    if !@event.signup_required or !@event.signup_started
+      redirect_to root_path
+    else
+      @signups = @event.signups
+      @signup_limit = @event.signup_limit
+      if @signup_limit and @signups.size > @signup_limit
+        @reserve = @signups.last(@signups.size - @signup_limit)
+        @signups = @signups.first(@signup_limit)
+      end
+      @signup_count = 1
+      @events = Event.all
+    end
   end
 
   # GET /signups/new

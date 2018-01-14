@@ -17,6 +17,7 @@ class PositionMembersController < ApplicationController
   	@position_member = PositionMember.new
     @users = User.all
     @years = (1995..@year+1).to_a
+    @this_year = Time.now.year
     if admin
       @positions = Position.all.order(:name)
     else
@@ -40,12 +41,22 @@ class PositionMembersController < ApplicationController
   def create
   	@position_member = PositionMember.new(position_member_params)
     
+    if params[:avatar]
+      @user = User.find(position_member_params[:user_id])
+      if !@user.avatar_url
+        @user.skip_password_validation = true
+        @user.avatar = params[:avatar]
+        @user.save!
+      end
+    end
+
     respond_to do |format|
       if @position_member.save
          format.html { redirect_to '/hallitus', notice: "Käyttäjän virka lisätty" }
       else
         @alert = @position_member.errors
         @year = DateHelper.year
+        @this_year = Time.now.year
         @position_member = PositionMember.new
         @users = User.all
         @years = (1995..@year+1).to_a
@@ -63,6 +74,16 @@ class PositionMembersController < ApplicationController
   # PATCH/PUT /positions/1.json
   def update
     @position_member = PositionMember.find(params[:id])
+
+    if params[:avatar]
+      @user = User.find(position_member_params[:user_id])
+      if !@user.avatar_url
+        @user.skip_password_validation = true
+        @user.avatar = params[:avatar]
+        @user.save!
+      end
+    end
+
     respond_to do |format|
       if @position_member.update(position_member_params)
         format.html { redirect_to '/board_members_and_positions', notice: "Virkailijaa muokattu" }

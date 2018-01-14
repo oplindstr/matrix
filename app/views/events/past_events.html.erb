@@ -1,0 +1,46 @@
+<div class="box">
+
+  <h1 class="title is-spaced">Menneet tapahtumat</h1>
+
+  <% if sub_admin %>
+    <br>
+    <%= link_to 'Lisää tapahtuma', new_event_path %>
+    <br>
+  <% end %>
+
+  <%= link_to 'Tulevat tapahtumat', '/kalenteri' %>
+  <br>
+  <br>
+
+  <% @events.each do |event| %>
+
+    <h2 class="subtitle"><%= link_to event.name, event_path(event.id) %></h2>
+    <p><%= DateHelper.standard_time(event.starttime) %></p>
+    <% if event.location and event.location.length > 0 %>
+      <p>@ <%= event.location %></p>
+    <% end %>
+    <p>
+      <% if event.signup_open %>
+        <br>
+        <% if event.signup_end %>
+          <i>Ilmoittautuminen tapahtumaan on käynnissä ja päättyy <%= DateHelper.standard_time2(event.signup_end) %> </i>
+        <% else %>
+          <i>Ilmoittautuminen tapahtumaan on käynnissä </i>
+        <% end %>
+      <% elsif event.signup_required and event.signup_start and event.signup_start > Time.now %>
+        <br>
+        <i>Ilmoittautuminen tapahtumaan alkaa <%= DateHelper.standard_time2(event.signup_start) %> </i>
+      <% end %>
+    </p>
+
+    <br>
+
+    <pre><%= event.descr %></pre>
+
+    <% if event != @events.last %>
+      <hr>
+    <% end %>
+
+  <% end %>
+
+</div>
