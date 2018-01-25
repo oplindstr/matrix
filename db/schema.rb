@@ -11,13 +11,13 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171114140946) do
+ActiveRecord::Schema.define(version: 20180125150959) do
 
   create_table "board_members", force: :cascade do |t|
-    t.integer "user_id"
     t.integer "year"
     t.string  "avatar"
     t.boolean "supplementary"
+    t.integer "member_id"
   end
 
   create_table "document_group_categories", force: :cascade do |t|
@@ -83,11 +83,25 @@ ActiveRecord::Schema.define(version: 20171114140946) do
     t.boolean  "members_only"
   end
 
-  create_table "memberships", force: :cascade do |t|
+  create_table "members", force: :cascade do |t|
+    t.string   "firstname"
+    t.string   "lastname"
+    t.string   "address"
+    t.string   "email"
+    t.string   "city"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+    t.boolean  "hyy_member"
+    t.boolean  "mathstudent"
+    t.integer  "joined"
     t.integer  "user_id"
+  end
+
+  create_table "memberships", force: :cascade do |t|
     t.integer  "year"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer  "member_id"
   end
 
   create_table "news", force: :cascade do |t|
@@ -99,9 +113,9 @@ ActiveRecord::Schema.define(version: 20171114140946) do
   end
 
   create_table "position_members", force: :cascade do |t|
-    t.integer "user_id"
     t.integer "year"
     t.integer "position_id"
+    t.integer "member_id"
   end
 
   create_table "position_types", force: :cascade do |t|
@@ -172,15 +186,7 @@ ActiveRecord::Schema.define(version: 20171114140946) do
     t.string   "password_digest"
     t.datetime "created_at",      null: false
     t.datetime "updated_at",      null: false
-    t.string   "firstname"
     t.boolean  "admin"
-    t.string   "email"
-    t.string   "city"
-    t.string   "phonenumber"
-    t.datetime "joined"
-    t.boolean  "hyy_member"
-    t.boolean  "mathstudent"
-    t.string   "lastname"
     t.string   "avatar"
   end
 

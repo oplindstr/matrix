@@ -4,31 +4,71 @@ class User < ActiveRecord::Base
 
   attr_accessor :skip_password_validation
 
-  validates :username, presence: { message: "Käyttäjätunnus on pakollinen kenttä" }
-  validates :username, uniqueness: { message: "Käyttäjätunnus on jo olemassa" }
-  validates :username, length: { in: 1..100, message: "Valitse käyttäjätunnus, jonka pituus on enintään 100 merkkiä" }
-  validates :firstname, presence: { message: "Etunimi on pakollinen kenttä" }
-  validates :firstname, length: { in: 1..100, message: "Valitse etunimi, jonka pituus on enintään 100 merkkiä" }
-  validates :lastname, presence: { message: "Sukunimi on pakollinen kenttä" }
-  validates :lastname, length: { in: 1..100, message: "Valitse sukunimi, jonka pituus on enintään 100 merkkiä" }
-  validates :email, uniqueness: { message: "Antamasi sähköpostiosoite on jo käytössä" }
-  validates :email, length: { maximum: 100, message: "Valitse sähköpostiosoite, jonka pituus on enintään 100 merkkiä" }
-  validates :password, length: { maximum: 100, message: "Valitse salasana, jonka pituus on enintään 100 merkkiä" }, unless: :skip_password_validation
-  validates :password, length: { minimum: 6, message: "Valitse salasana, jonka pituus on vähintään 6 merkkiä" }, unless: :skip_password_validation
-  validates :city, length: { maximum: 100, message: "Valitse kotikunta, jonka pituus on 100 merkkiä tai alle" }
-
-  has_many :board_members
   has_many :signups
   has_many :events, through: :signups
   has_many :posts
-  has_many :position_members
-  has_many :positions, through: :position_members
-  has_many :memberships
+
+  has_one :member
+  accepts_nested_attributes_for :member, allow_destroy: true
+
+  validates :username, presence: { message: "Käyttäjätunnus on pakollinen kenttä" }
+  validates :username, uniqueness: { message: "Käyttäjätunnus on jo olemassa" }
+  validates :username, length: { in: 1..100, message: "Valitse käyttäjätunnus, jonka pituus on enintään 100 merkkiä" }
+  validates :password, length: { maximum: 100, message: "Valitse salasana, jonka pituus on enintään 100 merkkiä" }, unless: :skip_password_validation
+  validates :password, length: { minimum: 6, message: "Valitse salasana, jonka pituus on vähintään 6 merkkiä" }, unless: :skip_password_validation
 
   mount_uploader :avatar, AvatarUploader
 
+  def firstname
+    if self.member
+      return self.member.firstname
+    end
+  end
+
+  def lastname
+    if self.member
+      return self.member.lastname
+    end
+  end
+
+  def email
+    if self.member
+      return self.member.email
+    end
+  end
+
+  def address
+    if self.member
+      return self.member.address
+    end
+  end
+
+  def city
+    if self.member
+      return self.member.city
+    end
+  end
+
+  def hyy_member
+    if self.member
+      return self.member.hyy_member
+    end
+  end
+
+  def mathstudent
+    if self.member
+      return self.member.mathstudent
+    end
+  end
+
+  def joined
+    if self.member
+      return self.member.joined
+    end
+  end
+
   def name
-    return "#{firstname} #{lastname}"
+    return "#{self.firstname} #{self.lastname}"
   end
 
   def display_email
@@ -43,19 +83,6 @@ class User < ActiveRecord::Base
       return self.name + ' (' + display_email + ')'
     end
     return self.name
-  end
-
-  def priority_in_board_member_list(year)
-    @minimum = self.positions_by_year(year).minimum('priority')
-    if @minimum
-      return @minimum
-    else
-      return 100
-    end
-  end
-
-  def positions_by_year(year)
-    return self.positions.where('position_members.year = ?', year).uniq.order(:priority)
   end
 
   def to_s
@@ -81,11 +108,23 @@ class User < ActiveRecord::Base
     return self.avatar_url
   end
 
-  def membership(year)
-    membership = Membership.where('user_id = ? and year = ?', self.id, year).first
-    if membership
-      return true
+  def membership_type
+    if self.mathstudent
+      return 'Varsinainen jäsen'
+    elsif self.hyy_member
+      return 'Ulkojäsen'
+    else
+      return 'Kannatusjäsen'
     end
-    return false
+  end
+
+  def membership(year)
+    if self.member
+      membership = Membership.where('member_id = ? and year = ?', self.member.id, year).first
+      if membership
+        return true
+      end
+      return false
+    end
   end
 end

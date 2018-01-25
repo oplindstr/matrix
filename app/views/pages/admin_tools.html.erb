@@ -4,7 +4,8 @@
 	<br>
 
 	<% if admin %>
-	  <%= link_to 'Jäsenet', memberships_path %><br>
+	  <%= link_to 'Kaikki jäsenet', members_path %><br>
+	  <%= link_to 'Muokkaa voimassaolevia jäsenyyksiä', memberships_path %><br>
 	<% end %>
 	<% if sub_admin %>
 	  <%= link_to 'Uutiset', news_index_path %><br>

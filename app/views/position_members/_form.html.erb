@@ -10,10 +10,10 @@
     </div>
   </div>
   <div class="field">
-    <%= f.label :user_id, 'Käyttäjä', :class => 'label' %>
+    <%= f.label :member_id, 'Jäsen', :class => 'label' %>
     <div class="control">
       <div class="select">
-        <%= f.select :user_id, options_from_collection_for_select(@users, :id, :name, @position_member.user_id) %>
+        <%= f.select :member_id, options_from_collection_for_select(@members, :id, :name, @position_member.member_id) %>
       </div>
     </div>
   </div>

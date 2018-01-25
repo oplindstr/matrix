@@ -15,7 +15,7 @@ class PositionMembersController < ApplicationController
   # GET /positions/new
   def new
   	@position_member = PositionMember.new
-    @users = User.all
+    @members = Member.all.order(:firstname, :lastname)
     @years = (1995..@year+1).to_a
     @this_year = Time.now.year
     if admin
@@ -28,8 +28,7 @@ class PositionMembersController < ApplicationController
   # GET /positions/1/edit
   def edit
     @position_member = PositionMember.find(params[:id])
-    @users = User.all
-    @users = @users.sort_by { |f| f.name }
+    @members = Member.all.order(:firstname, :lastname)
     if admin
       @positions = Position.all.order(:name)
     else
@@ -43,8 +42,9 @@ class PositionMembersController < ApplicationController
   	@position_member = PositionMember.new(position_member_params)
     
     if params[:avatar]
-      @user = User.find(position_member_params[:user_id])
-      if !@user.avatar_url
+      @member = Member.find(position_member_params[:member_id])
+      @user = @member.user
+      if @user and !@user.avatar_url
         @user.skip_password_validation = true
         @user.avatar = params[:avatar]
         @user.save!
@@ -53,13 +53,13 @@ class PositionMembersController < ApplicationController
 
     respond_to do |format|
       if @position_member.save
-         format.html { redirect_to '/hallitus', notice: "Käyttäjän virka lisätty" }
+         format.html { redirect_to '/hallitus', notice: "Virkailija lisätty" }
       else
         @alert = @position_member.errors
         @year = DateHelper.year
         @this_year = Time.now.year
         @position_member = PositionMember.new
-        @users = User.all
+        @members = Member.all.order(:firstname, :lastname)
         @years = (1995..@year+1).to_a
         if admin
           @positions = Position.all.order(:name)
@@ -77,8 +77,9 @@ class PositionMembersController < ApplicationController
     @position_member = PositionMember.find(params[:id])
 
     if params[:avatar]
-      @user = User.find(position_member_params[:user_id])
-      if !@user.avatar_url
+      @member = Member.find(position_member_params[:member_id])
+      @user = @member.user
+      if @user and !@user.avatar_url
         @user.skip_password_validation = true
         @user.avatar = params[:avatar]
         @user.save!
@@ -90,8 +91,7 @@ class PositionMembersController < ApplicationController
         format.html { redirect_to '/board_members_and_positions', notice: "Virkailijaa muokattu" }
       else
         @alert = @position_member.errors
-        @users = User.all
-        @users = @users.sort_by { |f| f.name }
+        @members = Member.all.order(:firstname, :lastname)
         if admin
           @positions = Position.all.order(:name)
         else
@@ -107,7 +107,7 @@ class PositionMembersController < ApplicationController
   def destroy
       @member = PositionMember.find(params[:id])
       @member.destroy
-      redirect_to '/board_members_and_positions', notice:  "Käyttäjän virka poistettu"
+      redirect_to '/board_members_and_positions', notice:  "Virkailija poistettu"
    end
 
   private
@@ -117,6 +117,6 @@ class PositionMembersController < ApplicationController
     end
 
     def position_member_params
-      params.require(:position_member).permit(:user_id, :year, :position_id)
+      params.require(:position_member).permit(:member_id, :year, :position_id)
     end
 end

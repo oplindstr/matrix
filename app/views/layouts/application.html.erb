@@ -18,7 +18,7 @@
     <%= render 'layouts/error_notification' %>
     <% if current_user %>
       <section class="section container">
-        <%= current_user.firstname %> <%= current_user.lastname %> kirjautuneena.<br>
+        <%= current_user.name %> kirjautuneena.<br>
         <%= link_to 'Kirjaudu ulos', signout_path, method: :delete %><br>
         <% if sub_admin %>
           <%= link_to 'Admin-toiminnot', '/admin' %>

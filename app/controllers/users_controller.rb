@@ -18,12 +18,15 @@ class UsersController < ApplicationController
     else
       @membership_this_year = DateHelper.year - 1
     end
-    @memberships = Membership.where('user_id = ? and year >= ?', @user.id, @membership_this_year).pluck(:year)
-    if !@memberships.empty?
+    @member = @user.member
+    if @member
+      @memberships = Membership.where('member_id = ? and year >= ?', @member.id, @membership_this_year).pluck(:year)
+    end
+    if @memberships and !@memberships.empty?
       @membership_max_year = @memberships.max
-      @member = true
+      @is_member = true
     else
-      @member = false
+      @is_member = false
     end
   end
 
@@ -33,12 +36,15 @@ class UsersController < ApplicationController
     else
       @membership_this_year = DateHelper.year - 1
     end
-    @memberships = Membership.where('user_id = ? and year >= ?', @user.id, @membership_this_year).pluck(:year)
-    if !@memberships.empty?
+    @member = @user.member
+    if @member
+      @memberships = Membership.where('member_id = ? and year >= ?', @member.id, @membership_this_year).pluck(:year)
+    end
+    if @memberships and !@memberships.empty?
       @membership_max_year = @memberships.max
-      @member = true
+      @is_member = true
     else
-      @member = false
+      @is_member = false
     end
     render 'show'
   end
@@ -46,6 +52,7 @@ class UsersController < ApplicationController
   # GET /users/new
   def new
     @user = User.new
+    @user.build_member
   end
 
   # GET /users/1/edit
@@ -56,16 +63,35 @@ class UsersController < ApplicationController
   # POST /users.json
   def create
     @user = User.new(user_params)
-    @user.joined = Time.now
+
+    @member = Member.where('firstname = ? and lastname = ? and email = ?', @user.member.firstname, @user.member.lastname, @user.member.email).first
+    if @member
+      @address = @user.member.address
+      @city = @user.member.city
+      @hyy_member = @user.member.hyy_member
+      @mathstudent = @user.member.mathstudent
+      @user.member = nil
+    else
+      @user.member.joined = Time.now.year
+    end
 
     respond_to do |format|
       if @user.save
+        if @member
+          @member.user_id = @user.id
+          @member.address = @address
+          @member.city = @city
+          @member.hyy_member = @hyy_member
+          @member.mathstudent = @mathstudent
+          @member.save
+        end
+        byebug
         format.html { redirect_to root_path, notice: 'Jäseneksi liittyminen onnistui' }
         format.json { render :index, status: :created, location: root_path }
       else
         @alert = @user.errors
-        format.html { render :new, alert: @user.errors }
-        format.json { render json: @user.errors, status: :unprocessable_entity }
+        format.html { render :new, alert: @alert }
+        format.json { render json: @alert, status: :unprocessable_entity }
       end
     end
   end
@@ -74,6 +100,7 @@ class UsersController < ApplicationController
   # PATCH/PUT /users/1.json
   def update
     @user.skip_password_validation = true
+    
     respond_to do |format|
       if @user.update(update_user_params)
         if admin and current_user.id != @user.id
@@ -85,6 +112,21 @@ class UsersController < ApplicationController
         end
       else
         @alert = @user.errors
+        if Time.now.month >= 8
+          @membership_this_year = DateHelper.year
+        else
+          @membership_this_year = DateHelper.year - 1
+        end
+        @member = @user.member
+        if @member
+          @memberships = Membership.where('member_id = ? and year >= ?', @member.id, @membership_this_year).pluck(:year)
+        end
+        if @memberships and !@memberships.empty?
+          @membership_max_year = @memberships.max
+          @member = true
+        else
+          @member = false
+        end
         format.html { render :show }
         format.json { render json: @user.errors, status: :unprocessable_entity }
       end
@@ -274,11 +316,11 @@ class UsersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def user_params
-      params.require(:user).permit(:username, :firstname, :lastname, :email, :city, :password, :password_confirmation, :hyy_member, :mathstudent, :activated, :admin)
+      params.require(:user).permit(:id, :username, :password, :password_confirmation, :admin, :member_attributes => [:id, :firstname, :lastname, :email, :address, :city,  :hyy_member, :mathstudent, :_destroy])
     end
 
     def update_user_params
-      params.require(:user).permit(:firstname, :lastname, :email, :city, :hyy_member, :mathstudent, :activated, :admin)
+      params.require(:user).permit(:id, :admin, :member_attributes => [:id, :firstname, :lastname, :email, :address, :city,  :hyy_member, :mathstudent, :_destroy])
     end
 
     def update_password_params

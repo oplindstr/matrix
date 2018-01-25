@@ -22,10 +22,14 @@ class ApplicationController < ActionController::Base
     User.find(session[:user_id])
   end
 
+  def current_member
+    Member.find(current_user.member_id)
+  end
+
   def admin
     return false if !current_user
     return true if current_user.admin
-    @position_members = PositionMember.where("year = ? AND user_id = ?", Date.today.year, current_user.id)
+    @position_members = PositionMember.where("year = ? AND member_id = ?", Date.today.year, current_member.id)
     if @position_members and !@position_members.empty?
       @position_members.each do |position|
         @position = Position.find(position.position_id)
@@ -38,9 +42,9 @@ class ApplicationController < ActionController::Base
   def sub_admin
     return false if !current_user
     return true if admin
-    @board_member = BoardMember.where("year = ? AND user_id = ?", Date.today.year, current_user.id).first
+    @board_member = BoardMember.where("year = ? AND member_id = ?", Date.today.year, current_member.id).first
     return true if @board_member
-    @position_member = PositionMember.where("year = ? AND user_id = ?", Date.today.year, current_user.id).first
+    @position_member = PositionMember.where("year = ? AND member_id = ?", Date.today.year, current_member.id).first
     return true if @position_member
     false
   end

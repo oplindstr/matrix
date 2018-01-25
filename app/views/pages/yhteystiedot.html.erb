@@ -25,13 +25,13 @@
           <% else %>
             <%= position.name %>t:
           <% end %> 
-          <% position.current_members.each_with_index do |member, i| %>
+          <% position.current_members.each_with_index do |position_member, i| %>
             <% if i == position.current_members.size - 1 %>
-      	      <%= member.user.info_with_email %>
+      	      <%= position_member.member.info_with_email %>
       	    <% elsif i == position.current_members.size - 2 %>
-      	      <%= member.user.info_with_email %> ja 
+      	      <%= position_member.member.info_with_email %> ja 
       	    <% else %>
-      	      <%= member.user.info_with_email %>, 
+      	      <%= position_member.member.info_with_email %>, 
       	    <% end %>
     	    <% end %> 
     	  </li>

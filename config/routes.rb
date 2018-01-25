@@ -10,6 +10,7 @@ Rails.application.routes.draw do
   resources :event_parameter_types
   resources :event_parameter_values
   resources :event_parameters
+  resources :members, only: [:edit, :update, :index, :new, :create, :destroy]
   resources :news
   resources :events, path: 'kalenteri'
   resources :position_members

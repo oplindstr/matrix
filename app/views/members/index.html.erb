@@ -1,0 +1,39 @@
+<div class="box">
+  <h1 class="title">Jäsenet</h1>
+
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Sukunimi</th>
+        <th>Etunimi</th>
+        <th>Osoite</th>
+        <th>Kaupunki</th>
+        <th>Sähköpostiosoite</th>
+        <th>Jäsentyyppi</th>
+        <th>Liittymisvuosi</th>
+        <th>Käyttäjätunnus</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% @members.each do |member| %>
+        <tr>
+          <td><%= member.lastname %></td>
+          <td><%= member.firstname %></td>
+          <td><%= member.address %></td>
+          <td><%= member.city %></td>
+          <td><%= member.email %></td>
+          <td><%= member.membership_type %></td>
+          <td><%= member.joined %></td>
+          <td><%= member.username %></td>
+          <td><%= link_to 'Muokkaa', edit_member_path(member) %></td>
+          <td><%= link_to 'Poista', member, method: :delete, data: { confirm: 'Oletko varma?' } %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+
+  <br>
+
+  <%= link_to 'Uusi jäsen', new_member_path %>
+</div>

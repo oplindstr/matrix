@@ -25,33 +25,33 @@ class BoardMembersController < ApplicationController
 
     @supplementary_members = @all_board_members.select{ |m| m.supplementary == true }
 
-    @user_ids = @all_board_members.pluck(:user_id)
+    @member_ids = @all_board_members.pluck(:member_id)
 
-    @position_members = User.joins(:position_members).where('position_members.year = ?', @year).uniq
-    @position_members = @position_members.select{ |m| not @user_ids.include? m.id }
+    @position_members = Member.joins(:position_members).where('position_members.year = ?', @year).uniq
+    @position_members = @position_members.select{ |m| not @member_ids.include? m.id }
 
-    @board_members = @board_members.sort_by { |f| f.user.priority_in_board_member_list(@year) }
-    @supplementary_members = @supplementary_members.sort_by { |f| f.user.priority_in_board_member_list(@year) }
+    @board_members = @board_members.sort_by { |f| f.member.priority_in_board_member_list(@year) }
+    @supplementary_members = @supplementary_members.sort_by { |f| f.member.priority_in_board_member_list(@year) }
     @position_members = @position_members.sort_by { |f| f.priority_in_board_member_list(@year) }
  end
 
  def new
     @board_member = BoardMember.new
-    @users = User.all
+    @members = Member.all.order(:firstname, :lastname)
     @this_year = DateHelper.year
  end
 
  def edit
     @board_member = BoardMember.find(params[:id])
-    @users = User.all
-    @users = @users.sort_by { |f| f.name }
+    @members = Member.all.order(:firstname, :lastname)
  end
 
  def update
     @board_member = BoardMember.find(params[:id])
     if params[:avatar]
-      @user = User.find(board_member_params[:user_id])
-      if !@user.avatar_url
+      @member = Member.find(board_member_params[:member_id])
+      @user = @member.user
+      if @user and !@user.avatar_url
         @user.skip_password_validation = true
         @user.avatar = params[:avatar]
         @user.save!
@@ -62,8 +62,7 @@ class BoardMembersController < ApplicationController
         format.html { redirect_to '/board_members_and_positions', notice: "Hallituksen jäsentä muokattu" }
       else
         @alert = @board_member.errors
-        @users = User.all
-        @users = @users.sort_by { |f| f.name }
+        @members = Member.all.order(:firstname, :lastname)
         format.html { render :new, status: :unprocessable_entity, location: edit_board_member_path }
       end
     end
@@ -71,10 +70,10 @@ class BoardMembersController < ApplicationController
 
  def create
     @board_member = BoardMember.new(board_member_params)
-    @user = User.find(board_member_params[:user_id])
     if params[:avatar]
-      @user = User.find(board_member_params[:user_id])
-      if !@user.avatar_url
+      @member = Member.find(board_member_params[:member_id])
+      @user = @member.user
+      if @user and !@user.avatar_url
         @user.skip_password_validation = true
         @user.avatar = params[:avatar]
         @user.save!
@@ -85,8 +84,7 @@ class BoardMembersController < ApplicationController
         format.html { redirect_to '/hallitus?vuosi=' + @board_member.year.to_s, notice: "Hallituksen jäsen lisätty" }
       else
         @alert = @board_member.errors
-        @users = User.all
-        @user = @board_member.user_id
+        @members = Member.all.order(:firstname, :lastname)
         @this_year = DateHelper.year
         format.html { render :new, status: :unprocessable_entity, location: new_board_member_path }
       end
@@ -94,8 +92,8 @@ class BoardMembersController < ApplicationController
  end
 
  def board_members_and_positions
-   @board_members = BoardMember.all.order(year: :desc, supplementary: :asc, user_id: :asc)
-   @position_members = PositionMember.all.order(year: :desc, user_id: :asc)
+   @board_members = BoardMember.all.order(year: :desc, supplementary: :asc, member_id: :asc)
+   @position_members = PositionMember.all.order(year: :desc, member_id: :asc)
  end
 
  def destroy
@@ -125,7 +123,7 @@ class BoardMembersController < ApplicationController
   end
 
   def board_member_params
-    params.require(:board_member).permit(:user_id, :year, :supplementary)
+    params.require(:board_member).permit(:member_id, :year, :supplementary)
   end
     
 end

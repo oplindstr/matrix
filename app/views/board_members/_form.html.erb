@@ -10,15 +10,14 @@
     </div>
   </div>
   <div class="field">
-    <%= f.label :user_id, 'Käyttäjä', :class => 'label' %>
+    <%= f.label :member_id, 'Jäsen', :class => 'label' %>
     <div class="control">
       <div class="select">
-        <%= f.select :user_id, options_from_collection_for_select(@users, :id, :name, @board_member.user_id) %>
+        <%= f.select :member_id, options_from_collection_for_select(@members, :id, :name, @board_member.member_id) %>
       </div>
     </div>
   </div>
-  <div class="field">
-    <label class="checkbox">
+  <div class="field    <label class="checkbox">
       <%= f.check_box :supplementary %>
       Varajäsen
     </label>

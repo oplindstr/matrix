@@ -4,7 +4,7 @@
 
   <h3 class="subtitle">Jäsenyys</h3>
 
-  <% if not @member %>
+  <% if not @is_member %>
     <p class="has-text-danger">Jäsenmaksuasi tälle lukuvuodelle ei ole merkitty maksetuksi. Älä välitä tästä, jos olet maksanut sen.</p>
   <% else %>
     <% if @membership_max_year > @membership_this_year %>

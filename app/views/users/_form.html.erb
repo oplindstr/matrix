@@ -1,50 +1,5 @@
 <%= form_for @user, :html => { :onsubmit => "return confirm('Oletko varma?')" } do |f| %>
 
-  <h2 class="subtitle">Henkilötiedot</h2>
-
-  <div class="field">
-    <%= f.label :firstname, 'Etunimi', :class => 'label' %>
-    <div class="control">
-      <%= f.text_field :firstname, :class => 'input', :required => true, :pattern => "^(?! )[.]*(?<! )$" %>
-    </div>
-    <% if @user.new_record? %>
-      <p class="help is-danger">
-        Pakollinen kenttä
-      </p>
-    <% end %>
-  </div>
-
-  <div class="field">
-    <%= f.label :lastname, 'Sukunimi', :class => 'label' %>
-    <div class="control">
-      <%= f.text_field :lastname, :class => 'input', :required => true, :pattern => "^(?! )[.]*^(?! )" %>
-    </div>
-    <% if @user.new_record? %>
-      <p class="help is-danger">
-        Pakollinen kenttä
-      </p>
-    <% end %>
-  </div>
-
-  <div class="field">
-    <%= f.label :email, 'Sähköpostiosoite', :class => 'label' %>
-    <div class="control">
-      <%= f.text_field :email, :class => 'input', :type => 'email', :required => true, :pattern => "^(?! )[.]*(?<! )" %>
-    </div>
-    <% if @user.new_record? %>
-      <p class="help is-danger">
-        Pakollinen kenttä
-      </p>
-    <% end %>
-  </div>
-
-  <div class="field">
-    <%= f.label :city, 'Kotikunta', :class => 'label' %>
-    <div class="control">
-      <%= f.text_field :city, :class => 'input' %>
-    </div>
-  </div>
-
   <% if @user.new_record? %>
 
     <h2 class="subtitle">Käyttäjätiedot</h2>
@@ -52,7 +7,7 @@
     <div class="field">
       <%= f.label :username, 'Käyttäjätunnus', :class => 'label' %>
       <div class="control">
-        <%= f.text_field :username, :class => 'input', :required => true, :pattern => "^(?! )[.]*(?<! )$" %>
+        <%= f.text_field :username, :class => 'input', :required => true %>
       </div>
       <% if @user.new_record? %>
         <p class="help is-danger">
@@ -64,7 +19,7 @@
     <div class="field">
       <%= f.label :password, 'Salasana', :class => 'label' %>
       <div class="control">
-        <%= f.password_field :password, :class => 'input', :required => true, :pattern => "^(?! )[.]*(?<! )$" %>
+        <%= f.password_field :password, :class => 'input', :required => true %>
       </div>
       <% if @user.new_record? %>
         <p class="help is-danger">
@@ -76,7 +31,7 @@
     <div class="field">
       <%= f.label :password_confirmation, 'Salasana uudelleen', :class => 'label' %>
       <div class="control">
-        <%= f.password_field :password_confirmation, :class => 'input', :required => true, :pattern => "^(?! )[.]*(?<! )$" %>
+        <%= f.password_field :password_confirmation, :class => 'input', :required => true %>
       </div>
       <% if @user.new_record? %>
         <p class="help is-danger">
@@ -87,28 +42,83 @@
 
   <% end %>
 
-  <h2 class="subtitle">Muut tiedot</h2>
-
   <div class="field">
-    <label class="checkbox">
-      <%= f.check_box :hyy_member %>
-      Opiskelen Helsingin Yliopistossa tutkinto- tai jatko-opiskelijana
-    </label>
-  </div>
+      <label class="checkbox">
+        <%= f.check_box :admin %>
+        Admin (tässä vielä testaamisen vuoksi)
+      </label>
+    </div>
 
-  <div class="field">
-    <label class="checkbox">
-      <%= f.check_box :mathstudent %>
-      Opiskelen jossain Helsingin yliopiston Matemaattis-luonnontieteellisen tiedekunnan vastuulla olevassa koulutusohjelmassa
-    </label>
-  </div>
+  <h2 class="subtitle">Henkilötiedot</h2>
 
-  <div class="field">
-    <label class="checkbox">
-      <%= f.check_box :admin %>
-      Admin (tässä vielä testaamisen vuoksi)
-    </label>
-  </div>
+  <%= f.fields_for :member do |p| %>
+
+    <div class="field">
+      <%= p.label :firstname, 'Etunimi', :class => 'label' %>
+      <div class="control">
+        <%= p.text_field :firstname, :class => 'input', :required => true %>
+      </div>
+      <% if @user.new_record? %>
+        <p class="help is-danger">
+          Pakollinen kenttä
+        </p>
+      <% end %>
+    </div>
+
+    <div class="field">
+      <%= p.label :lastname, 'Sukunimi', :class => 'label' %>
+      <div class="control">
+        <%= p.text_field :lastname, :class => 'input', :required => true %>
+      </div>
+      <% if @user.new_record? %>
+        <p class="help is-danger">
+          Pakollinen kenttä
+        </p>
+      <% end %>
+    </div>
+
+    <div class="field">
+      <%= p.label :email, 'Sähköpostiosoite', :class => 'label' %>
+      <div class="control">
+        <%= p.text_field :email, :class => 'input', :type => 'email', :required => true %>
+      </div>
+      <% if @user.new_record? %>
+        <p class="help is-danger">
+          Pakollinen kenttä
+        </p>
+      <% end %>
+    </div>
+
+    <div class="field">
+      <%= p.label :address, 'Osoite', :class => 'label' %>
+      <div class="control">
+        <%= p.text_field :address, :class => 'input' %>
+      </div>
+    </div>
+
+    <div class="field">
+      <%= p.label :city, 'Kotikunta', :class => 'label' %>
+      <div class="control">
+        <%= p.text_field :city, :class => 'input' %>
+      </div>
+    </div>
+
+    <h2 class="subtitle">Muut tiedot</h2>
+
+    <div class="field">
+      <label class="checkbox">
+        <%= p.check_box :hyy_member %>
+        Opiskelen Helsingin Yliopistossa tutkinto- tai jatko-opiskelijana
+      </label>
+    </div>
+
+    <div class="field">
+      <label class="checkbox">
+        <%= p.check_box :mathstudent %>
+        Opiskelen jossain Helsingin yliopiston Matemaattis-luonnontieteellisen tiedekunnan vastuulla olevassa koulutusohjelmassa
+      </label>
+    </div>
+  <% end %>
 
   <div class="field">
     <div class="control">
