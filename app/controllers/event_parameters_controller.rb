@@ -46,7 +46,6 @@ class EventParametersController < ApplicationController
   def update
     respond_to do |format|
       params = event_parameter_params
-      byebug
       if @event.update(params)
         format.html { redirect_to @event, notice: 'Lisätietokentät lisätty' }
         format.json { render :show, status: :ok, location: @event }

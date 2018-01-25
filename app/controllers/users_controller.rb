@@ -85,7 +85,6 @@ class UsersController < ApplicationController
           @member.mathstudent = @mathstudent
           @member.save
         end
-        byebug
         format.html { redirect_to root_path, notice: 'Jäseneksi liittyminen onnistui' }
         format.json { render :index, status: :created, location: root_path }
       else
