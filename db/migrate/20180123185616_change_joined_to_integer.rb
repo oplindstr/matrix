@@ -3,6 +3,6 @@ class ChangeJoinedToInteger < ActiveRecord::Migration
   	remove_column :members, :joined
   	add_column :members, :joined, :integer
   	remove_column :users, :joined
-  	add_column :members, :joined, :integer
+  	add_column :users, :joined, :integer
   end
 end
