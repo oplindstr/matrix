@@ -54,9 +54,13 @@
             <% if p.object.event_parameter.event_parameter_type.name == 'Valintanappi' %>
               <% if p.object.event_parameter.event_parameter_choices.size > 0 %>
                 <%= p.label :id, p.object.event_parameter.name, :class => 'label' %>
-                <% p.object.event_parameter.event_parameter_choices.each do |choice| %>
+                <% p.object.event_parameter.event_parameter_choices.each_with_index do |choice, i| %>
                   <label class="radio">
-                    <%= p.radio_button :value, choice.value %>
+                    <% if i == 0 and p.object.event_parameter.required %>
+                      <%= p.radio_button :value, choice.value, :required => true %>
+                    <% else %>
+                      <%= p.radio_button :value, choice.value %>
+                    <% end %>
                     <%= choice.value %>
                   </label>
                 <% end %>
