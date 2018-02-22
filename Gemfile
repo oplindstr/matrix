@@ -85,8 +85,6 @@ group :development do
   gem 'web-console', '~> 2.0'
 end
 
-gem 'travis', '~> 1.7.5'
-
 gem 'carrierwave'
 
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]

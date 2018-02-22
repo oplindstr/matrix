@@ -90,12 +90,20 @@
       <div class="container">
         <div class="content has-text-centered">
           <h1 class="title">Yhteistyökumppanit</h1>
-          <%= link_to 'https://solinor.fi' do %>
-            <%= image_tag("solinor.png", size: "200x35") %>
-          <% end %>
-          <%= link_to 'https://www.accenture.com/' do %>
-            <%= image_tag("accenture.png", size: "200x35") %>
-          <% end %>
+          <div class="level">
+            <%= link_to 'https://www.accenture.com', { :class=>"level-item" } do %>
+              <%= image_tag("accenture.png", size: "200x35") %>
+            <% end %>
+            <%= link_to 'https://gofore.com/', { :class=>"level-item" } do %>
+              <%= image_tag("gofore_logo_black.png", size: "200x35") %>
+            <% end %>
+            <%= link_to 'https://solinor.fi', { :class=>"level-item" } do %>
+              <%= image_tag("solinor.png", size: "200x35") %>
+            <% end %>
+            <%= link_to 'https://www.solita.fi', { :class=>"level-item" } do %>
+              <%= image_tag("Solita_logo_2.png", size: "200x35") %>
+            <% end %>
+          </div>
         </div>
       </div>
     </footer>
