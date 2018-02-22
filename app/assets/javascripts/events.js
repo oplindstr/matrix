@@ -20,7 +20,7 @@ $(document).ready(function () {
         $("#signup-options").hide();
     }
     $(".event_parameter_choices").each(function() {
-        if ($(this).prev(".select").children().first().val() == 3) {
+        if ($(this).prev(".select").find('select').val() == 3) {
             $(this).show();
         }
         else {
