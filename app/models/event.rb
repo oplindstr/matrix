@@ -14,7 +14,11 @@ class Event < ActiveRecord::Base
   validates :event_type, length: { maximum: 100, message: 'Anna tyyppi, jonka pituus on korkeintaan 100 merkkiä' }
   validates :starttime, presence: { message: 'Alkuaika puuttuu' }
   validates :price, allow_blank: true, numericality: { less_than_or_equal_to: 1000, message: 'Anna hinnaksi korkeintaan 1000€' }
+  validates :price, allow_blank: true, numericality: { greater_than_or_equal_to: 0, message: 'Anna hinnaksi vähintään 0€' }
   validates :signup_limit, allow_blank: true, numericality: { less_than_or_equal_to: 5000, message: 'Anna ilmoittautumismääräksi korkeintaan 5000' }
+  validates :signup_limit, allow_blank: true, numericality: { greater_than_or_equal_to: 0, message: 'Anna ilmoittautumismääräksi vähintään 1' }
+  validates :participants, allow_blank: true, numericality: { less_than_or_equal_to: 5000, message: 'Anna osallistujamääräksi korkeintaan 5000' }
+  validates :participants, allow_blank: true, numericality: { greater_than_or_equal_to: 0, message: 'Anna osallistujamääräksi vähintään 0' }
   validate :endtimes_cannot_be_before_starttimes
   validate :date_ranges
 

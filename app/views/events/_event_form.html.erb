@@ -23,7 +23,7 @@
   <div class="field">
     <%= f.label :starttime, 'Alkaa', :class => 'label' %>
     <div class="control">
-      <%= f.datetime_field :starttime, :class => 'flatpickr input', :required => true %>
+      <%= f.datetime_field :starttime, :class => 'flatpickr input' %>
     </div>
     <p class="help is-danger">
       Pakollinen kenttä
@@ -45,7 +45,7 @@
     <div class="field">
       <%= f.label :price, 'Hinta', :class => 'label' %>
       <div class="control">
-        <%= f.number_field :price, :class => 'input' %>
+        <%= f.number_field :price, :class => 'input', :min => 0 %>
       </div>
     </div>
 
@@ -67,7 +67,7 @@
     <div class="field">
       <%= f.label :signup_limit, 'Ilmoittautumisraja', :class => 'label' %>
       <div class="control">
-        <%= f.number_field :signup_limit, :class => 'input' %>
+        <%= f.number_field :signup_limit, :class => 'input', :min => 1 %>
       </div>
     </div>
 
@@ -151,7 +151,7 @@
     <div class="field">
       <%= f.label :participants, 'Osallistujamäärä', :class => 'label' %>
       <div class="control">
-        <%= f.number_field :participants, :class => 'input' %>
+        <%= f.number_field :participants, :class => 'input', :min => 0 %>
       </div>
     </div>
 
