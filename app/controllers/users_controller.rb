@@ -150,7 +150,10 @@ class UsersController < ApplicationController
 
   def recover_username
     params = username_recovery_params
-    @user = User.where(email: params[:email]).first
+    @member = Member.where(email: params[:email]).first
+    if @member
+      @user = @member.user
+    end
     respond_to do |format|
       if @user
 
@@ -169,7 +172,13 @@ class UsersController < ApplicationController
 
   def recover_password
     params = password_recovery_params
-    @user = User.where(username: params[:username], email: params[:email]).first
+    @member = Member.where(email: params[:email]).first
+    if @member
+      @user_id = @member.user_id
+      if @user_id
+        @user = User.where(username: params[:username], id: @user_id).first
+      end
+    end
     respond_to do |format|
       if @user 
         @password = SecureRandom.hex(4)
