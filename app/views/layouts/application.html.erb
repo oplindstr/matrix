@@ -16,7 +16,7 @@
     <%= render 'layouts/navigation' %>
     <%= render 'layouts/success_notification' %>
     <%= render 'layouts/error_notification' %>
-    <% if Rails.env == 'staging' %>
+    <% if Rails.env.staging? %>
       <section class="section container">
         <div class="box">
           Olet löytänyt Matrixin tulevien nettisivujen testiympäristön. Sivut ovat vielä vähän kesken. Nykyiset sivut löydät <%= link_to 'täältä', 'https://wiki.helsinki.fi/display/Matrix/Matrix+ry' %>
