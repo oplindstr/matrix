@@ -8,7 +8,7 @@ group :development, :test do
   gem 'sqlite3'
 end
 
-group :production do
+group :production, :staging do
   gem 'pg', '~> 0.20'
   gem 'rails_12factor'
 end
@@ -42,6 +42,12 @@ gem 'figaro'
 
 gem 'flatpickr_rails'
 
+gem "rack", ">= 1.6.11"
+
+gem "rails-html-sanitizer", ">= 1.0.4"
+
+gem "loofah", ">= 2.2.3"
+
 # Use Unicorn as the app server
 # gem 'unicorn'
 
@@ -64,6 +70,8 @@ group :development, :test do
   gem 'capistrano-rails',   require: false
   gem 'capistrano-bundler', require: false
   gem 'capistrano3-puma',   require: false
+
+  gem 'coffee-script-source', '1.8.0'
 end
 
 group :test do
