@@ -290,12 +290,13 @@ class UsersController < ApplicationController
     params[:users].each do |param|
       user = User.find(param[0])
       member = param[1][:member]
-      membership = Membership.where('user_id = ? and year = ?', user.id, year).first
+      member_id = user.member.id
+      membership = Membership.where('member_id = ? and year = ?', member_id, year).first
       if member == '0' and membership
         membership.destroy
       elsif member == '1' and !membership
         membership = Membership.new
-        membership.user_id = user.id
+        membership.member_id = member_id
         membership.year = year
         membership.save
       end
