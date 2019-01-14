@@ -64,27 +64,19 @@ class UsersController < ApplicationController
   def create
     @user = User.new(user_params)
 
-    @member = Member.where('firstname = ? and lastname = ? and email = ?', @user.member.firstname, @user.member.lastname, @user.member.email).first
+    @member = Member.where('email = ? and user_id is null', @user.member.email).first
     if @member
-      @address = @user.member.address
-      @city = @user.member.city
-      @hyy_member = @user.member.hyy_member
-      @mathstudent = @user.member.mathstudent
-      @user.member = nil
-    else
-      @user.member.joined = Time.now.year
+      @member.firstname = @user.member.firstname
+      @member.lastname = @user.member.lastname
+      @member.address = @user.member.address
+      @member.city = @user.member.city
+      @member.hyy_member = @user.member.hyy_member
+      @member.mathstudent = @user.member.mathstudent
+      @user.member = @member
     end
 
     respond_to do |format|
       if @user.save
-        if @member
-          @member.user_id = @user.id
-          @member.address = @address
-          @member.city = @city
-          @member.hyy_member = @hyy_member
-          @member.mathstudent = @mathstudent
-          @member.save
-        end
         format.html { redirect_to root_path, notice: 'Jäseneksi liittyminen onnistui' }
         format.json { render :index, status: :created, location: root_path }
       else
