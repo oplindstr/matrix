@@ -48,6 +48,8 @@ gem "rails-html-sanitizer", ">= 1.0.4"
 
 gem "loofah", ">= 2.2.3"
 
+gem 'webrat', '0.7.1'
+
 # Use Unicorn as the app server
 # gem 'unicorn'
 
@@ -83,7 +85,6 @@ group :test do
   gem "headless"
   gem "poltergeist"
   gem 'phantomjs', :require => 'phantomjs/poltergeist'
-  gem 'webrat', '0.7.1'
 end
 
 gem 'bootstrap-sass'
