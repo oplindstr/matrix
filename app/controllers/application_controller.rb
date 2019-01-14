@@ -23,7 +23,7 @@ class ApplicationController < ActionController::Base
   end
 
   def current_member
-    Member.find(current_user.member_id)
+    Member.find(current_user.member.id)
   end
 
   def admin
