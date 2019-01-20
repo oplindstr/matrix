@@ -23,7 +23,7 @@
       </div>
       <% if @user.new_record? %>
         <p class="help is-danger">
-          Pakollinen kenttä
+          Pakollinen kenttä, vähintään 6 kirjainta
         </p>
       <% end %>
     </div>
@@ -41,13 +41,6 @@
     </div>
 
   <% end %>
-
-  <div class="field">
-      <label class="checkbox">
-        <%= f.check_box :admin %>
-        Admin (tässä vielä testaamisen vuoksi)
-      </label>
-    </div>
 
   <h2 class="subtitle">Henkilötiedot</h2>
 
