@@ -73,11 +73,13 @@ class UsersController < ApplicationController
       @member.hyy_member = @user.member.hyy_member
       @member.mathstudent = @user.member.mathstudent
       @user.member = @member
+    else
+      @user.member.joined = Time.now.year
     end
 
     respond_to do |format|
       if @user.save
-        format.html { redirect_to root_path, notice: 'Jäseneksi liittyminen onnistui' }
+        format.html { redirect_to root_path, notice: 'Jäsenhakemuksen lähettäminen onnistui.' }
         format.json { render :index, status: :created, location: root_path }
       else
         @alert = @user.errors
@@ -317,11 +319,11 @@ class UsersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def user_params
-      params.require(:user).permit(:id, :username, :password, :password_confirmation, :member_attributes => [:id, :firstname, :lastname, :email, :address, :city,  :hyy_member, :mathstudent, :_destroy])
+      params.require(:user).permit(:id, :username, :password, :password_confirmation, :member_attributes => [:id, :firstname, :lastname, :email, :address, :city, :joined, :hyy_member, :mathstudent, :_destroy])
     end
 
     def update_user_params
-      params.require(:user).permit(:id, :member_attributes => [:id, :firstname, :lastname, :email, :address, :city,  :hyy_member, :mathstudent, :_destroy])
+      params.require(:user).permit(:id, :member_attributes => [:id, :firstname, :lastname, :email, :address, :city, :joined, :hyy_member, :mathstudent, :_destroy])
     end
 
     def update_password_params
