@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180125150959) do
+ActiveRecord::Schema.define(version: 20190301111524) do
 
   create_table "board_members", force: :cascade do |t|
     t.integer "year"
@@ -179,6 +179,7 @@ ActiveRecord::Schema.define(version: 20180125150959) do
     t.string   "name"
     t.string   "email"
     t.string   "phonenumber"
+    t.boolean  "show"
   end
 
   create_table "users", force: :cascade do |t|

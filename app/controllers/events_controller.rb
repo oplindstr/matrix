@@ -158,7 +158,7 @@ class EventsController < ApplicationController
     end
 
     def signup_params
-      params.require(:signup).permit(:id, :user_id, :event_id, :name, :email, :phonenumber, :signup_parameters_attributes => [:id, :event_parameter_id, :value])
+      params.require(:signup).permit(:id, :user_id, :event_id, :name, :email, :phonenumber, :show, :signup_parameters_attributes => [:id, :event_parameter_id, :value])
     end
 
 end

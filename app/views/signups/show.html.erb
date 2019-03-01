@@ -11,7 +11,7 @@
       <tr>
         <th></th>
         <th>Nimi</th>
-        <% if admin %>
+        <% if sub_admin %>
           <th>Sähköposti</th>
           <% @event.event_parameters.each do |param| %>
             <th> <%= param.name %> </th>
@@ -24,8 +24,12 @@
       <% @signups.each do |signup| %>
         <tr>
           <td><%= @signup_count %>. </td>
-          <td><%= signup %></td>
-          <% if admin %>
+          <% if not sub_admin and not signup.show %>
+            <td>???</td>
+          <% else %>
+            <td><%= signup %></td>
+          <% end %>
+          <% if sub_admin %>
             <td><%= signup.get_email %></td>
             <% signup.signup_parameters.each do |param| %>
               <% if param.event_parameter %>
@@ -61,7 +65,7 @@
       <tr>
         <th></th>
         <th>Nimi</th>
-        <% if admin %>
+        <% if sub_admin %>
           <th>Sähköposti</th>
           <% @event.event_parameters.each do |param| %>
             <th> <%= param.name %> </th>
@@ -74,8 +78,12 @@
       <% @reserve.each do |signup| %>
         <tr>
           <td><%= @signup_count %>. </td>
-          <td><%= signup %></td>
-          <% if admin %>
+          <% if not sub_admin and not signup.show %>
+            <td>???</td>
+          <% else %>
+            <td><%= signup %></td>
+          <% end %>
+          <% if sub_admin %>
             <td><%= signup.get_email %></td>
             <% signup.signup_parameters.each do |param| %>
               <% if param.event_parameter %>

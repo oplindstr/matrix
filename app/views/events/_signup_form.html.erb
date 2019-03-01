@@ -83,6 +83,13 @@
   <div class="field">
     <%= f.hidden_field :event_id, value: @event.id %>
   </div>
+
+  <div class="field">
+    <label class="checkbox">
+      <%= f.check_box :show, value: false %>
+      Minut saa näyttää kaikille näkyvällä ilmoittautuneiden listalla
+    </label>
+  </div>
   <div class="actions">
     <% if current_user and @event.user_signed_up(current_user.id) %>
       <%= f.submit :value => 'Tallenna', :class => "button is-link" %>
