@@ -266,7 +266,7 @@ class UsersController < ApplicationController
       end
     end
     @year = @year.to_i
-    @users = User.all
+    @users = Member.all
     @users = @users.sort_by{ |u| u.name }
     @non_members = @users.select{ |m| !m.membership(@year) }
   end
@@ -282,9 +282,9 @@ class UsersController < ApplicationController
     params = update_memberships_params
     year = params[:year]
     params[:users].each do |param|
-      user = User.find(param[0])
+      user = Member.find(param[0])
       member = param[1][:member]
-      member_id = user.member.id
+      member_id = user.id
       membership = Membership.where('member_id = ? and year = ?', member_id, year).first
       if member == '0' and membership
         membership.destroy
@@ -319,11 +319,11 @@ class UsersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def user_params
-      params.require(:user).permit(:id, :username, :password, :password_confirmation, :member_attributes => [:id, :firstname, :lastname, :email, :address, :city, :joined, :hyy_member, :mathstudent, :_destroy])
+      params.require(:user).permit(:id, :username, :password, :password_confirmation, :member_attributes => [:id, :firstname, :nickname, :lastname, :email, :address, :city, :joined, :hyy_member, :mathstudent, :_destroy])
     end
 
     def update_user_params
-      params.require(:user).permit(:id, :member_attributes => [:id, :firstname, :lastname, :email, :address, :city, :joined, :hyy_member, :mathstudent, :_destroy])
+      params.require(:user).permit(:id, :member_attributes => [:id, :firstname, :nickname, :lastname, :email, :address, :city, :joined, :hyy_member, :mathstudent, :_destroy])
     end
 
     def update_password_params

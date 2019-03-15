@@ -16,6 +16,13 @@ class Member < ActiveRecord::Base
   validates :city, length: { maximum: 100, message: "Valitse kotikunta, jonka pituus on 100 merkkiä tai alle" }
 
   def name
+    if self.nickname and self.nickname.length > 0
+      return "#{nickname} #{lastname}"
+    end
+    return "#{firstname} #{lastname}"
+  end
+
+  def full_name
     return "#{firstname} #{lastname}"
   end
 
@@ -53,16 +60,10 @@ class Member < ActiveRecord::Base
   end
 
   def to_s
-    if self.firstname and self.lastname
-      return self.firstname + ' ' + self.lastname
+    if self.nickname and self.nickname.length > 0
+      return self.nickname + ' ' + self.lastname
     end
-    if self.firstname
-      return self.firstname
-    end
-    if self.lastname
-      return self.lastname
-    end
-    return nil
+    return self.firstname + ' ' + self.lastname
   end
 
   def membership(year)

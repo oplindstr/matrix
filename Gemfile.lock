@@ -127,6 +127,7 @@ GEM
     jbuilder (2.8.0)
       activesupport (>= 4.2.0)
       multi_json (>= 1.2)
+    jquery-datatables (1.10.19.1)
     jquery-rails (4.3.3)
       rails-dom-testing (>= 1, < 3)
       railties (>= 4.2.0)
@@ -329,6 +330,7 @@ DEPENDENCIES
   flatpickr_rails
   headless
   jbuilder (~> 2.0)
+  jquery-datatables
   jquery-rails
   jquery-turbolinks
   launchy

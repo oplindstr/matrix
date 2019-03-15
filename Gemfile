@@ -50,6 +50,8 @@ gem "loofah", ">= 2.2.3"
 
 gem 'webrat', '0.7.1'
 
+gem 'jquery-datatables'
+
 # Use Unicorn as the app server
 # gem 'unicorn'
 

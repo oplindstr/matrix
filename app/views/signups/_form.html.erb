@@ -11,8 +11,10 @@
         <%= f.text_field :name %>
       </div>
       <div class="field">
-        <%= f.label 'Sähköpostiosoite' %> <br>
-        <%= f.text_field :email %>
+        <%= f.label :email, 'Sähköpostiosoite', :class => 'label' %>
+        <div class="control">
+          <%= f.text_field :email, :class => 'input', :type => 'email' %>
+        </div>
       </div>
   <% end %>
 

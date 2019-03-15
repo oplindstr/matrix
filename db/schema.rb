@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20190301111524) do
+ActiveRecord::Schema.define(version: 20190310205417) do
 
   create_table "board_members", force: :cascade do |t|
     t.integer "year"
@@ -95,6 +95,7 @@ ActiveRecord::Schema.define(version: 20190301111524) do
     t.boolean  "mathstudent"
     t.integer  "joined"
     t.integer  "user_id"
+    t.string   "nickname"
   end
 
   create_table "memberships", force: :cascade do |t|

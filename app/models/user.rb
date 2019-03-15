@@ -25,6 +25,12 @@ class User < ActiveRecord::Base
     end
   end
 
+  def nickname
+    if self.member
+      return self.member.nickname
+    end
+  end
+
   def lastname
     if self.member
       return self.member.lastname
@@ -67,8 +73,12 @@ class User < ActiveRecord::Base
     end
   end
 
-  def name
+  def full_name
     return "#{self.firstname} #{self.lastname}"
+  end
+
+  def name
+    return "#{self.nickname} #{self.lastname}"
   end
 
   def display_email

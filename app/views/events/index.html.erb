@@ -16,6 +16,9 @@
 
     <h2 class="subtitle"><%= link_to event.name, event_path(event.id) %></h2>
     <p><%= DateHelper.standard_time(event.starttime) %></p>
+    <% if event.price and not event.price.empty? %>
+      <p>Hinta: <%= event.price %> €</p>
+    <% end %>
     <% if event.location and event.location.length > 0 %>
       <p>@ <%= event.location %></p>
     <% end %>

@@ -1,3 +1,7 @@
+<% if sub_admin %>
+  <%= javascript_include_tag 'signups' %>
+<% end %>
+
 <div class="box">
 
   <h2 class="title is-spaced"><%= @event.name %></h2>
@@ -6,10 +10,10 @@
 
   <% if @signups and !@signups.empty? %>
 
-    <table class="table is-narrow">
+    <table id="signups_table" class="table is-narrow">
       <thead>
       <tr>
-        <th></th>
+        <th>#</th>
         <th>Nimi</th>
         <% if sub_admin %>
           <th>Sähköposti</th>
@@ -24,10 +28,10 @@
       <% @signups.each do |signup| %>
         <tr>
           <td><%= @signup_count %>. </td>
-          <% if not sub_admin and not signup.show %>
-            <td>???</td>
-          <% else %>
+          <% if sub_admin or signup.show or (signup.user_id and current_user and signup.user_id == current_user.id) %>
             <td><%= signup %></td>
+          <% else %>
+            <td>???</td>
           <% end %>
           <% if sub_admin %>
             <td><%= signup.get_email %></td>
@@ -63,7 +67,7 @@
     <table class="table is-narrow">
       <thead>
       <tr>
-        <th></th>
+        <th>#</th>
         <th>Nimi</th>
         <% if sub_admin %>
           <th>Sähköposti</th>
@@ -78,10 +82,10 @@
       <% @reserve.each do |signup| %>
         <tr>
           <td><%= @signup_count %>. </td>
-          <% if not sub_admin and not signup.show %>
-            <td>???</td>
-          <% else %>
+          <% if sub_admin or signup.show or (signup.user_id and signup.user_id = current_user.id) %>
             <td><%= signup %></td>
+          <% else %>
+            <td>???</td>
           <% end %>
           <% if sub_admin %>
             <td><%= signup.get_email %></td>

@@ -1,7 +1,7 @@
 <%= form_for(@member) do |f| %>
 
   <div class="field">
-    <%= f.label :firstname, 'Etunimi', :class => 'label' %>
+    <%= f.label :firstname, 'Etunimet', :class => 'label' %>
     <div class="control">
       <%= f.text_field :firstname, :class => 'input', :required => true %>
     </div>
@@ -10,6 +10,13 @@
         Pakollinen kenttä
       </p>
     <% end %>
+  </div>
+
+  <div class="field">
+    <%= f.label :nickname, 'Kutsumanimi', :class => 'label' %>
+    <div class="control">
+      <%= f.text_field :nickname, :class => 'input' %>
+    </div>
   </div>
 
   <div class="field">

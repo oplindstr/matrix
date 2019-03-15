@@ -34,7 +34,7 @@
     <tbody>
       <% @non_members.each do |user| %> 
       <tr>
-        <td><%= user.name %></td>
+        <td><%= user.full_name %></td>
         <td><%= user.email %></td>
         <%= fields_for "users[]", user do |f| %>
           <td><%= f.check_box :member, checked: user.membership(@year) %></td>
@@ -67,7 +67,7 @@
     <tbody>
       <% @users.each do |user| %> 
       <tr>
-      	<td><%= user.name %></td>
+      	<td><%= user.full_name %></td>
       	<td><%= user.email %></td>
         <%= fields_for "users[]", user do |f| %>
           <td><%= f.check_box :member, checked: user.membership(@year) %></td>

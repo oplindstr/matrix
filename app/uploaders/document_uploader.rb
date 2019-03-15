@@ -37,11 +37,11 @@ class DocumentUploader < CarrierWave::Uploader::Base
   # end
 
   def extension_white_list
-    %w(txt)
+    %w(txt pdf)
   end
 
   def content_type_whitelist
-    /text\//
+    ['text/plain', 'application/text', 'application/pdf']
   end
 
   # Override the filename of the uploaded files:

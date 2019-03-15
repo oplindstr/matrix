@@ -47,7 +47,7 @@
   <%= f.fields_for :member do |p| %>
 
     <div class="field">
-      <%= p.label :firstname, 'Etunimi', :class => 'label' %>
+      <%= p.label :firstname, 'Etunimet', :class => 'label' %>
       <div class="control">
         <%= p.text_field :firstname, :class => 'input', :required => true %>
       </div>
@@ -56,6 +56,13 @@
           Pakollinen kenttä
         </p>
       <% end %>
+    </div>
+
+    <div class="field">
+      <%= p.label :nickname, 'Kutsumanimi', :class => 'label' %>
+      <div class="control">
+        <%= p.text_field :nickname, :class => 'input' %>
+      </div>
     </div>
 
     <div class="field">
