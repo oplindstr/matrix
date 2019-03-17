@@ -5,7 +5,7 @@ gem "pkg-config"
 gem 'rails', '4.2.8'
 # Use sqlite3 as the database for Active Record
 group :development, :test do
-  gem 'sqlite3'
+  gem 'sqlite3',  '1.3.13'
 end
 
 group :production, :staging do
@@ -89,7 +89,7 @@ group :test do
   gem 'phantomjs', :require => 'phantomjs/poltergeist'
 end
 
-gem 'bootstrap-sass'
+gem "bootstrap-sass", ">= 3.4.1"
 group :development do
   gem 'rails_layout'
   gem 'autotest'

@@ -17,16 +17,10 @@ class BoardMember < ActiveRecord::Base
   end
 
   def name
-    if self.user
-      self.user.name
-    end
     self.member.name
   end
 
   def email
-    if self.user
-      self.user.display_email
-    end
     self.member.display_email
   end
 

@@ -78,7 +78,10 @@ class User < ActiveRecord::Base
   end
 
   def name
-    return "#{self.nickname} #{self.lastname}"
+    if self.nickname and self.nickname.length > 0
+      return "#{nickname} #{lastname}"
+    end
+    return "#{firstname} #{lastname}"
   end
 
   def display_email
