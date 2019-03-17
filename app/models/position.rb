@@ -1,5 +1,5 @@
 class Position < ActiveRecord::Base
-	has_many :position_members
+	has_many :position_members, dependent: :delete_all
 	has_many :users, through: :position_members
 
 	belongs_to :position_type
