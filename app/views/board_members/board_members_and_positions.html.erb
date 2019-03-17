@@ -43,7 +43,7 @@
     <tbody>
   	<% @position_members.each do |position_member| %>
   	  <tr>
-  	    <td><%= position_member.member.name %></td>
+  	    <td><%= position_member.name %></td>
     		<td><%= position_member.year %></td>
     		<td><%= position_member.position.name %></td>
         <td><%= link_to 'Muokkaa', edit_position_member_path(position_member), :class => 'button is-link' %></td>
