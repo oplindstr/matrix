@@ -31,7 +31,7 @@ set :puma_init_active_record, true  # Change to false when not using ActiveRecor
 # set :keep_releases, 5
 
 ## Linked Files & Directories (Default None):
-# set :linked_files, %w{config/database.yml}
+# set :linked_files, %w{config/database.yml} test
 set :linked_dirs,  %w{public}
 
 namespace :puma do
