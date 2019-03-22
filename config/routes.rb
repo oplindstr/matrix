@@ -13,6 +13,7 @@ Rails.application.routes.draw do
   resources :members, only: [:edit, :update, :index, :new, :create, :destroy]
   resources :news
   resources :events, path: 'kalenteri'
+  resources :partners, only: [:edit, :update, :index, :new, :create, :destroy]
   resources :position_members
   resources :positions
   resources :post_comments

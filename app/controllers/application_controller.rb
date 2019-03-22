@@ -12,6 +12,7 @@ class ApplicationController < ActionController::Base
   helper_method :ensure_that_admin
   helper_method :ensure_that_sub_admin
   helper_method :ensure_that_current_user
+  helper_method :partners
 
   def save_current_url
     session[:return_to] = request.referer
@@ -24,6 +25,10 @@ class ApplicationController < ActionController::Base
 
   def current_member
     Member.find(current_user.member.id)
+  end
+
+  def partners
+    Partner.all.order(:name)
   end
 
   def admin

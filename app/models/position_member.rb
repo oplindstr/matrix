@@ -1,6 +1,6 @@
 class PositionMember < ActiveRecord::Base
-  belongs_to :position
-  belongs_to :member
+  belongs_to :position, dependent: :destroy
+  belongs_to :member, dependent: :destroy
   has_one :user, through: :member
 
   validates :year, inclusion: { in: 1991..3000, message: 'Anna vuosi väliltä 1991-3000' }

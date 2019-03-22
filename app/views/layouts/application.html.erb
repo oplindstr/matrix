@@ -101,20 +101,10 @@
         <div class="content has-text-centered">
           <h1 class="title">Yhteistyökumppanit</h1>
           <div class="level">
-            <%= link_to 'https://www.accenture.com', { :class=>"level-item" } do %>
-              <%= image_tag("accenture.png", size: "200x35") %>
-            <% end %>
-            <%= link_to 'https://www.futurice.com/', { :class=>"level-item" } do %>
-              <%= image_tag("futurice.png", size: "200x35") %>
-            <% end %>
-            <%= link_to 'https://gofore.com/', { :class=>"level-item" } do %>
-              <%= image_tag("gofore_logo_black.png", size: "200x35") %>
-            <% end %>
-            <%= link_to 'https://www.ibm.com/', { :class=>"level-item" } do %>
-              <%= image_tag("ibm.png", size: "200x35") %>
-            <% end %>
-            <%= link_to 'https://www.solita.fi', { :class=>"level-item" } do %>
-              <%= image_tag("Solita_logo_2.png", size: "200x35") %>
+            <% partners.each do |partner| %>
+              <%= link_to partner.link, { :class=>"level-item" } do %>
+                <%= image_tag(partner.image, size: "200x35") %>
+              <% end %>
             <% end %>
           </div>
         </div>

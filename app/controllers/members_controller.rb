@@ -52,10 +52,15 @@ class MembersController < ApplicationController
   # DELETE /members/1
   # DELETE /members/1.json
   def destroy
-    @member.destroy
-    respond_to do |format|
-      format.html { redirect_to members_url, notice: 'Jäsenen poisto onnistui' }
-      format.json { head :no_content }
+    @user = @member.user
+    if @member.destroy
+      if @user
+        @user.destroy
+      end
+      respond_to do |format|
+        format.html { redirect_to members_url, notice: 'Jäsenen poisto onnistui' }
+        format.json { head :no_content }
+      end
     end
   end
 

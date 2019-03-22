@@ -1,0 +1,38 @@
+<%= form_for(@partner) do |f| %>
+  <% if @partner.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@partner.errors.count, "error") %> prohibited this partner from being saved:</h2>
+
+      <ul>
+      <% @partner.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :name, 'Nimi', :class => 'label' %>
+    <div class="control">
+      <%= f.text_field :name, :class => 'input', :required => true %>
+    </div>
+  </div>
+  <div class="field">
+    <%= f.label :link, 'Linkki', :class => 'label' %>
+    <div class="control">
+      <%= f.text_field :link, :class => 'input', :required => true %>
+    </div>
+  </div>
+  <div class="field">
+    <%= f.label :image, 'Logo', :class => 'label' %>
+    <div class="control">
+      <%= f.file_field :image, accept: 'image/png,image/jpg,image/jpeg', :required => true %>
+    <div>
+  </div>
+  <br>
+  <div class="field">
+    <div class="control">
+      <%= f.submit :value => 'Tallenna', :class => 'button is-link' %>
+    </div>
+  </div>
+<% end %>

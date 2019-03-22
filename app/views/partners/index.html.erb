@@ -1,0 +1,27 @@
+<div class="box">
+  <h1 class="title">Yhteistyökumppanit</h1>
+
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Nimi</th>
+        <th>Linkki</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% @partners.each do |partner| %>
+        <tr>
+          <td><%= partner.name %></td>
+          <td><%= link_to partner.name, partner.link %></td>
+          <td><%= link_to 'Muokkaa', edit_partner_path(partner) %></td>
+          <td><%= link_to 'Poista', partner, method: :delete, data: { confirm: 'Oletko varma?' } %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+
+  <br>
+
+  <%= link_to 'Lisää yhteistyökumppani', new_partner_path %>
+</div>

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20190310205417) do
+ActiveRecord::Schema.define(version: 20190322144508) do
 
   create_table "board_members", force: :cascade do |t|
     t.integer "year"
@@ -111,6 +111,14 @@ ActiveRecord::Schema.define(version: 20190310205417) do
     t.datetime "updated_at",             null: false
     t.text     "header"
     t.integer  "priority",   default: 1
+  end
+
+  create_table "partners", force: :cascade do |t|
+    t.string   "name"
+    t.string   "image"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string   "link"
   end
 
   create_table "position_members", force: :cascade do |t|
