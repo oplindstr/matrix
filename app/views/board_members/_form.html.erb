@@ -13,8 +13,14 @@
     <%= f.label :member_id, 'Jäsen', :class => 'label' %>
     <div class="control">
       <div class="select">
-        <%= f.select :member_id, options_from_collection_for_select(@members, :id, :name, @board_member.member_id) %>
+        <%= f.select :member_id, options_from_collection_for_select(@members, :id, :name, @board_member.member_id), :include_blank => true %>
       </div>
+    </div>
+  </div>
+  <div class="field">
+    <%= f.label :name, 'Nimi (Täytä jos ei enää jäsen. Muuten täyttyy automaattisesti)', :class => 'label' %>
+    <div class="control">
+      <%= f.text_field :name, :class => 'input' %>
     </div>
   </div>
   <div class="field    <label class="checkbox">

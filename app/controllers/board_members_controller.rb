@@ -25,13 +25,18 @@ class BoardMembersController < ApplicationController
 
     @supplementary_members = @all_board_members.select{ |m| m.supplementary == true }
 
-    @member_ids = @all_board_members.pluck(:member_id)
+    @member_ids = @all_board_members.pluck(:member_id).uniq
+    @names = @all_board_members.pluck(:name).uniq
 
-    @position_members = Member.joins(:position_members).where('position_members.year = ?', @year).uniq
-    @position_members = @position_members.select{ |m| not @member_ids.include? m.id }
+    @position_members = PositionMember.where('year = ?', @year)
+    @ids = @position_members.select("MIN(id) as id").group(:member_id,:name).collect(&:id)
+    @position_members = @position_members.select { |m| @ids.include? m.id }
 
-    @board_members = @board_members.sort_by { |f| f.member.priority_in_board_member_list(@year) }
-    @supplementary_members = @supplementary_members.sort_by { |f| f.member.priority_in_board_member_list(@year) }
+    @position_members = @position_members.select{ |m| not @member_ids.include? m.member_id }
+    @position_members = @position_members.select{ |m| not @names.include? m.name }
+
+    @board_members = @board_members.sort_by { |f| f.priority_in_board_member_list(@year) }
+    @supplementary_members = @supplementary_members.sort_by { |f| f.priority_in_board_member_list(@year) }
     @position_members = @position_members.sort_by { |f| f.priority_in_board_member_list(@year) }
  end
 
@@ -48,14 +53,17 @@ class BoardMembersController < ApplicationController
 
  def update
     @board_member = BoardMember.find(params[:id])
-    if params[:avatar]
+    if board_member_params[:member_id] and !board_member_params[:member_id].empty?
       @member = Member.find(board_member_params[:member_id])
-      @user = @member.user
-      if @user and !@user.avatar_url
-        @user.skip_password_validation = true
-        @user.avatar = params[:avatar]
-        @user.save!
+      if params[:avatar] 
+        @user = @member.user
+        if @user and !@user.avatar_url
+          @user.skip_password_validation = true
+          @user.avatar = params[:avatar]
+          @user.save!
+        end
       end
+      @board_member.name = @member.name
     end
     respond_to do |format|
       if @board_member.update(board_member_params)
@@ -70,14 +78,17 @@ class BoardMembersController < ApplicationController
 
  def create
     @board_member = BoardMember.new(board_member_params)
-    if params[:avatar]
+    if board_member_params[:member_id] and !board_member_params[:member_id].empty?
       @member = Member.find(board_member_params[:member_id])
-      @user = @member.user
-      if @user and !@user.avatar_url
-        @user.skip_password_validation = true
-        @user.avatar = params[:avatar]
-        @user.save!
+      if params[:avatar] 
+        @user = @member.user
+        if @user and !@user.avatar_url
+          @user.skip_password_validation = true
+          @user.avatar = params[:avatar]
+          @user.save!
+        end
       end
+      @board_member.name = @member.name
     end
     respond_to do |format|
       if @board_member.save
@@ -123,7 +134,7 @@ class BoardMembersController < ApplicationController
   end
 
   def board_member_params
-    params.require(:board_member).permit(:member_id, :year, :supplementary)
+    params.require(:board_member).permit(:member_id, :year, :name, :supplementary)
   end
     
 end

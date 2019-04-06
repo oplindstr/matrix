@@ -40,15 +40,17 @@ class PositionMembersController < ApplicationController
   # position /positions.json
   def create
   	@position_member = PositionMember.new(position_member_params)
-    
-    if params[:avatar]
+    if position_member_params[:member_id] and !position_member_params[:member_id].empty?
       @member = Member.find(position_member_params[:member_id])
-      @user = @member.user
-      if @user and !@user.avatar_url
-        @user.skip_password_validation = true
-        @user.avatar = params[:avatar]
-        @user.save!
+      if params[:avatar]
+        @user = @member.user
+        if @user and !@user.avatar_url
+          @user.skip_password_validation = true
+          @user.avatar = params[:avatar]
+          @user.save!
+        end
       end
+      @position_member.name = @member.name
     end
 
     respond_to do |format|
@@ -76,14 +78,17 @@ class PositionMembersController < ApplicationController
   def update
     @position_member = PositionMember.find(params[:id])
 
-    if params[:avatar]
+    if position_member_params[:member_id] and !position_member_params[:member_id].empty?
       @member = Member.find(position_member_params[:member_id])
-      @user = @member.user
-      if @user and !@user.avatar_url
-        @user.skip_password_validation = true
-        @user.avatar = params[:avatar]
-        @user.save!
+      if params[:avatar]
+        @user = @member.user
+        if @user and !@user.avatar_url
+          @user.skip_password_validation = true
+          @user.avatar = params[:avatar]
+          @user.save!
+        end
       end
+      @position_member.name = @member.name
     end
 
     respond_to do |format|
@@ -117,6 +122,6 @@ class PositionMembersController < ApplicationController
     end
 
     def position_member_params
-      params.require(:position_member).permit(:member_id, :year, :position_id)
+      params.require(:position_member).permit(:member_id, :year, :name, :position_id)
     end
 end

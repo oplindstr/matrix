@@ -43,4 +43,19 @@ class PagesController < ApplicationController
     end
   end
 
+  def yrityksille
+    @now = Time.now
+
+    @this_year_anniversary = DateTime.new(@now.year,3,1)
+    @this_year_anniversary += 1.days until @this_year_anniversary.wday == 1
+
+    @next_anniversary = @now.year - 1995
+
+    if @now >= @this_year_anniversary
+      @next_anniversary += 1
+    end
+
+    @next_anniversary
+  end
+
 end

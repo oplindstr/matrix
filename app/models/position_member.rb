@@ -1,11 +1,10 @@
 class PositionMember < ActiveRecord::Base
   belongs_to :position, dependent: :destroy
-  belongs_to :member, dependent: :destroy
+  belongs_to :member
   has_one :user, through: :member
 
   validates :year, inclusion: { in: 1991..3000, message: 'Anna vuosi väliltä 1991-3000' }
   validates :year, presence: { message: 'Vuosi puuttuu' }
-  validates :member_id, presence: { message: 'Jäsen puuttuu' }
   
   validate :unique_user_and_position_in_year
 
@@ -15,12 +14,35 @@ class PositionMember < ActiveRecord::Base
     end
   end
 
-  def name
-    self.member.name
+  def get_name
+    if self.member
+      return self.member.name
+    end
+    self.name
   end
 
   def email
-    self.member.display_email
+    if self.member
+      return self.member.display_email
+    end
+  end
+
+  def priority_in_board_member_list(year)
+    if self.member_id
+      return self.member.priority_in_board_member_list(year)
+    end
+    @positions = self.positions_by_year(year)
+    if !@positions.empty?
+      return @positions.minimum('priority')
+    end
+    return 100
+  end
+
+  def positions_by_year(year)
+    if self.member_id
+      return self.member.positions_by_year(year)
+    end
+    return Position.joins(:position_members).where('position_members.year = ? and position_members.name = ?', year, self.name).uniq
   end
   
   def unique_user_and_position_in_year

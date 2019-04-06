@@ -15,7 +15,7 @@
 						<span class="board_member_image"><%= image_tag('placeholder_avatar.jpg') %> </span>
 					    <br><br>
 					<% end %>
-					<b> <%= @member.name %> </b><br>
+					<b> <%= @member.get_name %> </b><br>
 					<i> <%= @member.display_email %> </i>
 					<br><br>
 					<% @member.positions_by_year(@year).each do |position| %>
@@ -42,7 +42,7 @@
 							<span class="board_member_image"><%= image_tag('placeholder_avatar.jpg') %> </span>
 						    <br><br>
 						<% end %>
-						<b> <%= @member.name %> </b><br>
+						<b> <%= @member.get_name %> </b><br>
 						<i> <%= @member.display_email %> </i>
 						<br><br>
 						<% @member.positions_by_year(@year).each do |position| %>
@@ -62,7 +62,7 @@
 <% else %>
 	<div>
 		<% members.each do |member| %>
-			<b><%= member.name %></b> <br>
+			<b><%= member.get_name %></b> <br>
 			<% member.positions_by_year(@year).each do |position| %>
 				<span> <%= position.name %> </span> <br>
 			<% end %>

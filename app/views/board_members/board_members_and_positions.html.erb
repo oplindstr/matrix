@@ -17,7 +17,7 @@
     <tbody>
   	<% @board_members.each do |member| %>
   	  <tr>
-    	  <td><%= member.name %></td>
+    	  <td><%= member.get_name %></td>
     		<td><%= member.year %></td>
     		<td><%= check_box_tag 'supplementary', 'supplementary', member.supplementary, disabled: true %></td>
         <td><%= link_to 'Muokkaa', edit_board_member_path(member), :class => 'button is-link' %></td>
@@ -43,7 +43,7 @@
     <tbody>
   	<% @position_members.each do |position_member| %>
   	  <tr>
-  	    <td><%= position_member.name %></td>
+  	    <td><%= position_member.get_name %></td>
     		<td><%= position_member.year %></td>
     		<td><%= position_member.position.name %></td>
         <td><%= link_to 'Muokkaa', edit_position_member_path(position_member), :class => 'button is-link' %></td>
