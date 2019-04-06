@@ -50,9 +50,8 @@ class PositionMembersController < ApplicationController
           @user.save!
         end
       end
-      @position_member.name = @member.name
     end
-
+    @position_member.name = @position_member.get_name
     respond_to do |format|
       if @position_member.save
          format.html { redirect_to '/hallitus', notice: "Virkailija lisätty" }
@@ -88,8 +87,9 @@ class PositionMembersController < ApplicationController
           @user.save!
         end
       end
-      @position_member.name = @member.name
     end
+
+    @position_member.name = @position_member.get_name
 
     respond_to do |format|
       if @position_member.update(position_member_params)

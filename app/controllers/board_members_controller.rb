@@ -63,8 +63,8 @@ class BoardMembersController < ApplicationController
           @user.save!
         end
       end
-      @board_member.name = @member.name
     end
+    @board_member.name = @board_member.get_name
     respond_to do |format|
       if @board_member.update(board_member_params)
         format.html { redirect_to '/board_members_and_positions', notice: "Hallituksen jäsentä muokattu" }
@@ -88,8 +88,8 @@ class BoardMembersController < ApplicationController
           @user.save!
         end
       end
-      @board_member.name = @member.name
     end
+    @board_member.name = @board_member.get_name
     respond_to do |format|
       if @board_member.save
         format.html { redirect_to '/hallitus?vuosi=' + @board_member.year.to_s, notice: "Hallituksen jäsen lisätty" }

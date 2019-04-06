@@ -16,7 +16,7 @@
 					    <br><br>
 					<% end %>
 					<b> <%= @member.get_name %> </b><br>
-					<i> <%= @member.display_email %> </i>
+					<i> <%= @member.email %> </i>
 					<br><br>
 					<% @member.positions_by_year(@year).each do |position| %>
 						<span> <%= position.name %> </span> <br>
@@ -43,7 +43,7 @@
 						    <br><br>
 						<% end %>
 						<b> <%= @member.get_name %> </b><br>
-						<i> <%= @member.display_email %> </i>
+						<i> <%= @member.email %> </i>
 						<br><br>
 						<% @member.positions_by_year(@year).each do |position| %>
 							<span> <%= position.name %> </span> <br>
