@@ -26,6 +26,7 @@ class PagesController < ApplicationController
     end
     @news = News.all.order(priority: :desc, id: :desc).limit(@news_count)
     @events = Event.where('starttime > ?', Time.now).order(starttime: :asc).limit(@event_count)
+    @info = Text.where('name = ?', 'Etusivun info').first
   end
 
   def toiminta
@@ -56,6 +57,19 @@ class PagesController < ApplicationController
     end
 
     @next_anniversary
+  end
+
+  def komero
+    @products = Product.all.order(:priority, :name)
+  end
+
+  def sanasto
+    @text = Text.where('name = ?', 'Sanastoa').first
+  end
+
+  def yhteystiedot
+    @other_info = Text.where('name = ?', 'Muut yhteystiedot').first
+    @contact_positions = Position.where(show_in_contact_info: true).order(:priority)
   end
 
 end

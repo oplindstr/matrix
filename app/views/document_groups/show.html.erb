@@ -20,6 +20,7 @@
             <tr>
                <td><%= link_to document.name, document.attachment_url %></td>
                <% if sub_admin %>
+               <td><%= link_to "Muokkaa", edit_document_path(document) %></td>
                <td><%= button_to "Poista",  document, method: :delete, class: "button is-danger", data: {confirm: "Oletko varma?"} %></td>
                <% end %>
             </tr>

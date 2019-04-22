@@ -1,6 +1,6 @@
 class PositionsController < ApplicationController
   before_action :set_position, only: [:show, :edit, :update, :destroy]
-  before_action :ensure_that_sub_admin, except: [:contact_info]
+  before_action :ensure_that_sub_admin
 
   # GET /positions
   # GET /positions.json
@@ -61,11 +61,6 @@ class PositionsController < ApplicationController
       format.html { redirect_to positions_url, notice: 'Virka poistettu' }
       format.json { head :no_content }
     end
-  end
-
-  def contact_info
-  	@contact_positions = Position.where(show_in_contact_info: true).order(:priority)
-    render 'pages/yhteystiedot'
   end
 
   private

@@ -1,0 +1,24 @@
+<div class="box">
+    <h1 class="title">Tekstit</h1>
+
+	<table class="table">
+    <thead>
+      <tr>
+        <th>Nimi</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% @texts.each do |text| %>
+        <tr>
+          <td><%= text.name %></td>
+          <td><%= link_to 'Muokkaa', edit_text_path(text) %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+
+	<br>
+
+	<%= link_to 'Uusi teksti', new_text_path %>
+</div>

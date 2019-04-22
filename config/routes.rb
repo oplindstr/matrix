@@ -1,11 +1,13 @@
 Rails.application.routes.draw do
 
+  resources :texts
+  resources :products
   root :to => 'pages#index', :as => 'root'
 
   resources :board_members, only: [:edit, :update, :index, :new, :create, :destroy]
   resources :document_group_categories
   resources :document_groups
-  resources :documents, only: [:index, :new, :create, :destroy]
+  resources :documents, only: [:index, :new, :create, :destroy, :edit, :update]
   resources :event_parameter_choices
   resources :event_parameter_types
   resources :event_parameter_values
@@ -90,9 +92,9 @@ Rails.application.routes.draw do
   get '/rekisteriseloste' => 'pages#rekisteriseloste', id: 'rekisteriseloste'
   get '/toiminta' => 'pages#toiminta', id: 'toiminta'
   get '/virkailijaksi' => 'pages#virkailijaksi', id: 'virkailijaksi'
+  get '/yhteystiedot' => 'pages#yhteystiedot', id: 'yhteystiedot'
 
   get '/virat' => 'positions#index'
-  get '/yhteystiedot' => 'positions#contact_info'
 
 
 

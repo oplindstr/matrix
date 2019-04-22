@@ -1,0 +1,44 @@
+<%= form_for(@product) do |f| %>
+  <% if @product.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@product.errors.count, "error") %> prohibited this product from being saved:</h2>
+
+      <ul>
+      <% @product.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :name, 'Nimi', :class => 'label' %>
+    <div class="control">
+      <%= f.text_field :name, :class => 'input', :required => true %>
+    </div>
+  </div>
+  <div class="field">
+    <%= f.label :price, 'Hinta', :class => 'label' %>
+    <div class="control">
+      <%= f.number_field :price, class: :input, step: :any %>
+    </div>
+  </div>
+  <div class="field">
+    <%= f.label :priority, 'Järjestys', :class => 'label' %>
+    <div class="control">
+      <%= f.number_field :priority, :class => 'input' %>
+    </div>
+  </div>
+  <div class="field">
+    <%= f.label :image, 'Kuva', :class => 'label' %>
+    <div class="control">
+      <%= f.file_field :image, accept: 'image/png,image/jpg,image/jpeg'%>
+    <div>
+  </div>
+  <br>
+  <div class="field">
+    <div class="control">
+      <%= f.submit :value => 'Tallenna', :class => 'button is-link' %>
+    </div>
+  </div>
+<% end %>

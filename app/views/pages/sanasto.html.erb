@@ -1,5 +1,12 @@
 <div class="box">
 	<h2 class="title">Sanastoa</h2>
+
+	<% if @text %>
+		<pre>
+<%= @text.value.html_safe %>
+		</pre>
+	<% else %>
+
 	<p><strong>alasauna</strong>: Uuden ylioppilastalon kellarissa sijaitseva pieni sauna, Mannerheimintie 5B<br/>
 	 <strong>Alina / Alina-sali</strong>: juhlatila Uuden ylioppilastalon 3. kerroksessa, Mannerheimintie 5A<br/>
 	 <strong>assari</strong>: laskuharjoitusten tai jonkin muun pienryhmätilaisuuden pitäjä, yleensä itsekin opiskelija<br/>
@@ -52,4 +59,6 @@
 	 <strong>Uusi</strong>: Uusi ylioppilastalo, Mannerhiemintie 5<br/>
 	 <strong>Vanha</strong>: Vanha ylioppilastalo, Mannerheimintie 3<br/>
 	 <strong>vekkuli</a></strong>: kurssi vektorianalyysi</p>
+
+	 <% end %>
 </div>

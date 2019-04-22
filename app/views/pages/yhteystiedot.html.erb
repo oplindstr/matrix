@@ -37,20 +37,28 @@
     	  </li>
       <% end %>
     <% end %>
-    <li>Aktiivisähköpostilista: matrix-ry</li>
   </ul>
 
-  <p>Muiden vastaavien ja aktiivien tiedot löydät <%= link_to 'täältä', '/hallitus' %>.</p>
-  <p>Katso myös tietoa Matrixin muista <%= link_to 'sähköpostilistoista', '/sahkopostilistat' %>.</p>
-  <br>
-  <h3 class="subtitle">Sosiaalinen media</h3>
+  <% if @other_info %>
+    <pre>
+<%= @other_info.value.html_safe %>
+    </pre>
+  <% else %>
 
-  Facebook-sivu: <%= link_to 'Matrix ry', 'https://www.facebook.com/matrixry/' %><br>
-  Facebook-ryhmä: <%= link_to 'Matrix ry', 'https://www.facebook.com/groups/4931342997/' %><br>
-  Instagram: <%= link_to '@matrix_ry', 'https://www.instagram.com/matrix_ry/' %><br>
-  Jodel: @matrix_ry<br>
-  <br>
-  <h3 class="subtitle">Opetusvälitys</h3>
+    <p>Aktiivisähköpostilista: matrix-ry</p>
+    <p>Muiden vastaavien ja aktiivien tiedot löydät <%= link_to 'täältä', '/hallitus' %>.</p>
+    <p>Katso myös tietoa Matrixin muista <%= link_to 'sähköpostilistoista', '/sahkopostilistat' %>.</p>
+    <br>
+    <h3 class="subtitle">Sosiaalinen media</h3>
 
-  <p>Matrixin postituslistaa matrix-opet (at) helsinki.fi jaellaan opetustehtävistä kiinnostuneilla matematiikan opiskelijoille. Listalle voi siis lähettää vapaasti työtarjouksia sijaisuuksista ja yksityisopetuksesta. Matrix ei kuitenkaan muuten koordinoi opetusvälitystä listan kautta.</p>
+    Facebook-sivu: <%= link_to 'Matrix ry', 'https://www.facebook.com/matrixry/' %><br>
+    Facebook-ryhmä: <%= link_to 'Matrix ry', 'https://www.facebook.com/groups/4931342997/' %><br>
+    Instagram: <%= link_to '@matrix_ry', 'https://www.instagram.com/matrix_ry/' %><br>
+    Jodel: @matrix_ry<br>
+    <br>
+    <h3 class="subtitle">Opetusvälitys</h3>
+
+    <p>Matrixin postituslistaa matrix-opet (at) helsinki.fi jaellaan opetustehtävistä kiinnostuneilla matematiikan opiskelijoille. Listalle voi siis lähettää vapaasti työtarjouksia sijaisuuksista ja yksityisopetuksesta. Matrix ei kuitenkaan muuten koordinoi opetusvälitystä listan kautta.</p>
+
+  <% end %>
 </div>

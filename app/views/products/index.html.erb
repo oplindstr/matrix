@@ -1,0 +1,29 @@
+<div class="box">
+    <h1 class="title">Tuotteet</h1>
+
+	<table class="table">
+    <thead>
+      <tr>
+        <th>Nimi</th>
+        <th>Hinta</th>
+        <th>Järjestys</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% @products.each do |product| %>
+        <tr>
+          <td><%= product.name %></td>
+          <td><%= product.price %></td>
+          <td><%= product.priority %></td>
+          <td><%= link_to 'Muokkaa', edit_product_path(product) %></td>
+          <td><%= link_to 'Poista', product, method: :delete, data: { confirm: 'Oletko varma?' } %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+
+	<br>
+
+	<%= link_to 'Uusi tuote', new_product_path %>
+</div>
