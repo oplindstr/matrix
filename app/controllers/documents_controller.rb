@@ -12,6 +12,7 @@ class DocumentsController < ApplicationController
    def edit
       @document = Document.find(params[:id])
       @document_groups = DocumentGroup.all.order(:name)
+      @document_group_id = @document.document_group.id
    end
    
    def create
@@ -24,6 +25,7 @@ class DocumentsController < ApplicationController
          else
             @alert = @document.errors
             @document_group_id = @document_group.id
+            @document_groups = DocumentGroup.all.order(:name)
             format.html { render :new }
          end
       end
@@ -38,6 +40,8 @@ class DocumentsController < ApplicationController
             format.html { redirect_to @document_group, notice: 'Dokumenttia muokattu' }
          else
             @alert = @document.errors
+            @document_group_id = @document_group.id
+            @document_groups = DocumentGroup.all.order(:name)
             format.html { render :edit }
          end
       end

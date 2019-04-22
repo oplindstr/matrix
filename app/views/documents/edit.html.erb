@@ -18,14 +18,10 @@
      </div>
 
      <div class="field">
-        <% if @document_group_id %>
-            <%= f.hidden_field :document_group_id, :value => @document_group_id %>
-         <% else %>
-            <%= f.label :document_group_id, 'Dokumenttikategoria', :class => 'label'  %>
-            <div class="select">
-               <%= f.select :document_group_id, options_from_collection_for_select(@document_groups, :id, :name) %>
-            </div>
-         <% end %>
+          <%= f.label :document_group_id, 'Dokumenttikategoria', :class => 'label'  %>
+          <div class="select">
+             <%= f.select :document_group_id, options_from_collection_for_select(@document_groups, :id, :name, @document_group_id) %>
+          </div>
       </div>
 
      <div class="actions">
