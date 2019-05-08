@@ -1,104 +1,110 @@
 <div class="box">
 	<h1 class="title">Fuksille</h1>
 	<br>
-	<h2 id="Fuksille-Tervehdys!" class="subtitle">Tervehdys!</h2>
+	<% if @text %>
+		<pre>
+<%= @text.value.html_safe %>
+		</pre>
+	<% else %>
+		<h2 id="Fuksille-Tervehdys!" class="subtitle">Tervehdys!</h2>
 
-	<p>Terve uusi opiskelija, eli <strong>fuksi</strong>! Olet löytänyt käsiisi matematiikan opiskelijaryhmä Matrix ry:n puheenjohtajan tervehdyksen - ja kuten matemaatikoilla on tapana, niin aloitan tekstini määrittelemällä nämä molemmat käsitteet. Matematiikan opiskelijaryhmä Matrix ry, tuttavallisemmin Matrix, on matematiikan ainejärjestö Helsingin yliopistossa. Ainejärjestö, mikä se on?! Se on se lähin taho, jota kiinnostaa juuri sinun opiskelusi ja hyvinvointisi opiskelijanäkökulmasta. Matrixin voimavara on todella monipuolinen toiminta värikkäälle jäsenistölleen. Järjestämme aktiivisesti tapahtumia niin rentojen hengailujen, sitsien, urheilun kuin kulttuurinkin muodossa, sekä tärkeänä lisänä osallistumme opetuksen kehitykseen. Matrixiin kuuluu myös yhteistyö yrityksien kanssa. Tarjoamme siis todella jokaiselle jotakin.</p>
+		<p>Terve uusi opiskelija, eli <strong>fuksi</strong>! Olet löytänyt käsiisi matematiikan opiskelijaryhmä Matrix ry:n puheenjohtajan tervehdyksen - ja kuten matemaatikoilla on tapana, niin aloitan tekstini määrittelemällä nämä molemmat käsitteet. Matematiikan opiskelijaryhmä Matrix ry, tuttavallisemmin Matrix, on matematiikan ainejärjestö Helsingin yliopistossa. Ainejärjestö, mikä se on?! Se on se lähin taho, jota kiinnostaa juuri sinun opiskelusi ja hyvinvointisi opiskelijanäkökulmasta. Matrixin voimavara on todella monipuolinen toiminta värikkäälle jäsenistölleen. Järjestämme aktiivisesti tapahtumia niin rentojen hengailujen, sitsien, urheilun kuin kulttuurinkin muodossa, sekä tärkeänä lisänä osallistumme opetuksen kehitykseen. Matrixiin kuuluu myös yhteistyö yrityksien kanssa. Tarjoamme siis todella jokaiselle jotakin.</p>
 
-	<p>Ainejärjestön aktiivit ovat tavallisia opiskelijoita, joita kaikkia kiinnostaa jokin osa-alue ainejärjestötoiminnassa. Sinäkin olet tervetullut järjestämään mitä ikinä haluatkaan, jos sellainen sinua kiinnostaa! Nykyisten aktiivien kuvat ja yhteystiedot löydät <%= link_to 'Hallitus ja virkailijat', '/hallitus' %> -sivulta. Puheenjohtajana pyrin hengailemaan tapahtumissanne niin aktiivisesti, että olen jutellut jokaisen teidän kanssa jouluun mennessä. Toivon myös saavani sinun hihasta vetoa, jos jokin on epäselvää ja kaipaat apua, tai muuten vain tarvitset lounasseuraa.</p><p>Matemaatikoita voit tavata ympäri Kumpulaa, mutta jos mieltä askarruttaa jokin kysymys, kannattaa ehdottomasti suunnata suoraan Exactumin kolmanteen kerrokseen "Komeroon". <%= link_to 'Komero', '/komero' %> on meidän ikioma opiskelijahuoneemme, josta löytyy muun muassa kahvia, lautapelejä, muutama tietokone, vanhoja jääriä (jotka auttavat kuitenkin erittäin mieluusti matemaattisissa ongelmissa), kurssikirjoja lainaan ja syksyllä toivon mukaan myös sinut! Komero saattaa tuntua jännittävältä paikalta, mutta lupaan, siitä voi tulla toinen kotisi, jos vaan uskaltaudut kerran sisään! <br/><br/>Olet mitä luultavimmin siirtymässä elämässäsi uuteen ja ihmeelliseen vaiheeseen. Olet ehkä opiskellut yliopistossa jo aiemmin, ehkä et, mutta haluan silti jakaa muutamia selviytymisvinkkejä. Olet nyt täysin vastuussa itsestäsi ja omista opiskeluistasi - varo akateemisesta vapaudesta huumaantumista! Pahinta onkin, kun vääristä valinnoistaan ei voi syyttää ketään muuta kuin itseään. Kannustan ottamaan fuksivuodesta kaiken irti! Kokeile kognitiotieteen sivuaineopintoja, hairahda kiertotielle aamun pikkutuntien kotimatkalla, nappaa kurssi jonka nimikään ei sano sinulle yhtään mitään (&quot;topologia?&quot;), ja aloita rohkeasti keskusteluja tuntemattomien ihmisten kanssa. Saat valitettavasti elämässäsi vain yhden matematiikan fuksivuoden, ja se on aivan käsillä. Tasapainoile siis ilolla ja vaikka hieman horjahdellen akateemisten rientojen ja luentojen välissä. <%= link_to 'Tuutorimme', '/tuutorit' %> auttavat sinua tässä oikein mielellään! Matrix pyrkii tekemään opiskelustasi unohtumatonta!<br/><br/>Yhden asian voin sinulle luvata: Matematiikka on parasta, mitä voi opiskella! Tältä se ei kuitenkaan aina tunnu. Harva ala voi varmasti tarjota samanlaisia ymmärtämättömyyden tunteita. Joskus kahden tunnin luennosta saa kiinni noin kolmen lauseen verran ja laskaritehtävätkin saattavat silloin tällöin näyttää natiivien arabian puhujien kielioppitehtäviltä. Toistuvat ahaa-elämykset tarjoavat kuitenkin aina vaan uutta intoa jatkaa opiskelua. Harva ala harjoittaa yhtä tehokkaasti ajattelua ja sinnikkyyttä! Aluksi matematiikka saattaa vaikuttaa hajanaiselta kentältä, kun ensimmäisen vuoden kurssit käsittelevät vain palasia tästä. Myöhemmin eri matematiikan alat kuitenkin kietoutuvat kauniisti yhteen - mitä korkeammalle kiipeät matematiikan opinnoissasi, sitä kauemmas näet! Älä siis säikähdä deltaa ja epsilonia. Vielä jonain päivänä ne ovat ystäviäsi!<br/><br/>Tervetuloa mukaan! Ehkä kohtaamme syksyllä Exactumissa. Pääovesta sisään, kierreportaita kolmoskerrokseen, käytävää eteenpäin, oikealle sisään meemeillä vuoratusta ovesta, vihreälle sohvalle istumaan. Sieltä meidät löytää! Ja muista, että matemaatikolle todellinen maailma on vain yksi erikoistapaus!<br/><br/>Tiia Björk<br/>Puheenjohtaja 2016<br/>Matrix ry</p>
+		<p>Ainejärjestön aktiivit ovat tavallisia opiskelijoita, joita kaikkia kiinnostaa jokin osa-alue ainejärjestötoiminnassa. Sinäkin olet tervetullut järjestämään mitä ikinä haluatkaan, jos sellainen sinua kiinnostaa! Nykyisten aktiivien kuvat ja yhteystiedot löydät <%= link_to 'Hallitus ja virkailijat', '/hallitus' %> -sivulta. Puheenjohtajana pyrin hengailemaan tapahtumissanne niin aktiivisesti, että olen jutellut jokaisen teidän kanssa jouluun mennessä. Toivon myös saavani sinun hihasta vetoa, jos jokin on epäselvää ja kaipaat apua, tai muuten vain tarvitset lounasseuraa.</p><p>Matemaatikoita voit tavata ympäri Kumpulaa, mutta jos mieltä askarruttaa jokin kysymys, kannattaa ehdottomasti suunnata suoraan Exactumin kolmanteen kerrokseen "Komeroon". <%= link_to 'Komero', '/komero' %> on meidän ikioma opiskelijahuoneemme, josta löytyy muun muassa kahvia, lautapelejä, muutama tietokone, vanhoja jääriä (jotka auttavat kuitenkin erittäin mieluusti matemaattisissa ongelmissa), kurssikirjoja lainaan ja syksyllä toivon mukaan myös sinut! Komero saattaa tuntua jännittävältä paikalta, mutta lupaan, siitä voi tulla toinen kotisi, jos vaan uskaltaudut kerran sisään! <br/><br/>Olet mitä luultavimmin siirtymässä elämässäsi uuteen ja ihmeelliseen vaiheeseen. Olet ehkä opiskellut yliopistossa jo aiemmin, ehkä et, mutta haluan silti jakaa muutamia selviytymisvinkkejä. Olet nyt täysin vastuussa itsestäsi ja omista opiskeluistasi - varo akateemisesta vapaudesta huumaantumista! Pahinta onkin, kun vääristä valinnoistaan ei voi syyttää ketään muuta kuin itseään. Kannustan ottamaan fuksivuodesta kaiken irti! Kokeile kognitiotieteen sivuaineopintoja, hairahda kiertotielle aamun pikkutuntien kotimatkalla, nappaa kurssi jonka nimikään ei sano sinulle yhtään mitään (&quot;topologia?&quot;), ja aloita rohkeasti keskusteluja tuntemattomien ihmisten kanssa. Saat valitettavasti elämässäsi vain yhden matematiikan fuksivuoden, ja se on aivan käsillä. Tasapainoile siis ilolla ja vaikka hieman horjahdellen akateemisten rientojen ja luentojen välissä. <%= link_to 'Tuutorimme', '/tuutorit' %> auttavat sinua tässä oikein mielellään! Matrix pyrkii tekemään opiskelustasi unohtumatonta!<br/><br/>Yhden asian voin sinulle luvata: Matematiikka on parasta, mitä voi opiskella! Tältä se ei kuitenkaan aina tunnu. Harva ala voi varmasti tarjota samanlaisia ymmärtämättömyyden tunteita. Joskus kahden tunnin luennosta saa kiinni noin kolmen lauseen verran ja laskaritehtävätkin saattavat silloin tällöin näyttää natiivien arabian puhujien kielioppitehtäviltä. Toistuvat ahaa-elämykset tarjoavat kuitenkin aina vaan uutta intoa jatkaa opiskelua. Harva ala harjoittaa yhtä tehokkaasti ajattelua ja sinnikkyyttä! Aluksi matematiikka saattaa vaikuttaa hajanaiselta kentältä, kun ensimmäisen vuoden kurssit käsittelevät vain palasia tästä. Myöhemmin eri matematiikan alat kuitenkin kietoutuvat kauniisti yhteen - mitä korkeammalle kiipeät matematiikan opinnoissasi, sitä kauemmas näet! Älä siis säikähdä deltaa ja epsilonia. Vielä jonain päivänä ne ovat ystäviäsi!<br/><br/>Tervetuloa mukaan! Ehkä kohtaamme syksyllä Exactumissa. Pääovesta sisään, kierreportaita kolmoskerrokseen, käytävää eteenpäin, oikealle sisään meemeillä vuoratusta ovesta, vihreälle sohvalle istumaan. Sieltä meidät löytää! Ja muista, että matemaatikolle todellinen maailma on vain yksi erikoistapaus!<br/><br/>Tiia Björk<br/>Puheenjohtaja 2016<br/>Matrix ry</p>
 
-	<p> </p>
-	<br>
-	<h2 id="Fuksille-Fuksisyksyntapahtumia2016" class="subtitle">Fuksisyksyn tapahtumia 2016</h2>
-
-	<p>Matrix ja muut matemaattis-luonnontieteellisen tiedekunnan opiskelijajärjestöt järjestävät syksyllä runsaasti fukseille tarkoitettuja tapahtumia, joissa on mahdollisuus tutustua sekä kanssafukseihin että vanhempiin opiskelijoihin, erityisesti tuutoreihin. Alla on listattu tärkeimmät syksyn tapahtumat lyhyiden kuvausten kera. HUOM! Tapahtumien päivämäärät tarkentuvat kesän mittaan. Lisää tietoa tapahtumista saat syksyllä näiltä nettisivuilta ja <%= link_to 'sähköpostilistalta', '/sahkopostilistat' %> sekä tietenkin tuutoriltasi. Kaiken tämän lisäksi kannattaa liittyä Facebookissa ryhmään &quot;<a href="https://www.facebook.com/groups/252927111752362/" class="external-link" rel="nofollow">Matematiikan ja tilastotieteen fuksit 2016</a>&quot;.</p>
-	<br>
-	<ul>
-		<li><strong>17.8. Varaslähtö elämään ja Matlun kesäbileet</strong><br/> 
-		Syksyn ensimmäinen fuksitapahtuma on jo kesällä! Suuntaamme Suomenlinnaan piknikille. Luvassa myös halukkaille pelejä ja muuta ohjelmaa. Yhteislähtö Rautatieaseman etuovilta, mainoksistakin tuttujen palloukkojen luota tapahtuu klo 14.00. Etsi käsiisi punahaalarista iloista porukkaa. Mikäli sattuu satamaan, tule silti paikalle. Keksitään kuitenkin jotakin tekemistä yhdessä! Varaslähdön jälkeen suuntaamme <a href="http://matlu.fi/" class="external-link" rel="nofollow">Matlun</a>, matemaattis-luonnontieteellisten opiskelijajärjestöjen yhteistyöjärjestön, järjestämiin Kumpulan kesäbileisiin.</li>
-	</ul>
-	<br>
-	<ul>
-		<li><strong>29.8 - 3.9 Orientoiva viikko</strong><br/> 
-
-		Matematiikan ja tilastotieteen laitos sekä matemaattis-luonnontieteellinen tiedekunta järjestävät orientoivalla viikolla uusille opiskelijoille runsaasti ohjelmaa, jonka on tarkoitus tutustuttaa yliopistoon ja antaa esimakua matematiikan opiskelusta. Orientoivan viikon maanantaina fuksit jaetaan pieniin ryhmiin, joita vetää akateemisesti vanhemmat opiskelijat, <%= link_to 'tuutorit', '/tuutorit' %>. Paikalle kannattaa siis tulla.<br/><br/></li>
-		<li><strong>30.8. Laitosiltapäivä</strong><br/>
-
-		Laitosiltamissa on mahdollisuus tutustua laitoksen henkilökuntaan. Ohessa myös lautapelien pelailua, arvontoja ja ruoka-tarjoiluja. Laitosiltama pidetään nimensä mukaisesti laitoksella, Exactumin 3. ja 4. kerroksen käytävillä klo 13:00-15:00.<br/><br/></li>
-		<li><span><strong>30.8. Fuksisport</strong></span>
-		<span> </span><br/>
-		<span>Rentoa pelailua ja leikkimistä urheilullisessa hengessä Vallillan laaksossa klo 15 eteenpäin. Yhteislähtö Laitosiltapäivän jälkeen Exactumin shakkilaudalta (ulko-oven lähellä) klo 15:15.</span><br/><span><br/></span></li>
-		<li><strong>31.8. Tiedebasaari &amp; Järjestötori</strong><br/>
-
-		<span>Kumpulan laitokset ja järjestöt esittäytyvät klo 13-16 Physicumin aulassa. Tiedebasaarin ohjelma löytyy <a href="http://www.helsinki.fi/ml/tiedebasaari/ohjelma.html" class="external-link" rel="nofollow">tämän linkin takaa.</a></span><br/><br/></li>
-
-		<li><strong>1.9. Rehtorin kättely</strong><br/>
-
-		<span>Rehtori pitää virallisen tervetulopuheen klo 14:00 Päärakennuksella Senaatintorin kupeessa. Rehtori aloittaa tasan klo 14:00, joten kannattaa olla pikkusen etuajassa narikkaa varten. </span><br/><span> </span></li>
+		<p> </p>
 		<br>
-		<li><strong>1.9. Helsinki City Tour</strong><br/>
+		<h2 id="Fuksille-Fuksisyksyntapahtumia2016" class="subtitle">Fuksisyksyn tapahtumia 2016</h2>
 
-		<span>Tutustutaan yhdessä opiskelun ja matemaatikkojen kannalta tärkeisiin paikkoihin Helsingin keskustassa. Yhteislähtö rehtorin kättelyn jälkeen klo 14:45 Tuomiokirkon portailta. Odotamme rehtorin kättelystä tulevat mukaan!</span><br/><strong><br/></strong></li>
+		<p>Matrix ja muut matemaattis-luonnontieteellisen tiedekunnan opiskelijajärjestöt järjestävät syksyllä runsaasti fukseille tarkoitettuja tapahtumia, joissa on mahdollisuus tutustua sekä kanssafukseihin että vanhempiin opiskelijoihin, erityisesti tuutoreihin. Alla on listattu tärkeimmät syksyn tapahtumat lyhyiden kuvausten kera. HUOM! Tapahtumien päivämäärät tarkentuvat kesän mittaan. Lisää tietoa tapahtumista saat syksyllä näiltä nettisivuilta ja <%= link_to 'sähköpostilistalta', '/sahkopostilistat' %> sekä tietenkin tuutoriltasi. Kaiken tämän lisäksi kannattaa liittyä Facebookissa ryhmään &quot;<a href="https://www.facebook.com/groups/252927111752362/" class="external-link" rel="nofollow">Matematiikan ja tilastotieteen fuksit 2016</a>&quot;.</p>
+		<br>
+		<ul>
+			<li><strong>17.8. Varaslähtö elämään ja Matlun kesäbileet</strong><br/> 
+			Syksyn ensimmäinen fuksitapahtuma on jo kesällä! Suuntaamme Suomenlinnaan piknikille. Luvassa myös halukkaille pelejä ja muuta ohjelmaa. Yhteislähtö Rautatieaseman etuovilta, mainoksistakin tuttujen palloukkojen luota tapahtuu klo 14.00. Etsi käsiisi punahaalarista iloista porukkaa. Mikäli sattuu satamaan, tule silti paikalle. Keksitään kuitenkin jotakin tekemistä yhdessä! Varaslähdön jälkeen suuntaamme <a href="http://matlu.fi/" class="external-link" rel="nofollow">Matlun</a>, matemaattis-luonnontieteellisten opiskelijajärjestöjen yhteistyöjärjestön, järjestämiin Kumpulan kesäbileisiin.</li>
+		</ul>
+		<br>
+		<ul>
+			<li><strong>29.8 - 3.9 Orientoiva viikko</strong><br/> 
 
-		<li><strong>1.9 Fuksipiknik</strong><br/>
+			Matematiikan ja tilastotieteen laitos sekä matemaattis-luonnontieteellinen tiedekunta järjestävät orientoivalla viikolla uusille opiskelijoille runsaasti ohjelmaa, jonka on tarkoitus tutustuttaa yliopistoon ja antaa esimakua matematiikan opiskelusta. Orientoivan viikon maanantaina fuksit jaetaan pieniin ryhmiin, joita vetää akateemisesti vanhemmat opiskelijat, <%= link_to 'tuutorit', '/tuutorit' %>. Paikalle kannattaa siis tulla.<br/><br/></li>
+			<li><strong>30.8. Laitosiltapäivä</strong><br/>
 
-		Fuksipiknik iltapäivällä Kaivopuistossa hyvässä seurassa.<br/><br/></li>
+			Laitosiltamissa on mahdollisuus tutustua laitoksen henkilökuntaan. Ohessa myös lautapelien pelailua, arvontoja ja ruoka-tarjoiluja. Laitosiltama pidetään nimensä mukaisesti laitoksella, Exactumin 3. ja 4. kerroksen käytävillä klo 13:00-15:00.<br/><br/></li>
+			<li><span><strong>30.8. Fuksisport</strong></span>
+			<span> </span><br/>
+			<span>Rentoa pelailua ja leikkimistä urheilullisessa hengessä Vallillan laaksossa klo 15 eteenpäin. Yhteislähtö Laitosiltapäivän jälkeen Exactumin shakkilaudalta (ulko-oven lähellä) klo 15:15.</span><br/><span><br/></span></li>
+			<li><strong>31.8. Tiedebasaari &amp; Järjestötori</strong><br/>
 
-		<li><strong>2.9. Kumpula-suunnistus</strong><br/>
+			<span>Kumpulan laitokset ja järjestöt esittäytyvät klo 13-16 Physicumin aulassa. Tiedebasaarin ohjelma löytyy <a href="http://www.helsinki.fi/ml/tiedebasaari/ohjelma.html" class="external-link" rel="nofollow">tämän linkin takaa.</a></span><br/><br/></li>
 
-		Tärkeisiin paikkoihin tutustumista Kumpulassa suunnistuksen muodossa.  <br/><span><br/></span></li>
+			<li><strong>1.9. Rehtorin kättely</strong><br/>
 
-		<li><strong>2.9. Matlun fuksibileet</strong><br/>
+			<span>Rehtori pitää virallisen tervetulopuheen klo 14:00 Päärakennuksella Senaatintorin kupeessa. Rehtori aloittaa tasan klo 14:00, joten kannattaa olla pikkusen etuajassa narikkaa varten. </span><br/><span> </span></li>
+			<br>
+			<li><strong>1.9. Helsinki City Tour</strong><br/>
 
-		<span>Matemaattis-luonnontieteellisen tiedekunnan tiedekuntajärjestö Matlun fuksibileet.</span><br/><span><br/></span></li>
+			<span>Tutustutaan yhdessä opiskelun ja matemaatikkojen kannalta tärkeisiin paikkoihin Helsingin keskustassa. Yhteislähtö rehtorin kättelyn jälkeen klo 14:45 Tuomiokirkon portailta. Odotamme rehtorin kättelystä tulevat mukaan!</span><br/><strong><br/></strong></li>
 
-		<li><strong>4.9. Maaniset fuksipelailut</strong><br/>Hauskaa lautapelien pelailua ja hengailua fysiikan ja tietojenkäsittelytieteen uusien opiskelijoiden kanssa Uudella Ylioppilastalolla alkaen klo 15.<br/><br/></li>
+			<li><strong>1.9 Fuksipiknik</strong><br/>
 
-		<li><strong>5.9. Yliopiston avajaiskarnevaalit</strong><br/>
+			Fuksipiknik iltapäivällä Kaivopuistossa hyvässä seurassa.<br/><br/></li>
 
-		<span>Yliopiston avajaiskarnevaalit keskustakampuksella klo 14 alkaen. Mahdollisuus tutustua erilaisiin yliopistolla toimiviin järjestöihin. Lisäksi myynnissä haalarimerkkejä ja tarjolla erilaista naposteltavaa ja juotavaa.</span><br/><br/></li>
+			<li><strong>2.9. Kumpula-suunnistus</strong><br/>
 
-		<li><strong>5.9. Limeksen Ex Tempore -bileet</strong><br/>
+			Tärkeisiin paikkoihin tutustumista Kumpulassa suunnistuksen muodossa.  <br/><span><br/></span></li>
 
-		Limeksen järjestämät fuksibileet. Alkaa 20:00 Kaivohuoneella.<br/><br/></li><li><strong>8.9. Fuksiolympialaiset</strong><br/><span>Lisää rentoa pelailua ja leikkimistä, tällä kertaa kilpailullisen rastikierroksen muodossa Kaisaniemenpuistossa klo 16:00 alkaen.</span><br/><br/></li>
+			<li><strong>2.9. Matlun fuksibileet</strong><br/>
 
-		<li><strong>9.9 Kissojen yö</strong><br/>
+			<span>Matemaattis-luonnontieteellisen tiedekunnan tiedekuntajärjestö Matlun fuksibileet.</span><br/><span><br/></span></li>
 
-		<span style="color: rgb(96,96,96);">Kierros Korkeasaaren Kissojen yössä kissaeläinten parissa. Yhteislähtö palloukoilta 15:30.</span><br/><span><br/></span></li>
+			<li><strong>4.9. Maaniset fuksipelailut</strong><br/>Hauskaa lautapelien pelailua ja hengailua fysiikan ja tietojenkäsittelytieteen uusien opiskelijoiden kanssa Uudella Ylioppilastalolla alkaen klo 15.<br/><br/></li>
 
-		<li><strong>15.9. Fuksiaiset</strong><br/>
+			<li><strong>5.9. Yliopiston avajaiskarnevaalit</strong><br/>
 
-		<span>Matrixin fuksiaiset, lähtö klo 15:00-16:00 Klusterilta Kokoushuoneesta. Kierrätte ympäri Helsinkiä rasteilla, joissa suoritatte tehtäviä täysillä! </span><br/><strong><br/></strong></li>
+			<span>Yliopiston avajaiskarnevaalit keskustakampuksella klo 14 alkaen. Mahdollisuus tutustua erilaisiin yliopistolla toimiviin järjestöihin. Lisäksi myynnissä haalarimerkkejä ja tarjolla erilaista naposteltavaa ja juotavaa.</span><br/><br/></li>
 
-		<li><strong>28.9. Fuksiseikkailu</strong><br/>
+			<li><strong>5.9. Limeksen Ex Tempore -bileet</strong><br/>
 
-		HYYn järjestämä koko yliopiston laajuinen Fuksiseikkailu vie sinut ja joukkueesi ympäri Helsinkiä! Pääset kiertämään rasteja niin humanistien kuin lääkiksen luona! <br/><br/></li>
+			Limeksen järjestämät fuksibileet. Alkaa 20:00 Kaivohuoneella.<br/><br/></li><li><strong>8.9. Fuksiolympialaiset</strong><br/><span>Lisää rentoa pelailua ja leikkimistä, tällä kertaa kilpailullisen rastikierroksen muodossa Kaisaniemenpuistossa klo 16:00 alkaen.</span><br/><br/></li>
 
-		<li><strong>30.9. Nintendo-ilta</strong><br/>
+			<li><strong>9.9 Kissojen yö</strong><br/>
 
-		Fukseille tarkoitetussa Nintendo-illassa voivat niin kokeneet konkarit kuin ensimmäistä kertaa konsolia koskettavat ottaa mittaa toisistaan hauskoissa turnauksissa! Vapaata pelausta myös, ja mukaan voi ottaa myös omia laitteita! Klusterilla. <br/><strong><br/></strong></li>
+			<span style="color: rgb(96,96,96);">Kierros Korkeasaaren Kissojen yössä kissaeläinten parissa. Yhteislähtö palloukoilta 15:30.</span><br/><span><br/></span></li>
 
-		<li><strong>9.10. Sitsit</strong><br/>
+			<li><strong>15.9. Fuksiaiset</strong><br/>
 
-		Opetellaan yhdessä akateemistenpöytäjuhlien etikettiä perinteikkässä, mutta niin ihanassa Alina-salissa.<br/><br/></li>
+			<span>Matrixin fuksiaiset, lähtö klo 15:00-16:00 Klusterilta Kokoushuoneesta. Kierrätte ympäri Helsinkiä rasteilla, joissa suoritatte tehtäviä täysillä! </span><br/><strong><br/></strong></li>
 
-		<li><strong>13.10 Solinor-excu</strong><br/>
+			<li><strong>28.9. Fuksiseikkailu</strong><br/>
 
-		Fukseille suunnattu tutustuminen ohjelmistoyritys Solinoriin.<br/><br/></li>
+			HYYn järjestämä koko yliopiston laajuinen Fuksiseikkailu vie sinut ja joukkueesi ympäri Helsinkiä! Pääset kiertämään rasteja niin humanistien kuin lääkiksen luona! <br/><br/></li>
 
-	</ul>
+			<li><strong>30.9. Nintendo-ilta</strong><br/>
 
-	<ul>
-		<li><strong>29. - 31.10. Fuksiristeily Tukholmaan</strong><br/>
+			Fukseille tarkoitetussa Nintendo-illassa voivat niin kokeneet konkarit kuin ensimmäistä kertaa konsolia koskettavat ottaa mittaa toisistaan hauskoissa turnauksissa! Vapaata pelausta myös, ja mukaan voi ottaa myös omia laitteita! Klusterilla. <br/><strong><br/></strong></li>
 
-		KJYR, Kumpulan järjestöjen yhteisristeily, tutummin fuksiristeily Tukholmaan.<br/><br/></li>
+			<li><strong>9.10. Sitsit</strong><br/>
 
-		<li><strong>Nuuksiovaellus</strong><strong><br/>
+			Opetellaan yhdessä akateemistenpöytäjuhlien etikettiä perinteikkässä, mutta niin ihanassa Alina-salissa.<br/><br/></li>
 
-		</strong>Geologian opiskelijoiden kanssa järjestettävä vaellus Nuuksiossa. Luvassa kauniita maisemia ja tirisevää makkaraa (ja soijanakkeja).<br/><span><br/></span></li>
+			<li><strong>13.10 Solinor-excu</strong><br/>
 
-		<li><strong>Fazer-excursio</strong><br/>
+			Fukseille suunnattu tutustuminen ohjelmistoyritys Solinoriin.<br/><br/></li>
 
-		Tutustumiskierros Fazerin toimintaan, ja varsinkin makeisvalikoimaan.</li>
-	</ul>
+		</ul>
+
+		<ul>
+			<li><strong>29. - 31.10. Fuksiristeily Tukholmaan</strong><br/>
+
+			KJYR, Kumpulan järjestöjen yhteisristeily, tutummin fuksiristeily Tukholmaan.<br/><br/></li>
+
+			<li><strong>Nuuksiovaellus</strong><strong><br/>
+
+			</strong>Geologian opiskelijoiden kanssa järjestettävä vaellus Nuuksiossa. Luvassa kauniita maisemia ja tirisevää makkaraa (ja soijanakkeja).<br/><span><br/></span></li>
+
+			<li><strong>Fazer-excursio</strong><br/>
+
+			Tutustumiskierros Fazerin toimintaan, ja varsinkin makeisvalikoimaan.</li>
+		</ul>
+	<% end %>
 </div>

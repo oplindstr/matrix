@@ -5,6 +5,10 @@ class PagesController < ApplicationController
 
   end
 
+  def fuksille
+    @text = Text.where('name = ?', 'Fuksille').first
+  end
+
   def fuksiopas
     @virkatyyppi = PositionType.where('name = ?', 'Tuutorivastaava').first
     if @virkatyyppi
@@ -13,6 +17,7 @@ class PagesController < ApplicationController
         @fuksijatuutorivastaavat = @fuksijatuutorivastaava.current_members
       end
     end
+    @text = Text.where('name = ?', 'Fuksiopas').first
   end
 
   def index
