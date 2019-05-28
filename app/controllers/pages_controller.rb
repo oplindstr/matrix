@@ -5,6 +5,10 @@ class PagesController < ApplicationController
 
   end
 
+  def english
+    @text = Text.where('name = ?', 'In English').first
+  end
+
   def fuksille
     @text = Text.where('name = ?', 'Fuksille').first
   end
