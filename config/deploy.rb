@@ -33,6 +33,7 @@ set :puma_init_active_record, true  # Change to false when not using ActiveRecor
 ## Linked Files & Directories (Default None):
 # set :linked_files, %w{config/database.yml} test
 set :linked_dirs,  %w{public}
+set :linked_files, %w{config/dkim/dkim.private.key}
 
 namespace :puma do
   desc 'Create Directories for Puma Pids and Socket'

@@ -1,5 +1,5 @@
 class EventMailer < ApplicationMailer
-	default from: 'events@matrix.fi'
+	default from: 'events@matrix-ry.fi'
  
   def send_event_email(event)
     @event = event
