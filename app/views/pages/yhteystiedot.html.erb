@@ -1,18 +1,21 @@
 <div class="box">
   <h1 class="title">Yhteystiedot</h1>
-  <br>
-  <h3 class="subtitle">Postiosoite ja toimisto</h3>
+  <% if @post %>
+    <pre><%= @post.value.html_safe %></pre>
+  <% else %>
+    <h3 class="subtitle">Postiosoite ja toimisto</h3>
 
-  <p>Matrixin postiosoite on</p>
+    <p>Matrixin postiosoite on</p>
 
-  Matematiikan ja tilastotieteen laitos<br>
-  Matrix ry<br>
-  PL 68 Pietari Kalmin katu 5, Exactum<br>
-  00014 Helsingin yliopisto<br>
+    Matematiikan ja tilastotieteen laitos<br>
+    Matrix ry<br>
+    PL 68 Pietari Kalmin katu 5, Exactum<br>
+    00014 Helsingin yliopisto<br>
 
-  <br>
+    <br>
 
-  <p>Toimistona palvelee Exactumin matematiikan ja tilastotieteen laitoksen opiskelijahuone, Exactum C338.</p>
+    <p>Toimistona palvelee Exactumin matematiikan ja tilastotieteen laitoksen opiskelijahuone, Exactum C338.</p>
+  <% end %>
   <br>
   <h3 class="subtitle">Sähköpostit</h3>
 
@@ -40,9 +43,7 @@
   </ul>
 
   <% if @other_info %>
-    <pre>
-<%= @other_info.value.html_safe %>
-    </pre>
+    <pre><%= @other_info.value.html_safe %></pre>
   <% else %>
 
     <p>Aktiivisähköpostilista: matrix-ry</p>

@@ -36,11 +36,38 @@ class PagesController < ApplicationController
     @news = News.all.order(priority: :desc, id: :desc).limit(@news_count)
     @events = Event.where('starttime > ?', Time.now).order(starttime: :asc).limit(@event_count)
     @info = Text.where('name = ?', 'Etusivun info').first
+    @tervetuloa = Text.where('name = ?', 'Tervetuloa').first
+  end
+
+  def jarjesto
+    @text = Text.where('name = ?', 'Järjestö').first
+  end
+
+  def kerhot
+    @text = Text.where('name = ?', 'Kerhot').first
+  end
+
+  def klusteri
+    @text = Text.where('name = ?', 'Klusteri').first
+  end
+
+  def komero
+    @products = Product.all.order(:priority, :name)
+    @text = Text.where('name = ?', 'Komero').first
+  end
+
+  def kurssikuvauksia
+    @text = Text.where('name = ?', 'Kurssikuvauksia').first
+  end
+
+  def sahkopostilistat
+    @text = Text.where('name = ?', 'Sähköpostilistat').first
   end
 
   def toiminta
     @this_year = Time.now.beginning_of_year
     @years = Event.where('starttime < ?', @this_year).order(starttime: :desc).pluck(:starttime).uniq{ |m| m.year }.map!{ |m| m.year }
+    @text = Text.where('name = ?', 'Toiminta').first
   end
 
   def tuutorit
@@ -51,6 +78,11 @@ class PagesController < ApplicationController
         @fuksijatuutorivastaavat = @fuksijatuutorivastaava.current_members
       end
     end
+    @text = Text.where('name = ?', 'Tuutorit').first
+  end
+
+  def virkailijaksi
+    @text = Text.where('name = ?', 'Virkailijaksi').first
   end
 
   def yrityksille
@@ -65,11 +97,7 @@ class PagesController < ApplicationController
       @next_anniversary += 1
     end
 
-    @next_anniversary
-  end
-
-  def komero
-    @products = Product.all.order(:priority, :name)
+    @text = Text.where('name = ?', 'Yrityksille').first
   end
 
   def sanasto
@@ -77,6 +105,7 @@ class PagesController < ApplicationController
   end
 
   def yhteystiedot
+    @post = Text.where('name = ?', 'Postiosoite ja toimisto').first
     @other_info = Text.where('name = ?', 'Muut yhteystiedot').first
     @contact_positions = Position.where(show_in_contact_info: true).order(:priority)
   end

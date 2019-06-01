@@ -1,11 +1,9 @@
 <div class="box">
-	<h1 class="title">Fuksille</h1>
-	<br>
 	<% if @text %>
-		<pre>
-<%= @text.value.html_safe %>
-		</pre>
+		<pre><%= @text.value.html_safe %></pre>
 	<% else %>
+		<h1 class="title">Fuksille</h1>
+		<br>
 		<h2 id="Fuksille-Tervehdys!" class="subtitle">Tervehdys!</h2>
 
 		<p>Terve uusi opiskelija, eli <strong>fuksi</strong>! Olet löytänyt käsiisi matematiikan opiskelijaryhmä Matrix ry:n puheenjohtajan tervehdyksen - ja kuten matemaatikoilla on tapana, niin aloitan tekstini määrittelemällä nämä molemmat käsitteet. Matematiikan opiskelijaryhmä Matrix ry, tuttavallisemmin Matrix, on matematiikan ainejärjestö Helsingin yliopistossa. Ainejärjestö, mikä se on?! Se on se lähin taho, jota kiinnostaa juuri sinun opiskelusi ja hyvinvointisi opiskelijanäkökulmasta. Matrixin voimavara on todella monipuolinen toiminta värikkäälle jäsenistölleen. Järjestämme aktiivisesti tapahtumia niin rentojen hengailujen, sitsien, urheilun kuin kulttuurinkin muodossa, sekä tärkeänä lisänä osallistumme opetuksen kehitykseen. Matrixiin kuuluu myös yhteistyö yrityksien kanssa. Tarjoamme siis todella jokaiselle jotakin.</p>

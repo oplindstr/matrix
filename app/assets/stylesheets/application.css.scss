@@ -43,8 +43,15 @@ footer img {
 }
 
 .board_member_image > img {
+  object-fit: cover;
 	width: 240px;
 	height: 320px;
+}
+
+.product_image {
+  object-fit: cover;
+  width: 240px;
+  height: 320px;
 }
 
 @media screen and (min-width: 768px) {

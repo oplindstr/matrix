@@ -1,4 +1,7 @@
 <div class="box">
+	<% if @text %>
+    <pre><%= @text.value.html_safe %></pre>
+  <% else %>
 	<h1 class="title">Kerhot</h1>
 
 	<p>Matrixissa toimii joukko erilaisia kerhoja, joiden toimintaan kaikki voivat osallistua. Matrixin vanhoja, jo toimintansa lopettaneita, kerhoja ovat elokuvakerho, filosofiakerho, käsityökerho Silmukka, kuoro Weierstrass, naiskerho Trinity, AV-komitea, hinguere-kerho, kyykkäkerho ja graduntekijöiden vertaistukikerho ViAGra </p>
@@ -26,4 +29,5 @@
 	<p>Kerhon voi perustaa kuka tahansa matrixlainen. Jos keksit loistavan idean, jonka luulet kiinnostavan myös muita jäseniä ja jonka pohjalta haluaisit perustaa uuden kerhon taikka olet kiinnostunut herättämään henkiin jonkin vanhoista kerhoista, ota yhteyttä Matrixin hallitukseen. Tarkistathan kuitenkin ensin, ettei samankaltaista kerhoa ole jo toiminnassa. Hallitus ja muut kerhonvetäjät antavat mielellään neuvoja mm. tilojen varaamisesta. Lisäksi hallitus voi myöntää pientä avustusta kerhoille.</p>
 
 	<p> </p>
+  <% end %>
 </div>

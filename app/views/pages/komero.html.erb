@@ -1,34 +1,40 @@
 <div class="box">
-  <div class="columns">
-    <div class="column">
-      <h1 class="title">Komero</h1>
 
-      <p>Komero on matematiikan opiskelijoiden opiskelijahuone. Se sijaitsee Exactumin kolmannessa kerroksessa ja sen numero on C338.
+  <% if @text %>
+    <pre><%= @text.value.html_safe %></pre>
+  <% else %>
+    <div class="columns">
+      <div class="column">
+        <h1 class="title">Komero</h1>
 
-      Komerossa hengaaminen on suosittua luentotauolla ja hyppytunneilla. Siellä voi esimerkiksi pelata korttipelejä, surffata netissä tai vain jutustella muiden matemaatikkojen kanssa.</p>
+        <p>Komero on matematiikan opiskelijoiden opiskelijahuone. Se sijaitsee Exactumin kolmannessa kerroksessa ja sen numero on C338.
+
+        Komerossa hengaaminen on suosittua luentotauolla ja hyppytunneilla. Siellä voi esimerkiksi pelata korttipelejä, surffata netissä tai vain jutustella muiden matemaatikkojen kanssa.</p>
+      </div>
+
+      <div class="column">
+        <%= image_tag('komero.png') %>
+      </div>
     </div>
+    <br>
+    <h3 class="subtitle"> Ohjeet Komeron käyttöön </h3>
 
-    <div class="column">
-      <%= image_tag('komero.png') %>
-    </div>
-  </div>
-  <br>
-  <h3 class="subtitle"> Ohjeet Komeron käyttöön </h3>
-
-  <p> Komerossa tulee noudattaa yleistä järkeä toimissaan. Siellä ei ole palkattua siivoajaa, joka korjaisi roskia pöydiltä eikä tiskikonetta. </p>
+    <p> Komerossa tulee noudattaa yleistä järkeä toimissaan. Siellä ei ole palkattua siivoajaa, joka korjaisi roskia pöydiltä eikä tiskikonetta. </p>
 
 
-  <p> Komerossa on nykyään neljä kaikkien vapaasti käytettävissä olevaa tietokonetta, joista kahdessa on Linux ja kahdessa Windows. Koneille kirjaudutuaan yliopiston pääkäyttötunnuksella ja niillä pääsee nettiin ja tulostamaan. </p>
+    <p> Komerossa on nykyään neljä kaikkien vapaasti käytettävissä olevaa tietokonetta, joista kahdessa on Linux ja kahdessa Windows. Koneille kirjaudutuaan yliopiston pääkäyttötunnuksella ja niillä pääsee nettiin ja tulostamaan. </p>
 
-  <p> Kahvi- ja napostelumyynti toimii viivoilla, joita saa eurolla viisi. Hinnasto löytyy keittiön seinästä, nykyisiin valikoimiin kuuluu vaihtelevasti suklaata eri kokoisina ja makuisina paketteina, tikkareita, lakuja ja pikapuuroja – ajoittain myynnissä saattaa olla myös pieniä karkkipusseja. Juomavalikoima kattaa teen ja kahvin sekä niihin liittyvät hienoudet kuten sokerin ja maidon. Kahvia saa kukin itse keittää ja mikäli jokin loppuu kannattaa huudella 'avaimellista', joka voisi antaa lisää tuotetta käytävän lukollisista kaapeista. Jokainen tuo oman mukin, josta teetä tai kahvia juo. </p>
+    <p> Kahvi- ja napostelumyynti toimii viivoilla, joita saa eurolla viisi. Hinnasto löytyy keittiön seinästä, nykyisiin valikoimiin kuuluu vaihtelevasti suklaata eri kokoisina ja makuisina paketteina, tikkareita, lakuja ja pikapuuroja – ajoittain myynnissä saattaa olla myös pieniä karkkipusseja. Juomavalikoima kattaa teen ja kahvin sekä niihin liittyvät hienoudet kuten sokerin ja maidon. Kahvia saa kukin itse keittää ja mikäli jokin loppuu kannattaa huudella 'avaimellista', joka voisi antaa lisää tuotetta käytävän lukollisista kaapeista. Jokainen tuo oman mukin, josta teetä tai kahvia juo. </p>
 
-  <p> Yhteisessä käytössä on lautasia ja haarukoita sekä veitsiä, joita voi käyttää esimerkiksi mikroaterian lämmittämiseen ja syömiseen. Näiden lisäksi on joukko valkoisia ja sinisiä Matrix-tekstillä koristeltuja posliinimukeja. Oman kupin tuominen on kuitenkin suotavaa, jos juo kahvia tai teetä usein. Komerosta löytyy siis mikro, joka saattaa jopa toimiakin. <strong>Kaikki käyttämänsä likaiset astiat on tiskattava ja laitettava takaisin paikoilleen.</strong> </p>
+    <p> Yhteisessä käytössä on lautasia ja haarukoita sekä veitsiä, joita voi käyttää esimerkiksi mikroaterian lämmittämiseen ja syömiseen. Näiden lisäksi on joukko valkoisia ja sinisiä Matrix-tekstillä koristeltuja posliinimukeja. Oman kupin tuominen on kuitenkin suotavaa, jos juo kahvia tai teetä usein. Komerosta löytyy siis mikro, joka saattaa jopa toimiakin. <strong>Kaikki käyttämänsä likaiset astiat on tiskattava ja laitettava takaisin paikoilleen.</strong> </p>
 
-  <p> Jääkaappi on myös vapaassa käytössä, mutta kaikkeen sinne menevään pitää laittaa nimi ja päivämäärä. Ilman asiallisia merkintöjä tuotteet joutuvat roskiin (tai muiden suihin). Myös tuotteet joiden parasta ennen -päivä on mennyt siivotaan pois kaapista. </p>
-  <br>
-  <h3 class="subtitle">Tuotemyynti</h3>
+    <p> Jääkaappi on myös vapaassa käytössä, mutta kaikkeen sinne menevään pitää laittaa nimi ja päivämäärä. Ilman asiallisia merkintöjä tuotteet joutuvat roskiin (tai muiden suihin). Myös tuotteet joiden parasta ennen -päivä on mennyt siivotaan pois kaapista. </p>
+    <br>
+    <h3 class="subtitle">Tuotemyynti</h3>
 
-  <p> Komerossa voi maksaa Matrixin vuosittaisen jäsenmaksunsa (lukuvuosi 2018-2019 3e, lukuvuodet 2018-2020 4e) ja ostaa haalarimerkkejä (2,5 euroa kappale), Matrix-t-paitoja (8 euroa) sekä Matrixin laulukirjoja (8 euroa). </p>
+    <p> Komerossa voi maksaa Matrixin vuosittaisen jäsenmaksunsa (lukuvuosi 2018-2019 3e, lukuvuodet 2018-2020 4e) ja ostaa haalarimerkkejä (2,5 euroa kappale), Matrix-t-paitoja (8 euroa) sekä Matrixin laulukirjoja (8 euroa). </p>
+
+  <% end %>
 
   <br>
 
@@ -37,7 +43,7 @@
       <% @products.each do |p| %>
         <div class="column is-one-quarter">
           <p class="subtitle level-item has-text-centered"><%= p.name %></p>
-          <%= image_tag(p.image, :class => "img-responsive") %>
+          <%= image_tag(p.image, :class => "product_image") %>
           <p class="subtitle level-item has-text-centered"><%= p.show_price %> €</p>
         </div>
       <% end %>

@@ -1,11 +1,8 @@
 <div class="box">
-	<h2 class="title">Sanastoa</h2>
-
 	<% if @text %>
-		<pre>
-<%= @text.value.html_safe %>
-		</pre>
+		<pre><%= @text.value.html_safe %></pre>
 	<% else %>
+	<h2 class="title">Sanastoa</h2>
 
 	<p><strong>alasauna</strong>: Uuden ylioppilastalon kellarissa sijaitseva pieni sauna, Mannerheimintie 5B<br/>
 	 <strong>Alina / Alina-sali</strong>: juhlatila Uuden ylioppilastalon 3. kerroksessa, Mannerheimintie 5A<br/>

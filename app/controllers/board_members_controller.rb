@@ -38,6 +38,8 @@ class BoardMembersController < ApplicationController
     @board_members = @board_members.sort_by { |f| f.priority_in_board_member_list(@year) }
     @supplementary_members = @supplementary_members.sort_by { |f| f.priority_in_board_member_list(@year) }
     @position_members = @position_members.sort_by { |f| f.priority_in_board_member_list(@year) }
+
+    @text = Text.where('name = ?', 'Hallitus ja virkailijat').first
  end
 
  def new

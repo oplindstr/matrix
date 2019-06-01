@@ -8,21 +8,25 @@
     <br>
 	<div class="columns">
 		<div class='column'>
-		    <h3 class="title is-4">Tervetuloa!</h3>
+			<% if @tervetuloa %>
+				<pre><%= @tervetuloa.value.html_safe %></pre>
+			<% else %>
+			    <h3 class="title is-4">Tervetuloa!</h3>
 
-		    <p>
-		    	Tervetuloa opiskelemaan matematiikan ja tilastotieteen laitokselle! Matrix on kaikkien matematiikan opiskelijoiden, siis myös sinun, ainejärjestö. Järjestämme syksyllä uusille opiskelijoille eli fukseille runsaasti toimintaa aina urheilusta ja excuista bileisiin, joten syksyllä ei varmasti tule tylsää.
+			    <p>
+			    	Tervetuloa opiskelemaan matematiikan ja tilastotieteen laitokselle! Matrix on kaikkien matematiikan opiskelijoiden, siis myös sinun, ainejärjestö. Järjestämme syksyllä uusille opiskelijoille eli fukseille runsaasti toimintaa aina urheilusta ja excuista bileisiin, joten syksyllä ei varmasti tule tylsää.
 
-		    	<br>
-		    	<br>
+			    	<br>
+			    	<br>
 
-				Tietoa fuksitapahtumistamme saat näiltä sivuilta, etenkin <%= link_to 'fuksisivultamme', '/fuksille' %>, sinulle lähetetystä Matrixin punaisesta fuksiläystäkkeestä ja syksyllä tuutoriltasi, joka on vanhempi fuksien auttamiseen perehdytetty opiskelija. <%= link_to 'Fuksioppaastamme', '/fuksiopas' %> löydät paljon opiskeluun liittyvää tietoa sekä apua. 
+					Tietoa fuksitapahtumistamme saat näiltä sivuilta, etenkin <%= link_to 'fuksisivultamme', '/fuksille' %>, sinulle lähetetystä Matrixin punaisesta fuksiläystäkkeestä ja syksyllä tuutoriltasi, joka on vanhempi fuksien auttamiseen perehdytetty opiskelija. <%= link_to 'Fuksioppaastamme', '/fuksiopas' %> löydät paljon opiskeluun liittyvää tietoa sekä apua. 
 
-				<br>
-				<br>
+					<br>
+					<br>
 
-				Ajankohtaisinta tietoa tulevista tapahtumista saat liittymällä Matrixin sähköpostilistalle. Katso myös kalenterimme.
-			</p>
+					Ajankohtaisinta tietoa tulevista tapahtumista saat liittymällä Matrixin sähköpostilistalle. Katso myös kalenterimme.
+				</p>
+			<% end %>
 		</div>
 		<div class='column'>
 			<%= image_tag("varaslahto2013.JPG") %>
@@ -81,8 +85,6 @@
 </div>
 <% if @info %>
     <div class="box">
-    	<pre>
-<%= @info.value.html_safe %>
-	    </pre>
+    	<pre><%= @info.value.html_safe %></pre>
 	</div>
 <% end %>
