@@ -101,3 +101,6 @@ gem 'carrierwave'
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 gem 'dkim'
+
+gem "actionview", ">= 4.2.11.1"
+gem "activejob", ">= 4.2.11"
