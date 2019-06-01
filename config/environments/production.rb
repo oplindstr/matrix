@@ -90,7 +90,7 @@ Rails.application.configure do
     domain: "matrix-ry.fi",
     authentication: "plain",
     user_name: "members@matrix-ry.fi",
-    password: ENV['EMAIL_PROVIDER_PASSWORD'],
+    password: ENV["EMAIL_PROVIDER_PASSWORD"],
     enable_starttls_auto: true
 }
   # Defaults to:
