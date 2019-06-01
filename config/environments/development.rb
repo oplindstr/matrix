@@ -36,7 +36,18 @@ Rails.application.configure do
   # Raises error for missing translations
   # config.action_view.raise_on_missing_translations = true
 
-  config.action_mailer.delivery_method = :sendmail
+  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.raise_delivery_errors = true
+  config.action_mailer.perform_deliveries = true
+  
+  config.action_mailer.smtp_settings = {
+    address:"mail04.domainhotelli.fi",
+    port:587,
+    authentication: "plain",
+    user_name: "members@matrix-ry.fi",
+    password: ENV['EMAIL_PROVIDER_PASSWORD'],
+    enable_starttls_auto: true
+}
   # Defaults to:
   # config.action_mailer.sendmail_settings = {
   #   location: '/usr/sbin/sendmail',

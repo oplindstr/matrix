@@ -87,10 +87,10 @@ Rails.application.configure do
   config.action_mailer.smtp_settings = {
     address:"mail04.domainhotelli.fi",
     port:587,
-    domain:"matrix-ry.fi",
+    domain: "matrix-ry.fi",
     authentication: "plain",
-    user_name: "olli-pekkalindstrom@hotmail.com",
-    password: ENV['APP_DATABASE_PASSWORD'],
+    user_name: "members@matrix-ry.fi",
+    password: ENV['EMAIL_PROVIDER_PASSWORD'],
     enable_starttls_auto: true
 }
   # Defaults to:
