@@ -2,7 +2,7 @@ source 'http://rubygems.org'
 
 gem "pkg-config"
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '4.2.8'
+gem 'rails', '4.2.11.1'
 # Use sqlite3 as the database for Active Record
 group :development, :test do
   gem 'sqlite3',  '1.3.13'
@@ -80,7 +80,6 @@ end
 
 group :test do
   gem 'factory_girl_rails'
-  gem 'capybara'
   gem 'launchy'
   gem 'simplecov', require: false
   gem "selenium-webdriver"
@@ -101,6 +100,3 @@ gem 'carrierwave'
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 gem 'dkim'
-
-gem "actionview", ">= 4.2.11.1"
-gem "activejob", ">= 4.2.11"
