@@ -29,7 +29,7 @@ class BoardMember < ActiveRecord::Base
   end
 
   def priority_in_board_member_list(year)
-    if self.member_id
+    if self.member
       return self.member.priority_in_board_member_list(year)
     end
     @positions = self.positions_by_year(year)
@@ -40,7 +40,7 @@ class BoardMember < ActiveRecord::Base
   end
 
   def positions_by_year(year)
-    if self.member_id
+    if self.member
       return self.member.positions_by_year(year)
     end
     return Position.joins(:position_members).where('position_members.year = ? and position_members.name = ?', year, self.name).uniq
