@@ -11,6 +11,9 @@
   <%= link_to 'Menneet tapahtumat', past_events_path %>
   <br>
   <br>
+  <% if @text %>
+  <pre><%= @text.value.html_safe %></pre>
+  <% end %>
 
   <% @events.each do |event| %>
 

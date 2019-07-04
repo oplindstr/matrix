@@ -18,7 +18,7 @@
 					<b> <%= @member.get_name %> </b><br>
 					<i> <%= @member.email %> </i>
 					<br><br>
-					<% @member.member.positions_by_year(@year).each do |position| %>
+					<% @member.positions_by_year(@year).each do |position| %>
 						<span> <%= position.name %> </span> <br>
 					<% end %>
 					<br>

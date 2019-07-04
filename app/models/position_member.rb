@@ -1,5 +1,5 @@
 class PositionMember < ActiveRecord::Base
-  belongs_to :position, dependent: :destroy
+  belongs_to :position
   belongs_to :member
   has_one :user, through: :member
 

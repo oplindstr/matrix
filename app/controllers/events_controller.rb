@@ -6,6 +6,7 @@ class EventsController < ApplicationController
   # GET /events
   # GET /events.json
   def index
+    @text = Text.where('name = ?', 'Kalenteri').first
     @events = Event.all.where('starttime > ?', Time.now).order(:starttime)
   end
 
