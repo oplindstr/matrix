@@ -25,13 +25,12 @@ class BoardMembersController < ApplicationController
 
     @supplementary_members = @all_board_members.select{ |m| m.supplementary == true }
 
-    @member_ids = @all_board_members.pluck(:member_id).uniq
-    @names = @all_board_members.pluck(:name).uniq
+    @member_ids = @all_board_members.where('member_id is not null').pluck(:member_id).uniq
+    @names = @all_board_members.where('name is not null').pluck(:name).uniq
 
     @position_members = PositionMember.where('year = ?', @year)
     @ids = @position_members.select("MIN(id) as id").group(:member_id,:name).collect(&:id)
     @position_members = @position_members.select { |m| @ids.include? m.id }
-
     @position_members = @position_members.select{ |m| not @member_ids.include? m.member_id }
     @position_members = @position_members.select{ |m| not @names.include? m.name }
 
