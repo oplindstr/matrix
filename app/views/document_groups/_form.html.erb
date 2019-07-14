@@ -3,7 +3,7 @@
   <div class="field">
     <%= f.label :name, 'Nimi', :class => 'label' %>
     <div class="control">
-      <%= f.text_field :name, :class => 'input', :required => true, :pattern => "[a-zA-Z0-9äöÄÖ\s]+" %>
+      <%= f.text_field :name, :class => 'input', :required => true, :pattern => "[a-zA-Z0-9äöÄÖ\s\-]+" %>
     </div>
   </div>
 
