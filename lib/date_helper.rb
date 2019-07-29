@@ -12,6 +12,19 @@ module DateHelper
     end
   end
 
+  def self.weekday_en(time)
+    day = time.strftime('%u')
+    case day
+      when '1' then 'Monday'
+      when '2' then 'Tuesday'
+      when '3' then 'Wednesday'
+      when '4' then 'Thursday'
+      when '5' then 'Friday'
+      when '6' then 'Saturday'
+      when '7' then 'Sunday'
+    end
+  end
+
   def self.full_date(time)
     return standard_date(time) + ' ' + time(time)
   end
@@ -26,6 +39,19 @@ module DateHelper
       when '5' then 'Pe'
       when '6' then 'La'
       when '7' then 'Su'
+    end
+  end
+
+  def self.abbreviated_weekday_en(time)
+    day = time.strftime('%u')
+    case day
+      when '1' then 'Mon'
+      when '2' then 'Tue'
+      when '3' then 'Wed'
+      when '4' then 'Thu'
+      when '5' then 'Fri'
+      when '6' then 'Sat'
+      when '7' then 'Sun'
     end
   end
 
@@ -47,6 +73,24 @@ module DateHelper
     end
   end
 
+  def self.month_name_en(time)
+    month = time.strftime('%m')
+    case month
+      when '01' then 'January'
+      when '02' then 'February'
+      when '03' then 'March'
+      when '04' then 'April'
+      when '05' then 'May'
+      when '06' then 'June'
+      when '07' then 'July'
+      when '08' then 'August'
+      when '09' then 'September'
+      when '10' then 'October'
+      when '11' then 'November'
+      when '12' then 'December'
+    end
+  end
+
   def self.standard_date(time)
     return time.strftime('%d.%m.%Y')
   end
@@ -61,9 +105,9 @@ module DateHelper
 
   def self.standard_time(time)
     if get_year(time).to_i != self.year
-      return weekday(time) + ' ' + standard_date(time) + ' klo ' + time(time)
+      return weekday(time) + ' / ' + weekday_en(time) + ' ' + standard_date(time) + ' ' + time(time)
     end
-    return weekday(time) + ' ' + date(time) + ' klo ' + time(time)
+    return weekday(time) + ' / ' + weekday_en(time) + ' ' + date(time) + ' ' + time(time)
   end
 
   def self.standard_time2(time)

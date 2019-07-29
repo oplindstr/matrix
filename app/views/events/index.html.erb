@@ -13,6 +13,7 @@
   <br>
   <% if @text %>
   <pre><%= @text.value.html_safe %></pre>
+  <br>
   <% end %>
 
   <% @events.each do |event| %>
@@ -41,7 +42,7 @@
 
     <br>
 
-    <pre><%= event.descr %></pre>
+    <pre><%= event.descr.html_safe %></pre>
 
     <% if event != @events.last %>
       <hr>
