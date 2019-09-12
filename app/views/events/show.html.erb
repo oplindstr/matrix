@@ -63,24 +63,26 @@
       </p>
     <% end %>
 
-    <% if @event.signup_cancellable and @event.signup_end and @event.signup_cancellable_until < @event.signup_end %>
+    <% if @event.signup_cancellable_until and @event.signup_end and @event.signup_cancellable_until < @event.signup_end %>
       <p>
       <strong>Ilmoittautuminen sitova alkaen:</strong>
       <%= DateHelper.full_date(@event.signup_cancellable_until) %>
       </p>
     <% end %>
 
-    <p>
-      <strong>Ilmoittautuneita:</strong>
-      <%= @event.signups.count %>
-      <% if @event.signup_limit %>
-        / <%= @event.signup_limit %>
-      <% end %>
-    </p>
+    <% if @event.signup_open or sub_admin %>
+      <p>
+        <strong>Ilmoittautuneita:</strong>
+        <%= @event.signups.count %>
+        <% if @event.signup_limit %>
+          / <%= @event.signup_limit %>
+        <% end %>
+      </p>
 
-    <% if !@event.empty %>
-      <p><%= link_to 'Näytä ilmoittautuneet', event_signups_path(@event.id) %></p>
-      <br>
+      <% if !@event.empty %>
+        <p><%= link_to 'Näytä ilmoittautuneet', event_signups_path(@event.id) %></p>
+        <br>
+      <% end %>
     <% end %>
 
     <% if !@event.members_only and !current_user %>

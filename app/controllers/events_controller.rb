@@ -7,7 +7,7 @@ class EventsController < ApplicationController
   # GET /events.json
   def index
     @text = Text.where('name = ?', 'Kalenteri').first
-    @events = Event.all.where('starttime > ?', Time.now).order(:starttime)
+    @events = Event.all.where('endtime > ?', Time.now).order(:starttime)
   end
 
   def past_events

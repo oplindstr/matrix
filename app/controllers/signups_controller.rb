@@ -12,7 +12,7 @@ class SignupsController < ApplicationController
   # GET /signups/1
   # GET /signups/1.json
   def show
-    if !@event.signup_required or !@event.signup_started
+    if !sub_admin and (!@event.signup_required or !@event.signup_open)
       redirect_to root_path
     else
       @signups = @event.signups
@@ -40,7 +40,11 @@ class SignupsController < ApplicationController
   def create
     @signup = Signup.new(signup_params)
 
+    @event = Event.find(@signup.event_id)
+
     if @signup.user_id and (!current_user or current_user.id != @signup.user_id)
+       redirect_to root_path
+    elsif !@event.signup_open
        redirect_to root_path
     else
       respond_to do |format|
@@ -49,7 +53,6 @@ class SignupsController < ApplicationController
           format.json { render :show, status: :created, location: event_path(@signup.event_id) }
         else
           @alert = @signup.errors
-          @event = Event.find(@signup.event_id)
           @event_parameters = @event.event_parameters
           format.html { render 'events/show'}
           format.json { render json: @signup.errors, status: :unprocessable_entity }
