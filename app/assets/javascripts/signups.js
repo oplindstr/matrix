@@ -1,5 +1,9 @@
 $(document).ready(function() {
-  $("#signups_table").dataTable({
-  	"paging": false
+  $('#signups_table').DataTable({
+  	paging: false,
+  	dom: 'Bfti',
+  	buttons: [
+        'copy'
+    ]
   });
 });

@@ -2,10 +2,12 @@
 
 // optional change '//' --> '//=' to enable
 
+//= require datatables/extensions/Responsive/dataTables.responsive
+//= require datatables/extensions/Buttons/dataTables.buttons
+//= require datatables/extensions/Buttons/buttons.html5
+//= require datatables/extensions/Buttons/buttons.print
+
 // require datatables/extensions/AutoFill/dataTables.autoFill
-// require datatables/extensions/Buttons/dataTables.buttons
-// require datatables/extensions/Buttons/buttons.html5
-// require datatables/extensions/Buttons/buttons.print
 // require datatables/extensions/Buttons/buttons.colVis
 // require datatables/extensions/Buttons/buttons.flash
 // require datatables/extensions/ColReorder/dataTables.colReorder
@@ -23,10 +25,10 @@
 $.extend( $.fn.dataTable.defaults, {
   responsive: true,
   pagingType: 'full',
-  //dom:
-  //  "<'row'<'col-sm-4 text-left'f><'right-action col-sm-8 text-right'<'buttons'B> <'select-info'> >>" +
-  //  "<'row'<'dttb col-12 px-0'tr>>" +
-  //  "<'row'<'col-sm-12 table-footer'lip>>"
+  dom:
+    "<'row'<'col-sm-4 text-left'f><'right-action col-sm-8 text-right'<'buttons'B> <'select-info'> >>" +
+    "<'row'<'dttb col-12 px-0'tr>>" +
+    "<'row'<'col-sm-12 table-footer'lip>>"
 });
 
 
