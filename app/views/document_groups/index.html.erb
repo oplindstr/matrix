@@ -13,16 +13,8 @@
   <% end %>
 
   <% @document_group_categories.each do |document_group_category| %>
-           
-    <% if sub_admin %>
 
-      <h3 class="subtitle"><%= link_to document_group_category.name, document_group_category %></h3>
-
-    <% else %>
-
-      <h3 class="subtitle"><%= document_group_category.name %></h3>
-
-    <% end %>
+    <h3 class="subtitle"><%= link_to document_group_category.name, document_group_category %></h3>
 
     <ul>
 

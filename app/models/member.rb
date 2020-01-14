@@ -75,7 +75,9 @@ class Member < ActiveRecord::Base
   end
 
   def membership_type
-    if self.mathstudent
+    if self.new_member
+      return 'Uusi jäsen'
+    elsif self.mathstudent
       return 'Varsinainen jäsen'
     elsif self.hyy_member
       return 'Ulkojäsen'
@@ -88,5 +90,13 @@ class Member < ActiveRecord::Base
     if self.user
       return self.user.avatar_url
     end
+  end
+
+  def new_member
+    membership = Membership.where('member_id = ?', self.id).first
+    if membership
+      return false
+    end
+    return true
   end
 end

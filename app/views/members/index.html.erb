@@ -1,7 +1,9 @@
+<%= javascript_include_tag 'datatable' %>
+
 <div class="box">
   <h1 class="title">Jäsenet</h1>
 
-  <table class="table">
+  <table id="datatable" class="table is-narrow">
     <thead>
       <tr>
         <th>Sukunimi</th>
@@ -12,7 +14,10 @@
         <th>Sähköpostiosoite</th>
         <th>Jäsentyyppi</th>
         <th>Liittymisvuosi</th>
+        <th>Liittymisaika</th>
         <th>Käyttäjätunnus</th>
+        <th></th>
+        <th></th>
       </tr>
     </thead>
 
@@ -27,6 +32,7 @@
           <td><%= member.email %></td>
           <td><%= member.membership_type %></td>
           <td><%= member.joined %></td>
+          <td><%= member.created_at %></td>
           <td><%= member.username %></td>
           <td><%= link_to 'Muokkaa', edit_member_path(member) %></td>
           <td><%= link_to 'Poista', member, method: :delete, data: { confirm: 'Oletko varma?' } %></td>

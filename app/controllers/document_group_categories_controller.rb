@@ -1,6 +1,6 @@
 class DocumentGroupCategoriesController < ApplicationController
   before_action :set_document_group_category, only: [:show, :edit, :update, :destroy]
-  before_action :ensure_that_sub_admin
+  before_action :ensure_that_sub_admin, except: [:show]
 
   # GET /document_group_categories
   # GET /document_group_categories.json

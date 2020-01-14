@@ -110,4 +110,15 @@ class PagesController < ApplicationController
     @contact_positions = Position.where(show_in_contact_info: true).order(:priority)
   end
 
+  def tenttiarkisto
+	@document_group_category = DocumentGroupCategory.where('name = ?', 'Tenttiarkisto').first
+	if @document_group_category.nil?
+	  redirect_to root_path
+	else
+	  @document_group_category_id = @document_group_category.id
+      @document_groups = DocumentGroup.where('document_group_category_id = ?', @document_group_category_id).order(:name)
+	  render :template => 'document_group_categories/show'
+	end
+  end
+
 end

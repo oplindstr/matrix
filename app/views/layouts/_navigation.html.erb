@@ -31,12 +31,18 @@
         </div>
         <%= link_to 'Kalenteri', '/kalenteri', :class => "navbar-item" %>
         <div class="navbar-item has-dropdown is-hoverable">
+          <span class="navbar-link">Opiskelu</span>
+          <div class="navbar-dropdown">
+            <%= link_to 'Tenttiarkisto', '/tenttiarkisto', :class => "navbar-item" %>
+            <%= link_to 'Kurssikuvauksia', '/kurssikuvauksia', :class => "navbar-item" %>
+          </div>
+        </div>
+        <div class="navbar-item has-dropdown is-hoverable">
           <%= link_to 'Fuksille', '/fuksille', :class => "navbar-link" %>
           <div class="navbar-dropdown">
             <%= link_to 'Fuksiopas', '/fuksiopas', :class => "navbar-item" %>
             <%= link_to 'Tuutorit', '/tuutorit', :class => "navbar-item" %>
             <%= link_to 'Sanastoa', '/sanasto', :class => "navbar-item" %>
-            <%= link_to 'Kurssikuvauksia', '/kurssikuvauksia', :class => "navbar-item" %>
           </div>
         </div>
         <%= link_to 'In English', '/english', :class => "navbar-item" %>

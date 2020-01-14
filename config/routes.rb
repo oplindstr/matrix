@@ -89,6 +89,7 @@ Rails.application.routes.draw do
   get '/tuutorit' => 'pages#tuutorit', id: 'tuutorit'
   get '/sanasto' => 'pages#sanasto', id: 'sanasto'
   get '/kurssikuvauksia' => 'pages#kurssikuvauksia', id: 'kurssikuvauksia'
+  get '/tenttiarkisto' => 'pages#tenttiarkisto', id: 'tenttiarkisto'
   get '/toiminta' => 'pages#toiminta', id: 'toiminta'
   get '/virkailijaksi' => 'pages#virkailijaksi', id: 'virkailijaksi'
   get '/yhteystiedot' => 'pages#yhteystiedot', id: 'yhteystiedot'

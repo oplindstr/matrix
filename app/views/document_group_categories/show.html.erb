@@ -2,12 +2,12 @@
 
 	<h2 class="title"><%= @document_group_category.name %></h2>
 
-	<%= link_to 'Luo uusi alakategoria', '/document_group_categories/' + @document_group_category_id.to_s + '/new_document_group' %><br>
-	<%= link_to 'Muokkaa kategoriaa', edit_document_group_category_path(@document_group_category) %><br>
-	<%= link_to 'Poista kategoria', @document_group_category, method: :delete, data: { confirm: 'Oletko varma?' } %>
-
-	<br>
-	<br>
+  <% if sub_admin %>
+	  <%= link_to 'Luo uusi alakategoria', '/document_group_categories/' + @document_group_category_id.to_s + '/new_document_group' %><br>
+	  <%= link_to 'Muokkaa kategoriaa', edit_document_group_category_path(@document_group_category) %><br>
+	  <%= link_to 'Poista kategoria', @document_group_category, method: :delete, data: { confirm: 'Oletko varma?' } %><br>
+    <br>
+  <% end %>
 
 	<ul>
 
