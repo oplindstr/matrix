@@ -1,0 +1,46 @@
+<% @signup_count = 1 %>
+
+<table id="datatable" class="table is-narrow">
+  <thead>
+  <tr>
+    <th>#</th>
+    <th>Nimi</th>
+    <% if sub_admin %>
+      <th>Sähköposti</th>
+      <% @event.event_parameters.each do |param| %>
+        <th> <%= param.name %> </th>
+      <% end %>
+    <% end %>
+  </tr>
+  </thead>
+
+  <tbody>
+  <% signups.each do |signup| %>
+    <tr>
+      <td><%= @signup_count %>. </td>
+      <% if sub_admin or signup.show or (signup.user_id and current_user and signup.user_id == current_user.id) %>
+        <td><%= signup %></td>
+      <% else %>
+        <td>???</td>
+      <% end %>
+      <% if sub_admin %>
+        <td><%= signup.get_email %></td>
+        <% signup.signup_parameters.each do |param| %>
+          <% if param.event_parameter %>
+            <% if param.event_parameter.event_parameter_type.name == 'Valintaruutu' %>
+              <% if param.value == "1" %>
+                <td><%= check_box_tag(param.event_parameter.name, value = "1", checked = true, options = {disabled: true}) %></td>
+              <% else %>
+                <td><%= check_box_tag(param.event_parameter.name, value = "0", checked = false, options = {disabled: true}) %></td>
+              <% end %>
+            <% else %>
+              <td><%= param.value %></td>
+            <% end %>
+          <% end %>
+        <% end %>
+      <% end %>
+      <% @signup_count = @signup_count + 1 %>
+    </tr>
+  <% end %>
+  </tbody>
+</table>
