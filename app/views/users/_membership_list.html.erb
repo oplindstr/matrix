@@ -1,0 +1,30 @@
+﻿<%= form_tag update_memberships_path do %>
+	<%= hidden_field_tag :year, year %>
+
+	<table class="table">
+		<thead>
+		<tr>
+			<th>Nimi</th>
+			<th>Sähköpostiosoite</th>
+			<th><%= year %>-<%= year+1 %> jäsenyys voimassa</th>
+			<th><%= year+1 %>-<%= year+2 %> jäsenyys voimassa</th>
+		</tr>
+		</thead>
+
+	<tbody>
+		<% users.each do |user| %> 
+			<tr>
+				<td><%= user.full_name %></td>
+				<td><%= user.email %></td>
+				<%= fields_for "users[]", user do |f| %>
+					<td><%= f.check_box :member_this_year, checked: user.membership(year) %></td>
+					<td><%= f.check_box :member_next_year, checked: user.membership(year+1) %></td>
+				<% end %>
+			</tr>
+		<% end %>
+	</tbody>
+
+	</table>
+
+	<%= submit_tag 'Tallenna muutokset', :class => 'button is-link', data: { confirm: 'Oletko varma?' } %>
+<% end %>

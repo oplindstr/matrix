@@ -268,7 +268,6 @@ class UsersController < ApplicationController
     @year = @year.to_i
     @users = Member.all
     @users = @users.sort_by{ |u| u.name }
-    @non_members = @users.select{ |m| !m.membership(@year) }
   end
 
   def memberships_by_year
@@ -280,11 +279,15 @@ class UsersController < ApplicationController
 
   def update_memberships
     params = update_memberships_params
-    year = params[:year]
+    year = params[:year].to_i
+	next_year = year + 1
     params[:users].each do |param|
       user = Member.find(param[0])
-      member = param[1][:member]
+      member_this_year = param[1][:member_this_year]
+	  member_next_year = param[1][:member_next_year]
       member_id = user.id
+
+	  member = member_this_year
       membership = Membership.where('member_id = ? and year = ?', member_id, year).first
       if member == '0' and membership
         membership.destroy
@@ -292,6 +295,17 @@ class UsersController < ApplicationController
         membership = Membership.new
         membership.member_id = member_id
         membership.year = year
+        membership.save
+      end
+
+	  member = member_next_year
+      membership = Membership.where('member_id = ? and year = ?', member_id, next_year).first
+      if member == '0' and membership
+        membership.destroy
+      elsif member == '1' and !membership
+        membership = Membership.new
+        membership.member_id = member_id
+        membership.year = next_year
         membership.save
       end
     end
@@ -343,7 +357,7 @@ class UsersController < ApplicationController
     end
 
     def update_memberships_params
-      params.permit(:year, :users => [:member])
+      params.permit(:year, :users => [:member_this_year, :member_next_year])
     end
 
     def memberships_by_year_params

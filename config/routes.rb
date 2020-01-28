@@ -68,6 +68,8 @@ Rails.application.routes.draw do
   get '/memberships/:vuosi(.:format)' => 'users#memberships'
   post '/update_memberships' => 'users#update_memberships', as: 'update_memberships'
   post '/memberships_by_year' => 'users#memberships_by_year', as: 'memberships_by_year'
+
+  delete '/signups/:id/delete' => 'signups#delete', as: 'delete_signup'
   
   get '/signin', to: 'sessions#new'
   delete '/signout', to: 'sessions#destroy'

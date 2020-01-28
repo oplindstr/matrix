@@ -12,7 +12,7 @@ class Signup < ActiveRecord::Base
 
   def to_s
   	if self.user
-  	  return self.user
+  	  return self.user.name
   	end
   	return self.name
   end

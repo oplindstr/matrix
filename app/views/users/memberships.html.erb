@@ -1,6 +1,6 @@
 <div class="box">
 
-  <h1 class="title is-spaced">Lukuvuoden <%= @year %>-<%= @year+1 %> jäsenyydet</h1>
+  <h1 class="title is-spaced">Lukuvuosien <%= @year %>-<%= @year+1 %> ja <%= @year+1 %>-<%= @year+2 %> jäsenyydet</h1>
 
   <%= form_tag memberships_by_year_path do %>
     <div class="field">
@@ -17,68 +17,8 @@
   <br>
   <br>
 
-  <h2 class="subtitle">Jäsenyydet maksamatta</h2>
+  <h2 class="subtitle">Jäsenyydet</h2>
 
-  <%= form_tag update_memberships_path do %>
-    <%= hidden_field_tag :year, @year %>
-
-    <table class="table">
-      <thead>
-        <tr>
-          <th>Nimi</th>
-          <th>Sähköpostiosoite</th>
-          <th>Jäsenyys voimassa</th>
-        </tr>
-      </thead>
-
-    <tbody>
-      <% @non_members.each do |user| %> 
-      <tr>
-        <td><%= user.full_name %></td>
-        <td><%= user.email %></td>
-        <%= fields_for "users[]", user do |f| %>
-          <td><%= f.check_box :member, checked: user.membership(@year) %></td>
-        <% end %>
-      <% end %>
-      </tr>
-    </tbody>
-
-    </table>
-
-    <%= submit_tag 'Tallenna muutokset', :class => 'button is-link', data: { confirm: 'Oletko varma?' } %>
-  <% end %>
-
-  <br>
-
-  <h2 class="subtitle">Kaikki jäsenyydet</h2>
-
-  <%= form_tag update_memberships_path do %>
-    <%= hidden_field_tag :year, @year %>
-
-    <table class="table">
-      <thead>
-        <tr>
-          <th>Nimi</th>
-          <th>Sähköpostiosoite</th>
-          <th>Jäsenyys voimassa</th>
-        </tr>
-      </thead>
-
-    <tbody>
-      <% @users.each do |user| %> 
-      <tr>
-      	<td><%= user.full_name %></td>
-      	<td><%= user.email %></td>
-        <%= fields_for "users[]", user do |f| %>
-          <td><%= f.check_box :member, checked: user.membership(@year) %></td>
-        <% end %>
-      <% end %>
-      </tr>
-    </tbody>
-
-    </table>
-
-    <%= submit_tag 'Tallenna muutokset', :class => 'button is-link', data: { confirm: 'Oletko varma?' } %>
-  <% end %>
+  <%= render :partial => "membership_list", :locals => { :users => @users, :year => @year } %>
 
 </div>

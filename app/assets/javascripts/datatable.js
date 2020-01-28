@@ -1,5 +1,5 @@
 $(document).ready(function() {
-  $("#datatable").dataTable({
+  $(".datatable").dataTable({
   	paging: false,
   	dom: 'Bfrtip',
         buttons: [

@@ -1,4 +1,4 @@
-<%= form_for @user, :html => { :onsubmit => "return confirm('Oletko varma?')" } do |f| %>
+<%= form_for @user, :html => { :onsubmit => "var message = 'Oletko varma? ' + $('#membership_type').text(); return confirm(message)" } do |f| %>
 
   <% if @user.new_record? %>
 
@@ -105,20 +105,72 @@
 
     <h2 class="subtitle">Muut tiedot</h2>
 
+	<% if @user.new_record? %>
+		<i>Yhdistyksen <b>varsinaiseksi jäseneksi</b> voidaan hyväksyä jokainen Helsingin yliopiston Matemaattisluonnontieteellisen tiedekunnan vastuulla olevassa koulutusohjelmassa opiskeleva.</i>
+		</br>
+		<i><b>Ulkojäseneksi</b> voidaan hyväksyä kuka tahansa Helsingin yliopiston tutkinto- tai jatko-opiskelija.</i>
+		</br>
+		<i><b>Kannatusjäseneksi</b> voidaan hyväksyä yksityinen henkilö tai oikeuskelpoinen yhteisö.</i>
+		</br>
+		<i>Varsinaiset, ulko- ja kannatusjäsenet hyväksyy hakemuksesta yhdistyksen hallitus.</i>
+		</br>
+		<i>Yhdistyksen jäsenellä on oikeus osallistua yhdistyksen järjestämiin kokouksiin ja muihin yleisiin
+		tilaisuuksiin. Kaikilla yhdistyksen jäsenillä on yhdistyksen kokouksissa puheoikeus. Yhdistyksen
+		kokouksissa kaikilla varsinaisilla jäsenillä on äänioikeus ja yksi ääni. Muilla jäsenryhmillä ei ole
+		äänioikeutta.</i>
+		</br>
+		<i>Kaikkien hallituksessa toimivien henkilöiden on oltava yhdistyksen
+		varsinaisia jäseniä.</i>
+		</br>
+		</br>
+	<% end %>
+
     <div class="field">
       <label class="checkbox">
-        <%= p.check_box :hyy_member %>
+        <%= p.check_box :hyy_member, :onchange => 'show_member()' %>
         Opiskelen Helsingin Yliopistossa tutkinto- tai jatko-opiskelijana
       </label>
     </div>
 
     <div class="field">
       <label class="checkbox">
-        <%= p.check_box :mathstudent %>
+        <%= p.check_box :mathstudent, :onchange => 'show_member()' %>
         Opiskelen jossain Helsingin yliopiston Matemaattis-luonnontieteellisen tiedekunnan vastuulla olevassa koulutusohjelmassa
       </label>
     </div>
   <% end %>
+
+  <% if @user.new_record? %>
+
+	<b id="membership_type">Liityt kannatusjäseneksi</b>
+	</br>
+	</br>
+
+  <% else %>
+
+	<b>Olet <%= @user.membership_type %></b>
+	</br>
+	</br>
+
+  <% end %>
+
+  <script>
+		function show_member() {
+			var hyy_member = $('#user_member_attributes_hyy_member:checked').val();
+			var mathstudent = $('#user_member_attributes_mathstudent:checked').val();
+			if (mathstudent === '1') {
+				$('#membership_type').text("Liityt varsinaiseksi jäseneksi");
+			}
+			else if (hyy_member === '1') {
+				$('#membership_type').text("Liityt ulkojäseneksi");
+			}
+			else {
+				$('#membership_type').text("Liityt kannatusjäseneksi");
+			}
+		}
+
+		show_member();
+	</script>
 
   <div class="field">
     <div class="control">

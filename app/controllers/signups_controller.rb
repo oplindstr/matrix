@@ -1,12 +1,12 @@
 class SignupsController < ApplicationController
-  before_action :set_signup, only: [:edit, :update, :destroy]
+  before_action :set_signup, only: [:edit, :update, :destroy, :delete]
   before_action :set_event, only: [:show]
   before_action :ensure_that_sub_admin, except: [:create, :update, :destroy, :show]
 
   # GET /signups
   # GET /signups.json
   def index
-    @signups = Signup.all
+    @signups = Signup.all.order(:id)
   end
 
   # GET /signups/1
@@ -15,7 +15,7 @@ class SignupsController < ApplicationController
     if !sub_admin and (!@event.signup_required or !@event.signup_open)
       redirect_to root_path
     else
-      @signups = @event.signups
+      @signups = @event.signups.order(:id)
       @signup_limit = @event.signup_limit
       if @signup_limit and @signups.size > @signup_limit
         @reserve = @signups.last(@signups.size - @signup_limit)
@@ -102,6 +102,15 @@ class SignupsController < ApplicationController
         format.html { redirect_to event_path(@event_id), notice: 'Ilmoittautuminen peruttu' }
         format.json { head :no_content }
       end
+    end
+  end
+
+  def delete
+	event_id = @signup.event_id
+    @signup.destroy
+    respond_to do |format|
+    format.html { redirect_to event_signups_path(event_id), notice: 'Ilmoittautuminen poistettu' }
+    format.json { head :no_content }
     end
   end
 

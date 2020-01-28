@@ -1,0 +1,16 @@
+{
+  "ExpandedNodes": [
+    "",
+    "\\app",
+    "\\app\\assets",
+    "\\app\\assets\\javascripts",
+    "\\app\\controllers",
+    "\\app\\views",
+    "\\app\\views\\events",
+    "\\app\\views\\pages",
+    "\\app\\views\\signups",
+    "\\app\\views\\users"
+  ],
+  "SelectedNode": "\\app\\views\\users\\index.html.erb",
+  "PreviewInSolutionExplorer": false
+}

@@ -1,6 +1,6 @@
 <% @signup_count = 1 %>
 
-<table id="datatable" class="table is-narrow">
+<table id="datatable" class="table is-narrow datatable">
   <thead>
   <tr>
     <th>#</th>
@@ -10,6 +10,7 @@
       <% @event.event_parameters.each do |param| %>
         <th> <%= param.name %> </th>
       <% end %>
+	  <th></th>
     <% end %>
   </tr>
   </thead>
@@ -38,6 +39,7 @@
             <% end %>
           <% end %>
         <% end %>
+		<td><%= link_to 'Poista', delete_signup_path(signup.id), method: :delete, data: { confirm: 'Oletko varma?' } %></td>
       <% end %>
       <% @signup_count = @signup_count + 1 %>
     </tr>
