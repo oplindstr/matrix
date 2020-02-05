@@ -97,16 +97,16 @@
       <%= yield %>
     </section>
     <footer class="footer">
-      <div class="container">
-        <div class="content has-text-centered">
-          <h1 class="title">Yhteistyökumppanit</h1>
-          <div class="level">
-            <% partners.each do |partner| %>
+      <div class="container content has-text-centered">
+        <h1 class="is-size-3-mobile">Yhteistyökumppanit</h1>
+        <div class="columns is-multiline">
+          <% partners.each do |partner| %>
+            <div class="column is-one-quarter">
               <%= link_to partner.link, { :class=>"level-item" } do %>
                 <%= image_tag(partner.image, size: "200x35") %>
               <% end %>
-            <% end %>
-          </div>
+            </div>
+          <% end %>
         </div>
       </div>
     </footer>
