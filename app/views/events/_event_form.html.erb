@@ -45,7 +45,7 @@
     <div class="field">
       <%= f.label :price, 'Hinta', :class => 'label' %>
       <div class="control">
-        <%= f.number_field :price, :class => 'input', :min => 0 %>
+        <%= f.number_field :price, :class => 'input', :min => 0, :step => 0.01 %>
       </div>
     </div>
 
