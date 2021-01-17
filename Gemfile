@@ -1,4 +1,4 @@
-source 'http://rubygems.org'
+source 'https://rubygems.org'
 
 gem "pkg-config"
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'

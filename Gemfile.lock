@@ -363,4 +363,4 @@ DEPENDENCIES
   webrat (= 0.7.1)
 
 BUNDLED WITH
-   1.17.1
+   2.2.5
