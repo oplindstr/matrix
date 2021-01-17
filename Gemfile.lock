@@ -1,5 +1,5 @@
 GEM
-  remote: http://rubygems.org/
+  remote: https://rubygems.org/
   specs:
     ZenTest (4.11.2)
     actionmailer (4.2.11.1)
@@ -173,7 +173,7 @@ GEM
       websocket-driver (>= 0.2.0)
     public_suffix (3.0.3)
     puma (3.12.0)
-    rack (1.6.11)
+    rack (1.6.13)
     rack-test (0.6.3)
       rack (>= 1.0)
     rack_session_access (0.2.0)
