@@ -34,11 +34,11 @@ class ApplicationController < ActionController::Base
   def admin
     return false if !current_user
     return true if current_user.admin
-    @position_members = PositionMember.where("year = ? AND member_id = ?", Date.today.year, current_member.id)
-    if @position_members and !@position_members.empty?
-      @position_members.each do |position|
-        @position = Position.find(position.position_id)
-        return true if @position.admin
+    @admin_position_members = PositionMember.where("year = ? AND member_id = ?", Date.today.year, current_member.id)
+    if @admin_position_members and !@admin_position_members.empty?
+      @admin_position_members.each do |position|
+        @admin_position = Position.find(position.position_id)
+        return true if @admin_position.admin
       end
     end
     false
@@ -47,10 +47,10 @@ class ApplicationController < ActionController::Base
   def sub_admin
     return false if !current_user
     return true if admin
-    @board_member = BoardMember.where("year = ? AND member_id = ?", Date.today.year, current_member.id).first
-    return true if @board_member
-    @position_member = PositionMember.where("year = ? AND member_id = ?", Date.today.year, current_member.id).first
-    return true if @position_member
+    @admin_board_member = BoardMember.where("year = ? AND member_id = ?", Date.today.year, current_member.id).first
+    return true if @admin_board_member
+    @admin_position_member = PositionMember.where("year = ? AND member_id = ?", Date.today.year, current_member.id).first
+    return true if @admin_position_member
     false
   end
 

@@ -2,15 +2,15 @@
   "ExpandedNodes": [
     "",
     "\\app",
-    "\\app\\assets",
-    "\\app\\assets\\javascripts",
     "\\app\\controllers",
     "\\app\\views",
     "\\app\\views\\events",
-    "\\app\\views\\pages",
-    "\\app\\views\\signups",
-    "\\app\\views\\users"
+    "\\app\\views\\signup_parameters",
+    "\\db",
+    "\\db\\migrate",
+    "\\spec",
+    "\\spec\\controllers"
   ],
-  "SelectedNode": "\\app\\views\\users\\index.html.erb",
+  "SelectedNode": "\\app\\controllers\\signups_controller.rb",
   "PreviewInSolutionExplorer": false
 }
