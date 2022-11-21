@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20190421235323) do
+ActiveRecord::Schema.define(version: 20221116151906) do
 
   create_table "board_members", force: :cascade do |t|
     t.integer "year"
@@ -82,6 +82,13 @@ ActiveRecord::Schema.define(version: 20190421235323) do
     t.integer  "signup_limit"
     t.integer  "participants"
     t.boolean  "members_only"
+  end
+
+  create_table "images", force: :cascade do |t|
+    t.string   "name"
+    t.string   "image"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "members", force: :cascade do |t|

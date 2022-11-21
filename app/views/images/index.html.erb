@@ -1,0 +1,24 @@
+<div class="box">
+  <h1 class="title">Kuvat</h1>
+
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Nimi</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% @images.each do |image| %>
+        <tr>
+          <td><%= image.name %></td>
+          <td><%= link_to 'Muokkaa', edit_image_path(image), :class => 'button is-link' %></td>
+          <td><%= link_to 'Poista', image, method: :delete, data: { confirm: 'Oletko varma?' }, :class => 'button is-danger' %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+
+  <br>
+
+  <%= link_to 'Uusi kuva', new_image_path %>

@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  resources :images
   resources :texts
   resources :products
   root :to => 'pages#index', :as => 'root'
@@ -38,12 +39,12 @@ Rails.application.routes.draw do
   get '/dokumentit/:name', to: 'document_groups#show'
 
   post '/events/:id/sign_up', to: 'events#sign_up'
-  post '/events/:id/update_signup', to: 'events#update_signup'
+  patch '/events/:id/update_signup', to: 'events#update_signup'
 
   get '/hallitus', to: 'board_members#index'
   get '/hallitus/:vuosi', to: 'board_members#index'
 
-  get '/kalenteri' => 'events#index'
+  get '/kalenteri' => 'events#index', as: 'kalenteri'
 
   get '/kalenteri/:id/ilmoittautumiset(.:format)' => 'signups#show', as: 'event_signups'
 
@@ -97,6 +98,8 @@ Rails.application.routes.draw do
   get '/yhteystiedot' => 'pages#yhteystiedot', id: 'yhteystiedot'
 
   get '/virat' => 'positions#index'
+
+  get '/events/ical' => 'events#ical', as: 'ical'
 
 
 
