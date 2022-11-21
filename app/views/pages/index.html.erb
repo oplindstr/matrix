@@ -1,6 +1,18 @@
 
+<section id="banner" class="section container">
+	<div class="columns level">
+		<div class="column is-one-third">
+			<%= image_tag("logo.gif") %>
+		</div>
+		<div class="column">
+			<h1 class='title'>Matematiikan opiskelijaryhmä Matrix ry</h1>
+			<br>
+			<h2 class='subtitle'>Helsingin yliopiston matematiikan opiskelijoiden ainejärjestö</h2>
+		</div>
+	</div>
+</section>
 <div class="box">
-    <h1 class="title">Matematiikan opiskelijaryhmä Matrix ry</h1>
+    <h1 class="title hide-in-mobile">Matematiikan opiskelijaryhmä Matrix ry</h1>
 
     <p>Matematiikan opiskelijaryhmä Matrix ry on Helsingin yliopiston matematiikan opiskelijoiden ainejärjestö.
     Järjestämme jäsenillemme sekä virkistys- ja vapaa-ajantoimintaa että matematiikan opiskeluun liittyvää toimintaa.
@@ -29,7 +41,11 @@
 			<% end %>
 		</div>
 		<div class='column'>
-			<%= image_tag("varaslahto2013.JPG") %>
+			<% if @image and @image.image_url %>
+				<%= image_tag(@image.image_url) %>
+			<% else %>
+				<%= image_tag("varaslahto2013.JPG") %>
+			<% end %>
 		</div>
 	</div>
 </div>

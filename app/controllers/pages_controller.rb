@@ -37,6 +37,8 @@ class PagesController < ApplicationController
     @events = Event.where('starttime > ?', Time.now).order(starttime: :asc).limit(@event_count)
     @info = Text.where('name = ?', 'Etusivun info').first
     @tervetuloa = Text.where('name = ?', 'Tervetuloa').first
+
+    @image = Image.where('name = ?', 'Etusivun kuva').first
   end
 
   def jarjesto
