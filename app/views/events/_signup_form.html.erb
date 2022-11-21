@@ -12,25 +12,23 @@
   <% end %>
 
   <% if current_user %>
-      <div class="field">
-      <%= f.hidden_field :user_id, value: current_user.id %>
-      </div>
+    <%= f.hidden_field :user_id, value: current_user.id %>
   <% else %>
-      <div class="field">
-        <%= f.label :name, 'Nimi', :class => 'label' %>
-        <div class="control">
-          <%= f.text_field :name, :class => 'input', :required => true %>
-        </div>
-        <p class="help is-danger">
-          Pakollinen kenttä
-        </p>
+    <div class="field">
+      <%= f.label :name, 'Nimi', :class => 'label' %>
+      <div class="control">
+        <%= f.text_field :name, :class => 'input', :required => true %>
       </div>
-      <div class="field">
-        <label class="label" for="signup_email">Sähköpostiosoite</label>
-        <div class="control">
-          <%= f.text_field :email, :class => 'input', :type => 'email' %>
-        </div>
+      <p class="help is-danger">
+        Pakollinen kenttä
+      </p>
+    </div>
+    <div class="field">
+      <label class="label" for="signup_email">Sähköpostiosoite</label>
+      <div class="control">
+        <%= f.text_field :email, :class => 'input', :type => 'email' %>
       </div>
+    </div>
   <% end %>
 
   <%= f.fields_for :signup_parameters do |p| %>
@@ -80,9 +78,7 @@
       
   <% end %>
 
-  <div class="field">
-    <%= f.hidden_field :event_id, value: @event.id %>
-  </div>
+  <%= f.hidden_field :event_id, value: @event.id %>
 
   <div class="field">
     <label class="checkbox">
@@ -92,6 +88,7 @@
   </div>
   <div class="actions">
     <% if current_user and @event.user_signed_up(current_user.id) %>
+      <%= f.hidden_field :id, value: @signup.id %>
       <%= f.submit :value => 'Tallenna', :class => "button is-link" %>
     <% else %>
       <%= f.submit :value => 'Ilmoittaudun', :class => "button is-link" %>
