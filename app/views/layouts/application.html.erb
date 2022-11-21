@@ -11,6 +11,7 @@
     <%= javascript_include_tag 'application' %>
     <%= javascript_include_tag 'framework' %>
     <%= csrf_meta_tags %>
+    <%= favicon_link_tag asset_path('logo.png') %>
   </head>
   <body class="body">
     <%= render 'layouts/navigation' %>
@@ -35,64 +36,55 @@
         <% end %>
       </section>
     <% end %>
-    <section class="section container">
-      <div class="columns level">
-        <div class="column is-one-third">
-          <%= image_tag("logo.gif") %>
-        </div>
-        <div class="column">
-          <h1 class='title'>Matematiikan opiskelijaryhmä Matrix ry</h1>
-          <br>
-          <h2 class='subtitle'>Helsingin yliopiston matematiikan opiskelijoiden ainejärjestö</h2>
-        </div>
-      </div>
-    </section>
-    <section class="section container">
-      <% if !current_user %>
+    <% if !current_user %>
+      <section class="section container">
             <div class="box">
-              <%= form_tag session_path do %>
-                <div class="field is-horizontal">
-                  <div class="field-label is-small">
-                    <label class="label">Käyttäjätunnus</label>
-                  </div>
-                  <div class="field-body">
-                    <div class="field">
-                      <div class="control">
-                        <input id="username" name="username" class="input is-small" type="text" required>
+              <h3 id="log-in" class="title is-6"><a>Kirjaudu sisään</a></h3>
+              <div id="log-in-area">
+                <%= form_tag session_path do %>
+                  <div class="field is-horizontal">
+                    <div class="field-label is-small">
+                      <label class="label">Käyttäjätunnus</label>
+                    </div>
+                    <div class="field-body">
+                      <div class="field">
+                        <div class="control">
+                          <input id="username" name="username" class="input is-small" type="text" required>
+                        </div>
                       </div>
                     </div>
                   </div>
-                </div>
-                <div class="field is-horizontal">
-                  <div class="field-label is-small">
-                    <label class="label">Salasana</label>
-                  </div>
-                  <div class="field-body">
-                    <div class="field">
-                      <div class="control">
-                        <input id="password" name="password" class="input is-small" type="password" required>
+                  <div class="field is-horizontal">
+                    <div class="field-label is-small">
+                      <label class="label">Salasana</label>
+                    </div>
+                    <div class="field-body">
+                      <div class="field">
+                        <div class="control">
+                          <input id="password" name="password" class="input is-small" type="password" required>
+                        </div>
                       </div>
                     </div>
                   </div>
-                </div>
-                <div class="field is-horizontal">
-                  <div class="field-label">
-                    <!-- Left empty for spacing -->
-                  </div>
-                  <div class="field-body">
-                    <div class="field">
-                      <div class="control">
-                        <%= submit_tag "Kirjaudu", :class => "button is-link" %>
+                  <div class="field is-horizontal">
+                    <div class="field-label">
+                      <!-- Left empty for spacing -->
+                    </div>
+                    <div class="field-body">
+                      <div class="field">
+                        <div class="control">
+                          <%= submit_tag "Kirjaudu", :class => "button is-link" %>
+                        </div>
                       </div>
                     </div>
                   </div>
-                </div>
-              <% end %>
-              <span><%= link_to 'Unohditko salasanasi?', password_recovery_path %></span><br>
-              <span><%= link_to 'Unohditko käyttäjätunnuksesi?', username_recovery_path %></span>
+                <% end %>
+                <span><%= link_to 'Unohditko salasanasi?', password_recovery_path %></span><br>
+                <span><%= link_to 'Unohditko käyttäjätunnuksesi?', username_recovery_path %></span>
+              </div>
             </div>
-      <% end %>
-    </section>
+       </section>
+    <% end %>
     <section class="section container">
       <%= yield %>
     </section>
