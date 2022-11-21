@@ -1,17 +1,17 @@
 class EventsController < ApplicationController
   before_action :set_event, only: [:show, :update, :destroy, :edit]
   before_action :set_signup, only: [:update_signup]
-  before_action :ensure_that_sub_admin, except: [:index, :show, :sign_up, :update_signup, :past_events]
+  before_action :ensure_that_sub_admin, except: [:index, :show, :sign_up, :past_events, :ical]
 
   # GET /events
   # GET /events.json
   def index
     @text = Text.where('name = ?', 'Kalenteri').first
-    @events = Event.all.where('starttime > ?', Time.now).order(:starttime)
+    @events = Event.all.where('starttime >= ?', DateTime.now.midnight).order(:starttime, :endtime)
   end
 
   def past_events
-    @events = Event.all.where('starttime < ?', Time.now).order(starttime: :desc)
+    @events = Event.all.where('starttime < ?', DateTime.now.midnight).order(starttime: :desc)
   end
 
   # GET /events/1
@@ -144,6 +144,37 @@ class EventsController < ApplicationController
     @events = Event.all.order(:starttime).select{|m| m.starttime.year == @year.to_i }
   end
 
+  def ical
+    respond_to do |format|
+      format.ics do
+        @events = Event.all.where('starttime >= ?', DateTime.now.midnight).order(:starttime, :endtime)
+
+        cal = Icalendar::Calendar.new
+
+        @events.each do |event|
+          new_event = Icalendar::Event.new
+          new_event.dtstart = Icalendar::Values::DateTime.new(event.starttime)
+          if event.endtime
+            new_event.dtend = Icalendar::Values::DateTime.new(event.endtime)
+          else
+            new_event.dtend = event.starttime.advance(:hours => +2)
+          end
+          new_event.summary     = event.name
+          new_event.description = event.descr
+          new_event.location    = event.location
+          new_event.url         = "#{kalenteri_url}/#{event.id}" 
+          new_event.ip_class    = "PRIVATE"
+
+          cal.add_event(new_event)
+        end
+
+        cal.publish
+
+        render :plain => cal.to_ical
+      end
+    end
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_event
@@ -151,7 +182,7 @@ class EventsController < ApplicationController
     end
 
     def set_signup
-      @signup = Signup.find(params[:id])
+      @signup = Signup.find(params[:signup][:id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

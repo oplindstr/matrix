@@ -1,6 +1,12 @@
 <div class="box">
+  <%= stylesheet_link_tag 'events', media: 'all' %>
+  <%= javascript_include_tag 'events_index' %>
 
   <h1 class="title is-spaced">Kalenteri</h1>
+
+  <%= link_to ical_url(protocol: :webcal, format: :ics), :title => "Tilaa tästä tapahtumat Outlookin, Googlen tai Applen kalenteriin. Uudet tapahtumat ja muutokset tapahtumiin päivittyvät automaattisesti kalenteriin. Jos linkin painaminen ei suoraan toimi, voit myös kopioida linkin ja lisätä tilauskalenterin sen avulla" do %>
+    <i class="fa fa-calendar title" aria-hidden="true" style="position: absolute; top: 30px; right: 40px;"></i>
+  <% end %>
 
   <% if sub_admin %>
     <br>
@@ -19,30 +25,38 @@
   <% @events.each do |event| %>
 
     <h2 class="subtitle"><%= link_to event.name, event_path(event.id) %></h2>
-    <p><%= DateHelper.standard_time(event.starttime) %></p>
-    <% if event.price and not event.price.empty? %>
-      <p>Hinta: <%= event.price %> €</p>
-    <% end %>
-    <% if event.location and event.location.length > 0 %>
-      <p>@ <%= event.location %></p>
-    <% end %>
-    <p>
-      <% if event.signup_open %>
-        <br>
-        <% if event.signup_end %>
-          <i>Ilmoittautuminen tapahtumaan on käynnissä ja päättyy <%= DateHelper.standard_time2(event.signup_end) %> </i>
-        <% else %>
-          <i>Ilmoittautuminen tapahtumaan on käynnissä </i>
-        <% end %>
-      <% elsif event.signup_required and event.signup_start and event.signup_start > Time.now %>
-        <br>
-        <i>Ilmoittautuminen tapahtumaan alkaa <%= DateHelper.standard_time2(event.signup_start) %> </i>
+    <div class="eventInfo">
+      <p><%= DateHelper.standard_time(event.starttime) %></p>
+      <% if event.price and not event.price.empty? %>
+        <p>Hinta: <%= event.price %> €</p>
       <% end %>
-    </p>
+      <% if event.location and event.location.length > 0 %>
+        <p>@ <%= event.location %></p>
+      <% end %>
+      <p>
+        <% if event.signup_open %>
+          <br>
+          <% if event.signup_end %>
+            <i>Ilmoittautuminen tapahtumaan on käynnissä ja päättyy <%= DateHelper.standard_time2(event.signup_end) %> </i>
+          <% else %>
+            <i>Ilmoittautuminen tapahtumaan on käynnissä </i>
+          <% end %>
+        <% elsif event.signup_required and event.signup_start and event.signup_start > Time.now %>
+          <br>
+          <i>Ilmoittautuminen tapahtumaan alkaa <%= DateHelper.standard_time2(event.signup_start) %> </i>
+        <% end %>
+      </p>
 
-    <br>
+      <br>
+      <div class="showDescriptionToggle">
+        <a>Näytä kuvaus</a>
+      </div>
+      <div class="eventDescription">
+        <br>
+        <pre><%= event.descr.html_safe %></pre>
+      </div>
 
-    <pre><%= event.descr.html_safe %></pre>
+    </div>
 
     <% if event != @events.last %>
       <hr>

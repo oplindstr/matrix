@@ -1,4 +1,6 @@
 <div class="box">
+  <%= stylesheet_link_tag 'events', media: 'all' %>
+  <%= javascript_include_tag 'events_index' %>
 
   <h1 class="title is-spaced">Menneet tapahtumat</h1>
 
@@ -35,7 +37,13 @@
 
     <br>
 
-    <pre><%= event.descr.html_safe %></pre>
+    <div class="showDescriptionToggle">
+      <a>Näytä kuvaus</a>
+    </div>
+    <div class="eventDescription">
+      <br>
+      <pre><%= event.descr.html_safe %></pre>
+    </div>
 
     <% if event != @events.last %>
       <hr>
