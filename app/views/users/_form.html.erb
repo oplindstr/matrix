@@ -106,21 +106,25 @@
     <h2 class="subtitle">Muut tiedot</h2>
 
 	<% if @user.new_record? %>
-		<i>Yhdistyksen <b>varsinaiseksi jäseneksi</b> voidaan hyväksyä jokainen Helsingin yliopiston Matemaattisluonnontieteellisen tiedekunnan vastuulla olevassa koulutusohjelmassa opiskeleva.</i>
-		</br>
-		<i><b>Ulkojäseneksi</b> voidaan hyväksyä kuka tahansa Helsingin yliopiston tutkinto- tai jatko-opiskelija.</i>
-		</br>
-		<i><b>Kannatusjäseneksi</b> voidaan hyväksyä yksityinen henkilö tai oikeuskelpoinen yhteisö.</i>
-		</br>
-		<i>Varsinaiset, ulko- ja kannatusjäsenet hyväksyy hakemuksesta yhdistyksen hallitus.</i>
-		</br>
-		<i>Yhdistyksen jäsenellä on oikeus osallistua yhdistyksen järjestämiin kokouksiin ja muihin yleisiin
-		tilaisuuksiin. Kaikilla yhdistyksen jäsenillä on yhdistyksen kokouksissa puheoikeus. Yhdistyksen
-		kokouksissa kaikilla varsinaisilla jäsenillä on äänioikeus ja yksi ääni. Muilla jäsenryhmillä ei ole
-		äänioikeutta.</i>
-		</br>
-		<i>Kaikkien hallituksessa toimivien henkilöiden on oltava yhdistyksen
-		varsinaisia jäseniä.</i>
+    <% if @member_instruction %>
+      <pre><%= @member_instruction.value.html_safe %></pre>
+    <% else %>
+      <i>Yhdistyksen <b>varsinaiseksi jäseneksi</b> voidaan hyväksyä jokainen Helsingin yliopiston Matemaattisluonnontieteellisen tiedekunnan vastuulla olevassa koulutusohjelmassa opiskeleva.</i>
+      </br>
+      <i><b>Ulkojäseneksi</b> voidaan hyväksyä kuka tahansa Helsingin yliopiston tutkinto- tai jatko-opiskelija.</i>
+      </br>
+      <i><b>Kannatusjäseneksi</b> voidaan hyväksyä yksityinen henkilö tai oikeuskelpoinen yhteisö.</i>
+      </br>
+      <i>Varsinaiset, ulko- ja kannatusjäsenet hyväksyy hakemuksesta yhdistyksen hallitus.</i>
+      </br>
+      <i>Yhdistyksen jäsenellä on oikeus osallistua yhdistyksen järjestämiin kokouksiin ja muihin yleisiin
+      tilaisuuksiin. Kaikilla yhdistyksen jäsenillä on yhdistyksen kokouksissa puheoikeus. Yhdistyksen
+      kokouksissa kaikilla varsinaisilla jäsenillä on äänioikeus ja yksi ääni. Muilla jäsenryhmillä ei ole
+      äänioikeutta.</i>
+      </br>
+      <i>Kaikkien hallituksessa toimivien henkilöiden on oltava yhdistyksen
+      varsinaisia jäseniä.</i>
+    <% end %>
 		</br>
 		</br>
 	<% end %>

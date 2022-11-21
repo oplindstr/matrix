@@ -53,6 +53,7 @@ class UsersController < ApplicationController
   def new
     @user = User.new
     @user.build_member
+    @member_instruction = Text.where('name = ?', 'Jäsenyysohje').first
   end
 
   # GET /users/1/edit
@@ -83,6 +84,7 @@ class UsersController < ApplicationController
         format.json { render :index, status: :created, location: root_path }
       else
         @alert = @user.errors
+        @member_instruction = Text.where('name = ?', 'Jäsenyysohje').first
         format.html { render :new, alert: @alert }
         format.json { render json: @alert, status: :unprocessable_entity }
       end
