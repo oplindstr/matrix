@@ -19,7 +19,7 @@ class Event < ActiveRecord::Base
   validates :signup_limit, allow_blank: true, numericality: { greater_than_or_equal_to: 0, message: 'Anna ilmoittautumismääräksi vähintään 1' }
   validates :participants, allow_blank: true, numericality: { less_than_or_equal_to: 5000, message: 'Anna osallistujamääräksi korkeintaan 5000' }
   validates :participants, allow_blank: true, numericality: { greater_than_or_equal_to: 0, message: 'Anna osallistujamääräksi vähintään 0' }
-  validate :endtimes_cannot_be_before_starttimes
+  validate :validate_times
   validate :date_ranges
 
   def full
@@ -115,7 +115,7 @@ class Event < ActiveRecord::Base
     return true
   end
 
-  def endtimes_cannot_be_before_starttimes
+  def validate_times
     if self.endtime and self.starttime and self.endtime < self.starttime
       errors.add(:starttime, "Tapahtuma ei voi loppua ennen kuin se alkaa")
     end
@@ -123,11 +123,13 @@ class Event < ActiveRecord::Base
     if self.signup_end and self.signup_start and self.signup_end < self.signup_start
       errors.add(:signup_start, "Ilmoittautuminen ei voi loppua ennen kuin se alkaa")
     end
-  end
 
-  def signup_end_cannot_be_after_event_end
-    if self.signup_end > self.endtime
-      errors.add(:signup_end, "Ilmoittautuminen ei voi loppua tapahtuman loppumisen jälkeen")
+    if self.signup_start and self.signup_start >= self.starttime
+      errors.add(:signup_start, "Ilmoittautuminen ei voi alkaa tapahtuman jälkeen")
+    end
+
+    if self.signup_end and self.signup_end > self.starttime
+      errors.add(:signup_end, "Ilmoittautuminen ei voi loppua tapahtuman jälkeen")
     end
   end
 
