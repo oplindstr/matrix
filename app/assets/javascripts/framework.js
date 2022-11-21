@@ -22,4 +22,8 @@ document.addEventListener('DOMContentLoaded', function () {
     });
   }
 
+  $("#log-in").on('click', function(event){
+      $("#log-in-area").toggle('is-active');
+  });
+
 });
