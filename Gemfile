@@ -3,17 +3,18 @@ source 'https://rubygems.org'
 gem "pkg-config"
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.11.1'
+gem "actionview", "4.2.11.1"
 # Use sqlite3 as the database for Active Record
 group :development, :test do
-  gem 'sqlite3',  '1.3.13'
+  gem 'sqlite3', git: "https://github.com/larskanis/sqlite3-ruby", branch: "add-gemspec"
 end
 
 group :production, :staging do
-  gem 'pg', '~> 0.20'
+  gem 'pg', '~> 1.2.3'
   gem 'rails_12factor'
 end
 
-gem 'puma'
+gem 'puma', '3.12.4'
 
 gem 'sass-rails', '~> 5.0'
 gem 'uglifier', '>= 1.3.0'
@@ -26,7 +27,7 @@ gem 'jquery-rails'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder', '~> 2.0'
 # bundle exec rake doc:rails generates the API under doc/api.
-gem 'sdoc', '~> 0.4.0', group: :doc
+gem 'sdoc', '~> 2.0.3', group: :doc
 
 # Use ActiveModel has_secure_password
 gem 'bcrypt', '~> 3.1.11'
@@ -42,15 +43,26 @@ gem 'figaro'
 
 gem 'flatpickr_rails'
 
-gem "rack", ">= 1.6.11"
+gem "rack", ">= 1.6.13"
 
 gem "rails-html-sanitizer", ">= 1.0.4"
 
-gem "loofah", ">= 2.2.3"
+gem "loofah", ">= 2.3.1"
 
 gem 'webrat', '0.7.1'
 
 gem 'jquery-datatables'
+
+gem 'rubyzip', '1.3.0'
+
+gem 'rake', '13.0.1'
+
+gem 'websocket-extensions', '0.1.5'
+
+gem 'nokogiri', '1.11.1'
+
+gem 'ice_cube', '~> 0.16.4'
+gem 'icalendar', '~> 2.8'
 
 # Use Unicorn as the app server
 # gem 'unicorn'
@@ -95,8 +107,10 @@ group :development do
   gem 'web-console', '~> 2.0'
 end
 
-gem 'carrierwave'
+gem 'carrierwave', '1.3.2'
 
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 gem 'dkim'
+
+gem "json", ">= 2.3.0"
