@@ -90,7 +90,7 @@ class DocumentGroupsController < ApplicationController
     end
 
     def set_document_group_categories
-      @document_group_categories = DocumentGroupCategory.all.sort { |a,b| a.name.downcase <=> b.name.downcase }
+      @document_group_categories = DocumentGroupCategory.where('name != ?', 'Tenttiarkisto').sort { |a,b| a.name.downcase <=> b.name.downcase }
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
