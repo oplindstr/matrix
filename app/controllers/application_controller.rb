@@ -14,6 +14,8 @@ class ApplicationController < ActionController::Base
   helper_method :ensure_that_current_user
   helper_method :partners
 
+  around_action :set_locale_from_url
+
   def save_current_url
     session[:return_to] = request.referer
   end
@@ -75,4 +77,4 @@ class ApplicationController < ActionController::Base
     @setting.value
   end
 
-end
+end 

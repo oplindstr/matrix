@@ -64,6 +64,8 @@ gem 'nokogiri', '1.11.1'
 gem 'ice_cube', '~> 0.16.4'
 gem 'icalendar', '~> 2.8'
 
+gem 'route_translator'
+
 # Use Unicorn as the app server
 # gem 'unicorn'
 
