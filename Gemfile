@@ -59,7 +59,7 @@ gem 'rake', '13.0.1'
 
 gem 'websocket-extensions', '0.1.5'
 
-gem 'nokogiri', '1.11.1'
+gem 'nokogiri', '1.13.9'
 
 gem 'ice_cube', '~> 0.16.4'
 gem 'icalendar', '~> 2.8'
