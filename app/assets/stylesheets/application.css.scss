@@ -92,7 +92,7 @@ footer img {
     border-style: none;
     box-shadow: none;
     -webkit-box-shadow: none;
-  overflow-y: visible;
+    overflow-y: visible;
   }
 
   .hide-in-mobile {
@@ -135,4 +135,10 @@ fieldset {
 
 hr {
   height: 2px;
+}
+
+.flexbox {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
 }

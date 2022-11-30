@@ -99,6 +99,7 @@ Rails.application.routes.draw do
 
     get '/virat' => 'positions#index'
 
-    get '/events/ical' => 'events#ical', as: 'ical'
+    get '/events/ical/events' => 'events#ical', as: 'ical'
+    get '/events/ical/signup_starts' => 'events#ical_signup_starts', as: 'ical_signup_starts'
   end
 end

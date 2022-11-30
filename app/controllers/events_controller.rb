@@ -1,7 +1,7 @@
 class EventsController < ApplicationController
   before_action :set_event, only: [:show, :update, :destroy, :edit]
   before_action :set_signup, only: [:update_signup]
-  before_action :ensure_that_sub_admin, except: [:index, :show, :sign_up, :past_events, :ical]
+  before_action :ensure_that_sub_admin, except: [:index, :show, :sign_up, :past_events, :ical, :ical_signup_starts]
 
   # GET /events
   # GET /events.json
@@ -160,6 +160,35 @@ class EventsController < ApplicationController
             new_event.dtend = event.starttime.advance(:hours => +2)
           end
           new_event.summary     = event.name
+          new_event.description = event.descr
+          new_event.location    = event.location
+          new_event.url         = "#{kalenteri_url}/#{event.id}" 
+          new_event.ip_class    = "PRIVATE"
+
+          cal.add_event(new_event)
+        end
+
+        cal.publish
+
+        render :plain => cal.to_ical
+      end
+    end
+  end
+
+  def ical_signup_starts
+    respond_to do |format|
+      format.ics do
+        @midnight = DateTime.now.midnight
+        @events = Event.all.where('starttime >= ? AND signup_start >= ?', @midnight, @midnight).order(:signup_start)
+
+        cal = Icalendar::Calendar.new
+
+        @events.each do |event|
+          new_event = Icalendar::Event.new
+          new_event.dtstart = Icalendar::Values::DateTime.new(event.signup_start)
+          new_event.dtend = event.signup_start.advance(:hours => +1)
+
+          new_event.summary     = "Ilmoittautuminen: #{event.name}"
           new_event.description = event.descr
           new_event.location    = event.location
           new_event.url         = "#{kalenteri_url}/#{event.id}" 

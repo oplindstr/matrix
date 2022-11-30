@@ -2,11 +2,19 @@
   <%= stylesheet_link_tag 'events', media: 'all' %>
   <%= javascript_include_tag 'events_index' %>
 
-  <h1 class="title is-spaced">Kalenteri</h1>
+  <div class="flexbox">
+    <h1 class="title is-spaced">Kalenteri</h1>
 
-  <%= link_to ical_url(protocol: :webcal, format: :ics), :title => "Tilaa tästä tapahtumat Outlookin, Googlen tai Applen kalenteriin. Uudet tapahtumat ja muutokset tapahtumiin päivittyvät automaattisesti kalenteriin. Jos linkin painaminen ei suoraan toimi, voit myös kopioida linkin ja lisätä tilauskalenterin sen avulla" do %>
-    <i class="fa fa-calendar title" aria-hidden="true" style="position: absolute; top: 30px; right: 40px;"></i>
-  <% end %>
+    <div>
+      <%= link_to ical_signup_starts_url(protocol: :webcal, format: :ics), :title => "Tilaa tästä tulevien tapahtumailmoittautumisten alkamisajat Outlookin, Googlen tai Applen kalenteriin. Uudet tapahtumat ja muutokset tapahtumiin päivittyvät automaattisesti kalenteriin. Jos linkin painaminen suoraan ei toimi, voit myös kopioida linkin ja lisätä tilauskalenterin sen avulla" do %>
+        <i class="fa fa-pencil-square-o title ical-icon" aria-hidden="true"></i>
+      <% end %>
+
+      <%= link_to ical_url(protocol: :webcal, format: :ics), :title => "Tilaa tästä tulevat tapahtumat Outlookin, Googlen tai Applen kalenteriin. Uudet tapahtumat ja muutokset tapahtumiin päivittyvät automaattisesti kalenteriin. Jos linkin painaminen suoraan ei toimi, voit myös kopioida linkin ja lisätä tilauskalenterin sen avulla" do %>
+        <i class="fa fa-calendar-o title ical-icon" aria-hidden="true"></i>
+      <% end %>
+    </div>
+  </div>
 
   <% if sub_admin %>
     <br>
