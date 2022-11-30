@@ -42,7 +42,7 @@
     </div>
     <div class="eventDescription">
       <br>
-      <pre><%= event.descr.html_safe %></pre>
+      <pre><%= event.get_descr.html_safe %></pre>
     </div>
 
     <% if event != @events.last %>

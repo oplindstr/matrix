@@ -177,4 +177,11 @@ class Event < ActiveRecord::Base
       end
     end
   end
+
+  def get_descr
+    if I18n.locale == :en and self.descr_eng and descr_eng.strip.length > 0
+      return self.descr_eng
+    end
+    return self.descr
+  end
 end

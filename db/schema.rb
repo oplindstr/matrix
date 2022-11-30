@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20221116151906) do
+ActiveRecord::Schema.define(version: 20221130155202) do
 
   create_table "board_members", force: :cascade do |t|
     t.integer "year"
@@ -82,6 +82,7 @@ ActiveRecord::Schema.define(version: 20221116151906) do
     t.integer  "signup_limit"
     t.integer  "participants"
     t.boolean  "members_only"
+    t.text     "descr_eng"
   end
 
   create_table "images", force: :cascade do |t|

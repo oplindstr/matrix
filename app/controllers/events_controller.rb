@@ -216,7 +216,7 @@ class EventsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def event_params
-      params.require(:event).permit(:id, :name, :starttime, :endtime, :location, :event_type, :signup_required, :signup_start, :signup_end, :signup_cancellable_until, :descr, :price, :signup_limit, :members_only, :participants, :event_parameters_attributes => [:id, :name, :event_parameter_type_id, :required, :_destroy, :event_parameter_choices_attributes => [:id, :value, :_destroy]])
+      params.require(:event).permit(:id, :name, :starttime, :endtime, :location, :event_type, :signup_required, :signup_start, :signup_end, :signup_cancellable_until, :descr, :descr_eng, :price, :signup_limit, :members_only, :participants, :event_parameters_attributes => [:id, :name, :event_parameter_type_id, :required, :_destroy, :event_parameter_choices_attributes => [:id, :value, :_destroy]])
     end
 
     def signup_params
