@@ -5,18 +5,16 @@
 			<%= image_tag("logo.gif") %>
 		</div>
 		<div class="column">
-			<h1 class='title'>Matematiikan opiskelijaryhmä Matrix ry</h1>
+			<h1 class='title'><%= t('matrix_title') %></h1>
 			<br>
-			<h2 class='subtitle'>Helsingin yliopiston matematiikan opiskelijoiden ainejärjestö</h2>
+			<h2 class='subtitle'><%= t('matrix_subtitle') %></h2>
 		</div>
 	</div>
 </section>
 <div class="box">
-    <h1 class="title hide-in-mobile">Matematiikan opiskelijaryhmä Matrix ry</h1>
+    <h1 class="title hide-in-mobile"><%= t('matrix_title') %></h1>
 
-    <p>Matematiikan opiskelijaryhmä Matrix ry on Helsingin yliopiston matematiikan opiskelijoiden ainejärjestö.
-    Järjestämme jäsenillemme sekä virkistys- ja vapaa-ajantoimintaa että matematiikan opiskeluun liittyvää toimintaa.
-    Toimimme myös aineemme opiskelijoiden edunvalvojana yliopistolla.</p>
+	<p><%= t('matrix_description') %></p>
     <br>
 	<div class="columns">
 		<div class='column'>
@@ -52,7 +50,7 @@
 <div class="columns">
 	<div class='column is-half'>
 		<div class="box fixed-height-col">
-		    <h1 class="title is-4">Ajankohtaista</h1>
+		    <h1 class="title is-4"><%= t('news') %></h1>
 		    <% if sub_admin %>
 		    	<%= link_to 'Lisää uutinen', new_news_path %>
 		    	<br>
@@ -69,7 +67,7 @@
 	</div>
 	<div class="column is-half">
 		<div class="box fixed-height-col">
-		    <h1 class="title is-4">Tulevia tapahtumia</h1>
+		    <h1 class="title is-4"><%= t('upcoming_events') %></h1>
 		    <% if sub_admin %>
 		    	<%= link_to 'Lisää tapahtuma', new_event_path %>
 		    	<br>
@@ -84,13 +82,13 @@
 		      <% if event.signup_open %>
 		        <br>
 		        <% if event.signup_end %>
-		          <i>Ilmoittautuminen tapahtumaan on käynnissä ja päättyy <%= DateHelper.standard_time2(event.signup_end) %> </i>
+		          <i><%= t('signup_open_with_end') %> <%= DateHelper.standard_time2(event.signup_end) %> </i>
 		        <% else %>
-		          <i>Ilmoittautuminen tapahtumaan on käynnissä </i>
+		          <i><%= t('signup_open') %> </i>
 		        <% end %>
 		      <% elsif event.signup_required and event.signup_start and event.signup_start > Time.now %>
 		        <br>
-		        <i>Ilmoittautuminen tapahtumaan alkaa <%= DateHelper.standard_time2(event.signup_start) %> </i>
+		        <i><%= t('signup_starts') %> <%= DateHelper.standard_time2(event.signup_start) %> </i>
 		      <% end %>
 		      <% if event != @events.last %>
 		      	<hr>

@@ -1,0 +1,5 @@
+fi:
+  signup_open: "Ilmoittautuminen tapahtumaan on käynnissä"
+  signup_open_with_end: "Ilmoittautuminen tapahtumaan on käynnissä ja päättyy"
+  signup_starts: "Ilmoittautuminen tapahtumaan alkaa"
+  upcoming_events: "Tulevia tapahtumia"
