@@ -29,68 +29,69 @@
     <% end %>
     <% if current_user %>
       <section class="section container">
-        <%= current_user.name %> kirjautuneena.<br>
-        <%= link_to 'Kirjaudu ulos', signout_path, method: :delete %><br>
+        <%= "#{current_user.name} #{t('logged_in')}" %>.<br>
+        <%= link_to t('log_out'), signout_path, method: :delete %><br>
         <% if sub_admin %>
-          <%= link_to 'Admin-toiminnot', '/admin' %>
+          <%= link_to t('admin_settings'), '/admin' %>
         <% end %>
       </section>
     <% end %>
     <% if !current_user %>
       <section class="section container">
-            <div class="box">
-              <h3 id="log-in" class="title is-6"><a>Kirjaudu sisään</a></h3>
-              <div id="log-in-area">
-                <%= form_tag session_path do %>
-                  <div class="field is-horizontal">
-                    <div class="field-label is-small">
-                      <label class="label">Käyttäjätunnus</label>
-                    </div>
-                    <div class="field-body">
-                      <div class="field">
-                        <div class="control">
-                          <input id="username" name="username" class="input is-small" type="text" required>
-                        </div>
-                      </div>
+        <div class="box">
+          <h3 id="log-in" class="title is-6"><a><%= t('log_in') %></a></h3>
+          <div id="log-in-area">
+            <%= form_tag session_path do %>
+              <div class="field is-horizontal">
+                <div class="field-label is-small">
+                  <label class="label"><%= t('Username') %></label>
+                </div>
+                <div class="field-body">
+                  <div class="field">
+                    <div class="control">
+                      <input id="username" name="username" class="input is-small" type="text" required>
                     </div>
                   </div>
-                  <div class="field is-horizontal">
-                    <div class="field-label is-small">
-                      <label class="label">Salasana</label>
-                    </div>
-                    <div class="field-body">
-                      <div class="field">
-                        <div class="control">
-                          <input id="password" name="password" class="input is-small" type="password" required>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="field is-horizontal">
-                    <div class="field-label">
-                      <!-- Left empty for spacing -->
-                    </div>
-                    <div class="field-body">
-                      <div class="field">
-                        <div class="control">
-                          <%= submit_tag "Kirjaudu", :class => "button is-link" %>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                <% end %>
-                <span><%= link_to 'Unohditko salasanasi?', password_recovery_path %></span><br>
-                <span><%= link_to 'Unohditko käyttäjätunnuksesi?', username_recovery_path %></span>
+                </div>
               </div>
-            </div>
-       </section>
+              <div class="field is-horizontal">
+                <div class="field-label is-small">
+                  <label class="label"><%= t('Password') %></label>
+                </div>
+                <div class="field-body">
+                  <div class="field">
+                    <div class="control">
+                      <input id="password" name="password" class="input is-small" type="password" required>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="field is-horizontal">
+                <div class="field-label">
+                  <!-- Left empty for spacing -->
+                </div>
+                <div class="field-body">
+                  <div class="field">
+                    <div class="control">
+                      <%= submit_tag t('log_in'), :class => "button is-link" %>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            <% end %>
+            <span><%= link_to "#{t('forgot_password')}?", password_recovery_path %></span>
+            <br>
+            <span><%= link_to "#{t('forgot_username')}?", username_recovery_path %></span>
+          </div>
+        </div>
+      </section>
     <% end %>
     <section class="section container">
       <%= yield %>
     </section>
     <footer class="footer">
       <div class="container content has-text-centered">
-        <h1 class="is-size-3-mobile">Yhteistyökumppanit</h1>
+        <h1 class="is-size-3-mobile"><%= t('Partners') %></h1>
         <div class="columns is-multiline">
           <% partners.each do |partner| %>
             <div class="column is-one-quarter">

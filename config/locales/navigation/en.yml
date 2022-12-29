@@ -21,6 +21,7 @@
 
 en:
   activity: "Activity"
+  admin_settings: "Admin Settings"
   board_and_positions: "Board"
   calendar: "Calendar"
   clubs: "Clubs"
@@ -32,12 +33,15 @@ en:
   fi: "Suomeksi"
   for_companies: "For Companies"
   for_freshers: "For Freshers"
+  forgot_password: "Forgot your password"
+  forgot_username: "Forgot your username"
   fresher_guide: "Fresher Guide"
   glossary: "Glossary"
   home: "Home"
   join: "Join"
   klusteri: "Klusteri"
   komero: "Komero"
+  log_in: "Log in"
   mailing_lists: "Mailing Lists"
   my_page: "My Page"
   organization: "Organization"
