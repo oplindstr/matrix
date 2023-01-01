@@ -1,14 +1,14 @@
 <div class="box">
-  <h1 class="title is-spaced">Hallituksen jäsenet ja virat</h1>
+  <h1 class="title is-spaced"><%= t('board_members_and_representatives') %></h1>
 
-  <h2 class="subtitle">Hallitus</h2>
+  <h2 class="subtitle"><%= t('board_members') %></h2>
 
   <table class = "table">
     <thead>
         <tr>
-           <th>Nimi</th>
-           <th>Vuosi</th>
-           <th>Varajäsen?</th>
+           <th><%= t('Name') %></th>
+           <th><%= t('Year') %></th>
+           <th><%= t('Deputy') %></th>
            <th> </th>
            <th> </th>
         </tr>
@@ -20,21 +20,21 @@
     	  <td><%= member.get_name %></td>
     		<td><%= member.year %></td>
     		<td><%= check_box_tag 'supplementary', 'supplementary', member.supplementary, disabled: true %></td>
-        <td><%= link_to 'Muokkaa', edit_board_member_path(member), :class => 'button is-link' %></td>
-    		<td><%= button_to "Poista", {action: "destroy", id: member.id}, method: :delete, class: "button is-danger", data: {confirm: "Oletko varma?"} %></td>
+        <td><%= link_to t('Edit'), edit_board_member_path(member), :class => 'button is-link' %></td>
+    		<td><%= button_to t('Remove'), {action: "destroy", id: member.id}, method: :delete, class: "button is-danger", data: {confirm: "#{t('are_you_sure')}?"} %></td>
   	  </tr>
   	<% end %>
     </tbody>
   </table>
 
-  <h2 class="subtitle">Virat</h2>
+  <h2 class="subtitle"><%= t('representatives') %></h2>
 
   <table class = "table">
     <thead>
         <tr>
-           <th>Nimi</th>
-           <th>Vuosi</th>
-           <th>Virka</th>
+           <th><%= t('Name') %></th>
+           <th><%= t('Year') %></th>
+           <th><%= t('Position') %></th>
            <th> </th>
            <th> </th>
         </tr>
@@ -45,9 +45,9 @@
   	  <tr>
   	    <td><%= position_member.get_name %></td>
     		<td><%= position_member.year %></td>
-    		<td><%= position_member.position.name %></td>
-        <td><%= link_to 'Muokkaa', edit_position_member_path(position_member), :class => 'button is-link' %></td>
-    		<td><%= button_to "Poista", {action: "destroy", controller: "position_members", id: position_member.id}, method: :delete, class: "button is-danger", data: {confirm: "Oletko varma?"} %></td>
+    		<td><%= position_member.position.get_name %></td>
+        <td><%= link_to t('Edit'), edit_position_member_path(position_member), :class => 'button is-link' %></td>
+    		<td><%= button_to t('Remove'), {action: "destroy", controller: "position_members", id: position_member.id}, method: :delete, class: "button is-danger", data: {confirm: "#{t('are_you_sure')}?"} %></td>
   	  </tr>
   	<% end %>
     </tbody>

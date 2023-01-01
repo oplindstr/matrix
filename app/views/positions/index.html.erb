@@ -18,8 +18,8 @@
           <td><%= position.name %></td>
           <td><%= position.priority %></td>
           <td><%= check_box_tag 'Näytä yhteystiedoissa', 'Näytä yhteystiedoissa', position.show_in_contact_info, disabled: true %></td>
-          <td><%= link_to 'Muokkaa', edit_position_path(position), :class => 'button is-link' %></td>
-          <td><%= link_to 'Poista', position, method: :delete, data: { confirm: 'Are you sure?' }, :class => 'button is-danger' %></td>
+          <td><%= link_to t('Edit'), edit_position_path(position), :class => 'button is-link' %></td>
+          <td><%= link_to t('Remove'), position, method: :delete, data: { confirm: 'Are you sure?' }, :class => 'button is-danger' %></td>
         </tr>
       <% end %>
     </tbody>

@@ -1,15 +1,15 @@
 <div class="box">
-	<h1 class="title">Hallitus ja virkailijat</h1>
+	<h1 class="title"><%= t('board_and_representatives') %></h1>
 
 	<% if sub_admin %>
 
-		<%= link_to 'Lisää hallituksen jäsen',  new_board_member_path %>
+		<%= link_to t('add_board_member'),  new_board_member_path %>
 		<br>
-		<%= link_to 'Lisää virkailija', new_position_member_path %>
+		<%= link_to t('add_representative'), new_position_member_path %>
 		<br>
-		<%= link_to 'Muokkaa hallituksen jäseniä ja virkailijoita', '/board_members_and_positions' %>
+		<%= link_to t('edit_board_members'), '/board_members_and_positions' %>
 		<br>
-		<%= link_to 'Virat', positions_path %>
+		<%= link_to t('positions'), positions_path %>
 		<br>
 		<br>
 	<% end %>
@@ -28,7 +28,7 @@
 		    vaikkakin virkailijaksi voi ryhtyä myös kesken vuotta. Kaikki tehtäviä hoitavat ovat aivan tavallisia matrixlaisia. Lue lisää <%= link_to 'virkailijaksi ryhtymisestä!', '/virkailijaksi' %></p>
     </br>
     <% end %>
-	<h3 class="subtitle"> Hallitukset vuosittain </h3>
+	<h3 class="subtitle"><%= t('boards_by_year') %></h3>
 
 	<nav class="breadcrumb" aria-label="breadcrumbs">
 	  <ul>
@@ -40,11 +40,11 @@
 
 	<% if not @board_members.empty? or not @supplementary_members.empty? or not @position_members.empty? %>
 	
-		<h2 class="title"> Hallitus ja virkailijat <%= @year %> </h2>
+		<h2 class="title"> <%= "#{t('board_members_and_representatives')} #{@year}" %> </h2>
 
 		<% if not @board_members.empty? %>
 			<br>
-			<h3 class="subtitle">Hallituksen jäsenet</h3>
+			<h3 class="subtitle"><%= t('board_members') %></h3>
 
 			<%= render :partial => "board_member_list", :locals => 
 		  { :members => @board_members } %>
@@ -53,7 +53,7 @@
 
 		<% if not @supplementary_members.empty? %>
 			<br>
-			<h3 class="subtitle">Hallituksen varajäsenet</h3>
+			<h3 class="subtitle"><%= t('deputy_board_members') %></h3>
 
 			<%= render :partial => "board_member_list", :locals => 
 		  { :members => @supplementary_members } %>
@@ -62,7 +62,7 @@
 
 		<% if not @position_members.empty? %>
 			<br>
-			<h3 class="subtitle">Virkailijat</h3>
+			<h3 class="subtitle"><%= t('representatives') %></h3>
 
 			<%= render :partial => "position_member_list", :locals => 
 		  { :members => @position_members } %>
