@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20221228204128) do
+ActiveRecord::Schema.define(version: 20230101172301) do
 
   create_table "board_members", force: :cascade do |t|
     t.integer "year"
@@ -150,6 +150,7 @@ ActiveRecord::Schema.define(version: 20221228204128) do
     t.integer "priority"
     t.boolean "admin"
     t.integer "position_type"
+    t.string  "name_eng"
   end
 
   create_table "post_comments", force: :cascade do |t|

@@ -11,4 +11,11 @@ class Position < ActiveRecord::Base
 	  	return self.position_members.where('year = ?', Time.now.year)
 	  end
 	end
+
+	def get_name
+      if I18n.locale == :en and self.name_eng
+		return self.name_eng
+	  end
+	  return self.name
+	end
 end
