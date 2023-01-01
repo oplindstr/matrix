@@ -16,8 +16,8 @@
           <td><%= product.name %></td>
           <td><%= product.price %></td>
           <td><%= product.priority %></td>
-          <td><%= link_to 'Muokkaa', edit_product_path(product) %></td>
-          <td><%= link_to 'Poista', product, method: :delete, data: { confirm: 'Oletko varma?' } %></td>
+          <td><%= link_to t('Edit'), edit_product_path(product) %></td>
+          <td><%= link_to t('Remove'), product, method: :delete, data: { confirm: "#{t('are_you_sure')}?" } %></td>
         </tr>
       <% end %>
     </tbody>

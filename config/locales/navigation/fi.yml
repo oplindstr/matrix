@@ -21,6 +21,7 @@ fi:
   klusteri: "Klusteri"
   komero: "Komero"
   log_in: "Kirjaudu sisään"
+  log_out: "Kirjaudu ulos"
   mailing_lists: "Sähköpostilistat"
   my_page: "Omat tiedot"
   organization: "Järjestö"

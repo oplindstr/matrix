@@ -9,7 +9,7 @@ class SessionsController < ApplicationController
       redirect_to :back, alert: "Olet jo kirjautunut sisään"
     elsif @user && @user.authenticate(params[:password])
       session[:user_id] = @user.id
-      redirect_to session.delete(:return_to), notice: "Tervetuloa #{@user.firstname}!"
+      redirect_to session.delete(:return_to), notice: "#{I18n.t('Welcome')} #{@user.firstname}!"
     elsif @user && !@user.authenticate(params[:password])
       redirect_to :back, alert: "Salasana väärin"
     elsif !@user
@@ -20,7 +20,7 @@ class SessionsController < ApplicationController
   def destroy
     if session[:user_id]
       session[:user_id] = nil
-      redirect_to root_path, notice: "Uloskirjautuminen onnistui"
+      redirect_to root_path, notice: I18n.t('logout_successful')
     else
       redirect_to root_path
     end

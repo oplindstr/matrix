@@ -37,7 +37,7 @@
       <%= form_for @user, :url => { :action => "remove_picture" } do |f| %>
 
         <div class="actions">
-          <%= f.submit 'Poista', data: { confirm: 'Oletko varma?' }, :class => 'button is-danger'  %>
+          <%= f.submit t('Remove'), data: { confirm: "#{t('are_you_sure')}?" }, :class => 'button is-danger'  %>
         </div>
 
       <% end %>

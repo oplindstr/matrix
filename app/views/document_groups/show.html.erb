@@ -6,7 +6,7 @@
 
       <%= link_to "Uusi dokumentti", '/document_groups/' + @document_group_id.to_s + '/new_document', class: "btn btn-primary" %><br>
       <%= link_to 'Muokkaa kategoriaa', edit_document_group_path(@document_group) %><br>
-      <%= link_to 'Poista kategoria', @document_group, method: :delete, data: { confirm: 'Oletko varma?' } %>
+      <%= link_to 'Poista kategoria', @document_group, method: :delete, data: { confirm: "#{t('are_you_sure')}?" } %>
 
       <br>
       <br>
@@ -20,8 +20,8 @@
             <tr>
                <td><%= link_to document.name, document.attachment_url %></td>
                <% if sub_admin %>
-               <td><%= link_to "Muokkaa", edit_document_path(document) %></td>
-               <td><%= button_to "Poista",  document, method: :delete, class: "button is-danger", data: {confirm: "Oletko varma?"} %></td>
+               <td><%= link_to t('Edit'), edit_document_path(document) %></td>
+               <td><%= button_to t('Remove'),  document, method: :delete, class: "button is-danger", data: {confirm: "#{t('are_you_sure')}?"} %></td>
                <% end %>
             </tr>
             

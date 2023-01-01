@@ -16,7 +16,7 @@
       <tr>
         <td><%= link_to user.name, user %></td>
         <td><%= user.email %></td>
-        <td><%= link_to 'Poista', user, method: :delete, data: { confirm: 'Oletko varma?' } %></td>
+        <td><%= link_to t('Remove'), user, method: :delete, data: { confirm: "#{t('are_you_sure')}?" } %></td>
       <% end %>
       </tr>
     </tbody>

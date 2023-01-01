@@ -14,8 +14,8 @@
         <tr>
           <td><%= partner.name %></td>
           <td><%= link_to partner.name, partner.link %></td>
-          <td><%= link_to 'Muokkaa', edit_partner_path(partner) %></td>
-          <td><%= link_to 'Poista', partner, method: :delete, data: { confirm: 'Oletko varma?' } %></td>
+          <td><%= link_to t('Edit'), edit_partner_path(partner) %></td>
+          <td><%= link_to t('Remove'), partner, method: :delete, data: { confirm: "#{t('are_you_sure')}?" } %></td>
         </tr>
       <% end %>
     </tbody>

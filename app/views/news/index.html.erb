@@ -10,7 +10,7 @@
 	<div class='list'>
 		<% @news.each do |news| %>
 		  <b class="subtitle"><%= news.header %></b>
-		  | <%= link_to 'Muokkaa', edit_news_path(news) %> | <%= link_to 'Poista', news, method: :delete, data: { confirm: 'Are you sure?' } %>
+		  | <%= link_to t('Edit'), edit_news_path(news) %> | <%= link_to t('Remove'), news, method: :delete, data: { confirm: 'Are you sure?' } %>
 		  <br>
 		  <br>
 		  <pre class='list-text'><%= news.text %></pre>

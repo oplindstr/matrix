@@ -6,7 +6,7 @@
 
     <%= link_to 'Muokkaa tapahtumaa', edit_event_path(@event) %>
     <br>
-    <%= link_to 'Poista tapahtuma', @event, method: :delete, data: { confirm: 'Oletko varma?' } %>
+    <%= link_to 'Poista tapahtuma', @event, method: :delete, data: { confirm: "#{t('are_you_sure')}?" } %>
     <br>
     <br>
 
