@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20230101172301) do
+ActiveRecord::Schema.define(version: 20230102110022) do
 
   create_table "board_members", force: :cascade do |t|
     t.integer "year"
@@ -25,6 +25,7 @@ ActiveRecord::Schema.define(version: 20230101172301) do
     t.string   "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string   "name_eng"
   end
 
   create_table "document_groups", force: :cascade do |t|
@@ -33,6 +34,7 @@ ActiveRecord::Schema.define(version: 20230101172301) do
     t.datetime "updated_at",                 null: false
     t.string   "display_name"
     t.integer  "document_group_category_id"
+    t.string   "display_name_eng"
   end
 
   create_table "documents", force: :cascade do |t|
@@ -41,6 +43,7 @@ ActiveRecord::Schema.define(version: 20230101172301) do
     t.datetime "created_at",        null: false
     t.datetime "updated_at",        null: false
     t.integer  "document_group_id"
+    t.string   "name_eng"
   end
 
   create_table "event_parameter_choices", force: :cascade do |t|
