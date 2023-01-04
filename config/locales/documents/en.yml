@@ -1,0 +1,29 @@
+en:
+  document_category: "Document Category"
+  document_group: "Document Collection"
+  document: "Document"
+  edit_category: "Edit Document Category"
+  category_info: 'Note that the Exam Archive document category has to be named exactly "Tenttiarkisto" so that the navigation link there works'
+  new_category: "New Document Category"
+  new_group: "New Document Collection"
+  edit_group: "Edit Document Collection"
+  remove_group: "Remove Document Collection"
+  remove_category: "Remove Document Category"
+  display_name: "Display Name"
+  display_name_eng: "Display Name in English"
+  new_document: "New Document"
+  new_group_for_category: "New Collection to Category"
+  new_document_for_group: "New Document to Collection"
+  edit_document: "Edit Document"
+  duplicate_document_message: "This collection already has a document with this name"
+  document_group_category: "Document Category"
+  activerecord:
+    models:
+      document_group_category: "Document Category"
+      document_group: "Document Collection"
+      document: "Document"
+    attributes:
+      document:
+        document_group_id: "Document Collection"
+      document_group:
+        document_group_category_id: "Document Category"

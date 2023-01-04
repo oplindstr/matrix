@@ -7,8 +7,8 @@ Rails.application.routes.draw do
     resources :texts
     resources :products
     resources :board_members, only: [:edit, :update, :index, :new, :create, :destroy]
-    resources :document_group_categories
-    resources :document_groups
+    resources :document_group_categories, only: [:show, :new, :edit, :update, :create, :destroy]
+    resources :document_groups, only: [:show, :new, :edit, :create, :update, :destroy]
     resources :documents, only: [:index, :new, :create, :destroy, :edit, :update]
     resources :event_parameter_choices
     resources :event_parameter_types
@@ -32,12 +32,12 @@ Rails.application.routes.draw do
 
     get '/board_members_and_positions', to: 'board_members#board_members_and_positions'
 
-    get '/document_group_categories/:id/new_document_group' => 'document_groups#new'
-    get '/document_groups/:id/new_document' => 'documents#new'
+    get '/document_group_categories/:id/new_document_group' => 'document_groups#new', as: 'new_document_group_for_category'
+    get '/document_groups/:id/new_document' => 'documents#new', as: 'new_document_for_group'
 
     get '/dokumentit', to: 'document_groups#index', as: 'dokumentit'
 
-    get '/dokumentit/:name', to: 'document_groups#show'
+    get '/dokumentit/:name', to: 'document_groups#show', as: 'document_group_page'
 
     post '/events/:id/sign_up', to: 'events#sign_up'
     patch '/events/:id/update_signup', to: 'events#update_signup'
@@ -101,5 +101,8 @@ Rails.application.routes.draw do
 
     get '/events/ical/events' => 'events#ical', as: 'ical'
     get '/events/ical/signup_starts' => 'events#ical_signup_starts', as: 'ical_signup_starts'
+
+    get "en/*path" => redirect("/en")
+    get "*path" => redirect("/")
   end
 end

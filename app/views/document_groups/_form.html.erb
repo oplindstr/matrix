@@ -1,16 +1,23 @@
 <%= form_for(@document_group) do |f| %>
 
   <div class="field">
-    <%= f.label :name, 'Nimi', :class => 'label' %>
+    <%= f.label :name, :class => 'label' %>
     <div class="control">
       <%= f.text_field :name, :class => 'input', :required => true, :pattern => "[a-zA-Z0-9äöÄÖ\s\-]+" %>
     </div>
   </div>
 
   <div class="field">
-    <%= f.label :display_name, 'Lyhyt nimi', :class => 'label' %>
+    <%= f.label :display_name, :class => 'label' %>
     <div class="control">
       <%= f.text_field :display_name, :class => 'input', :required => true %>
+    </div>
+  </div>
+
+  <div class="field">
+    <%= f.label :display_name_eng, :class => 'label' %>
+    <div class="control">
+      <%= f.text_field :display_name_eng, :class => 'input', :required => true %>
     </div>
   </div>
 
@@ -23,15 +30,15 @@
   <% else %>
 
     <div class="field">
-      <%= f.label :document_group_category_id, 'Yläkategoria', :class => 'label' %>
+      <%= f.label :document_group_category_id, :class => 'label' %>
       <div class="select">
-        <%= f.select :document_group_category_id, options_from_collection_for_select(@document_group_categories, :id, :name, :selected => @document_group_category_id), :required => true %>
+        <%= f.select :document_group_category_id, options_from_collection_for_select(@document_group_categories, :id, :get_name, :selected => @document_group_category_id), :required => true %>
       </div>
     </div>
 
   <% end %>
 
   <div class="actions">
-    <%= f.submit :value => 'Tallenna', :class => 'button is-link' %>
+    <%= f.submit :value => t('Save'), :class => 'button is-link' %>
   </div>
 <% end %>

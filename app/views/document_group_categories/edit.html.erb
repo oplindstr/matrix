@@ -1,13 +1,13 @@
 <div class="box">
 
-	<h1 class="title">Muokkaa kategoriaa</h1>
+	<h1 class="title"><%= t('edit_category') %></h1>
 
-  <i>Huom. Tenttiarkiston nimi täytyy olla täsmälleen "Tenttiarkisto", jotta se toimii ylävalikon linkistä</i>
+  <i><%= t('category_info') %></i>
 
 	<%= render 'form' %>
 
 	<br>
 
-	<%= link_to 'Takaisin', @document_group_category %>
+	<%= link_to t('Back'), @document_group_category %>
 
 </div>

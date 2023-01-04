@@ -1,12 +1,11 @@
 class DocumentGroup < ActiveRecord::Base
-
   has_many :documents
   belongs_to :document_group_category
 
-  validates :name, presence: { message: 'Nimi puuttuu' }
-  validates :name, uniqueness: { message: 'Nimi on jo käytössä' }
-  validates :name, length: { maximum: 500, message: 'Anna nimi, jonka pituus on enintään 500 merkkiä' }
-  validates :display_name, length: { maximum: 500, message: 'Anna lyhyt nimi, jonka pituus on enintään 500 merkkiä' }
+  validates :name, presence: true
+  validates :name, uniqueness: true
+  validates :name, length: { maximum: 500 }
+  validates :display_name, length: { maximum: 500 }
   validate :name_for_url
 
   def to_s
@@ -23,8 +22,17 @@ class DocumentGroup < ActiveRecord::Base
 
   def name_for_url
     if !self.name.match(/[^a-zA-Z0-9äöÄÖ\s]$/).nil?
-      errors.add(:name, "Nimessä saa olla vain aakkosia ja numeroita")
+      errors.add(:name, I18n.t('only_numbers_in_name_allowed'))
     end
   end
 
+  def get_name
+    if I18n.locale == :en and self.display_name_eng
+      return self.display_name_eng
+    end
+    if self.display_name
+      return self.display_name
+    end
+    self.name
+  end
 end

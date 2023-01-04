@@ -1,0 +1,29 @@
+fi:
+  edit_category: "Muokkaa dokumenttikategoriaa"
+  category_info: 'Huom. Tenttiarkiston nimi täytyy olla täsmälleen "Tenttiarkisto", jotta se toimii ylävalikon linkistä'
+  new_category: "Uusi dokumenttikategoria"
+  new_group: "Uusi dokumenttikokoelma"
+  edit_group: "Muokkaa dokumenttikokoelmaa"
+  remove_group: "Poista dokumenttikokoelma"
+  remove_category: "Poista dokumenttikategoria"
+  display_name: "Näyttönimi"
+  display_name_eng: "Näyttönimi englanniksi"
+  new_document: "Uusi dokumentti"
+  new_group_for_category: "Uusi kokoelma kategoriaan"
+  new_document_for_group: "Uusi dokumentti kokoelmaan"
+  document_category: "Dokumenttikategoria"
+  document_group: "Dokumenttikokoelma"
+  document: "Dokumentti"
+  edit_document: "Muokkaa dokumenttia"
+  duplicate_document_message: "Tässä kokoelmassa on jo tämän niminen dokumentti"
+  document_group_category: "Dokumenttikategoria"
+  activerecord:
+    models:
+      document_group_category: "Dokumenttikategoria"
+      document_group: "Dokumenttikokoelma"
+      document: "Dokumentti"
+    attributes:
+      document:
+        document_group_id: "Dokumenttikokoelma"
+      document_group:
+        document_group_category_id: "Dokumenttikategoria"

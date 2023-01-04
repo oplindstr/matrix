@@ -1,12 +1,12 @@
 <div class="box">
 
-   <h2 class="title"> <%= @document_group.name %> </h2>
+   <h2 class="title"> <%= @document_group.get_name %> </h2>
 
    <% if sub_admin %>
 
-      <%= link_to "Uusi dokumentti", '/document_groups/' + @document_group_id.to_s + '/new_document', class: "btn btn-primary" %><br>
-      <%= link_to 'Muokkaa kategoriaa', edit_document_group_path(@document_group) %><br>
-      <%= link_to 'Poista kategoria', @document_group, method: :delete, data: { confirm: "#{t('are_you_sure')}?" } %>
+      <%= link_to t('new_document'), new_document_for_group_path(@document_group_id), class: "btn btn-primary" %><br>
+      <%= link_to t('edit_group'), edit_document_group_path(@document_group) %><br>
+      <%= link_to t('remove_group'), @document_group, method: :delete, data: { confirm: "#{t('are_you_sure')}?" } %>
 
       <br>
       <br>
@@ -18,10 +18,10 @@
          <% @documents.each do |document| %>
             
             <tr>
-               <td><%= link_to document.name, document.attachment_url %></td>
+               <td><%= link_to document.get_name, document.attachment_url %></td>
                <% if sub_admin %>
-               <td><%= link_to t('Edit'), edit_document_path(document) %></td>
-               <td><%= button_to t('Remove'),  document, method: :delete, class: "button is-danger", data: {confirm: "#{t('are_you_sure')}?"} %></td>
+                  <td><%= link_to t('Edit'), edit_document_path(document) %></td>
+                  <td><%= button_to t('Remove'),  document, method: :delete, class: "button is-danger", data: {confirm: "#{t('are_you_sure')}?"} %></td>
                <% end %>
             </tr>
             

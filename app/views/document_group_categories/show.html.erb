@@ -1,11 +1,11 @@
 <div class="box">
 
-	<h2 class="title"><%= @document_group_category.name %></h2>
+	<h2 class="title"><%= @document_group_category.get_name %></h2>
 
   <% if sub_admin %>
-	  <%= link_to 'Luo uusi alakategoria', '/document_group_categories/' + @document_group_category_id.to_s + '/new_document_group' %><br>
-	  <%= link_to 'Muokkaa kategoriaa', edit_document_group_category_path(@document_group_category) %><br>
-	  <%= link_to 'Poista kategoria', @document_group_category, method: :delete, data: { confirm: "#{t('are_you_sure')}?" } %><br>
+	  <%= link_to t('new_group'), new_document_group_for_category_path(@document_group_category_id) %><br>
+	  <%= link_to t('edit_category'), edit_document_group_category_path(@document_group_category) %><br>
+	  <%= link_to t('remove_category'), @document_group_category, method: :delete, data: { confirm: "#{t('are_you_sure')}?" } %><br>
     <br>
   <% end %>
 
@@ -13,7 +13,7 @@
 
     <% @document_groups.each do |document_group| %>
 
-    	<li><%= link_to document_group, "/dokumentit/" + document_group.name.tr(' ', '+') %></li>
+    	<li><%= link_to document_group.get_name, document_group_page_path(document_group.name.tr(' ', '+')) %></li>
 
     <% end %>
 

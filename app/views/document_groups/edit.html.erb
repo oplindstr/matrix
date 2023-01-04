@@ -1,11 +1,11 @@
 <div class="box">
 
-	<h1 class="title">Muokkaa kategoriaa</h1>
+	<h1 class="title"><%= t('edit_group') %></h1>
 
 	<%= render 'form' %>
 
 	<br>
 
-	<%= link_to 'Takaisin', document_group_path(@document_group) %>
+	<%= link_to t('Back'), document_group_path(@document_group) %>
 
 </div>

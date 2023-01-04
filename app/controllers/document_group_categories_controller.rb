@@ -2,11 +2,9 @@ class DocumentGroupCategoriesController < ApplicationController
   before_action :set_document_group_category, only: [:show, :edit, :update, :destroy]
   before_action :ensure_that_sub_admin, except: [:show]
 
-  # GET /document_group_categories
-  # GET /document_group_categories.json
-  def index
-    @document_group_categories = DocumentGroupCategory.all.sort { |a,b| a.name <=> b.name }
-  end
+  include MessageHelper
+
+  @@object_type = 'document_category'
 
   # GET /document_group_categories/1
   # GET /document_group_categories/1.json
@@ -31,7 +29,7 @@ class DocumentGroupCategoriesController < ApplicationController
 
     respond_to do |format|
       if @document_group_category.save
-        format.html { redirect_to @document_group_category, notice: 'Dokumenttien pääkategoria luotu' }
+        format.html { redirect_to @document_group_category, notice: created_message(@@object_type) }
         format.json { render :show, status: :created, location: @document_group_category }
       else
         @alert = @document_group_category.errors
@@ -46,7 +44,7 @@ class DocumentGroupCategoriesController < ApplicationController
   def update
     respond_to do |format|
       if @document_group_category.update(document_group_category_params)
-        format.html { redirect_to @document_group_category, notice: 'Dokumenttien pääkategorian muokkaus onnistui' }
+        format.html { redirect_to @document_group_category, notice: updated_message(@@object_type) }
         format.json { render :show, status: :ok, location: @document_group_category }
       else
         @alert = @document_group_category.errors
@@ -61,7 +59,7 @@ class DocumentGroupCategoriesController < ApplicationController
   def destroy
     @document_group_category.destroy
     respond_to do |format|
-      format.html { redirect_to '/dokumentit', notice: 'Dokumenttien pääkategoria poistettu' }
+      format.html { redirect_to dokumentit_path, notice: destroyed_message(@@object_type) }
       format.json { head :no_content }
     end
   end
@@ -74,6 +72,6 @@ class DocumentGroupCategoriesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def document_group_category_params
-      params.require(:document_group_category).permit(:name)
+      params.require(:document_group_category).permit(:name, :name_eng)
     end
 end

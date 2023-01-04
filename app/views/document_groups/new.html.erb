@@ -1,9 +1,9 @@
 <div class="box">
 
 	<% if @document_group_category_id %>
-		<h1 class="title">Uusi alakategoria kategoriaan <%= @document_group_category.name %></h1>
+		<h1 class="title"><%= t('new_group_for_category') %> <%= @document_group_category.get_name %></h1>
 	<% else %>
-		<h1 class="title">Uusi dokumenttialakategoria</h1>
+		<h1 class="title"><%= t('new_group') %></h1>
 	<% end %>
 
 	<%= render 'form' %>
@@ -12,7 +12,7 @@
 
 		<br>
 
-		<%= link_to 'Takaisin', '/document_group_categories/' + @document_group_category_id.to_s %>
+		<%= link_to t('Back'), document_group_category_path(@document_group_category_id) %>
 
 	<% end %>
 

@@ -3,10 +3,19 @@ class DocumentGroupsController < ApplicationController
   before_action :set_document_group_categories, only: [:index, :new, :edit]
   before_action :ensure_that_sub_admin, except: [:index, :show]
 
+  include MessageHelper
+  @@object_type = 'document_group'
+
   # GET /document_groups
   # GET /document_groups.json
   def index
-    @document_groups = DocumentGroup.all.sort { |a,b| a.to_s <=> b.to_s }
+    @document_groups = DocumentGroup.all.sort { |a,b| 
+      if a.to_s.match('^[0-9]*$') and b.to_s.match('^[0-9]*$')
+        b.to_s <=> a.to_s 
+      else
+        a.to_s <=> b.to_s 
+      end
+    }
   end
 
   # GET /document_groups/1
@@ -35,7 +44,7 @@ class DocumentGroupsController < ApplicationController
 
     respond_to do |format|
       if @document_group.save
-        format.html { redirect_to '/dokumentit/' + @document_group.url, notice: 'Dokumenttien alakategoria luotu' }
+        format.html { redirect_to document_group_page_path(@document_group.name.tr(' ', '+')), notice: created_message(@@object_type) }
         format.json { render :show, status: :created, location: @document_group }
       else
         @document_group_categories = DocumentGroupCategory.all.sort { |a,b| a.name.downcase <=> b.name.downcase }
@@ -55,7 +64,7 @@ class DocumentGroupsController < ApplicationController
   def update
     respond_to do |format|
       if @document_group.update(document_group_params)
-        format.html { redirect_to @document_group, notice: 'Dokumenttien alakategorian muokkaus onnistui' }
+        format.html { redirect_to document_group_page_path(@document_group.name.tr(' ', '+')), notice: updated_message(@@object_type) }
         format.json { render :show, status: :ok, location: @document_group }
       else
         @document_group_categories = DocumentGroupCategory.all.sort { |a,b| a.name.downcase <=> b.name.downcase }
@@ -71,7 +80,7 @@ class DocumentGroupsController < ApplicationController
   def destroy
     @document_group.destroy
     respond_to do |format|
-      format.html { redirect_to '/dokumentit', notice: 'Dokumenttien alakategoria poistettu' }
+      format.html { redirect_to dokumentit_path, notice: destroyed_message(@@object_type) }
       format.json { head :no_content }
     end
   end
@@ -95,6 +104,6 @@ class DocumentGroupsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def document_group_params
-      params.require(:document_group).permit(:name, :display_name, :document_group_category_id)
+      params.require(:document_group).permit(:name, :display_name, :document_group_category_id, :display_name_eng)
     end
 end

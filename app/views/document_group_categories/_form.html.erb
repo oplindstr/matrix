@@ -1,12 +1,18 @@
 <%= form_for(@document_group_category) do |f| %>
 
   <div class="field">
-    <%= f.label :name, 'Nimi', :class => 'label' %>
+    <%= f.label :name, :class => 'label' %>
     <div class="control">
       <%= f.text_field :name, :class => 'input', :required => true %>
     </div>
   </div>
+  <div class="field">
+    <%= f.label :name_eng, :class => 'label' %>
+    <div class="control">
+      <%= f.text_field :name_eng, :class => 'input' %>
+    </div>
+  </div>
   <div class="actions">
-    <%= f.submit :value => 'Tallenna', :class => 'button is-link' %>
+    <%= f.submit :value => t('Save'), :class => 'button is-link' %>
   </div>
 <% end %>
