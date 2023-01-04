@@ -19,7 +19,7 @@
 					<i> <%= @member.email %> </i>
 					<br><br>
 					<% @member.positions_by_year(@year).each do |position| %>
-						<span> <%= position.name %> </span> <br>
+						<span> <%= position.get_name %> </span> <br>
 					<% end %>
 					<br>
 				</div>
@@ -46,7 +46,7 @@
 						<i> <%= @member.email %> </i>
 						<br><br>
 						<% @member.positions_by_year(@year).each do |position| %>
-							<span> <%= position.name %> </span> <br>
+							<span> <%= position.get_name %> </span> <br>
 						<% end %>
 						<br>
 					</div>
@@ -64,7 +64,7 @@
 		<% members.each do |member| %>
 			<b><%= member.get_name %></b> <br>
 			<% member.positions_by_year(@year).each do |position| %>
-				<span> <%= position.name %> </span> <br>
+				<span> <%= position.get_name %> </span> <br>
 			<% end %>
 			<br>
 		<% end %>
