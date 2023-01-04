@@ -1,7 +1,7 @@
 <%= form_for(@position) do |f| %>
 
   <div class="field">
-    <%= f.label 'Nimi', :class => 'label' %>
+    <%= f.label t('Name'), :class => 'label' %>
     <div class="control">
       <%= f.text_field :name, :class => 'input' %>
     </div>

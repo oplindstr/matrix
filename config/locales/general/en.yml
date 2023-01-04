@@ -1,5 +1,5 @@
 en:
-  are_you_sure: "Are you sure"
+  Back: "Back"
   Edit: "Edit"
   logged_in: "logged in"
   logout_successful: "Successfully logged out"
@@ -9,8 +9,14 @@ en:
   Welcome: "Welcome"
   Year: "Year"
   Member: "Member"
-  Name: "Name"
   User: "User"
   Picture: "Picture"
   Save: "Save"
   Remove: "Remove"
+  File: "File"
+  attributes:
+    attachment: "File"
+    name: "Name"
+    name_eng: "Name in English"
+    display_name: "Display Name"
+    display_name_eng: "Display Name in English"

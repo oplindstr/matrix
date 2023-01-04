@@ -1,0 +1,12 @@
+fi:
+  are_you_sure: "Oletko varma"
+  only_numbers_in_name_allowed: "Nimessä saa olla vain aakkosia ja numeroita"
+  created: "luotu"
+  updated: "a muokattu"
+  destroyed: "poistettu"
+  activerecord:
+    errors:
+      messages:
+        blank: "%{attribute} puuttuu"
+        taken: "%{model}, jolla on tämä %{attribute} on jo olemassa"
+        too_long: "%{attribute} on liian pitkä (maksimi on %{count} merkkiä)"

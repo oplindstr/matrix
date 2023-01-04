@@ -1,4 +1,5 @@
 fi:
+  Back: "Takaisin"
   logged_in: "kirjautuneena"
   logout_successful: "Uloskirjautuminen onnistui"
   Partners: "Yhteistyökumppanit"
@@ -7,10 +8,15 @@ fi:
   Welcome: "Tervetuloa"
   Year: "Vuosi"
   Member: "Jäsen"
-  Name: "Nimi"
   User: "Käyttäjä"
   Picture: "Kuva"
   Save: "Tallenna"
   Edit: "Muokkaa"
   Remove: "Poista"
-  are_you_sure: "Oletko varma"
+  File: "Tiedosto"
+  attributes:
+    attachment: "Tiedosto"
+    name: "Nimi"
+    name_eng: "Nimi englanniksi"
+    display_name: "Näyttönimi"
+    display_name_eng: "Näyttönimi englanniksi"

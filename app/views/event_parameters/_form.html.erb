@@ -7,7 +7,7 @@
           <%= f.nested_fields_for :event_parameters, :wrapper => false do |p| %>
             <div class="fields">
               <div class="field">
-                <%= p.label 'Nimi' %><br>
+                <%= p.label t('Name') %><br>
                 <%= p.text_field :name  %>
               </div>
               <div class="field">

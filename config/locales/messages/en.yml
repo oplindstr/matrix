@@ -1,0 +1,12 @@
+en:
+  are_you_sure: "Are you sure"
+  only_numbers_in_name_allowed: "Name can only contain numbers"
+  created: "created"
+  updated: " updated"
+  destroyed: "removed"
+  activerecord:
+    errors:
+      messages:
+        blank: "%{attribute} is missing"
+        taken: "%{model} with this %{attribute} already exists"
+        too_long: "%{attribute} is too long (maximum is %{count} characters)"

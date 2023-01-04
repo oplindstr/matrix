@@ -3,7 +3,7 @@
   <%= javascript_include_tag 'events' %>
 
   <div class="field">
-    <%= f.label :name, 'Nimi', :class => 'label' %>
+    <%= f.label :name, t('Name'), :class => 'label' %>
     <div class="control">
       <%= f.text_field :name, :class => 'input', :required => true %>
     </div>
@@ -115,7 +115,7 @@
           <%= f.nested_fields_for :event_parameters, :wrapper => false do |p| %>
             <div class="fields">
               <div class="field">
-                <%= p.label :name, 'Nimi', :class => 'label' %>
+                <%= p.label :name, t('Name'), :class => 'label' %>
                 <div class="control">
                   <%= p.text_field :name, :class => 'input', :required => true  %>
                 </div>
@@ -170,7 +170,7 @@
   <% end %>
 
   <div class="actions">
-    <%= f.submit 'Tallenna', :class => 'button is-link' %>
+    <%= f.submit t('Save'), :class => 'button is-link' %>
   </div>
 
 <% end %>
