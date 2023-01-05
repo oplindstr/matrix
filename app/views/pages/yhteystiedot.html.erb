@@ -1,5 +1,5 @@
 <div class="box">
-  <h1 class="title">Yhteystiedot</h1>
+  <h1 class="title"><%= t('contact_information') %></h1>
   <% if @post %>
     <pre><%= @post.get_value.html_safe %></pre>
   <% else %>
@@ -17,16 +17,16 @@
     <p>Toimistona palvelee Exactumin matematiikan ja tilastotieteen laitoksen opiskelijahuone, Exactum C338.</p>
   <% end %>
   <br>
-  <h3 class="subtitle">Sähköpostit</h3>
+  <h3 class="subtitle"><%= t('email_addresses') %></h3>
 
   <ul>
     <% @contact_positions.each do |position| %>
       <% if position.current_members and !position.current_members.empty? %>
         <li>
           <% if position.current_members.size == 1 %>
-            <%= position.name %>: 
+            <%= position.get_name %>: 
           <% else %>
-            <%= position.name %>t:
+            <%= position.get_name %>t:
           <% end %> 
           <% position.current_members.each_with_index do |position_member, i| %>
             <% if i == position.current_members.size - 1 %>
