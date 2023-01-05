@@ -34,7 +34,7 @@ class PagesController < ApplicationController
       @event_count = 5
     end
     @news = News.all.order(priority: :desc, id: :desc).limit(@news_count)
-    @events = Event.where('starttime > ?', Time.now).order(starttime: :asc).limit(@event_count)
+    @events = Event.where('starttime >= ?', DateTime.now.midnight).order(:starttime, :endtime).limit(@event_count)
     @info = Text.where('name = ?', 'Etusivun info').first
     @tervetuloa = Text.where('name = ?', 'Tervetuloa').first
 
