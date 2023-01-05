@@ -1,0 +1,30 @@
+fi:
+  "Etusivun info": "Etusivun info"
+  Fuksille: "Fuksille"
+  Fuksiopas: "Fuksiopas"
+  Hallitus ja virkailijat: "Hallitus ja virkailijat"
+  Järjestö: "Järjestö"
+  Kalenteri: "Kalenteri"
+  Kerhot: "Kerhot"
+  #Klusteri: "Klusteri"
+  #Komero: 
+  Kurssikuvauksia: "Kurssikuvauksia"
+  "Muut yhteystiedot": "Muut yhteystiedot"
+  "Postiosoite ja toimisto": "Postiosoite ja toimisto"
+  Sähköpostilistat: "Sähköpostilistat"
+  Sanastoa: "Sanastoa"
+  Tervetuloa: "Tervetuloa"
+  Toiminta: "Toiminta"
+  Tuutorit: "Tuutorit"	
+  Virkailijaksi: "Virkailijaksi"
+  Yrityksille: "Yrityksille"
+  Texts: "Tekstit"
+  text: "Teksti"
+  new_text: "Uusi teksti"
+  edit_text: "Muokkaa tekstiä"
+  text_updated: "Tekstiä muokattu"
+  activerecord:
+    attributes:
+      text:
+        value: "Teksti"
+        value_eng: "Teksti englanniksi"

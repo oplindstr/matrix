@@ -1,0 +1,42 @@
+<%= form_for(@text) do |f| %>
+  <% if @text.errors.any? %>
+    <div id="error_explanation">
+      <ul>
+        <% @text.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <% if locals[:new] %>
+    <div class="field">
+      <%= f.label :name, :class => 'label' %>
+      <div class="control">
+        <%= f.text_field :name, :class => 'input', :required => true %>
+      </div>
+    </div>
+  <% else %>
+     <h1 class="title"><%= t(@text.name) %></h1>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :value, :class => 'label' %>
+    <div class="control">
+      <%= f.text_area :value, :class => 'textarea', :required => true, :rows => 20 %>
+    <div>
+  </div>
+  <br>
+  <div class="field">
+    <%= f.label :value_eng, :class => 'label' %>
+    <div class="control">
+      <%= f.text_area :value_eng, :class => 'textarea', :rows => 20 %>
+    <div>
+  </div>
+  <br>
+  <div class="field">
+    <div class="control">
+      <%= f.submit :value => t('Save'), :class => 'button is-link' %>
+    </div>
+  </div>
+<% end %>

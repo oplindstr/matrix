@@ -1,7 +1,7 @@
 <div class="box">
-    <h1 class="title">Uusi teksti</h1>
+    <h1 class="title"><%= t('new_text') %></h1>
 
-	<%= render 'new_form' %>
+	<%= render 'form', locals: {new: true} %>
 
 	<%= link_to t('Back'), texts_path %>
 </div>

@@ -19,7 +19,7 @@
 	<div class="columns">
 		<div class='column'>
 			<% if @tervetuloa %>
-				<pre><%= @tervetuloa.value.html_safe %></pre>
+				<pre><%= @tervetuloa.get_value.html_safe %></pre>
 			<% else %>
 			    <h3 class="title is-4">Tervetuloa!</h3>
 
@@ -99,6 +99,6 @@
 </div>
 <% if @info %>
     <div class="box">
-    	<pre><%= @info.value.html_safe %></pre>
+    	<pre><%= @info.get_value.html_safe %></pre>
 	</div>
 <% end %>

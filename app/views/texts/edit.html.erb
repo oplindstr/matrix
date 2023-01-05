@@ -1,7 +1,7 @@
 <div class="box">
-  <h1 class="title">Muokkaa tekstiä</h1>
+  <h1 class="title"><%= t('edit_text') %></h1>
 
-  <%= render 'edit_form' %>
+  <%= render 'form', locals: {new: false} %>
 
   <%= link_to t('Back'), texts_path %>
 </div>

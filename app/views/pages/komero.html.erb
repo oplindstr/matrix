@@ -1,7 +1,7 @@
 <div class="box">
 
   <% if @text %>
-    <pre><%= @text.value.html_safe %></pre>
+    <pre><%= @text.get_value.html_safe %></pre>
   <% else %>
     <div class="columns">
       <div class="column">

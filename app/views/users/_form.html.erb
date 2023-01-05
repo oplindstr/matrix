@@ -107,7 +107,7 @@
 
 	<% if @user.new_record? %>
     <% if @member_instruction %>
-      <pre><%= @member_instruction.value.html_safe %></pre>
+      <pre><%= @member_instruction.get_value.html_safe %></pre>
     <% else %>
       <i>Yhdistyksen <b>varsinaiseksi jäseneksi</b> voidaan hyväksyä jokainen Helsingin yliopiston Matemaattisluonnontieteellisen tiedekunnan vastuulla olevassa koulutusohjelmassa opiskeleva.</i>
       </br>

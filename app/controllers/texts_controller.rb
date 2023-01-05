@@ -2,6 +2,9 @@ class TextsController < ApplicationController
   before_action :set_text, only: [:show, :edit, :update, :destroy]
   before_action :ensure_that_sub_admin
 
+  include MessageHelper
+  @@object_type = 'text'
+
   # GET /texts
   # GET /texts.json
   def index
@@ -24,7 +27,7 @@ class TextsController < ApplicationController
 
     respond_to do |format|
       if @text.save
-        format.html { redirect_to texts_url, notice: 'Teksti luotu' }
+        format.html { redirect_to texts_url, notice: created_message(@@object_type) }
         format.json { render :show, status: :created, location: @text }
       else
         format.html { render :new }
@@ -38,7 +41,7 @@ class TextsController < ApplicationController
   def update
     respond_to do |format|
       if @text.update(text_params)
-        format.html { redirect_to texts_url, notice: 'Teksti päivitetty' }
+        format.html { redirect_to texts_url, notice: I18n.t('text_updated') }
         format.json { render :show, status: :ok, location: @text }
       else
         format.html { render :edit }
@@ -52,7 +55,7 @@ class TextsController < ApplicationController
   def destroy
     @text.destroy
     respond_to do |format|
-      format.html { redirect_to texts_url, notice: 'Teksti poistettu' }
+      format.html { redirect_to texts_url, notice: destroyed_message(@@object_type) }
       format.json { head :no_content }
     end
   end
@@ -65,6 +68,6 @@ class TextsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def text_params
-      params.require(:text).permit(:name, :value)
+      params.require(:text).permit(:name, :value, :value_eng)
     end
 end

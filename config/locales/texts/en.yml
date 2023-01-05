@@ -1,0 +1,30 @@
+en:
+  "Etusivun info": "Index page info"
+  Fuksille: "For Freshers"
+  Fuksiopas: "Fresher Guide"
+  Hallitus ja virkailijat: "Board"
+  Järjestö: "Organization"
+  Kalenteri: "Calendar"
+  Kerhot: "Clubs"
+  #Klusteri: "Klusteri"
+  #Komero: 
+  Kurssikuvauksia: "Course Descriptions"
+  "Muut yhteystiedot": "Other Contact Info"
+  "Postiosoite ja toimisto": "Mail address and post office"
+  Sähköpostilistat: "Mailing lists"
+  Sanastoa: "Glossary"
+  Tervetuloa: "Welcome"
+  Toiminta: "Activity"
+  Tuutorit: "Tutors"	
+  Virkailijaksi: "Representative info"
+  Yrityksille: "For Companies"
+  Texts: "Texts"
+  text: "Text"
+  new_text: "New Text"
+  edit_text: "Edit Text"
+  text_updated: "Text updated"
+  activerecord:
+    attributes:
+      text:
+        value: "Text in Finnish"
+        value_eng: "Text in English"
