@@ -1,2 +1,0 @@
-module EventParametersHelper
-end
