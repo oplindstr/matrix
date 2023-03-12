@@ -6,7 +6,7 @@ Rails.application.routes.draw do
     resources :images
     resources :texts
     resources :products
-    resources :board_members, only: [:edit, :update, :index, :new, :create, :destroy]
+    resources :board_members, only: [:edit, :update, :new, :create, :destroy]
     resources :document_group_categories, only: [:show, :new, :edit, :update, :create, :destroy]
     resources :document_groups, only: [:show, :new, :edit, :create, :update, :destroy]
     resources :documents, only: [:index, :new, :create, :destroy, :edit, :update]
@@ -102,6 +102,7 @@ Rails.application.routes.draw do
     get '/events/ical/events' => 'events#ical', as: 'ical'
     get '/events/ical/signup_starts' => 'events#ical_signup_starts', as: 'ical_signup_starts'
 
+    get '/english' => redirect("/en")
     get "en/*path" => redirect("/en")
     get "*path" => redirect("/")
   end
