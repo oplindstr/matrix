@@ -14,6 +14,9 @@ en:
   Save: "Save"
   Remove: "Remove"
   File: "File"
+  mandatory_field: "Mandatory field"
+  at_least_characters: "at least {amount} characters"
+  you_are: "You are"
   attributes:
     attachment: "File"
     name: "Name"

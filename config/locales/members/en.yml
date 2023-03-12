@@ -1,0 +1,13 @@
+en:
+  activerecord:
+    attributes:
+      member:
+        firstname: "First names"
+        lastname: "Lastname"
+        nickname: "Nickname"
+        email: "Email"
+        address: "Address"
+        city: "City"
+        hyy_member: "I study at the University of Helsinki"
+        mathstudent: "I am a degree programme student in the Faculty of Science at the University of Helsinki"
+       

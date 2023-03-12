@@ -1,0 +1,13 @@
+fi:
+  credentials: 'Käyttäjätiedot'
+  personal_information: 'Henkilötiedot'
+  other_information: 'Muut tiedot'
+  apply_member: "Liityt varsinaiseksi jäseneksi"
+  apply_associate_member: "Liityt ulkojäseneksi"
+  apply_advocate_member: "Liityt kannatusjäseneksi"
+  activerecord:
+    attributes:
+      user:
+        username: "Käyttäjätunnus"
+        password: "Salasana"
+        password_confirmation: "Salasana uudelleen"

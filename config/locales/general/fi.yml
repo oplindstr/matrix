@@ -14,6 +14,9 @@ fi:
   Edit: "Muokkaa"
   Remove: "Poista"
   File: "Tiedosto"
+  mandatory_field: "Pakollinen kenttä"
+  at_least_characters: "vähintään {amount} merkkiä"
+  you_are: "Olet"
   attributes:
     attachment: "Tiedosto"
     name: "Nimi"

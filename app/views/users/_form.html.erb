@@ -2,108 +2,108 @@
 
   <% if @user.new_record? %>
 
-    <h2 class="subtitle">Käyttäjätiedot</h2>
+    <h2 class="subtitle"><%= t('credentials') %></h2>
 
     <div class="field">
-      <%= f.label :username, 'Käyttäjätunnus', :class => 'label' %>
+      <%= f.label :username, :class => 'label' %>
       <div class="control">
         <%= f.text_field :username, :class => 'input', :required => true %>
       </div>
       <% if @user.new_record? %>
         <p class="help is-danger">
-          Pakollinen kenttä
+          <%= t('mandatory_field') %>
         </p>
       <% end %>
     </div>
 
     <div class="field">
-      <%= f.label :password, 'Salasana', :class => 'label' %>
+      <%= f.label :password, :class => 'label' %>
       <div class="control">
         <%= f.password_field :password, :class => 'input', :required => true %>
       </div>
       <% if @user.new_record? %>
         <p class="help is-danger">
-          Pakollinen kenttä, vähintään 6 kirjainta
+          <%= t('mandatory_field') %>, <%= t('at_least_characters').sub('{amount}', '6') %>
         </p>
       <% end %>
     </div>
 
     <div class="field">
-      <%= f.label :password_confirmation, 'Salasana uudelleen', :class => 'label' %>
+      <%= f.label :password_confirmation, :class => 'label' %>
       <div class="control">
         <%= f.password_field :password_confirmation, :class => 'input', :required => true %>
       </div>
       <% if @user.new_record? %>
         <p class="help is-danger">
-          Pakollinen kenttä
+          <%= t('mandatory_field') %>
         </p>
       <% end %>
     </div>
 
   <% end %>
 
-  <h2 class="subtitle">Henkilötiedot</h2>
+  <h2 class="subtitle"><%= t('personal_information') %></h2>
 
   <%= f.fields_for :member do |p| %>
 
     <div class="field">
-      <%= p.label :firstname, 'Etunimet', :class => 'label' %>
+      <%= p.label :firstname, :class => 'label' %>
       <div class="control">
         <%= p.text_field :firstname, :class => 'input', :required => true %>
       </div>
       <% if @user.new_record? %>
         <p class="help is-danger">
-          Pakollinen kenttä
+          <%= t('mandatory_field') %>
         </p>
       <% end %>
     </div>
 
     <div class="field">
-      <%= p.label :nickname, 'Kutsumanimi', :class => 'label' %>
+      <%= p.label :nickname, :class => 'label' %>
       <div class="control">
         <%= p.text_field :nickname, :class => 'input' %>
       </div>
     </div>
 
     <div class="field">
-      <%= p.label :lastname, 'Sukunimi', :class => 'label' %>
+      <%= p.label :lastname, :class => 'label' %>
       <div class="control">
         <%= p.text_field :lastname, :class => 'input', :required => true %>
       </div>
       <% if @user.new_record? %>
         <p class="help is-danger">
-          Pakollinen kenttä
+          <%= t('mandatory_field') %>
         </p>
       <% end %>
     </div>
 
     <div class="field">
-      <%= p.label :email, 'Sähköpostiosoite', :class => 'label' %>
+      <%= p.label :email, :class => 'label' %>
       <div class="control">
         <%= p.text_field :email, :class => 'input', :type => 'email', :required => true %>
       </div>
       <% if @user.new_record? %>
         <p class="help is-danger">
-          Pakollinen kenttä
+          <%= t('mandatory_field') %>
         </p>
       <% end %>
     </div>
 
     <div class="field">
-      <%= p.label :address, 'Osoite', :class => 'label' %>
+      <%= p.label :address, :class => 'label' %>
       <div class="control">
         <%= p.text_field :address, :class => 'input' %>
       </div>
     </div>
 
     <div class="field">
-      <%= p.label :city, 'Kotikunta', :class => 'label' %>
+      <%= p.label :city, :class => 'label' %>
       <div class="control">
         <%= p.text_field :city, :class => 'input' %>
       </div>
     </div>
 
-    <h2 class="subtitle">Muut tiedot</h2>
+    <h2 class="subtitle"><%= t('other_information') %></h2>
 
 	<% if @user.new_record? %>
     <% if @member_instruction %>
@@ -132,27 +132,29 @@
     <div class="field">
       <label class="checkbox">
         <%= p.check_box :hyy_member, :onchange => 'show_member()' %>
-        Opiskelen Helsingin Yliopistossa tutkinto- tai jatko-opiskelijana
+        <%= p.label :hyy_member %>
       </label>
     </div>
 
     <div class="field">
       <label class="checkbox">
         <%= p.check_box :mathstudent, :onchange => 'show_member()' %>
-        Opiskelen jossain Helsingin yliopiston Matemaattis-luonnontieteellisen tiedekunnan vastuulla olevassa koulutusohjelmassa
+        <%= p.label :mathstudent %>
       </label>
     </div>
   <% end %>
 
   <% if @user.new_record? %>
 
-	<b id="membership_type">Liityt kannatusjäseneksi</b>
+	<b id="membership_type_advocate"><%= t('apply_advocate_member') %></b>
+  <b id="membership_type_associate"><%= t('apply_associate_member') %></b>
+  <b id="membership_type_full"><%= t('apply_member') %></b>
 	</br>
 	</br>
 
   <% else %>
 
-	<b>Olet <%= @user.membership_type %></b>
+	<b><%= t('you_are')%> <%= @user.membership_type %></b>
 	</br>
 	</br>
 
@@ -163,13 +165,19 @@
 			var hyy_member = $('#user_member_attributes_hyy_member:checked').val();
 			var mathstudent = $('#user_member_attributes_mathstudent:checked').val();
 			if (mathstudent === '1') {
-				$('#membership_type').text("Liityt varsinaiseksi jäseneksi");
+				$('#membership_type_advocate').hide();
+        $('#membership_type_associate').hide();
+        $('#membership_type_full').show();
 			}
 			else if (hyy_member === '1') {
-				$('#membership_type').text("Liityt ulkojäseneksi");
+				$('#membership_type_advocate').hide();
+        $('#membership_type_associate').show();
+        $('#membership_type_full').hide();
 			}
 			else {
-				$('#membership_type').text("Liityt kannatusjäseneksi");
+				$('#membership_type_advocate').show();
+        $('#membership_type_associate').hide();
+        $('#membership_type_full').hide();
 			}
 		}
 

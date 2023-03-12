@@ -1,0 +1,14 @@
+en:
+  credentials: 'Credentials'
+  personal_information: 'Personal information'
+  other_information: 'Other Information'
+  apply_member: "You will apply as a full member"
+  apply_associate_member: "You will apply as an associate member"
+  apply_advocate_member: "You will apply as an advocate member"
+  activerecord:
+    attributes:
+      user:
+        username: "Username"
+        password: "Password"
+        password_confirmation: "Confirm Password"
+       
