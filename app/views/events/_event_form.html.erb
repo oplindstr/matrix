@@ -8,7 +8,7 @@
       <%= f.text_field :name, :class => 'input', :required => true %>
     </div>
     <p class="help is-danger">
-      Pakollinen kenttä
+      <%= t('mandatory_field') %>
     </p>
   </div>
   <div class="field">
@@ -23,7 +23,7 @@
       <%= f.text_area :descr, :class => 'input textarea', :required => true %>
     </div>
     <p class="help is-danger">
-      Pakollinen kenttä
+      <%= t('mandatory_field') %>
     </p>
   </div>
   <div class="field">
@@ -38,7 +38,7 @@
       <%= f.datetime_field :starttime, :class => 'flatpickr input' %>
     </div>
     <p class="help is-danger">
-      Pakollinen kenttä
+      <%= t('mandatory_field') %>
     </p>
   </div>
 
