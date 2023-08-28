@@ -1,4 +1,4 @@
-class ChangeUsersToMembers < ActiveRecord::Migration
+class ChangeUsersToMembers < ActiveRecord::Migration[7.0]
   def change
   	remove_column :board_members, :user_id
   	add_column :board_members, :member_id, :integer

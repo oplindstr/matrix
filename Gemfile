@@ -1,26 +1,26 @@
 source 'https://rubygems.org'
 
+gem "bundler", '2.4.10'
+
 gem "pkg-config"
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '4.2.11.1'
-gem "actionview", "4.2.11.1"
+gem 'rails', '7.0.4.3'
+gem "actionview", "7.0.4.3"
 # Use sqlite3 as the database for Active Record
 group :development, :test do
-  gem 'sqlite3', git: "https://github.com/larskanis/sqlite3-ruby", branch: "add-gemspec"
+  gem 'sqlite3'
 end
 
-group :production, :staging do
+group :production do
   gem 'pg', '~> 1.2.3'
   gem 'rails_12factor'
 end
 
-gem 'puma', '3.12.4'
+gem 'puma', '6.2.2'
 
-gem 'sass-rails', '~> 5.0'
-gem 'uglifier', '>= 1.3.0'
-gem 'coffee-rails', '~> 4.1.0'
-
-gem 'therubyracer', platforms: :ruby
+gem 'sass-rails', '~> 6.0.0'
+gem 'uglifier', '>= 4.2.0'
+gem 'coffee-rails', '~> 5.0.0'
 
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
@@ -59,7 +59,7 @@ gem 'rake', '13.0.1'
 
 gem 'websocket-extensions', '0.1.5'
 
-gem 'nokogiri', '1.11.1'
+gem 'nokogiri', '1.14.3'
 
 gem 'ice_cube', '~> 0.16.4'
 gem 'icalendar', '~> 2.8'

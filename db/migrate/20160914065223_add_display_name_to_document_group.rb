@@ -1,4 +1,4 @@
-class AddDisplayNameToDocumentGroup < ActiveRecord::Migration
+class AddDisplayNameToDocumentGroup < ActiveRecord::Migration[7.0]
   def up
   	add_column :document_groups, :display_name, :string
   end
