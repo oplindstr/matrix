@@ -21,5 +21,7 @@ module Matrix
     config.encoding = "utf-8"
 
     config.autoload_paths += Dir["#{Rails.root}/lib"]
+
+    config.active_record.legacy_connection_handling = false
   end
 end
