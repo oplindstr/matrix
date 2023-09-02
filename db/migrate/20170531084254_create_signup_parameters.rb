@@ -1,4 +1,4 @@
-class CreateSignupParameters < ActiveRecord::Migration
+class CreateSignupParameters < ActiveRecord::Migration[7.0]
   def change
     create_table :signup_parameters do |t|
       t.integer :signup_id

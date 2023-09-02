@@ -1,4 +1,4 @@
-class AddHeaderAndPriorityToNews < ActiveRecord::Migration
+class AddHeaderAndPriorityToNews < ActiveRecord::Migration[7.0]
   def self.up
     add_column :news, :header, :text
     add_column :news, :priority, :integer

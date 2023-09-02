@@ -1,4 +1,4 @@
-class CreateBoardMemberAndPositionAndPositionMember < ActiveRecord::Migration
+class CreateBoardMemberAndPositionAndPositionMember < ActiveRecord::Migration[7.0]
 	def change
 		create_table :board_members do |t|
 		  t.integer :user_id

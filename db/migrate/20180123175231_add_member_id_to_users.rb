@@ -1,4 +1,4 @@
-class AddMemberIdToUsers < ActiveRecord::Migration
+class AddMemberIdToUsers < ActiveRecord::Migration[7.0]
   def change
   	add_column :users, :member_id, :integer
   end

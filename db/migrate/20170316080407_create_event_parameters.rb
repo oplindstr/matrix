@@ -1,4 +1,4 @@
-class CreateEventParameters < ActiveRecord::Migration
+class CreateEventParameters < ActiveRecord::Migration[7.0]
   def change
     create_table :event_parameters do |t|
       t.integer :event_id
