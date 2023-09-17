@@ -14,12 +14,12 @@
 
   <p>
   <strong>Päivä:</strong>
-  <%= DateHelper.weekday(@event.starttime) %> <%= DateHelper.standard_date(@event.starttime) %>
+  <%= DateUtils.weekday(@event.starttime) %> <%= DateUtils.standard_date(@event.starttime) %>
   </p>
 
   <p>
   <strong>Alkaa:</strong>
-  <%= DateHelper.time(@event.starttime)%>
+  <%= DateUtils.time(@event.starttime)%>
   </p>
 
   <% if not (@event.location.nil? || @event.location.empty?) %>
@@ -59,14 +59,14 @@
     <% if @event.signup_start and @event.signup_end %>
       <p>
       <strong>Ilmoittautumisaika:</strong>
-      <%= DateHelper.full_date(@event.signup_start) %> - <%= DateHelper.full_date(@event.signup_end) %>
+      <%= DateUtils.full_date(@event.signup_start) %> - <%= DateUtils.full_date(@event.signup_end) %>
       </p>
     <% end %>
 
     <% if @event.signup_cancellable_until and @event.signup_end and @event.signup_cancellable_until < @event.signup_end %>
       <p>
       <strong>Ilmoittautuminen sitova alkaen:</strong>
-      <%= DateHelper.full_date(@event.signup_cancellable_until) %>
+      <%= DateUtils.full_date(@event.signup_cancellable_until) %>
       </p>
     <% end %>
 

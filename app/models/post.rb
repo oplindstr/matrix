@@ -8,7 +8,7 @@ class Post < ActiveRecord::Base
 
 	def timestamp
 	  time = self.created_at
-      return DateHelper.weekday(time) + ' ' + time.strftime("%d") + '. ' + DateHelper.month_name(time) + 'ta ' + time.strftime("%Y") 
+      return DateUtils.weekday(time) + ' ' + time.strftime("%d") + '. ' + DateUtils.month_name(time) + 'ta ' + time.strftime("%Y") 
 	end
 
 	def comment_count

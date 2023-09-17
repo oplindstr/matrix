@@ -14,9 +14,9 @@ class UsersController < ApplicationController
   # GET /users/1.json
   def show
     if Time.now.month >= 8
-      @membership_this_year = DateHelper.year
+      @membership_this_year = DateUtils.year
     else
-      @membership_this_year = DateHelper.year - 1
+      @membership_this_year = DateUtils.year - 1
     end
     @member = @user.member
     if @member
@@ -32,9 +32,9 @@ class UsersController < ApplicationController
 
   def self
     if Time.now.month >= 8
-      @membership_this_year = DateHelper.year
+      @membership_this_year = DateUtils.year
     else
-      @membership_this_year = DateHelper.year - 1
+      @membership_this_year = DateUtils.year - 1
     end
     @member = @user.member
     if @member
@@ -108,9 +108,9 @@ class UsersController < ApplicationController
       else
         @alert = @user.errors
         if Time.now.month >= 8
-          @membership_this_year = DateHelper.year
+          @membership_this_year = DateUtils.year
         else
-          @membership_this_year = DateHelper.year - 1
+          @membership_this_year = DateUtils.year - 1
         end
         @member = @user.member
         if @member
@@ -262,9 +262,9 @@ class UsersController < ApplicationController
     @year = params[:vuosi]
     if !@year
       if Time.now.month >= 8
-        @year = DateHelper.year
+        @year = DateUtils.year
       else
-        @year = DateHelper.year - 1
+        @year = DateUtils.year - 1
       end
     end
     @year = @year.to_i

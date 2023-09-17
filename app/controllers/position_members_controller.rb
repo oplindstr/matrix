@@ -57,7 +57,7 @@ class PositionMembersController < ApplicationController
          format.html { redirect_to '/hallitus', notice: "Virkailija lisätty" }
       else
         @alert = @position_member.errors
-        @year = DateHelper.year
+        @year = DateUtils.year
         @this_year = Time.now.year
         @position_member = PositionMember.new
         @members = Member.all.order(:firstname, :lastname)
@@ -118,7 +118,7 @@ class PositionMembersController < ApplicationController
   private
 
   	def set_year
-      @year = DateHelper.year
+      @year = DateUtils.year
     end
 
     def position_member_params

@@ -10,14 +10,14 @@ class BoardMembersController < ApplicationController
     elsif PositionMember.count > 0
       @min_year = PositionMember.minimum(:year)
     else
-      @min_year = DateHelper.year
+      @min_year = DateUtils.year
     end
 
     @years = BoardMember.order(year: :desc).uniq.pluck(:year) | PositionMember.order(year: :desc).uniq.pluck(:year)
 
     @years.sort_by! { |y| -y }
 
-    @this_year = DateHelper.year
+    @this_year = DateUtils.year
 
     @all_board_members = BoardMember.where("year = ?", @year)
 
@@ -44,7 +44,7 @@ class BoardMembersController < ApplicationController
  def new
     @board_member = BoardMember.new
     @members = Member.all.order(:firstname, :lastname)
-    @this_year = DateHelper.year
+    @this_year = DateUtils.year
  end
 
  def edit
@@ -97,7 +97,7 @@ class BoardMembersController < ApplicationController
       else
         @alert = @board_member.errors
         @members = Member.all.order(:firstname, :lastname)
-        @this_year = DateHelper.year
+        @this_year = DateUtils.year
         format.html { render :new, status: :unprocessable_entity, location: new_board_member_path }
       end
     end
@@ -119,18 +119,18 @@ class BoardMembersController < ApplicationController
   def set_year
     if params[:year]
       if params[:year].to_i == 0
-        @year = DateHelper.year
+        @year = DateUtils.year
       else
         @year = params[:year].to_i
       end
     elsif params[:vuosi]
       if params[:vuosi].to_i == 0
-        @year = DateHelper.year
+        @year = DateUtils.year
       else
         @year =  params[:vuosi].to_i
       end
     else
-    	@year = DateHelper.year
+    	@year = DateUtils.year
     end
   end
 

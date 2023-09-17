@@ -17,7 +17,7 @@
   <% @events.each do |event| %>
 
     <h2 class="subtitle"><%= link_to event.name, event_path(event.id) %></h2>
-    <p><%= DateHelper.standard_time(event.starttime) %></p>
+    <p><%= DateUtils.standard_time(event.starttime) %></p>
     <% if event.location and event.location.length > 0 %>
       <p>@ <%= event.location %></p>
     <% end %>
@@ -25,13 +25,13 @@
       <% if event.signup_open %>
         <br>
         <% if event.signup_end %>
-          <i>Ilmoittautuminen tapahtumaan on käynnissä ja päättyy <%= DateHelper.standard_time2(event.signup_end) %> </i>
+          <i>Ilmoittautuminen tapahtumaan on käynnissä ja päättyy <%= DateUtils.standard_time2(event.signup_end) %> </i>
         <% else %>
           <i>Ilmoittautuminen tapahtumaan on käynnissä </i>
         <% end %>
       <% elsif event.signup_required and event.signup_start and event.signup_start > Time.now %>
         <br>
-        <i>Ilmoittautuminen tapahtumaan alkaa <%= DateHelper.standard_time2(event.signup_start) %> </i>
+        <i>Ilmoittautuminen tapahtumaan alkaa <%= DateUtils.standard_time2(event.signup_start) %> </i>
       <% end %>
     </p>
 
