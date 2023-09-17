@@ -47,7 +47,7 @@ class Member < ActiveRecord::Base
   end
 
   def priority_in_board_member_list(year)
-    @minimum = self.positions_by_year(year).minimum('priority')
+    @minimum = self.positions_by_year(year).minimum(:priority)
     if @minimum
       return @minimum
     else
@@ -56,7 +56,11 @@ class Member < ActiveRecord::Base
   end
 
   def positions_by_year(year)
-    return self.positions.where('position_members.year = ?', year).uniq.order(:priority)
+    positions = self.positions&.where('position_members.year = ?', year)&.uniq
+    if positions.length > 0
+      return positions.order(:priority)
+    end
+    return positions
   end
 
   def to_s

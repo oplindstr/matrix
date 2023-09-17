@@ -43,7 +43,7 @@
       <% @products.each do |p| %>
         <div class="column is-one-quarter">
           <p class="subtitle level-item has-text-centered"><%= p.name %></p>
-          <%= image_tag(p.image, :class => "product_image") %>
+          <%= image_tag(p.image.url, :class => "product_image") %>
           <p class="subtitle level-item has-text-centered"><%= p.show_price %> €</p>
         </div>
       <% end %>

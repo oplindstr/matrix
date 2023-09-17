@@ -34,7 +34,7 @@ class BoardMember < ActiveRecord::Base
     end
     @positions = self.positions_by_year(year)
     if !@positions.empty?
-      return @positions.minimum('priority')
+      return @positions.minimum(:priority)
     end
     return 100
   end
