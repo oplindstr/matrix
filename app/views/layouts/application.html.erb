@@ -37,7 +37,7 @@
       </section>
     <% end %>
     <% if !current_user %>
-      <section class="section container">
+      <section id="login-section" class="container">
         <div class="box">
           <h3 id="log-in" class="title is-6"><a><%= t('log_in') %></a></h3>
           <div id="log-in-area">
@@ -96,7 +96,7 @@
           <% partners.each do |partner| %>
             <div class="column is-one-quarter">
               <%= link_to partner.link, { :class=>"level-item" } do %>
-                <%= image_tag(partner.image, size: "200x35") %>
+                <%= image_tag(partner.image.url, size: "200x35") %>
               <% end %>
             </div>
           <% end %>

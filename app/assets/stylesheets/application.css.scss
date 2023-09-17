@@ -82,6 +82,14 @@ footer img {
   #navbar-logo {
     display: none;
   }
+
+  .section {
+    padding: 1rem 3rem 3rem 3rem;
+  }
+
+  #login-section {
+    padding: 1rem 3rem;
+  }
 }
 
 @media screen and (max-width: 768px) {
@@ -97,6 +105,10 @@ footer img {
 
   .hide-in-mobile {
     display: none
+  }
+
+  #login-section {
+    padding: 1rem;
   }
 }
 
@@ -141,4 +153,8 @@ hr {
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
+}
+
+#banner {
+  padding: 1rem 0 2rem 0;
 }

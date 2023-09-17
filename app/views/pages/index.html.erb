@@ -1,5 +1,5 @@
 
-<section id="banner" class="section container">
+<section id="banner">
 	<div class="columns level">
 		<div class="column is-one-third">
 			<%= image_tag("logo.gif") %>
@@ -75,20 +75,20 @@
 		    <% end %>
 		    <% @events.each do |event| %>
 		      <h1 class="title is-5"><%= link_to event.name, event_path(event.id) %></h1>
-		      <p><%= DateHelper.standard_time(event.starttime) %></p>
+		      <p><%= DateUtils.standard_time(event.starttime) %></p>
 		      <% if event.location and event.location.length > 0 %>
 		      	<p>@ <%= event.location %></p>
 		      <% end %>
 		      <% if event.signup_open %>
 		        <br>
 		        <% if event.signup_end %>
-		          <i><%= t('signup_open_with_end') %> <%= DateHelper.standard_time2(event.signup_end) %> </i>
+		          <i><%= t('signup_open_with_end') %> <%= DateUtils.standard_time2(event.signup_end) %> </i>
 		        <% else %>
 		          <i><%= t('signup_open') %> </i>
 		        <% end %>
 		      <% elsif event.signup_required and event.signup_start and event.signup_start > Time.now %>
 		        <br>
-		        <i><%= t('signup_starts') %> <%= DateHelper.standard_time2(event.signup_start) %> </i>
+		        <i><%= t('signup_starts') %> <%= DateUtils.standard_time2(event.signup_start) %> </i>
 		      <% end %>
 		      <% if event != @events.last %>
 		      	<hr>
