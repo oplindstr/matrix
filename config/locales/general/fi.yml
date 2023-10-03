@@ -1,25 +1,28 @@
 fi:
-  Back: "Takaisin"
-  logged_in: "kirjautuneena"
-  logout_successful: "Uloskirjautuminen onnistui"
-  Partners: "Yhteistyökumppanit"
-  Password: "Salasana"
-  Username: "Käyttäjätunnus"
-  Welcome: "Tervetuloa"
-  Year: "Vuosi"
-  Member: "Jäsen"
-  User: "Käyttäjä"
-  Picture: "Kuva"
-  Save: "Tallenna"
-  Edit: "Muokkaa"
-  Remove: "Poista"
-  File: "Tiedosto"
-  mandatory_field: "Pakollinen kenttä"
-  at_least_characters: "vähintään {amount} merkkiä"
-  you_are: "Olet"
+  Back: 'Takaisin'
+  logged_in: 'kirjautuneena'
+  logout_successful: 'Uloskirjautuminen onnistui'
+  already_logged_in: 'Olet jo kirjautunut sisään'
+  wrong_password: 'Salasana väärin'
+  user_doesnt_exist: 'Käyttäjää ei ole olemassa'
+  Partners: 'Yhteistyökumppanit'
+  Password: 'Salasana'
+  Username: 'Käyttäjätunnus'
+  Welcome: 'Tervetuloa'
+  Year: 'Vuosi'
+  Member: 'Jäsen'
+  User: 'Käyttäjä'
+  Picture: 'Kuva'
+  Save: 'Tallenna'
+  Edit: 'Muokkaa'
+  Remove: 'Poista'
+  File: 'Tiedosto'
+  mandatory_field: 'Pakollinen kenttä'
+  at_least_characters: 'vähintään {amount} merkkiä'
+  you_are: 'Olet'
   attributes:
-    attachment: "Tiedosto"
-    name: "Nimi"
-    name_eng: "Nimi englanniksi"
-    display_name: "Näyttönimi"
-    display_name_eng: "Näyttönimi englanniksi"
+    attachment: 'Tiedosto'
+    name: 'Nimi'
+    name_eng: 'Nimi englanniksi'
+    display_name: 'Näyttönimi'
+    display_name_eng: 'Näyttönimi englanniksi'

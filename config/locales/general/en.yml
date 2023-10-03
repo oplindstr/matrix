@@ -1,25 +1,28 @@
 en:
-  Back: "Back"
-  Edit: "Edit"
-  logged_in: "logged in"
-  logout_successful: "Successfully logged out"
-  Partners: "Partners"
-  Password: "Password"
-  Username: "Username"
-  Welcome: "Welcome"
-  Year: "Year"
-  Member: "Member"
-  User: "User"
-  Picture: "Picture"
-  Save: "Save"
-  Remove: "Remove"
-  File: "File"
-  mandatory_field: "Mandatory field"
-  at_least_characters: "at least {amount} characters"
-  you_are: "You are"
+  Back: 'Back'
+  Edit: 'Edit'
+  logged_in: 'logged in'
+  logout_successful: 'Successfully logged out'
+  already_logged_in: 'Already logged in'
+  wrong_password: 'Wrong password'
+  user_doesnt_exist: "User doesn't exist"
+  Partners: 'Partners'
+  Password: 'Password'
+  Username: 'Username'
+  Welcome: 'Welcome'
+  Year: 'Year'
+  Member: 'Member'
+  User: 'User'
+  Picture: 'Picture'
+  Save: 'Save'
+  Remove: 'Remove'
+  File: 'File'
+  mandatory_field: 'Mandatory field'
+  at_least_characters: 'at least {amount} characters'
+  you_are: 'You are'
   attributes:
-    attachment: "File"
-    name: "Name"
-    name_eng: "Name in English"
-    display_name: "Display Name"
-    display_name_eng: "Display Name in English"
+    attachment: 'File'
+    name: 'Name'
+    name_eng: 'Name in English'
+    display_name: 'Display Name'
+    display_name_eng: 'Display Name in English'
