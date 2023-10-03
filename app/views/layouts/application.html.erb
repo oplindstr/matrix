@@ -28,9 +28,9 @@
       </section>
     <% end %>
     <% if current_user %>
-      <section class="section container">
-        <%= "#{current_user.name} #{t('logged_in')}" %>.<br>
-        <%= link_to t('log_out'), signout_path, method: :delete %><br>
+      <section class="section container logged_in">
+        <%="#{current_user.name} #{t('logged_in')}"%>
+        <%= link_to t('log_out'), signout_path, method: :delete %>
         <% if sub_admin %>
           <%= link_to t('admin_settings'), '/admin' %>
         <% end %>
