@@ -158,3 +158,10 @@ hr {
 #banner {
   padding: 1rem 0 2rem 0;
 }
+
+.logged_in {
+  display: flex;
+  flex-direction: row;
+  gap: 2rem;
+  padding-bottom: 0px;
+}
