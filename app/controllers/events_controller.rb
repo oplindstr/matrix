@@ -1,6 +1,7 @@
 class EventsController < ApplicationController
   before_action :set_event, only: [:show, :update, :destroy, :edit]
   before_action :set_signup, only: [:update_signup]
+  before_action :set_locale, only: [:index, :past_events]
   before_action :ensure_that_sub_admin, except: [:index, :show, :sign_up, :past_events, :ical, :ical_signup_starts]
 
   # GET /events
@@ -210,13 +211,17 @@ class EventsController < ApplicationController
       @event = Event.find(params[:id])
     end
 
+    def set_locale
+      @locale = I18n.locale
+    end
+
     def set_signup
       @signup = Signup.find(params[:signup][:id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def event_params
-      params.require(:event).permit(:id, :name, :name_eng, :starttime, :endtime, :location, :event_type, :signup_required, :signup_start, :signup_end, :signup_cancellable_until, :descr, :descr_eng, :price, :signup_limit, :members_only, :participants, :event_parameters_attributes => [:id, :name, :event_parameter_type_id, :required, :_destroy, :event_parameter_choices_attributes => [:id, :value, :_destroy]])
+      params.require(:event).permit(:id, :name, :name_eng, :starttime, :endtime, :location, :event_type, :signup_required, :signup_start, :signup_end, :signup_cancellable_until, :descr, :descr_eng, :price, :signup_limit, :members_only, :participants, :event_parameters_attributes => [:id, :name, :name_eng, :event_parameter_type_id, :required, :_destroy, :event_parameter_choices_attributes => [:id, :value, :name_eng, :_destroy]])
     end
 
     def signup_params

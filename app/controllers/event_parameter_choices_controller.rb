@@ -72,6 +72,6 @@ class EventParameterChoicesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def event_parameter_choice_params
-      params.require(:event_parameter_choice).permit(:event_parameter_id, :value)
+      params.require(:event_parameter_choice).permit(:event_parameter_id, :value, :name_eng)
     end
 end

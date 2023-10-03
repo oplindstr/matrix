@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_01_05_054245) do
+ActiveRecord::Schema[7.0].define(version: 2023_09_21_191612) do
   create_table "board_members", force: :cascade do |t|
     t.integer "year"
     t.string "avatar"
@@ -49,6 +49,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_01_05_054245) do
     t.string "value"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "name_eng"
   end
 
   create_table "event_parameter_types", force: :cascade do |t|
@@ -64,6 +65,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_01_05_054245) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.boolean "required"
+    t.string "name_eng"
   end
 
   create_table "events", force: :cascade do |t|
@@ -184,6 +186,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_01_05_054245) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "priority"
+    t.string "name_eng"
   end
 
   create_table "settings", force: :cascade do |t|
