@@ -37,17 +37,16 @@
   <% end %>
 
   <br>
-
-  <div class="container is-fluid">
+  
+  <div class="container">
     <div class="columns is-multiline">
       <% @products.each do |p| %>
         <div class="column is-one-quarter">
-          <p class="subtitle level-item has-text-centered"><%= p.name %></p>
+          <p class="subtitle level-item has-text-centered"><%= p.get_name %></p>
           <%= image_tag(p.image.url, :class => "product_image") %>
           <p class="subtitle level-item has-text-centered"><%= p.show_price %> €</p>
         </div>
       <% end %>
     </div>
   </div>
-
 </div>
