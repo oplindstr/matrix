@@ -1,12 +1,9 @@
 class PagesController < ApplicationController
+  before_action :set_locale, only: [:index]
   before_action :ensure_that_sub_admin, only: [:admin_tools]
 
   def admin_tools
 
-  end
-
-  def english
-    @text = Text.where('name = ?', 'In English').first
   end
 
   def fuksille
@@ -113,14 +110,20 @@ class PagesController < ApplicationController
   end
 
   def tenttiarkisto
-	@document_group_category = DocumentGroupCategory.where('name = ?', 'Tenttiarkisto').first
-	if @document_group_category.nil?
-	  redirect_to root_path
-	else
-	  @document_group_category_id = @document_group_category.id
-      @document_groups = DocumentGroup.where('document_group_category_id = ?', @document_group_category_id).order(:name)
-	  render :template => 'document_group_categories/show'
-	end
+    @document_group_category = DocumentGroupCategory.where('name = ?', 'Tenttiarkisto').first
+    if @document_group_category.nil?
+      redirect_to root_path
+    else
+      @document_group_category_id = @document_group_category.id
+        @document_groups = DocumentGroup.where('document_group_category_id = ?', @document_group_category_id).order(:name)
+      render :template => 'document_group_categories/show'
+    end
   end
+
+  private
+
+    def set_locale
+      @locale = I18n.locale
+    end
 
 end

@@ -103,11 +103,16 @@ module DateUtils
     return time.strftime('%Y')
   end
 
-  def self.standard_time(time)
-    if get_year(time).to_i != self.year
-      return weekday(time) + ' / ' + weekday_en(time) + ' ' + standard_date(time) + ' ' + time(time)
+  def self.standard_time(time, locale)
+    if (locale == :en)
+      weekday_name = weekday_en(time)
+    else
+      weekday_name = weekday(time)
     end
-    return weekday(time) + ' / ' + weekday_en(time) + ' ' + date(time) + ' ' + time(time)
+    if get_year(time).to_i != self.year
+      return weekday_name + ' ' + standard_date(time) + ' ' + time(time)
+    end
+    return weekday_name + ' ' + date(time) + ' ' + time(time)
   end
 
   def self.standard_time2(time)

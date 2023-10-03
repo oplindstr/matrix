@@ -32,9 +32,9 @@
 
   <% @events.each do |event| %>
 
-    <h2 class="subtitle"><%= link_to event.name, event_path(event.id) %></h2>
+    <h2 class="subtitle"><%= link_to event.get_name, event_path(event.id) %></h2>
     <div class="eventInfo">
-      <p><%= DateUtils.standard_time(event.starttime) %></p>
+      <p><%= DateUtils.standard_time(event.starttime, @locale) %></p>
       <% if event.price and not event.price.empty? %>
         <p>Hinta: <%= event.price %> €</p>
       <% end %>
