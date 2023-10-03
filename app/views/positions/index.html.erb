@@ -6,6 +6,7 @@
     <thead>
       <tr>
         <th>Virka</th>
+        <th>Virka englanniksi</th>
         <th>Prioriteetti</th>
         <th>Näytä yhteystiedoissa</th>
         <th colspan="2"></th>
@@ -16,6 +17,7 @@
       <% @positions.each do |position| %>
         <tr>
           <td><%= position.name %></td>
+          <td><%= position.name_eng %></td>
           <td><%= position.priority %></td>
           <td><%= check_box_tag 'Näytä yhteystiedoissa', 'Näytä yhteystiedoissa', position.show_in_contact_info, disabled: true %></td>
           <td><%= link_to t('Edit'), edit_position_path(position), :class => 'button is-link' %></td>

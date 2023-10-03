@@ -1,9 +1,16 @@
 <%= form_for(@position) do |f| %>
 
   <div class="field">
-    <%= f.label t('Name'), :class => 'label' %>
+    <%= f.label :name, :class => 'label' %>
     <div class="control">
       <%= f.text_field :name, :class => 'input' %>
+    </div>
+  </div>
+
+  <div class="field">
+    <%= f.label :name_eng, :class => 'label' %>
+    <div class="control">
+      <%= f.text_field :name_eng, :class => 'input' %>
     </div>
   </div>
 
@@ -25,6 +32,6 @@
   
 
   <div class="actions">
-    <%= f.submit "Tallenna", :class => 'button is-link' %>
+    <%= f.submit t('Save'), :class => 'button is-link' %>
   </div>
 <% end %>
