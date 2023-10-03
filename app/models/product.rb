@@ -8,4 +8,11 @@ class Product < ActiveRecord::Base
 	  end
 	  return self.price
 	end
+
+	def get_name
+		if I18n.locale == :en and self.name_eng and self.name_eng.length > 0
+			return self.name_eng
+		end
+		return self.name
+	end
 end

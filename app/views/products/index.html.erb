@@ -5,6 +5,7 @@
     <thead>
       <tr>
         <th>Nimi</th>
+        <th>Nimi englanniksi</th>
         <th>Hinta</th>
         <th>Järjestys</th>
       </tr>
@@ -14,6 +15,7 @@
       <% @products.each do |product| %>
         <tr>
           <td><%= product.name %></td>
+          <td><%= product.name_eng %></td>
           <td><%= product.price %></td>
           <td><%= product.priority %></td>
           <td><%= link_to t('Edit'), edit_product_path(product) %></td>
