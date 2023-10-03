@@ -58,7 +58,7 @@ class Member < ActiveRecord::Base
   def positions_by_year(year)
     positions = self.positions&.where('position_members.year = ?', year)&.uniq
     if positions.length > 0
-      return positions.order(:priority)
+      return positions.sort_by(&:priority)
     end
     return positions
   end
