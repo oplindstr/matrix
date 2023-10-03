@@ -209,7 +209,10 @@ GEM
     nio4r (2.5.9)
     nokogiri (1.15.4-x64-mingw-ucrt)
       racc (~> 1.4)
+    nokogiri (1.15.4-x86_64-linux)
+      racc (~> 1.4)
     path_expander (1.1.1)
+    pg (1.5.4)
     pg (1.5.4-x64-mingw-ucrt)
     phantomjs (2.1.1.0)
     pkg-config (1.5.5)
@@ -321,6 +324,7 @@ GEM
       activesupport (>= 5.2)
       sprockets (>= 3.0.0)
     sqlite3 (1.6.4-x64-mingw-ucrt)
+    sqlite3 (1.6.4-x86_64-linux)
     sshkit (1.21.5)
       net-scp (>= 1.1.2)
       net-ssh (>= 2.8.0)
@@ -357,6 +361,7 @@ GEM
 
 PLATFORMS
   x64-mingw-ucrt
+  x86_64-linux
 
 DEPENDENCIES
   actionview (= 7.0.7.2)
