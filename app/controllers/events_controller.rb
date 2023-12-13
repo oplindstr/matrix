@@ -1,7 +1,7 @@
 class EventsController < ApplicationController
   before_action :set_event, only: [:show, :update, :destroy, :edit]
   before_action :set_signup, only: [:update_signup]
-  before_action :set_locale, only: [:index, :past_events]
+  before_action :set_locale, only: [:index, :past_events, :show]
   before_action :ensure_that_sub_admin, except: [:index, :show, :sign_up, :past_events, :ical, :ical_signup_starts]
 
   # GET /events

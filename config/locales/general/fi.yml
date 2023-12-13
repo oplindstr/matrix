@@ -22,6 +22,7 @@ fi:
   you_are: 'Olet'
   attributes:
     attachment: 'Tiedosto'
+    email: "Sähköpostiosoite"
     name: 'Nimi'
     name_eng: 'Nimi englanniksi'
     display_name: 'Näyttönimi'

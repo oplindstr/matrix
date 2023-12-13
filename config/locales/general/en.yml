@@ -22,6 +22,7 @@ en:
   you_are: 'You are'
   attributes:
     attachment: 'File'
+    email: "Email"
     name: 'Name'
     name_eng: 'Name in English'
     display_name: 'Display Name'

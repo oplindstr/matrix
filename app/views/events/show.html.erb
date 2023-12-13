@@ -1,6 +1,6 @@
 <div class="box">
 
-  <h2 class="title"><%= @event.name %></h2>
+  <h2 class="title"><%= @event.get_name %></h2>
 
   <% if sub_admin %>
 
@@ -13,19 +13,19 @@
   <% end %>
 
   <p>
-  <strong>Päivä:</strong>
-  <%= DateUtils.weekday(@event.starttime) %> <%= DateUtils.standard_date(@event.starttime) %>
+  <strong><%= t('Date') %>:</strong>
+  <%= DateUtils.standard_date_with_weekday(@event.starttime, @locale) %>
   </p>
 
   <p>
-  <strong>Alkaa:</strong>
+  <strong><%= t('Time') %>:</strong>
   <%= DateUtils.time(@event.starttime)%>
   </p>
 
   <% if not (@event.location.nil? || @event.location.empty?) %>
 
     <p>
-    <strong>Paikka:</strong>
+    <strong><%= t('Location') %>:</strong>
     <%= @event.location %>
     </p>
 
@@ -34,7 +34,7 @@
   <% if not (@event.event_type.nil? || @event.event_type.empty?) %>
 
     <p>
-    <strong>Tyyppi:</strong>
+    <strong><%= t('Type') %>:</strong>
     <%= @event.event_type %>
     </p>
 
@@ -43,7 +43,7 @@
   <% if not (@event.price.nil? || @event.price.empty?) %>
 
     <p>
-    <strong>Hinta:</strong>
+    <strong><%= t('Price') %>:</strong>
     <%= @event.price %> €
     </p>
 
@@ -58,21 +58,21 @@
 
     <% if @event.signup_start and @event.signup_end %>
       <p>
-      <strong>Ilmoittautumisaika:</strong>
+      <strong><%= t('Signup period') %>:</strong>
       <%= DateUtils.full_date(@event.signup_start) %> - <%= DateUtils.full_date(@event.signup_end) %>
       </p>
     <% end %>
 
     <% if @event.signup_cancellable_until and @event.signup_end and @event.signup_cancellable_until < @event.signup_end %>
       <p>
-      <strong>Ilmoittautuminen sitova alkaen:</strong>
+      <strong><%= t('signup_binding_from') %>:</strong>
       <%= DateUtils.full_date(@event.signup_cancellable_until) %>
       </p>
     <% end %>
 
     <% if @event.signup_open or sub_admin %>
       <p>
-        <strong>Ilmoittautuneita:</strong>
+        <strong><%= t('Signed up') %>:</strong>
         <%= @event.signups.count %>
         <% if @event.signup_limit %>
           / <%= @event.signup_limit %>
@@ -80,13 +80,13 @@
       </p>
 
       <% if !@event.empty %>
-        <p><%= link_to 'Näytä ilmoittautuneet', event_signups_path(@event.id) %></p>
+        <p><%= link_to t('Show signed up'), event_signups_path(@event.id) %></p>
         <br>
       <% end %>
     <% end %>
 
     <% if !@event.members_only and !current_user %>
-      <b>Ulkopuoliset voivat ilmoittautua tapahtumaan</b>
+      <b><%= t('nonmembers_can_signup') %></b>
     <% end %>
 
     <% if !current_user and !@event.members_only and @event.signup_open %>
@@ -102,7 +102,7 @@
         <%= render 'signup_form' %>
       <% end %>
       <br>
-      <%= button_to 'Peru ilmoittautuminen', @signup, method: :delete, data: { confirm: 'Haluatko varmasti perua ilmoittautumisesi?' }, class: 'button is-danger' %>
+      <%= button_to t('cancel_signup'), @signup, method: :delete, data: { confirm: t('cancel_signup') }, class: 'button is-danger' %>
     <% end %>
 
   <% end %>

@@ -21,15 +21,15 @@ ActiveRecord::Schema[7.0].define(version: 2023_09_21_191612) do
 
   create_table "document_group_categories", force: :cascade do |t|
     t.string "name"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at", precision: nil, null: false
+    t.datetime "updated_at", precision: nil, null: false
     t.string "name_eng"
   end
 
   create_table "document_groups", force: :cascade do |t|
     t.string "name"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at", precision: nil, null: false
+    t.datetime "updated_at", precision: nil, null: false
     t.string "display_name"
     t.integer "document_group_category_id"
     t.string "display_name_eng"
@@ -38,8 +38,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_09_21_191612) do
   create_table "documents", force: :cascade do |t|
     t.string "name"
     t.string "attachment"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at", precision: nil, null: false
+    t.datetime "updated_at", precision: nil, null: false
     t.integer "document_group_id"
     t.string "name_eng"
   end
@@ -47,23 +47,23 @@ ActiveRecord::Schema[7.0].define(version: 2023_09_21_191612) do
   create_table "event_parameter_choices", force: :cascade do |t|
     t.integer "event_parameter_id"
     t.string "value"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at", precision: nil, null: false
+    t.datetime "updated_at", precision: nil, null: false
     t.string "name_eng"
   end
 
   create_table "event_parameter_types", force: :cascade do |t|
     t.string "name"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at", precision: nil, null: false
+    t.datetime "updated_at", precision: nil, null: false
   end
 
   create_table "event_parameters", force: :cascade do |t|
     t.integer "event_id"
     t.string "name"
     t.integer "event_parameter_type_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at", precision: nil, null: false
+    t.datetime "updated_at", precision: nil, null: false
     t.boolean "required"
     t.string "name_eng"
   end
@@ -78,8 +78,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_09_21_191612) do
     t.datetime "signup_start", precision: nil
     t.datetime "signup_end", precision: nil
     t.datetime "signup_cancellable_until", precision: nil
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at", precision: nil, null: false
+    t.datetime "updated_at", precision: nil, null: false
     t.text "descr"
     t.string "price"
     t.integer "signup_limit"
@@ -92,8 +92,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_09_21_191612) do
   create_table "images", force: :cascade do |t|
     t.string "name"
     t.string "image"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at", precision: nil, null: false
+    t.datetime "updated_at", precision: nil, null: false
   end
 
   create_table "members", force: :cascade do |t|
@@ -102,8 +102,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_09_21_191612) do
     t.string "address"
     t.string "email"
     t.string "city"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at", precision: nil, null: false
+    t.datetime "updated_at", precision: nil, null: false
     t.boolean "hyy_member"
     t.boolean "mathstudent"
     t.integer "joined"
@@ -113,15 +113,15 @@ ActiveRecord::Schema[7.0].define(version: 2023_09_21_191612) do
 
   create_table "memberships", force: :cascade do |t|
     t.integer "year"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at", precision: nil, null: false
+    t.datetime "updated_at", precision: nil, null: false
     t.integer "member_id"
   end
 
   create_table "news", force: :cascade do |t|
     t.text "text"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at", precision: nil, null: false
+    t.datetime "updated_at", precision: nil, null: false
     t.text "header"
     t.integer "priority", default: 1
   end
@@ -129,8 +129,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_09_21_191612) do
   create_table "partners", force: :cascade do |t|
     t.string "name"
     t.string "image"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at", precision: nil, null: false
+    t.datetime "updated_at", precision: nil, null: false
     t.string "link"
   end
 
@@ -143,8 +143,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_09_21_191612) do
 
   create_table "position_types", force: :cascade do |t|
     t.string "name"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at", precision: nil, null: false
+    t.datetime "updated_at", precision: nil, null: false
   end
 
   create_table "positions", force: :cascade do |t|
@@ -160,31 +160,31 @@ ActiveRecord::Schema[7.0].define(version: 2023_09_21_191612) do
     t.integer "post_id"
     t.integer "user_id"
     t.text "comment"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at", precision: nil, null: false
+    t.datetime "updated_at", precision: nil, null: false
   end
 
   create_table "post_tags", force: :cascade do |t|
     t.integer "post_id"
     t.string "tag"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at", precision: nil, null: false
+    t.datetime "updated_at", precision: nil, null: false
   end
 
   create_table "posts", force: :cascade do |t|
     t.integer "user_id"
     t.string "title"
     t.text "text"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at", precision: nil, null: false
+    t.datetime "updated_at", precision: nil, null: false
   end
 
   create_table "products", force: :cascade do |t|
     t.string "name"
     t.decimal "price"
     t.string "image"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at", precision: nil, null: false
+    t.datetime "updated_at", precision: nil, null: false
     t.integer "priority"
     t.string "name_eng"
   end
@@ -192,8 +192,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_09_21_191612) do
   create_table "settings", force: :cascade do |t|
     t.string "setting"
     t.text "value"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at", precision: nil, null: false
+    t.datetime "updated_at", precision: nil, null: false
     t.string "descr"
   end
 
@@ -201,15 +201,15 @@ ActiveRecord::Schema[7.0].define(version: 2023_09_21_191612) do
     t.integer "signup_id"
     t.integer "event_parameter_id"
     t.string "value"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at", precision: nil, null: false
+    t.datetime "updated_at", precision: nil, null: false
   end
 
   create_table "signups", force: :cascade do |t|
     t.integer "user_id"
     t.integer "event_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at", precision: nil, null: false
+    t.datetime "updated_at", precision: nil, null: false
     t.string "name"
     t.string "email"
     t.string "phonenumber"
@@ -219,16 +219,16 @@ ActiveRecord::Schema[7.0].define(version: 2023_09_21_191612) do
   create_table "texts", force: :cascade do |t|
     t.string "name"
     t.text "value"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at", precision: nil, null: false
+    t.datetime "updated_at", precision: nil, null: false
     t.text "value_eng"
   end
 
   create_table "users", force: :cascade do |t|
     t.string "username"
     t.string "password_digest"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at", precision: nil, null: false
+    t.datetime "updated_at", precision: nil, null: false
     t.boolean "admin"
     t.string "avatar"
   end

@@ -2,11 +2,11 @@
 
   <br>
   <% if current_user and @event.user_signed_up(current_user.id) %>
-    <h3 class="subtitle">Muokkaa ilmoittautumistietoja</h3>
+    <h3 class="subtitle"><%= t('update_signup_information') %></h3>
   <% else %>
-    <h3 class="subtitle">Ilmoittaudu</h3>
+    <h3 class="subtitle"><%= t('Sign up') %></h3>
     <% if @event.full %>
-        <p class='help is-danger'>Tapahtuma on täynnä! Ilmoittaudut varasijalle.</p>
+        <p class='help is-danger'><%= t('event_is_full') %></p>
         <br>
     <% end %>
   <% end %>
@@ -15,7 +15,7 @@
     <%= f.hidden_field :user_id, value: current_user.id %>
   <% else %>
     <div class="field">
-      <%= f.label :name, t('Name'), :class => 'label' %>
+      <%= f.label :name, :class => 'label' %>
       <div class="control">
         <%= f.text_field :name, :class => 'input', :required => true %>
       </div>
@@ -24,7 +24,7 @@
       </p>
     </div>
     <div class="field">
-      <label class="label" for="signup_email">Sähköpostiosoite</label>
+      <%= f.label :email, :class => 'label' %>
       <div class="control">
         <%= f.text_field :email, :class => 'input', :type => 'email' %>
       </div>
@@ -38,20 +38,20 @@
 
           <div class="control">
             <% if p.object.event_parameter.event_parameter_type.name == 'Teksti' %>
-              <%= p.label :id, p.object.event_parameter.name, :class => 'label' %>
+              <%= p.label :id, p.object.event_parameter.get_name, :class => 'label' %>
               <%= p.text_field :value, :class => 'input', :required => p.object.event_parameter.required %>
             <% end %>
 
             <% if p.object.event_parameter.event_parameter_type.name == 'Valintaruutu' %>
               <label class="checkbox">
                 <%= p.check_box :value, :required => p.object.event_parameter.required %>
-                <%= p.object.event_parameter.name %>
+                <%= p.object.event_parameter.get_name %>
               </label>
             <% end %>
 
             <% if p.object.event_parameter.event_parameter_type.name == 'Valintanappi' %>
               <% if p.object.event_parameter.event_parameter_choices.size > 0 %>
-                <%= p.label :id, p.object.event_parameter.name, :class => 'label' %>
+                <%= p.label :id, p.object.event_parameter.get_name, :class => 'label' %>
                 <% p.object.event_parameter.event_parameter_choices.each_with_index do |choice, i| %>
                   <label class="radio">
                     <% if i == 0 and p.object.event_parameter.required %>
@@ -59,7 +59,7 @@
                     <% else %>
                       <%= p.radio_button :value, choice.value %>
                     <% end %>
-                    <%= choice.value %>
+                    <%= choice.get_name %>
                   </label>
                 <% end %>
               <% end %>
@@ -83,7 +83,7 @@
   <div class="field">
     <label class="checkbox">
       <%= f.check_box :show, value: false %>
-      Minut saa näyttää kaikille näkyvällä ilmoittautuneiden listalla
+      <%= t('show_in_signup_list') %>
     </label>
   </div>
   <div class="actions">
@@ -91,7 +91,7 @@
       <%= f.hidden_field :id, value: @signup.id %>
       <%= f.submit :value => t('Save'), :class => "button is-link" %>
     <% else %>
-      <%= f.submit :value => 'Ilmoittaudun', :class => "button is-link" %>
+      <%= f.submit :value => t('signup_confirm'), :class => "button is-link" %>
     <% end %>
   </div>
 <% end %>
