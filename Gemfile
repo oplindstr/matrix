@@ -1,5 +1,5 @@
 source 'https://rubygems.org'
-gem "bundler", '2.4.19'
+gem "bundler", '>= 2.3.25'
 gem "pkg-config"
 gem 'rails', '7.0.7.2'
 gem "actionview", "7.0.7.2"

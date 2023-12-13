@@ -371,7 +371,7 @@ DEPENDENCIES
   better_errors
   bootstrap-sass (>= 3.4.1)
   bulma-rails (~> 0.9.4)
-  bundler (= 2.4.19)
+  bundler (>= 2.3.25)
   byebug
   capistrano (~> 3.17)
   capistrano-bundler (~> 2.1)
@@ -423,4 +423,4 @@ DEPENDENCIES
   websocket-extensions (= 0.1.5)
 
 BUNDLED WITH
-   2.4.19
+   2.3.25
