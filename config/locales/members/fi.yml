@@ -2,11 +2,12 @@ fi:
   activerecord:
     attributes:
       member:
-        firstname: "Etunimet"
-        lastname: "Sukunimi"
-        nickname: "Kutsumanimi"
-        email: "Sähköpostiosoite"
-        address: "Osoite"
-        city: "Kotikunta"
-        hyy_member: "Opiskelen Helsingin Yliopistossa tutkinto- tai jatko-opiskelijana"
-        mathstudent: "Opiskelen jossain Helsingin yliopiston Matemaattis-luonnontieteellisen tiedekunnan vastuulla olevassa koulutusohjelmassa"
+        firstname: 'Etunimet'
+        lastname: 'Sukunimi'
+        nickname: 'Kutsumanimi'
+        email: 'Sähköpostiosoite'
+        address: 'Osoite'
+        city: 'Kotikunta'
+        hyy_member: 'Opiskelen Helsingin Yliopistossa tutkinto- tai jatko-opiskelijana'
+        mathstudent: 'Opiskelen jossain Helsingin yliopiston Matemaattis-luonnontieteellisen tiedekunnan vastuulla olevassa koulutusohjelmassa'
+        tg_nick: 'Telegram käyttäjätunnus'
