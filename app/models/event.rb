@@ -3,6 +3,7 @@ class Event < ActiveRecord::Base
   has_many :users, through: :signups
   has_many :event_parameters
   has_many :event_parameter_choices, through: :event_parameters
+  belongs_to :contact_person, class_name: "Member", foreign_key: :contact_person_id, optional: true
 
   accepts_nested_attributes_for :event_parameters, allow_destroy: true
 
@@ -190,5 +191,14 @@ class Event < ActiveRecord::Base
       return self.name_eng
     end
     return self.name
+  end
+
+
+
+  def get_contact_person
+    if self.contact_person
+      return self.contact_person.event_contact_info
+    end
+    return nil
   end
 end

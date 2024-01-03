@@ -5,6 +5,7 @@ class Member < ActiveRecord::Base
   has_many :position_members
   has_many :positions, through: :position_members
   has_many :memberships
+  has_many :events, foreign_key: :contact_person
 
   validates :firstname, presence: { message: "Etunimi on pakollinen kenttä" }
   validates :firstname, length: { in: 1..100, message: "Valitse etunimi, jonka pituus on enintään 100 merkkiä" }
@@ -44,6 +45,13 @@ class Member < ActiveRecord::Base
       return self.name + ' (' + display_email + ')'
     end
     return self.name
+  end
+
+  def event_contact_info
+    if self.tg_nick
+      return "#{self.full_name} (#{self.tg_nick})"
+    end
+    return self.full_name
   end
 
   def priority_in_board_member_list(year)

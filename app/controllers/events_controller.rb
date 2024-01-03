@@ -39,6 +39,7 @@ class EventsController < ApplicationController
   def new
     @event = Event.new
     @event_parameter_types = EventParameterType.all
+    @members = Member.all.order(:firstname, :lastname)
 
     respond_to do |format|
       format.html { render :new }
@@ -49,6 +50,7 @@ class EventsController < ApplicationController
   # GET /events/1/edit
   def edit
     @event_parameter_types = EventParameterType.all
+    @members = Member.all.order(:firstname, :lastname)
   end
 
   # POST /events
@@ -72,7 +74,6 @@ class EventsController < ApplicationController
   # PATCH/PUT /events/1
   # PATCH/PUT /events/1.json
   def update
-
     respond_to do |format|
       if @event.update(event_params)
         format.html { redirect_to @event, notice: 'Tapahtuman muokkaus onnistui' }
@@ -221,7 +222,7 @@ class EventsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def event_params
-      params.require(:event).permit(:id, :name, :name_eng, :starttime, :endtime, :location, :event_type, :signup_required, :signup_start, :signup_end, :signup_cancellable_until, :descr, :descr_eng, :price, :signup_limit, :members_only, :participants, :event_parameters_attributes => [:id, :name, :name_eng, :event_parameter_type_id, :required, :_destroy, :event_parameter_choices_attributes => [:id, :value, :name_eng, :_destroy]])
+      params.require(:event).permit(:id, :name, :name_eng, :starttime, :endtime, :location, :event_type, :signup_required, :signup_start, :signup_end, :signup_cancellable_until, :descr, :descr_eng, :price, :signup_limit, :members_only, :participants, :contact_person_id, :event_parameters_attributes => [:id, :name, :name_eng, :event_parameter_type_id, :required, :_destroy, :event_parameter_choices_attributes => [:id, :value, :name_eng, :_destroy]])
     end
 
     def signup_params

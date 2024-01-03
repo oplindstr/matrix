@@ -68,6 +68,14 @@
     </div>
   </div>
   <div class="field">
+    <%= f.label :contact_person_id, :class => 'label' %>
+    <div class="control">
+      <div class="select">
+        <%= f.select :contact_person_id, options_from_collection_for_select(@members, :id, :name, @event.contact_person_id), :include_blank => true %>
+      </div>
+    </div>
+  </div>
+  <div class="field">
     <label class="checkbox">
       <%= f.check_box :signup_required, { :onchange => 'toggle_signup_options()' } %>
       Täytyykö ilmoittautua
