@@ -1,0 +1,9 @@
+<div class="box">
+  <% if @text %>
+    <pre><%= @text.get_value.html_safe %></pre>
+  <% else %>
+    <h1 class="title"><%= t(@title) %></h1>
+
+    <p><%= t('coming_soon') %>
+  <% end %>
+</div>

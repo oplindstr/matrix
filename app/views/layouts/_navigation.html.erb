@@ -11,49 +11,73 @@
     <div class="navbar-menu container" id="navMenu">
       <div class="navbar-start">
         <%= link_to t("home"), root_path, :class => "navbar-item" %>
+        <%= link_to t("Events"), kalenteri_path, :class => "navbar-item" %>
         <div class="navbar-item has-dropdown is-hoverable">
           <%= link_to t("organization"), jarjesto_path, :class => "navbar-link" %>
           <div class="navbar-dropdown">
-            <%= link_to t("board_and_positions"), hallitus_path, :class => "navbar-item" %>
-            <%= link_to t("komero"), komero_path, :class => "navbar-item" %>
-            <%= link_to t("documents"), dokumentit_path, :class => "navbar-item" %>
             <%= link_to t("contact_info"), yhteystiedot_path, :class => "navbar-item" %>
-            <%= link_to t("mailing_lists"), sahkopostilistat_path, :class => "navbar-item" %>
-            <%= link_to t("for_companies"), yrityksille_path, :class => "navbar-item" %>
+            <%= link_to t("board_and_positions"), hallitus_path, :class => "navbar-item" %>
+            <%= link_to t("Tiedotuskanavat"), tiedotuskanavat_path, :class => "navbar-item" %>
+            <%= link_to t("Lomakkeet"), lomakkeet_path, :class => "navbar-item" %>
+            <%= link_to t("documents"), dokumentit_path, :class => "navbar-item" %>
+            <%= link_to t("Historia"), historia_path, :class => "navbar-item" %>
           </div>
         </div>
         <div class="navbar-item has-dropdown is-hoverable">
           <%= link_to t("activity"), toiminta_path, :class => "navbar-link" %>
           <div class="navbar-dropdown">
-            <%= link_to t("clubs"), kerhot_path, :class => "navbar-item" %>
-            <%= link_to t("klusteri"), klusteri_path, :class => "navbar-item" %>
+            <%= link_to t("Turvallisemman tilan periaatteet"), turvallinen_tila_path, :class => "navbar-item" %>
+            <%= link_to t("Tilat"), tilat_path, :class => "navbar-item" %>
+            <%= link_to t("Tuotteet"), tuotteet_path, :class => "navbar-item" %>
+            <%= link_to t("Perinnetapahtumat"), perinnetapahtumat_path, :class => "navbar-item" %>
+            <%= link_to t("Juhlat"), juhlat_path, :class => "navbar-item" %>
+            <%= link_to t("Kulttuuri"), kulttuuri_path, :class => "navbar-item" %>
+            <%= link_to t("Liikunta"), liikunta_path, :class => "navbar-item" %>
+            <%= link_to t("Pelailu"), pelailu_path, :class => "navbar-item" %>
           </div>
         </div>
-        <%= link_to t("calendar"), kalenteri_path, :class => "navbar-item" %>
         <div class="navbar-item has-dropdown is-hoverable">
           <span class="navbar-link"><%= t("studies") %></span>
           <div class="navbar-dropdown">
             <%= link_to t("exam_archive"), tenttiarkisto_path, :class => "navbar-item" %>
-            <%= link_to t("course_descriptions"), kurssikuvauksia_path, :class => "navbar-item" %>
+            <%= link_to t("Tutkinto & kurssit"), tutkinto_path, :class => "navbar-item" %>
+            <%= link_to t("Helpot nopat"), helpot_nopat_path, :class => "navbar-item" %>
+            <%= link_to t("Edunvalvonta"), edunvalvonta_path, :class => "navbar-item" %>
           </div>
         </div>
         <div class="navbar-item has-dropdown is-hoverable">
-          <%= link_to t("for_freshers"), fuksille_path, :class => "navbar-link" %>
+          <%= link_to t("Fuksille"), fuksille_path, :class => "navbar-link" %>
           <div class="navbar-dropdown">
-            <%= link_to t("fresher_guide"), fuksiopas_path, :class => "navbar-item" %>
-            <%= link_to t("tutors"), tuutorit_path, :class => "navbar-item" %>
-            <%= link_to t("glossary"), sanasto_path, :class => "navbar-item" %>
+            <%= link_to t("Tervehdys"), tervehdys_path, :class => "navbar-item" %>
+            <%= link_to t("Fuksiopas"), fuksiopas_path, :class => "navbar-item" %>
+            <%= link_to t("Tuutorit"), tuutorit_path, :class => "navbar-item" %>
+            <%= link_to t("Sanastoa"), sanasto_path, :class => "navbar-item" %>
           </div>
         </div>
-        <% I18n.available_locales.each do |locale| %>
-          <% if locale != I18n.locale %>
-            <%= link_to t("#{locale}"), url_for(locale: "#{locale}"), hreflang: locale, rel: 'alternate', :class => "navbar-item" %>
-          <% end %>
-        <% end %>
+        <div class="navbar-item has-dropdown is-hoverable">
+          <%= link_to t("Yrityksille"), yrityksille_path, :class => "navbar-link" %>
+          <div class="navbar-dropdown">
+            <%= link_to t("Yhteistyö"), yhteistyo_path, :class => "navbar-item" %>
+            <%= link_to t("Hinnasto"), hinnasto_path, :class => "navbar-item" %>
+          </div>
+        </div>
+        <div class="navbar-item has-dropdown is-hoverable">
+          <span class="navbar-link"><%= t("Lehti") %></span>
+          <div class="navbar-dropdown">
+            <%= link_to t("Tyhjä Joukko"), tyhja_joukko_path, :class => "navbar-item" %>
+            <%= link_to t("Julkaisut"), julkaisut_path, :class => "navbar-item" %>
+            <%= link_to t("Toimitus"), toimitus_path, :class => "navbar-item" %>
+          </div>
+        </div>
         <% if current_user %>
           <%= link_to t("my_page"), self_path, :class => "navbar-item" %>
         <% else %>
           <%= link_to t("join"), member_sign_up_path, :class => "navbar-item" %>
+        <% end %>
+        <% I18n.available_locales.each do |locale| %>
+          <% if locale != I18n.locale %>
+            <%= link_to image_tag("#{locale}_flag.png"), url_for(locale: "#{locale}"), hreflang: locale, rel: 'alternate', :class => "navbar-item" %>
+          <% end %>
         <% end %>
       </div>
     </div>
