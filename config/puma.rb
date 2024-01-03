@@ -1,4 +1,4 @@
-workers 2
+workers 1
 
 # Min and Max threads per worker
 threads 1, 6
