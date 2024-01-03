@@ -1,4 +1,7 @@
 fi:
+  Membership: 'Jäsenyys'
+  membership_ended: 'Jäsenyytesi voimassaolo päättyi lukuvuoden {period} alussa'
+  membership_valid_until: 'Jäsenyytesi on voimassa lukuvuoden {period} päättymiseen asti'
   activerecord:
     attributes:
       member:

@@ -1,4 +1,7 @@
 en:
+  Membership: 'Membership'
+  membership_ended: 'The validity of your membership ended in the beginning of the academic year {period}'
+  membership_valid_until: 'Your membership is valid until the end of the academic year {period}'
   activerecord:
     attributes:
       member:

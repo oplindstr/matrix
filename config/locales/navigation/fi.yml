@@ -1,29 +1,49 @@
 fi:
-  activity: "Toiminta"
-  admin_settings: "Admin-toiminnot"
-  board_and_positions: "Hallitus ja virkailijat"
-  calendar: "Kalenteri"
-  clubs: "Kerhot"
-  contact_info: "Yhteystiedot"
-  course_descriptions: "Kurssikuvauksia"
-  documents: "Dokumentit"
-  en: "In English"
-  exam_archive: "Tenttiarkisto"
-  fi: "Suomeksi"
-  for_companies: "Yrityksille"
-  for_freshers: "Fuksille"
-  forgot_password: "Unohditko salasanasi"
-  forgot_username: "Unohditko käyttäjätunnuksesi"
-  fresher_guide: "Fuksiopas"
-  glossary: "Sanastoa"
-  home: "Etusivu"
-  join: "Liity jäseneksi"
-  klusteri: "Klusteri"
-  komero: "Komero"
-  log_in: "Kirjaudu sisään"
-  log_out: "Kirjaudu ulos"
-  mailing_lists: "Sähköpostilistat"
-  my_page: "Omat tiedot"
-  organization: "Järjestö"
-  studies: "Opiskelu"
-  tutors: "Tuutorit"
+  'Helpot nopat': 'Helpot nopat'
+  'Turvallisemman tilan periaatteet': 'Turvallisemman tilan periaatteet'
+  'Tutkinto & kurssit': 'Tutkinto & kurssit'
+  'Tyhjä Joukko': 'Tyhjä Joukko'
+  activity: 'Toiminta'
+  admin_settings: 'Admin-toiminnot'
+  board_and_positions: 'Hallitus & virkailijat'
+  calendar: 'Kalenteri'
+  clubs: 'Kerhot'
+  contact_info: 'Yhteystiedot'
+  documents: 'Dokumentit'
+  Edunvalvonta: 'Edunvalvonta'
+  en: 'In English'
+  exam_archive: 'Tenttiarkisto'
+  fi: 'Suomeksi'
+  for_companies: 'Yrityksille'
+  for_freshers: 'Fuksille'
+  forgot_password: 'Unohditko salasanasi'
+  forgot_username: 'Unohditko käyttäjätunnuksesi'
+  forms: 'Lomakkeet'
+  Fuksiopas: 'Fuksiopas'
+  Hinnasto: 'Hinnasto'
+  Historia: 'Historia'
+  home: 'Etusivu'
+  join: 'Liity jäseneksi'
+  Juhlat: 'Juhlat'
+  Julkaisut: 'Julkaisut'
+  klusteri: 'Klusteri'
+  komero: 'Komero'
+  Kulttuuri: 'Kulttuuri'
+  Lehti: 'Lehti'
+  Liikunta: 'Liikunta'
+  log_in: 'Kirjaudu sisään'
+  log_out: 'Kirjaudu ulos'
+  Lomakkeet: 'Lomakkeet'
+  my_page: 'Omat tiedot'
+  organization: 'Järjestö'
+  Pelailu: 'Pelailu'
+  Perinnetapahtumat: 'Perinnetapahtumat'
+  Sanastoa: 'Sanastoa'
+  studies: 'Opiskelu'
+  Tervehdys: 'Tervehdys'
+  Tiedotuskanavat: 'Tiedotuskanavat'
+  Tilat: 'Tilat'
+  Toimitus: 'Toimitus'
+  Tuotteet: 'Tuotteet'
+  Tuutorit: 'Tuutorit'
+  Yhteistyö: 'Yhteistyö'

@@ -1,22 +1,28 @@
 en:
-  cancel_signup: "Cancel signup"
-  cancel_signup_confirm: "Are you sure you want to cancel signup"
-  Date: "Date"
-  event_is_full: "The event is full. You will sign up in the wait list"
-  Location: "Location"
-  nonmembers_can_signup: "Non-members can sign up"
-  Price: "Price"
-  "Show signed up": "Show signed up"
-  show_in_signup_list: "I give permission to show my name in the signed up -list"
-  "Sign up": "Sign up"
-  "Signed up": "Signed up"
-  signup_binding_from: "Signup binding from"
-  signup_confirm: "Sign up"
-  signup_open: "Signup for the event is open"
-  signup_open_with_end: "Signup for the event is open and ends on"
-  signup_starts: "Signup for the event starts on"
-  "Signup period": "Signup period"
-  Time: "Time"
-  Type: "Type"
-  update_signup_information: "Update signup information"
-  upcoming_events: "Upcoming events"
+  cancel_signup: 'Cancel signup'
+  cancel_signup_confirm: 'Are you sure you want to cancel signup'
+  contact_person_id: 'Contact Person'
+  Date: 'Date'
+  event_is_full: 'The event is full. You will sign up in the wait list'
+  Events: 'Events'
+  Location: 'Location'
+  nonmembers_can_signup: 'Non-members can sign up'
+  Price: 'Price'
+  'Show signed up': 'Show signed up'
+  show_in_signup_list: 'I give permission to show my name in the signed up -list'
+  'Sign up': 'Sign up'
+  'Signed up': 'Signed up'
+  signup_binding_from: 'Signup binding from'
+  signup_confirm: 'Sign up'
+  signup_open: 'Signup for the event is open'
+  signup_open_with_end: 'Signup for the event is open and ends on'
+  signup_starts: 'Signup for the event starts on'
+  'Signup period': 'Signup period'
+  Time: 'Time'
+  Type: 'Type'
+  update_signup_information: 'Update signup information'
+  upcoming_events: 'Upcoming events'
+  activerecord:
+    attributes:
+      event:
+        contact_person_id: 'Contact Person'

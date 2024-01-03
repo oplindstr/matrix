@@ -20,9 +20,10 @@ fi:
   mandatory_field: 'Pakollinen kenttä'
   at_least_characters: 'vähintään {amount} merkkiä'
   you_are: 'Olet'
+  coming_soon: 'Tulossa pian'
   attributes:
     attachment: 'Tiedosto'
-    email: "Sähköpostiosoite"
+    email: 'Sähköpostiosoite'
     name: 'Nimi'
     name_eng: 'Nimi englanniksi'
     display_name: 'Näyttönimi'

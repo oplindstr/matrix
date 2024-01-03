@@ -20,9 +20,10 @@ en:
   mandatory_field: 'Mandatory field'
   at_least_characters: 'at least {amount} characters'
   you_are: 'You are'
+  coming_soon: 'Coming soon'
   attributes:
     attachment: 'File'
-    email: "Email"
+    email: 'Email'
     name: 'Name'
     name_eng: 'Name in English'
     display_name: 'Display Name'
