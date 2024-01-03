@@ -54,7 +54,7 @@ group :development, :test do
   gem 'capistrano-rvm', "~> 0.1"
   gem 'capistrano-rails', "~> 1.6"
   gem 'capistrano-bundler', "~> 2.1"
-  gem 'capistrano3-puma', "~> 5.2.0"
+  gem 'capistrano3-puma', github: 'seuros/capistrano-puma'
 end
 
 group :test do

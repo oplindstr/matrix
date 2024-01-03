@@ -1,3 +1,12 @@
+GIT
+  remote: https://github.com/seuros/capistrano-puma.git
+  revision: 2cc11846540489edda10d83e026c9bea04e6fab1
+  specs:
+    capistrano3-puma (6.0.0.beta.1)
+      capistrano (~> 3.7)
+      capistrano-bundler
+      puma (>= 5.1, < 7.0)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -100,10 +109,6 @@ GEM
     capistrano-rvm (0.1.2)
       capistrano (~> 3.0)
       sshkit (~> 1.2)
-    capistrano3-puma (5.2.0)
-      capistrano (~> 3.7)
-      capistrano-bundler
-      puma (>= 4.0, < 6.0)
     capybara (3.39.2)
       addressable
       matrix
@@ -381,7 +386,7 @@ DEPENDENCIES
   capistrano-bundler (~> 2.1)
   capistrano-rails (~> 1.6)
   capistrano-rvm (~> 0.1)
-  capistrano3-puma (~> 5.2.0)
+  capistrano3-puma!
   carrierwave (= 3.0.3)
   dkim
   factory_girl_rails
