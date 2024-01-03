@@ -6,6 +6,7 @@
 		<tr>
 			<th>Nimi</th>
 			<th>Sähköpostiosoite</th>
+			<th>Jäsenyys voimassa asti</th>
 			<th><%= year %>-<%= year+1 %> jäsenyys voimassa</th>
 			<th><%= year+1 %>-<%= year+2 %> jäsenyys voimassa</th>
 		</tr>
@@ -17,6 +18,7 @@
 				<td><%= user.full_name %></td>
 				<td><%= user.email %></td>
 				<%= fields_for "users[]", user do |f| %>
+					<td><%= f.number_field :membership_valid_until, :value => user.membership_valid_until %></td>
 					<td><%= f.check_box :member_this_year, checked: user.membership(year) %></td>
 					<td><%= f.check_box :member_next_year, checked: user.membership(year+1) %></td>
 				<% end %>

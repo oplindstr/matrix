@@ -17,6 +17,7 @@
         <th>Liittymisaika</th>
         <th>Käyttäjätunnus</th>
         <th>Telegram Käyttäjätunnus</th>
+        <th>Jäsenyys voimassa asti</th>
         <th></th>
         <th></th>
       </tr>
@@ -36,6 +37,7 @@
           <td><%= member.created_at %></td>
           <td><%= member.username %></td>
           <td><%= member.tg_nick%></td>
+          <td><%= member.membership_valid_until %></td>
           <td><%= link_to t('Edit'), edit_member_path(member) %></td>
           <td><%= link_to t('Remove'), member, method: :delete, data: { confirm: "#{t('are_you_sure')}?" } %></td>
         </tr>

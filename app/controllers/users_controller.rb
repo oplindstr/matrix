@@ -40,11 +40,13 @@ class UsersController < ApplicationController
     if @member
       @memberships = Membership.where('member_id = ? and year >= ?', @member.id, @membership_this_year).pluck(:year)
     end
+    @is_member = false
     if @memberships and !@memberships.empty?
       @membership_max_year = @memberships.max
       @is_member = true
-    else
-      @is_member = false
+    end
+    if @member.membership_valid_until and @member.membership_valid_until >= @membership_this_year
+      @is_member = true
     end
     render 'show'
   end
@@ -282,14 +284,18 @@ class UsersController < ApplicationController
   def update_memberships
     params = update_memberships_params
     year = params[:year].to_i
-	next_year = year + 1
+	  next_year = year + 1
     params[:users].each do |param|
       user = Member.find(param[0])
+      membership_valid_until = param[1][:membership_valid_until]
       member_this_year = param[1][:member_this_year]
-	  member_next_year = param[1][:member_next_year]
+	    member_next_year = param[1][:member_next_year]
       member_id = user.id
 
-	  member = member_this_year
+      user.membership_valid_until = membership_valid_until
+      user.save
+
+	    member = member_this_year
       membership = Membership.where('member_id = ? and year = ?', member_id, year).first
       if member == '0' and membership
         membership.destroy
@@ -300,7 +306,7 @@ class UsersController < ApplicationController
         membership.save
       end
 
-	  member = member_next_year
+	    member = member_next_year
       membership = Membership.where('member_id = ? and year = ?', member_id, next_year).first
       if member == '0' and membership
         membership.destroy
@@ -359,7 +365,7 @@ class UsersController < ApplicationController
     end
 
     def update_memberships_params
-      params.permit(:year, :users => [:member_this_year, :member_next_year])
+      params.permit(:year, :users => [:membership_valid_until, :member_this_year, :member_next_year])
     end
 
     def memberships_by_year_params

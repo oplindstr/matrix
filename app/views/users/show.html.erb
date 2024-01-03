@@ -2,12 +2,18 @@
 
   <h2 class="title is-spaced">Omat tiedot</h2>
 
-  <h3 class="subtitle">Jäsenyys</h3>
+  <h3 class="subtitle"><%= t('Membership') %></h3>
 
   <% if not @is_member %>
-    <p class="has-text-danger">Jäsenmaksuasi tälle lukuvuodelle ei ole merkitty maksetuksi. Älä välitä tästä, jos olet maksanut sen.</p>
+    <% if @member.membership_valid_until %>
+      <p class="has-text-danger"><%= t('membership_ended').gsub! '{period}', "#{@member.membership_valid_until + 1} - #{@member.membership_valid_until + 2}" %></p>
+    <% else %>
+      <p class="has-text-danger">Jäsenmaksuasi tälle lukuvuodelle ei ole merkitty maksetuksi. Älä välitä tästä, jos olet maksanut sen.</p>
+    <% end %>
   <% else %>
-    <% if @membership_max_year > @membership_this_year %>
+    <% if @member.membership_valid_until %>
+      <p><%= t('membership_valid_until').gsub! '{period}', "#{@member.membership_valid_until} - #{@member.membership_valid_until + 1}" %></p>
+    <% elsif @membership_max_year > @membership_this_year %>
       <p>Jäsenyytesi on voimassa lukuvuoden <%= @membership_max_year + 1 %> alkuun asti</p>
     <% else %>
       <p>Jäsenyytesi on voimassa lukuvuoden <%= @membership_this_year %>-<%= @membership_this_year + 1 %></p>

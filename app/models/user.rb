@@ -143,11 +143,17 @@ class User < ActiveRecord::Base
     end
   end
 
+  def membership_valid_until
+    if self.member
+      return self.member.membership_valid_until
+    end
+  end
+
   def new_member
-	member = self.member
-	if !member
-	  return true
-	end
+    member = self.member
+    if !member
+      return true
+    end
     membership = Membership.where('member_id = ?', member.id).first
     if membership
       return false
