@@ -48,9 +48,18 @@
     </p>
 
   <% end %>
+
+  <% if not @event.contact_person.nil? %>
+
+    <p>
+    <strong><%= t('contact_person_id') %>:</strong>
+    <%= @event.get_contact_person %>
+    </p>
+
+  <% end %>
   <br>
 
-  <pre><%= @event.get_descr.html_safe %></pre>
+  <pre><%= auto_link(@event.get_descr.html_safe) %></pre>
 
   <br>
 

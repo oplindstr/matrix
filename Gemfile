@@ -33,6 +33,7 @@ gem "json", ">= 2.6.3"
 gem "loofah", ">= 2.21.3"
 gem "rack", ">= 2.2.4"
 gem "rails-html-sanitizer", "~> 1.6.0"
+gem 'rails_autolink'
 
 group :production do
   gem 'pg', '~> 1.5.3'
