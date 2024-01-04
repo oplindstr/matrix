@@ -8,7 +8,7 @@ require 'capistrano/rails'
 require 'capistrano/bundler'
 require 'capistrano/rvm'
 require 'capistrano/puma'
-install_plugin Capistrano::Puma, load_hooks: true
+install_plugin Capistrano::Puma
 install_plugin Capistrano::Puma::Systemd
 
 # Loads custom tasks from `lib/capistrano/tasks' if you have any defined.
