@@ -1,5 +1,5 @@
 # Change to match your CPU core count
-workers 1
+workers 2
 
 # Min and Max threads per worker
 threads 1, 6
@@ -22,5 +22,5 @@ activate_control_app
 on_worker_boot do
   require "active_record"
   ActiveRecord::Base.connection.disconnect! rescue ActiveRecord::ConnectionNotEstablished
-  ActiveRecord::Base.establish_connection(YAML.load_file("#{app_dir}/config/database.yml")[rails_env])
+  ActiveRecord::Base.establish_connection(YAML.load_file("#{shared_dir}/config/database.yml")[rails_env])
 end
