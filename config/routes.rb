@@ -81,19 +81,15 @@ Rails.application.routes.draw do
 
     # pages
     get '/admin' => 'pages#admin_tools'
-    get '/jarjesto' => 'pages#jarjesto', id: 'jarjesto'
     get '/komero' => 'pages#komero', id: 'komero'
     get '/sahkopostilistat' => 'pages#sahkopostilistat', id: 'sahkopostilistat'
-    get '/yrityksille' => 'pages#yrityksille', id: 'yrityksille'
     get '/kerhot' => 'pages#kerhot', id: 'kerhot'
     get '/klusteri' => 'pages#klusteri', id: 'klusteri'
-    get '/fuksille' => 'pages#fuksille', id: 'fuksille'
     get '/fuksiopas' => 'pages#fuksiopas', id: 'fuksiopas'
     get '/tuutorit' => 'pages#tuutorit', id: 'tuutorit'
     get '/sanasto' => 'pages#sanasto', id: 'sanasto'
     get '/kurssikuvauksia' => 'pages#kurssikuvauksia', id: 'kurssikuvauksia'
     get '/tenttiarkisto' => 'pages#tenttiarkisto', id: 'tenttiarkisto'
-    get '/toiminta' => 'pages#toiminta', id: 'toiminta'
     get '/virkailijaksi' => 'pages#virkailijaksi', id: 'virkailijaksi'
     get '/yhteystiedot' => 'pages#yhteystiedot', id: 'yhteystiedot'
     get '/lomakkeet' => 'pages#lomakkeet', id: 'lomakkeet'
@@ -102,12 +98,13 @@ Rails.application.routes.draw do
     get '/turvallinen_tila' => 'pages#turvallinen_tila', id: 'turvallinen_tila'
     get '/tilat' => 'pages#tilat', id: 'tilat'
     get '/tuotteet' => 'pages#tuotteet', id: 'tuotteet'
-    get '/perinnetapahtumat' => 'pages#perinnetapahtumat', id: 'perinnetapahtumat'
+    get '/yleiset_tapahtumat' => 'pages#yleiset_tapahtumat', id: 'yleiset_tapahtumat'
     get '/juhlat' => 'pages#juhlat', id: 'juhlat'
     get '/kulttuuri' => 'pages#kulttuuri', id: 'kulttuuri'
     get '/liikunta' => 'pages#liikunta', id: 'liikunta'
     get '/pelailu' => 'pages#pelailu', id: 'pelailu'
     get '/tutkinto' => 'pages#tutkinto', id: 'tutkinto'
+    get '/tukea_opiskeluun' => 'pages#tukea_opiskeluun', id: 'tukea_opiskeluun'
     get '/helpot_nopat' => 'pages#helpot_nopat', id: 'helpot_nopat'
     get '/edunvalvonta' => 'pages#edunvalvonta', id: 'edunvalvonta'
     get '/tervehdys' => 'pages#tervehdys', id: 'tervehdys'
@@ -116,6 +113,12 @@ Rails.application.routes.draw do
     get '/tyhja_joukko' => 'pages#tyhja_joukko', id: 'tyhja_joukko'
     get '/julkaisut' => 'pages#julkaisut', id: 'julkaisut'
     get '/toimitus' => 'pages#toimitus', id: 'toimitus'
+
+    # old title pages
+    # get '/jarjesto' => 'pages#jarjesto', id: 'jarjesto'
+    # get '/toiminta' => 'pages#toiminta', id: 'toiminta'
+    # get '/fuksille' => 'pages#fuksille', id: 'fuksille'
+    # get '/yrityksille' => 'pages#yrityksille', id: 'yrityksille'
 
     get '/virat' => 'positions#index'
 

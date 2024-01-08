@@ -158,8 +158,8 @@ class PagesController < ApplicationController
     generic_page()
   end
 
-  def perinnetapahtumat
-    @title = 'Perinnetapahtumat'
+  def yleiset_tapahtumat
+    @title = 'Yleiset tapahtumat'
     generic_page()
   end
 
@@ -188,6 +188,11 @@ class PagesController < ApplicationController
 
   def toimitus
     @title = 'Toimitus'
+    generic_page()
+  end
+
+  def tukea_opiskeluun
+    @title = 'Tukea opiskeluun'
     generic_page()
   end
 
