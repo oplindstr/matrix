@@ -13,10 +13,11 @@
         <%= link_to t("home"), root_path, :class => "navbar-item" %>
         <%= link_to t("Events"), kalenteri_path, :class => "navbar-item" %>
         <div class="navbar-item has-dropdown is-hoverable">
-          <%= link_to t("organization"), jarjesto_path, :class => "navbar-link" %>
+          <span class="navbar-link navbar-title"><%= t("organization") %></span>
           <div class="navbar-dropdown">
             <%= link_to t("contact_info"), yhteystiedot_path, :class => "navbar-item" %>
             <%= link_to t("board_and_positions"), hallitus_path, :class => "navbar-item" %>
+            <%= link_to t("Virkailijaksi"), virkailijaksi_path, :class => "navbar-item" %>
             <%= link_to t("Tiedotuskanavat"), tiedotuskanavat_path, :class => "navbar-item" %>
             <%= link_to t("Lomakkeet"), lomakkeet_path, :class => "navbar-item" %>
             <%= link_to t("documents"), dokumentit_path, :class => "navbar-item" %>
@@ -24,12 +25,12 @@
           </div>
         </div>
         <div class="navbar-item has-dropdown is-hoverable">
-          <%= link_to t("activity"), toiminta_path, :class => "navbar-link" %>
+          <span class="navbar-link navbar-title"><%= t("activity") %></span>
           <div class="navbar-dropdown">
             <%= link_to t("Turvallisemman tilan periaatteet"), turvallinen_tila_path, :class => "navbar-item" %>
             <%= link_to t("Tilat"), tilat_path, :class => "navbar-item" %>
             <%= link_to t("Tuotteet"), tuotteet_path, :class => "navbar-item" %>
-            <%= link_to t("Perinnetapahtumat"), perinnetapahtumat_path, :class => "navbar-item" %>
+            <%= link_to t("Yleiset tapahtumat"), yleiset_tapahtumat_path, :class => "navbar-item" %>
             <%= link_to t("Juhlat"), juhlat_path, :class => "navbar-item" %>
             <%= link_to t("Kulttuuri"), kulttuuri_path, :class => "navbar-item" %>
             <%= link_to t("Liikunta"), liikunta_path, :class => "navbar-item" %>
@@ -37,16 +38,17 @@
           </div>
         </div>
         <div class="navbar-item has-dropdown is-hoverable">
-          <span class="navbar-link"><%= t("studies") %></span>
+          <span class="navbar-link navbar-title"><%= t("studies") %></span>
           <div class="navbar-dropdown">
             <%= link_to t("exam_archive"), tenttiarkisto_path, :class => "navbar-item" %>
             <%= link_to t("Tutkinto & kurssit"), tutkinto_path, :class => "navbar-item" %>
+            <%= link_to t("Tukea opiskeluun"), tukea_opiskeluun_path, :class => "navbar-item" %>
             <%= link_to t("Helpot nopat"), helpot_nopat_path, :class => "navbar-item" %>
             <%= link_to t("Edunvalvonta"), edunvalvonta_path, :class => "navbar-item" %>
           </div>
         </div>
         <div class="navbar-item has-dropdown is-hoverable">
-          <%= link_to t("Fuksille"), fuksille_path, :class => "navbar-link" %>
+          <span class="navbar-link navbar-title"><%= t("Fuksille") %></span>
           <div class="navbar-dropdown">
             <%= link_to t("Tervehdys"), tervehdys_path, :class => "navbar-item" %>
             <%= link_to t("Fuksiopas"), fuksiopas_path, :class => "navbar-item" %>
@@ -55,14 +57,14 @@
           </div>
         </div>
         <div class="navbar-item has-dropdown is-hoverable">
-          <%= link_to t("Yrityksille"), yrityksille_path, :class => "navbar-link" %>
+          <span class="navbar-link navbar-title"><%= t("Yrityksille") %></span>
           <div class="navbar-dropdown">
             <%= link_to t("Yhteistyö"), yhteistyo_path, :class => "navbar-item" %>
             <%= link_to t("Hinnasto"), hinnasto_path, :class => "navbar-item" %>
           </div>
         </div>
         <div class="navbar-item has-dropdown is-hoverable">
-          <span class="navbar-link"><%= t("Lehti") %></span>
+          <span class="navbar-link navbar-title"><%= t("Lehti") %></span>
           <div class="navbar-dropdown">
             <%= link_to t("Tyhjä Joukko"), tyhja_joukko_path, :class => "navbar-item" %>
             <%= link_to t("Julkaisut"), julkaisut_path, :class => "navbar-item" %>
