@@ -48,7 +48,7 @@ class Member < ActiveRecord::Base
   end
 
   def event_contact_info
-    if self.tg_nick
+    if self.tg_nick and not self.tg_nick.empty?
       return "#{self.full_name} (#{self.tg_nick})"
     end
     return self.full_name
