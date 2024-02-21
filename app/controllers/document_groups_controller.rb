@@ -1,6 +1,6 @@
 class DocumentGroupsController < ApplicationController
   before_action :set_document_group, only: [:edit, :update, :destroy, :show]
-  before_action :set_document_group_categories, only: [:index, :new, :edit]
+  before_action :set_document_group_categories, only: [:index, :new]
   before_action :ensure_that_sub_admin, except: [:index, :show]
 
   include MessageHelper
@@ -35,6 +35,7 @@ class DocumentGroupsController < ApplicationController
   # GET /document_groups/1/edit
   def edit
     @document_group_category_id = @document_group.document_group_category_id
+    @document_group_categories = DocumentGroupCategory.all.sort { |a,b| a.name.downcase <=> b.name.downcase }
   end
 
   # POST /document_groups
