@@ -1,4 +1,5 @@
 fi:
+  Calendar: 'Tapahtumakalenteri'
   cancel_signup: 'Peru ilmoittautuminen'
   cancel_signup_confirm: 'Haluatko varmasti perua ilmoittautumisesi?'
   contact_person_id: 'Yhteyshenkilö'

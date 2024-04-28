@@ -1,4 +1,4 @@
-This is the repository of the student organization Matrix ry's website. Matrix ry is the subject organization of mathematics students at the University of Helsinki.
+This is the repository of the student organization Matrix ry's website. Matrix ry is the student organization of mathematics students at the University of Helsinki.
 
 Link to the website: https://matrix-ry.fi/
 

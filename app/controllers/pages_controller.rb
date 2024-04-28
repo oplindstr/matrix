@@ -212,7 +212,7 @@ class PagesController < ApplicationController
   end
 
   def tyhja_joukko
-    @title = 'Tyhjä Joukko'
+    @title = 'Tyhjä joukko'
     generic_page()
   end
 
