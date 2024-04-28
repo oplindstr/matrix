@@ -16,7 +16,7 @@ Rails.application.routes.draw do
     resources :event_parameters
     resources :members, only: [:edit, :update, :index, :new, :create, :destroy]
     resources :news
-    resources :events, path: 'kalenteri'
+    resources :events, path: 'tapahtumat'
     resources :partners, only: [:edit, :update, :index, :new, :create, :destroy]
     resources :position_members
     resources :positions
@@ -45,11 +45,16 @@ Rails.application.routes.draw do
     get '/hallitus', to: 'board_members#index', as: 'hallitus'
     get '/hallitus/:vuosi', to: 'board_members#index'
 
-    get '/kalenteri' => 'events#index', as: 'kalenteri'
+    get '/tapahtumat' => 'events#index', as: 'tapahtumat'
 
-    get '/kalenteri/:id/ilmoittautumiset(.:format)' => 'signups#show', as: 'event_signups'
+    get '/tapahtumat/:id/ilmoittautumiset(.:format)' => 'signups#show', as: 'event_signups'
 
-    get '/kalenteri/vuosi/:year' => 'events#events_by_year'
+    get '/tapahtumat/vuosi/:year' => 'events#events_by_year'
+
+    get '/kalenteri', to: redirect('/tapahtumat')
+    get '/kalenteri/:id', to: redirect { |params, request|
+      "/tapahtumat/#{params[:id]}"
+    }
 
     get '/menneet_tapahtumat' => 'events#past_events', as: 'past_events'
 
