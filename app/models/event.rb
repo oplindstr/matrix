@@ -201,4 +201,8 @@ class Event < ActiveRecord::Base
     end
     return nil
   end
+
+  def is_upcoming
+    return self.starttime >= DateTime.now.midnight
+  end
 end

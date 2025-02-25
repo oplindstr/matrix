@@ -12,7 +12,7 @@ class SignupsController < ApplicationController
   # GET /signups/1
   # GET /signups/1.json
   def show
-    if !sub_admin and (!@event.signup_required or !@event.signup_open)
+    if !sub_admin and (!@event.signup_required or !@event.is_upcoming)
       redirect_to root_path
     else
       @signups = @event.signups.order(:id).includes([:signup_parameters, :user])
