@@ -87,7 +87,7 @@
       <% end %>
     </p>
 
-    <% if !@event.empty %>
+    <% if !@event.empty and (sub_admin or @event.is_upcoming) %>
       <p><%= link_to t('Show signed up'), event_signups_path(@event.id) %></p>
       <br>
     <% end %>
